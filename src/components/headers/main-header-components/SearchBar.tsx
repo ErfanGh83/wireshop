@@ -9,13 +9,13 @@ const SearchBar = () => {
 
     return (
         <div
-            className={`container group w-[300px] h-10 flex flex-row-reverse border-2 border-transparent bg-blue-200 rounded-sm m-auto overflow-hidden focus:glow-border 
+            className={`container group w-[400px] h-10 flex flex-row-reverse border-2 border-transparent bg-blue-100 rounded-sm m-auto overflow-hidden focus:glow-border 
                 ${isFocused? 'glow-border' : ''}`}
             onBlur={() => setIsFocused(false)}
         >
             <div>
                 <input
-                    className="w-[260px] h-10 px-1 pb-2 focus:outline-none text-gray-800 placeholder:text-blue-400"
+                    className="w-[360px] h-10 px-1 pb-2 focus:outline-none text-gray-800 placeholder:text-blue-500"
                     placeholder="جستجو"
                     onFocus={() => setIsFocused(true)}
                 />

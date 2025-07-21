@@ -8,12 +8,12 @@ const MainHeader = () => {
 
     return (
         <div
-            className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 border-b-2 border-gray-200 shadow-2xl'
+            className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 border-b-2 border-gray-100'
         >
 
             <Link
                 href={'/'}
-                className='w-48 h-10 flex flex-row-reverse items-center p-1 rounded-sm bg-white hover:border-blue-400 hover:text-blue-400 border-[2px] transition-colors'
+                className='w-48 h-10 flex flex-row-reverse items-center p-1 rounded-sm bg-white hover:border-blue-400 hover:text-blue-500 border-[2px] transition-all'
             >
                 <div
                     className='size-fit p-1 m-auto'

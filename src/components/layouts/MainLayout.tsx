@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import MainHeader from '../headers/MainHeader'
 import MainFooter from '../footers/MainFooter'
+import FilterHeader from '../headers/SubHeader'
 
 type Props = {
     children: ReactElement
@@ -12,8 +13,11 @@ const MainLayout = ({children}:Props) => {
         <div
             className='w-screen h-screen flex flex-col overflow-x-hidden overflow-y-auto bg-white text-black'
         >
-            <header>
+            <header
+                className='w-screen h-fit flex flex-col'
+            >
                 <MainHeader />
+                <FilterHeader />
             </header>
 
             <main
