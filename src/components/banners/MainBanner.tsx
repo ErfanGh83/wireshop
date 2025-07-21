@@ -49,7 +49,8 @@ const CustomComponent: React.FC<CustomComponentProps> = ({
         quality={100}
       />
 
-      <div className="relative z-30 flex flex-row-reverse items-center justify-center gap-12 w-full mx-24">
+      <div className={`relative z-30 flex flex-row-reverse items-center justify-center gap-12 w-full mx-24 
+        ${childrenImages.length === 1? 'justify-start' : ''}`}>
         {childrenImages.map((childImage, index) => (
           <motion.div
             key={index}
