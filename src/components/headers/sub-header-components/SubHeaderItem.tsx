@@ -5,8 +5,6 @@ type Props = {
   title: string
   link?: string
   icon: ReactNode
-  children: ReactNode
-  isOpen: boolean
   className?: string
 }
 
@@ -14,8 +12,6 @@ const SubHeaderItem = ({
   title,
   link,
   icon,
-  children,
-  isOpen,
   className = ''
 }: Props) => {
   const content = (
@@ -38,7 +34,6 @@ const SubHeaderItem = ({
       ) : (
         <div className="flex items-center gap-2 w-full">
           {content}
-          {isOpen && children}
         </div>
       )}
     </button>

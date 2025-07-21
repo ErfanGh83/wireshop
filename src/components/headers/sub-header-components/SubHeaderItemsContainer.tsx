@@ -11,11 +11,8 @@ const SubHeaderItemsContainer = () => {
                 <SubHeaderItem
                     key={index}
                     title={category.title}
-                    icon={category.icon}
-                    isOpen={false}
-                >
-                    <div></div>
-                </SubHeaderItem>
+                    icon={category.icon}               
+                />
             ))}
         </div>
     )

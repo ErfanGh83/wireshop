@@ -1,3 +1,4 @@
+import { BsThreeDots } from "react-icons/bs";
 import { FiCpu, FiDatabase, FiGrid, FiHome, FiShield, FiTruck, FiWifi, FiZap } from "react-icons/fi";
 
 export const subHeaderItems = [
@@ -39,6 +40,11 @@ export const subHeaderItems = [
     {
         title: "سیم ارت",
         icon: <FiShield className="text-lg" />,
+        children: <div></div>
+    },
+    {
+        title: "موارد دیگر",
+        icon: <BsThreeDots />,
         children: <div></div>
     },
 ];
