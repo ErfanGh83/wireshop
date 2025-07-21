@@ -15,7 +15,7 @@ const SearchBar = () => {
         >
             <div>
                 <input
-                    className="w-[260px] h-10 px-1 focus:outline-none text-gray-800 placeholder:text-blue-400"
+                    className="w-[260px] h-10 px-1 pb-2 focus:outline-none text-gray-800 placeholder:text-blue-400"
                     placeholder="جستجو"
                     onFocus={() => setIsFocused(true)}
                 />
