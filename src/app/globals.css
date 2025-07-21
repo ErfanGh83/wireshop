@@ -1,3 +1,37 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 6px rgba(75, 141, 248, 0.4), 0 0 12px rgba(85, 147, 248, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8), 0 0 20px rgba(85, 147, 248, 1);
+  }
+
+  100% {
+    box-shadow: 0 0 6px rgba(75, 141, 248, 0.4), 0 0 12px rgba(85, 147, 248, 0.6);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 6px currentColor;
+  }
+
+  50% {
+    box-shadow: 0 0 12px currentColor;
+  }
+
+  100% {
+    box-shadow: 0 0 6px currentColor;
+  }
+}
+
+.glow-border {
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  animation: glow 1.5s ease-in-out infinite;
+}
