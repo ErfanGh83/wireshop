@@ -1,8 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { HamburgerItems } from './HamburgerMenuItems'
 import HamburgerMenuItemContainer from './HamburgerMenuItemContainer'
 import ThemeSwitchButton from '@/components/buttons/ThemeSwitchButton'
+import { HamburgerItems } from '../../../../public/api/examples'
 
 const HamburgerMenu = () => {
     const containerVariants = {

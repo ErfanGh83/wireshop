@@ -1,6 +1,6 @@
 import React from 'react'
 import SubHeaderItem from './SubHeaderItem'
-import { subHeaderItems } from './SubHeaderItems'
+import { subHeaderItems } from '../../../../public/api/examples'
 
 
 const SubHeaderItemsContainer = () => {
