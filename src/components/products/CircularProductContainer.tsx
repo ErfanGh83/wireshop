@@ -14,15 +14,16 @@ const CircularProductContainer = ({ id, title, imageUrl, link, className = '' }:
   return (
     <Link
         href={link || `/product/${id}`}
-        className={`group w-56 h-32 flex flex-col items-center justify-between gap-2 ${className}`}
+        className={`group w-32 h-32 flex flex-col items-center justify-between gap-2 m-auto ${className}`}
         aria-label={`View ${title}`}
     >
-        <div className='relative size-24 rounded-full bg-gray-100 overflow-hidden border-2 border-gray-200 group-hover:border-blue-500 transition-all'>
+        <div className='relative size-24 rounded-full bg-white overflow-hidden border-2 border-gray-200 group-hover:border-blue-500 transition-all'>
             <Image 
                 src={imageUrl}
                 alt={title}
                 fill
-                className='object-cover p-1'
+                className='fill'
+                draggable={false}
                 sizes='(max-width: 640px) 50vw, 16px'
             />
         </div>

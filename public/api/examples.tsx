@@ -115,3 +115,66 @@ export const banners = [
         link: "/"
     }
 ]
+
+export const circularProducts = [
+    {
+        id: "1",
+        title: "THHN/THWN-2",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg"
+    },
+    {
+        id: "2",
+        title: "SO Cord (SOOW)",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg"
+    },
+    {
+        id: "3",
+        title: "Belden Cable",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg"
+    },
+    {
+        id: "4",
+        title: "Alum URD",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg"
+    },
+    {
+        id: "5",
+        title: "Tray Cable",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/673_3.jpg"
+    },
+    {
+        id: "6",
+        title: "Hook-up Wire",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/HOOK_3.JPG"
+    },
+    {
+        id: "7",
+        title: "SER Cable",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/SER.jpg"
+    },
+    {
+        id: "8",
+        title: "Welding Cable",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/15591_2.jpg"
+    },
+    {
+        id: "9",
+        title: "UF-B Cable",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/5629_3.jpg"
+    },
+    {
+        id: "10",
+        title: "Bare Copper",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/14230_1.png"
+    },
+    {
+        id: "11",
+        title: "MTW Wire",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/MTW_-_MASTER.jpg"
+    },
+    {
+        id: "12",
+        title: "Flexible Conduit",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/2020-06-09_3.png"
+    },
+]

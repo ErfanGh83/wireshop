@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${vazir.variable} font-sans antialiased bg-gray-800 text-right`}
+        className={`${vazir.variable} font-sans antialiased bg-gray-800 text-right scrollbar-modern`}
       >
         {children}
       </body>
