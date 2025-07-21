@@ -8,16 +8,9 @@ const MainHeader = () => {
         <div
             className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4'
         >
-            <div
-                className='size-fit flex flex-row-reverse items-center gap-4'
-            >
-                <button
-                    className='size-fit p-2 text-xl md:text-2xl xl:text-3xl rounded-sm text-blue-400 bg-blue-200 dark:to-blue-400 hover:cursor-pointer hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-colors'
-                >
-                    <BiMenu />
-                </button>
 
-                <BiLogoAmazon size={36}/>
+            <div>
+                left
             </div>
 
             <div
@@ -26,8 +19,16 @@ const MainHeader = () => {
                 <SearchBar />
             </div>
 
-            <div>
-                راست
+            <div
+                className='size-fit flex flex-row-reverse items-center gap-4'
+            >
+                <BiLogoAmazon size={36} />
+                
+                <button
+                    className='size-fit p-2 text-xl md:text-2xl xl:text-3xl rounded-sm text-blue-400 bg-blue-200 dark:to-blue-400 hover:cursor-pointer hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-colors'
+                >
+                    <BiMenu />
+                </button>
             </div>
         </div>
     )

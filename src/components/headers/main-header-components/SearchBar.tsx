@@ -15,7 +15,7 @@ const SearchBar = () => {
             </div>
 
             <button
-                className='size-full flex items-center justify-center text-blue-400 cursor-pointer hover:bg-blue-600 hover:text-white transition-colors'
+                className='size-full flex items-center justify-center text-blue-400 cursor-pointer hover:bg-blue-500 hover:text-white transition-colors'
             >
                 <BiSearch size={24}/>
             </button>
