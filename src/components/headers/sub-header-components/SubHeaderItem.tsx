@@ -22,7 +22,7 @@ const SubHeaderItem = ({
   )
 
   return (
-    <button className={`w-fit h-8 rounded-full flex items-center justify-between pl-1 pr-2 py-[1px] md:pl-2 md:pr-4 md:py-1 cursor-pointer bg-blue-100 dark:bg-slate-500 dark:text-gray-100 hover:bg-blue-200 transition-colors  ${className}`}>
+    <button className={`w-fit h-8 rounded-full flex items-center justify-between pl-1 pr-2 py-[1px] md:pl-2 md:pr-4 md:py-1 cursor-pointer bg-blue-100 dark:bg-slate-500 dark:text-gray-100 hover:bg-blue-200 dark:hover:bg-slate-500 dark:border-[1px] dark:border-transparent dark:hover:border-purple-500 transition-colors  ${className}`}>
       {link ? (
         <Link
           href={link}

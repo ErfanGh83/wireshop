@@ -4,7 +4,7 @@ const ShoppingCartButton = ({ itemCount = 2 }) => {
   return (
     <div className="relative">
       <button
-        className='h-8 md:size-10 p-2 border-b-1 border-black dark:border-white text-lg md:text-2xl border-[1px] dark:border-transparent rounded-sm cursor-pointer bg-white dark:bg-slate-500 text-black dark:text-gray-100 hover:text-blue-400 transition-colors'
+        className='h-8 md:size-10 p-2 border-b-1 border-black dark:border-white text-lg md:text-2xl border-[1px] rounded-sm cursor-pointer bg-transparent text-black dark:text-gray-100 hover:text-purple-400 transition-colors'
       >
         <CgShoppingCart />
       </button>

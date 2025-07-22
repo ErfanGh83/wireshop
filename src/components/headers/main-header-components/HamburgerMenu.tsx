@@ -31,7 +31,7 @@ const HamburgerMenu = () => {
 
     return (
         <motion.div
-            className='w-56 h-full bg-white flex flex-col pt-3'
+            className='w-56 h-full bg-white dark:bg-slate-600 flex flex-col pt-3'
             initial="hidden"
             animate="visible"
             variants={containerVariants}
@@ -58,7 +58,7 @@ const HamburgerMenu = () => {
                         icon={item.icon}
                     />
 
-                    <hr className='w-4/5 mx-auto text-gray-300'/>
+                    <hr className='w-4/5 mx-auto text-gray-300 dark:text-slate-600'/>
                 </motion.div>
             ))}
         </motion.div>

@@ -25,7 +25,7 @@ const MainHeader = () => {
       </div>
 
       {/* Additional Search Bar - Only shown on very small screens */}
-      <div className='min-[550px]:hidden w-full px-4 py-2 border-b border-gray-100'>
+      <div className='min-[550px]:hidden w-full px-4 py-2 border-b dark:bg-slate-600 border-gray-100 dark:border-none'>
         <SearchBar />
       </div>
     </>
