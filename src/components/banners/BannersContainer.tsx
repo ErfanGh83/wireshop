@@ -12,6 +12,7 @@ import MainBanner from './MainBanner';
 interface Banner {
     backgroundImageUrl: string;
     childrenImages?: string[];
+    description: string;
     link?: string;
 }
 
@@ -96,6 +97,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
                             <MainBanner
                                 backgroundImageUrl={banner.backgroundImageUrl}
                                 childrenImages={banner.childrenImages}
+                                description={banner.description}
                                 link={banner.link}
                             />
                         </motion.div>

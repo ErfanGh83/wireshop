@@ -90,31 +90,29 @@ export const subHeaderItems = [
 export const banners = [
     {
         backgroundImageUrl: '/images/wifi-bg.jpg',
-        childrenImages:
-            [
-                '/images/ethernet-blue.png',
-            ],
-        link: "/"
+        childrenImages: ['/images/ethernet-blue.png'],
+        description: "کابل اترنت CAT6 با پشتیبانی از سرعت 1 گیگابیت بر ثانیه، مناسب برای شبکه‌های خانگی و اداری. دارای روکش ضد نویز برای انتقال داده‌های پایدار.",
+        link: "/products/ethernet-cables"
     },
     {
         backgroundImageUrl: '/images/power-bg.avif',
-        childrenImages:
-            [
-                '/images/power-cable.png',
-                '/images/power-cable2.webp'
-            ],
-        link: "/"
+        childrenImages: [
+            '/images/power-cable.png',
+            '/images/power-cable2.webp'
+        ],
+        description: "کابل‌های برق صنعتی با استاندارد ISO 9001، مقاوم در برابر حرارت تا 70 درجه سانتیگراد. مناسب برای مصارف صنعتی و کارگاه‌های تولیدی.",
+        link: "/products/power-cables"
     },
     {
         backgroundImageUrl: '/images/rainbow-bg.avif',
-        childrenImages:
-            [
-                '/images/rainbow-usbs.png',
-                '/images/rainbow-cable2.webp'
-            ],
-        link: "/"
+        childrenImages: [
+            '/images/rainbow-usbs.png',
+            '/images/rainbow-cable2.webp'
+        ],
+        description: "کابل‌های USB رنگی با پشتیبانی از USB 3.0، انتقال داده با سرعت 5Gbps. مجموعه‌ای از کابل‌های با دوام و انعطاف‌پذیر برای دستگاه‌های مختلف.",
+        link: "/products/usb-cables"
     }
-]
+];
 
 export const circularProducts = [
     {
