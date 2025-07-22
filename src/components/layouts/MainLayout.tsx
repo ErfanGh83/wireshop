@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import MainHeader from '../headers/MainHeader'
 import FilterHeader from '../headers/SubHeader'
+import FloatingChat from '../chat/FloatingChat'
 
 type Props = {
     children: ReactElement
@@ -24,6 +25,8 @@ const MainLayout = ({children}:Props) => {
             >
                 {children}
             </main>
+
+            <FloatingChat />
         </div>
     )
 }
