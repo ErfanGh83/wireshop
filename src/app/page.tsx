@@ -14,15 +14,17 @@ export default function Home() {
         <BannersContainer banners={banners} />
 
         <section
-          className="w-full h-fit my-12"
+          className="w-full h-fit my-16"
         >
           <CircularProductsContainer />
         </section>
 
-        <section>
+        <section
+          className="w-full h-fit my-16"
+        >
           <NormalProductsContainer />
         </section>
-        
+
       </div>
     </MainLayout>
   );

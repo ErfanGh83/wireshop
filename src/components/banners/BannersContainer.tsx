@@ -64,7 +64,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
 
     return (
         <div
-            className="relative w-full"
+            className="relative w-full h-[440px]"
             ref={containerRef}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 import MainHeader from '../headers/MainHeader'
-import MainFooter from '../footers/MainFooter'
 import FilterHeader from '../headers/SubHeader'
 
 type Props = {
@@ -25,12 +24,6 @@ const MainLayout = ({children}:Props) => {
             >
                 {children}
             </main>
-
-            <footer
-                className='w-full h-10'
-            >
-                <MainFooter />
-            </footer>
         </div>
     )
 }

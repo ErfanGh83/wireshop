@@ -4,13 +4,13 @@ import NormalProductContainer from './NormalProductContainer'
 
 const NormalProductsContainer = () => {
   return (
-    <div className="container mx-auto px-4 py-8" dir="rtl">
-      <div className="text-center mb-10">
+    <div className="container mx-auto px-4" dir="rtl">
+      <div className="text-center mb-16">
         <h2 className="text-3xl font-bold text-gray-800">سیم و کابل با کیفیت</h2>
         <p className="text-gray-600 mt-2">راهکارهای الکتریکی با کیفیت برای تمام نیازهای شما</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
         {wireAndCableProducts.map((product) => (
           <NormalProductContainer
             key={product.id}

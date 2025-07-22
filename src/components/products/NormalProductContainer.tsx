@@ -30,13 +30,13 @@ const NormalProductContainer = ({
             href={`/products/${id}`}
             className={`group relative bg-white shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 hover:shadow-xl ${className}`} dir="rtl">
             {discount > 0 && (
-                <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 z-10">
+                <div className="absolute top-0 left-0 bg-red-500 text-white text-[5px] min-[380px]:text-[8px] font-bold px-2 py-1 z-10">
                     %{discount} تخفیف
                 </div>
             )}
 
             {isSpecial && (
-                <div className="absolute top-[5%] left-0 bg-purple-500 text-white text-xs font-bold px-2 py-1 z-10">
+                <div className="absolute top-[5%] left-0 bg-purple-500 text-white text-[8px] sm:text-xs font-bold px-2 py-1 z-10">
                     ویژه
                 </div>
             )}
@@ -59,18 +59,18 @@ const NormalProductContainer = ({
 
 
                 {description && (
-                    <p className="text-gray-500 text-xs mb-3 line-clamp-2">
+                    <p className="text-gray-500 text-[10px] sm:text-xs mb-3 line-clamp-2">
                         {description}
                     </p>
                 )}
 
                 <div className="flex items-center justify-between mt-2">
                     <div className="flex items-center gap-2">
-                        <span className="text-md font-bold text-gray-900">
+                        <span className="text-xs sm:text-md font-bold text-gray-900">
                            سانت / {discountedPrice.toFixed(2)} تومان
                         </span>
                         {discount > 0 && (
-                            <span className="text-xs text-gray-500 line-through">
+                            <span className="text-[10px] sm:text-xs text-gray-500 line-through">
                                 {price.toFixed(2)} تومان
                             </span>
                         )}
