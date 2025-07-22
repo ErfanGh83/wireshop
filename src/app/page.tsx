@@ -2,6 +2,7 @@ import BannersContainer from "@/components/banners/BannersContainer";
 import MainLayout from "@/components/layouts/MainLayout";
 import { banners } from "../../public/api/examples";
 import CircularProductsContainer from "@/components/products/CircularProductsContainer";
+import NormalProductsContainer from "@/components/products/NormalProductsContainer";
 
 export default function Home() {
 
@@ -12,11 +13,16 @@ export default function Home() {
       >
         <BannersContainer banners={banners} />
 
-        <div
+        <section
           className="w-full h-fit my-12"
         >
           <CircularProductsContainer />
-        </div>
+        </section>
+
+        <section>
+          <NormalProductsContainer />
+        </section>
+        
       </div>
     </MainLayout>
   );
