@@ -1,8 +1,9 @@
 import MainLayout from "@/components/layouts/MainLayout";
 import ProductImageSlider from "@/components/productPage/slider/ProductImageSlider";
 import ProductDetailSpec from "@/components/productPage/spec/ProductDetailSpec";
-import ProductPageComment from "@/components/productPage/comment/ProductPageComment";
-import { productComments, productImageList, productSpecs } from "../../../public/api/examples";
+import { productImageList, productSpecs } from "../../../public/api/examples";
+import ProductCommentForm from "@/components/productPage/comment/ProductCommentForm";
+import ProductCommentContainer from "@/components/productPage/comment/ProductCommentContainer";
 
 
 export default function page() {
@@ -33,7 +34,7 @@ export default function page() {
                   type="number"
                   min={1}
                   placeholder="طول (متر)"
-                  className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600"
+                  className="px-3 py-2 w-40 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600"
                 />
                 <button className="bg-blue-100 hover:scale-105 ease-out transition-all cursor-pointer hover:bg-blue-200 hover:text-blue-900 text-black px-4 py-2 rounded-lg dark:bg-slate-500 hover:dark:text-black dark:text-gray-100">
                   افزودن به سبد خرید
@@ -55,36 +56,9 @@ export default function page() {
               </div>
             </div>
 
-            {/* Comment Box */}
-            <div className="mt-4 pl-3">
-              <label className="block mb-1">ثبت نظر</label>
-              <textarea
-                className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600 min-h-30 max-h-60 "
-                rows={3}
-                placeholder="نظر خود را بنویسید..."
-              />
-              <button className="mt-2 hover:scale-105 ease-out transition-all cursor-pointer bg-blue-100 hover:bg-blue-200 text-black px-4 py-2 rounded-lg dark:bg-slate-500 dark:text-gray-100">
-                ارسال نظر
-              </button>
-            </div>
+            <ProductCommentForm />
 
-            {/* previous comments */}
-            <div className="flex items-center my-6">
-              <div className="flex-grow border-t border-black mx-2" />
-              <p className="px-4 text-center whitespace-nowrap text-black dark:text-gray-100">
-                نمایش نظرات (1)
-              </p>
-              <div className="flex-grow border-t border-black mx-2" />
-            </div>
-            <ul className="mt-2">
-              {productComments.map((item) => (
-                <ProductPageComment
-                  key={item.id}
-                  text={item.text}
-                  userName={item.userName}
-                />
-              ))}
-            </ul>
+            <ProductCommentContainer />
           </div>
         </div>
       </div>
