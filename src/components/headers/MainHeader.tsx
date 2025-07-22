@@ -7,7 +7,7 @@ import ShoppingCartButton from '../buttons/ShoppingCartButton'
 const MainHeader = () => {
   return (
     <>
-      <div className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 border-b-1 border-gray-100'>
+      <div className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 border-b-1 bg-white dark:bg-slate-600 border-gray-100 dark:border-transparent'>
         <div className='size-fit flex flex-row-reverse items-center gap-x-4'>
           <SignupOrLoginButton />
           

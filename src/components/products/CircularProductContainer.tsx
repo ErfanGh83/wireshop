@@ -17,7 +17,7 @@ const CircularProductContainer = ({ id, title, imageUrl, link, className = '' }:
         className={`group w-32 h-32 flex flex-col items-center justify-between gap-2 m-auto ${className}`}
         aria-label={`View ${title}`}
     >
-        <div className='relative size-24 rounded-full bg-white overflow-hidden border-2 border-gray-200 group-hover:border-blue-500 transition-all'>
+        <div className='relative size-24 rounded-full bg-white dark:bg-gray-600 overflow-hidden border-4 border-t-transparent dark:border-t-purple-400 border-l-transparent dark:border-l-purple-400 border-r-blue-200 dark:border-r-transparent border-b-blue-200 dark:border-b-transparent group-hover:border-blue-500 dark:group-hover:border-purple-600 transition-all'>
             <Image 
                 src={imageUrl}
                 alt={title}
@@ -28,7 +28,7 @@ const CircularProductContainer = ({ id, title, imageUrl, link, className = '' }:
             />
         </div>
 
-        <div className='text-sm font-medium text-center text-gray-700 line-clamp-2 px-1'>
+        <div className='text-sm font-medium text-center text-gray-700 dark:text-gray-200 line-clamp-2 px-1'>
             {title}
         </div>
     </Link>

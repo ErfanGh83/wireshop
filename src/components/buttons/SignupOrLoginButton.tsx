@@ -5,7 +5,7 @@ import { FaUser } from 'react-icons/fa'
 const SignupOrLoginButton = () => {
     return (
         <div
-            className='w-32 md:w-40 xl:w-44 h-8 md:h-10 flex flex-row-reverse items-center p-1 rounded-sm bg-white border-[1px]'
+            className='w-32 md:w-40 xl:w-44 h-8 md:h-10 flex flex-row-reverse items-center p-1 rounded-sm bg-white dark:bg-slate-500 text-black dark:text-gray-100 border-[1px]'
         >
             <div
                 className='hidden xl:block md:size-fit p-1 m-auto text-blue-400'

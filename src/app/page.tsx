@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <MainLayout>
       <div
-        className="size-full flex flex-col bg-white dark:bg-black text-black dark:text-white overflow-y-auto"
+        className="size-full flex flex-col bg-white dark:bg-slate-800 text-black dark:text-white overflow-y-auto"
       >
         <BannersContainer banners={banners} />
 

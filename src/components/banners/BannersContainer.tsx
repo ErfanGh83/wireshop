@@ -84,7 +84,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
                     disableOnInteraction: false,
                 }}
                 onAutoplayTimeLeft={handleAutoplayTimeLeft}
-                className="h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px]"
+                className="h-[200px] sm:h-[300px] md:h-[400px] lg:h-[440px]"
             >
                 {banners.map((banner, index) => (
                     <SwiperSlide key={index}>
