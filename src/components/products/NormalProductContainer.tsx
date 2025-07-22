@@ -28,7 +28,7 @@ const NormalProductContainer = ({
     return (
         <Link
             href={`/products/${id}`}
-            className={`group relative bg-white shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 hover:shadow-xl ${className}`} dir="rtl">
+            className={`group relative bg-white dark:bg-gray-500 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-transparent hover:shadow-xl dark:hover:border-purple-400 ${className}`} dir="rtl">
             {discount > 0 && (
                 <div className="absolute top-0 left-0 bg-red-500 text-white text-[5px] min-[380px]:text-[8px] font-bold px-2 py-1 z-10">
                     %{discount} تخفیف
@@ -52,25 +52,25 @@ const NormalProductContainer = ({
                 />
             </div>
 
-            <div className="h-40 p-4 flex flex-col justify-between">
-                <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+            <div className="h-40 p-4 flex flex-col justify-between bg-white dark:bg-slate-600">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1 line-clamp-2">
                     {title}
                 </h3>
 
 
                 {description && (
-                    <p className="text-gray-500 text-[10px] sm:text-xs mb-3 line-clamp-2">
+                    <p className="text-gray-500 dark:text-gray-300 text-[10px] sm:text-xs mb-3 line-clamp-2">
                         {description}
                     </p>
                 )}
 
                 <div className="flex items-center justify-between mt-2">
                     <div className="flex items-center gap-2">
-                        <span className="text-xs sm:text-md font-bold text-gray-900">
+                        <span className="text-xs sm:text-md xl:text-lg font-bold text-gray-900 dark:text-white">
                            سانت / {discountedPrice.toFixed(2)} تومان
                         </span>
                         {discount > 0 && (
-                            <span className="text-[10px] sm:text-xs text-gray-500 line-through">
+                            <span className="text-[10px] sm:text-xs xl:text-md text-gray-500 dark:text-gray-200 line-through">
                                 {price.toFixed(2)} تومان
                             </span>
                         )}

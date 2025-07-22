@@ -3,6 +3,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer base {
+
   /* Default Persian font stack */
   html {
     font-family: 'Shabnam', 'Yekan', system-ui, sans-serif;
@@ -12,27 +13,27 @@
   .font-yekan {
     font-family: 'Yekan', sans-serif;
   }
-  
+
   .font-shabnam {
     font-family: 'Shabnam', sans-serif;
   }
-  
+
   /* Optional: Create weight-specific classes */
   .font-shabnam-thin {
     font-family: 'Shabnam';
     font-weight: 100;
   }
-  
+
   .font-shabnam-light {
     font-family: 'Shabnam';
     font-weight: 300;
   }
-  
+
   .font-shabnam-normal {
     font-family: 'Shabnam';
     font-weight: 400;
   }
-  
+
   .font-shabnam-bold {
     font-family: 'Shabnam';
     font-weight: 700;
@@ -76,38 +77,39 @@
   font-display: swap;
 }
 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 6px rgba(75, 141, 248, 0.4), 0 0 12px rgba(85, 147, 248, 0.6);
+/* Remove duplicate @keyframes and combine them */
+@keyframes glow-blue {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(75, 141, 248, 0.4), 
+               0 0 12px rgba(85, 147, 248, 0.6);
   }
-
   50% {
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8), 0 0 20px rgba(85, 147, 248, 1);
-  }
-
-  100% {
-    box-shadow: 0 0 6px rgba(75, 141, 248, 0.4), 0 0 12px rgba(85, 147, 248, 0.6);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8), 
+               0 0 20px rgba(85, 147, 248, 1);
   }
 }
 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 6px currentColor;
+@keyframes glow-purple {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(178, 38, 234, 0.4), 
+               0 0 12px rgba(194, 85, 248, 0.6);
   }
-
   50% {
-    box-shadow: 0 0 12px currentColor;
-  }
-
-  100% {
-    box-shadow: 0 0 6px currentColor;
+    box-shadow: 0 0 12px rgba(194, 85, 248, 0.8), 
+               0 0 20px rgba(194, 85, 248, 0.1);
   }
 }
 
 .glow-border {
   border: 2px solid #3b82f6;
   color: #3b82f6;
-  animation: glow 1.5s ease-in-out infinite;
+  animation: glow-blue 1.5s ease-in-out infinite;
+}
+
+:where(.dark) .glow-border {
+  border: 2px solid #ae2bff;
+  color: #ae2bff;
+  animation: glow-purple 1.5s ease-in-out infinite;
 }
 
 html {
