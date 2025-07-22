@@ -11,7 +11,7 @@ interface CustomComponentProps {
   link?: string;
 }
 
-const CustomComponent: React.FC<CustomComponentProps> = ({
+const MainBanner: React.FC<CustomComponentProps> = ({
   backgroundImageUrl,
   childrenImages = [],
   link,
@@ -28,12 +28,7 @@ const CustomComponent: React.FC<CustomComponentProps> = ({
   return (
     <motion.div
       ref={ref}
-      className="relative w-full h-full flex flex-row items-center justify-center p-6 overflow-hidden"
-      style={{
-        backgroundImage: `url(${backgroundImageUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 overflow-hidden"
       variants={bannerVariants}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
@@ -41,38 +36,44 @@ const CustomComponent: React.FC<CustomComponentProps> = ({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
+      {/* Background Image */}
       <Image
         src={backgroundImageUrl}
         alt="Background"
         fill
         className="object-cover"
         quality={100}
+        priority
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
 
-      <div className={`relative z-30 flex flex-row-reverse items-center justify-center gap-12 w-full mx-24 
-        ${childrenImages.length === 1? 'justify-start' : ''}`}>
+      {/* Content Container */}
+      <div className={`relative z-30 flex flex-col md:flex-row-reverse items-center justify-center gap-4 sm:gap-8 md:gap-12 w-full max-w-screen-xl mx-auto px-4
+        ${childrenImages.length === 1 ? 'md:justify-start' : ''}`}>
         {childrenImages.map((childImage, index) => (
           <motion.div
             key={index}
-            className="relative size-[500px]"
-            animate={{ scale: isHovered ? 1.1 : 1 }}
+            className="relative w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[350px] md:h-[350px] lg:w-[500px] lg:h-[500px]"
+            animate={{ scale: isHovered ? 1.05 : 1 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <Image
               src={childImage}
-              alt={`Child ${index + 1}`}
+              alt={`Product ${index + 1}`}
               fill
               className="object-contain"
-              quality={100}
+              quality={90}
+              priority={index < 2} // Prioritize first 2 images
             />
           </motion.div>
         ))}
       </div>
 
+      {/* Clickable Link Overlay */}
       {link && (
         <Link href={link} passHref>
           <motion.div
-            className="absolute inset-0 z-30"
+            className="absolute inset-0 z-20"
             whileHover={{ cursor: 'pointer' }}
           />
         </Link>
@@ -81,4 +82,4 @@ const CustomComponent: React.FC<CustomComponentProps> = ({
   );
 };
 
-export default CustomComponent;
+export default MainBanner;

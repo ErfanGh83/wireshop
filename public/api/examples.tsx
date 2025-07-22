@@ -42,42 +42,42 @@ export const HamburgerItems = [
 export const subHeaderItems = [
     {
         title: "سیم برق",
-        icon: <FiZap className="text-lg" />,
+        icon: <FiZap />,
         children: <div></div>
     },
     {
         title: "کابل شبکه",
-        icon: <FiWifi className="text-lg" />,
+        icon: <FiWifi />,
         children: <div></div>
     },
     {
         title: "سیم مفتولی",
-        icon: <FiGrid className="text-lg" />,
+        icon: <FiGrid />,
         children: <div></div>
     },
     {
         title: "کابل کواکسیال",
-        icon: <FiCpu className="text-lg" />,
+        icon: <FiCpu />,
         children: <div></div>
     },
     {
         title: "سیم ساختمانی",
-        icon: <FiHome className="text-lg" />,
+        icon: <FiHome />,
         children: <div></div>
     },
     {
         title: "کابل خودرو",
-        icon: <FiTruck className="text-lg" />,
+        icon: <FiTruck />,
         children: <div></div>
     },
     {
         title: "کابل فیبر نوری",
-        icon: <FiDatabase className="text-lg" />,
+        icon: <FiDatabase />,
         children: <div></div>
     },
     {
         title: "سیم ارت",
-        icon: <FiShield className="text-lg" />,
+        icon: <FiShield />,
         children: <div></div>
     },
     {

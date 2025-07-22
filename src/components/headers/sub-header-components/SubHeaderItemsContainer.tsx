@@ -6,7 +6,7 @@ import { subHeaderItems } from '../../../../public/api/examples'
 const SubHeaderItemsContainer = () => {
 
     return (
-        <div className="w-full h-full flex flex-row items-center gap-4 p-2 rounded-lg overflow-x-auto whitespace-nowrap">
+        <div className="w-full h-full flex flex-row items-center gap-4 p-2 rounded-lg overflow-x-auto overflow-y-hidden whitespace-nowrap">
             {subHeaderItems.map((category, index) => (
                 <SubHeaderItem
                     key={index}

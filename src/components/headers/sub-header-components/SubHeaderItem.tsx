@@ -16,13 +16,13 @@ const SubHeaderItem = ({
 }: Props) => {
   const content = (
     <>
-      <span className="text-sm font-medium">{title}</span>
-      <span className="ml-2">{icon}</span>
+      <span className="text-xs md:text-sm font-medium">{title}</span>
+      <span className="text-xs ml-2">{icon}</span>
     </>
   )
 
   return (
-    <button className={`w-fit h-8 rounded-full flex items-center justify-between pl-2 pr-4 py-1 cursor-pointer bg-blue-100 hover:bg-blue-200 transition-colors  ${className}`}>
+    <button className={`w-fit h-8 rounded-full flex items-center justify-between pl-1 pr-2 py-[1px] md:pl-2 md:pr-4 md:py-1 cursor-pointer bg-blue-100 hover:bg-blue-200 transition-colors  ${className}`}>
       {link ? (
         <Link
           href={link}

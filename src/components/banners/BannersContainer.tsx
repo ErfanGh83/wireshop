@@ -73,14 +73,17 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
                 modules={[Navigation, Autoplay]}
                 spaceBetween={0}
                 slidesPerView={1}
-                navigation
+                navigation={{
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }}
                 loop={true}
                 autoplay={{
                     delay: 5000,
                     disableOnInteraction: false,
                 }}
                 onAutoplayTimeLeft={handleAutoplayTimeLeft}
-                style={{ height: '500px' }}
+                className="h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px]"
             >
                 {banners.map((banner, index) => (
                     <SwiperSlide key={index}>
@@ -98,6 +101,10 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
                         </motion.div>
                     </SwiperSlide>
                 ))}
+                
+                {/* Custom Navigation Buttons */}
+                <div className="swiper-button-prev hidden sm:block" />
+                <div className="swiper-button-next hidden sm:block" />
             </Swiper>
         </div>
     );
