@@ -25,7 +25,7 @@ const MainHeader = () => {
                 >
                     <Link
                         href={`/login`}
-                        className='size-full flex items-center justify-center pb-2 hover:text-blue-400 transition-colors'
+                        className='size-full flex items-center justify-center pb-1 hover:text-blue-400 transition-colors'
                     >
                         <p>ورود</p>
                     </Link>
