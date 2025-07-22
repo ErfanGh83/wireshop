@@ -52,25 +52,25 @@ const NormalProductContainer = ({
                 />
             </div>
 
-            <div className="p-4">
+            <div className="h-40 p-4 flex flex-col justify-between">
                 <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
                     {title}
                 </h3>
 
 
                 {description && (
-                    <p className="text-gray-500 text-sm mb-3 line-clamp-2">
+                    <p className="text-gray-500 text-xs mb-3 line-clamp-2">
                         {description}
                     </p>
                 )}
 
                 <div className="flex items-center justify-between mt-2">
                     <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold text-gray-900">
+                        <span className="text-md font-bold text-gray-900">
                            سانت / {discountedPrice.toFixed(2)} تومان
                         </span>
                         {discount > 0 && (
-                            <span className="text-sm text-gray-500 line-through">
+                            <span className="text-xs text-gray-500 line-through">
                                 {price.toFixed(2)} تومان
                             </span>
                         )}

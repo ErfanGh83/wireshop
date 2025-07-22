@@ -182,124 +182,124 @@ export const circularProducts = [
 export const wireAndCableProducts = [
     {
         id: "1",
-        title: "THHN/THWN-2 Copper Wire",
+        title: "سیم مسی THHN/THWN-2",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg",
         price: 0.85,
         discount: 10,
         isSpecial: true,
-        description: "10 AWG, 600V, 90°C dry/75°C wet, for conduit and raceways"
+        description: "سایز 10 AWG، ولتاژ 600V، مقاوم تا 90°C خشک و 75°C مرطوب، مناسب برای داکت و رایسوی"
     },
     {
         id: "2",
-        title: "SOOW Portable Cord",
+        title: "کابل قابل حمل SOOW",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg",
         price: 2.15,
         discount: 0,
-        description: "600V, 2/0 AWG, oil-resistant rubber jacket, flexible"
+        description: "ولتاژ 600V، سایز 2/0 AWG، روکش لاستیکی مقاوم به روغن، انعطاف پذیر"
     },
     {
         id: "3",
-        title: "Belden Instrumentation Cable",
+        title: "کابل ابزار دقیق بلدن",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg",
         price: 1.45,
         discount: 15,
-        description: "Shielded pair, 18 AWG, for industrial control systems"
+        description: "زوج شیلددار، سایز 18 AWG، مناسب سیستم های کنترل صنعتی"
     },
     {
         id: "4",
-        title: "Aluminum URD Cable",
+        title: "کابل آلومینیومی URD",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg",
         price: 0.65,
         discount: 5,
-        description: "Direct burial, 1/0-4/0 AWG, XLPE insulation"
+        description: "قابل دفن مستقیم، سایز 1/0-4/0 AWG، عایق XLPE"
     },
     {
         id: "5",
-        title: "TC Tray Cable",
+        title: "کابل ترانکینگ TC",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/673_3.jpg",
         price: 3.20,
         discount: 0,
         isSpecial: true,
-        description: "600V, 4 conductor, sunlight resistant, for power trays"
+        description: "ولتاژ 600V، 4 رشته، مقاوم در برابر نور خورشید، مناسب ترانک های برق"
     },
     {
         id: "6",
-        title: "Hook-Up Wire",
+        title: "سیم هوک آپ",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/HOOK_3.JPG",
         price: 0.35,
         discount: 20,
-        description: "20 AWG, PVC insulation, for internal wiring"
+        description: "سایز 20 AWG، عایق PVC، مناسب سیم کشی داخلی"
     },
     {
         id: "7",
-        title: "SER Service Cable",
+        title: "کابل سرویس SER",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/SER.jpg",
         price: 1.80,
         discount: 0,
-        description: "2-2-2-4 AWG, aluminum, for residential service entrance"
+        description: "سایز 2-2-2-4 AWG، آلومینیومی، مناسب ورودی سرویس مسکونی"
     },
     {
         id: "8",
-        title: "Welding Cable",
+        title: "کابل جوشکاری",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/15591_2.jpg",
         price: 2.75,
         discount: 12,
-        description: "2/0 AWG, EPDM insulation, extreme flexibility"
+        description: "سایز 2/0 AWG، عایق EPDM، انعطاف پذیری فوق العاده"
     },
     {
         id: "9",
-        title: "UF-B Underground Feeder",
+        title: "کابل زیرزمینی UF-B",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/5629_3.jpg",
         price: 0.95,
         discount: 8,
-        description: "12/2 AWG, direct burial, sunlight resistant"
+        description: "سایز 12/2 AWG، قابل دفن مستقیم، مقاوم در برابر نور خورشید"
     },
     {
         id: "10",
-        title: "Bare Copper Grounding Wire",
+        title: "سیم اتصال زمین مسی",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/14230_1.png",
         price: 1.10,
         discount: 0,
-        description: "4 AWG solid, for grounding electrodes and bonding"
+        description: "سایز 4 AWG یکپارچه، مناسب برای الکترودهای اتصال زمین"
     },
     {
         id: "11",
-        title: "MTW Machine Tool Wire",
+        title: "سیم ماشین ابزار MTW",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/MTW_-_MASTER.jpg",
         price: 0.60,
         discount: 25,
-        description: "16 AWG, 600V, oil-resistant, for control panels"
+        description: "سایز 16 AWG، ولتاژ 600V، مقاوم به روغن، مناسب تابلوهای کنترل"
     },
     {
         id: "12",
-        title: "Flexible Liquidtight Conduit",
+        title: "کانال انعطاف پذیر Liquidtight",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/2020-06-09_3.png",
         price: 1.25,
         discount: 0,
-        description: '"3/4", PVC coated, for outdoor and wet locations'
+        description: 'سایز 3/4 اینچ، پوشش PVC، مناسب فضاهای بیرونی و مرطوب'
     },
     {
         id: "13",
-        title: "Romex NM-B Cable",
+        title: "کابل رومکس NM-B",
         imageUrl: "https://example.com/romex.jpg",
         price: 0.75,
         discount: 10,
-        description: "12/2 AWG with ground, for residential branch circuits"
+        description: "سایز 12/2 AWG با سیم زمین، مناسب مدارهای انشعابی مسکونی"
     },
     {
         id: "14",
-        title: "Coaxial RG6 Cable",
+        title: "کابل کواکسیال RG6",
         imageUrl: "https://example.com/rg6.jpg",
         price: 0.45,
         discount: 0,
-        description: "Tri-shield, 18 AWG, for CATV and satellite"
+        description: "سه لایه شیلد، سایز 18 AWG، مناسب تلویزیون کابلی و ماهواره"
     },
     {
         id: "15",
-        title: "Fire Alarm Cable",
+        title: "کابل اعلام حریق",
         imageUrl: "https://example.com/fire-alarm.jpg",
         price: 1.65,
         discount: 5,
-        description: "FPLR, 18 AWG, riser rated for alarm systems"
+        description: "FPLR، سایز 18 AWG، مناسب سیستم های اعلام حریق"
     }
 ];

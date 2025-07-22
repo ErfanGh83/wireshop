@@ -10,7 +10,7 @@ const NormalProductsContainer = () => {
         <p className="text-gray-600 mt-2">راهکارهای الکتریکی با کیفیت برای تمام نیازهای شما</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
         {wireAndCableProducts.map((product) => (
           <NormalProductContainer
             key={product.id}
