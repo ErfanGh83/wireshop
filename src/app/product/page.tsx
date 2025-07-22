@@ -1,0 +1,140 @@
+import MainLayout from "@/components/layouts/MainLayout";
+import ProductImageSlider from "@/components/productPage/slider/ProductImageSlider";
+import ProductDetailSpec from "@/components/productPage/spec/ProductDetailSpec";
+import ProductPageComment from "@/components/productPage/comment/ProductPageComment";
+
+const comments: {
+  id: number;
+  userName: string;
+  text: string;
+}[] = [
+  {
+    id: 1,
+    userName: "Ali",
+    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+  },
+  {
+    id: 2,
+    userName: "Ali",
+    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+  },
+  {
+    id: 3,
+    userName: "Ali",
+    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+  },
+  {
+    id: 4,
+    userName: "Ali",
+    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+  },
+  {
+    id: 5,
+    userName: "Ali",
+    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+  },
+];
+const image_list = [
+  "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg",
+  "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg",
+  "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg",
+  "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg",
+];
+const specs: {
+  label: string;
+  value: string;
+}[] = [
+  { label: "جنس هادی", value: "مس خالص" },
+  { label: "تعداد رشته", value: "7 رشته" },
+  { label: "مقاومت کششی", value: "50 نیوتن/میلی‌متر مربع" },
+  { label: "روکش", value: "PVC مقاوم" },
+  { label: "سطح مقطع", value: "2.5 میلی‌متر مربع" },
+  { label: "کلاس انعطاف‌پذیری", value: "کلاس 5" },
+];
+
+export default function page() {
+  return (
+    <MainLayout>
+      <div className=" overflow-y-auto size-full bg-blue-100 dark:bg-slate-500 dark:text-gray-100 flex justify-center items-center p-6 overflow-auto">
+        <div className="bg-white dark:bg-slate-600 shadow-xl rounded-2xl p-6 w-full h-full grid md:grid-cols-6 gap-6">
+          {/* Product Image */}
+          <div className="flex justify-center items-center col-span-2">
+            <ProductImageSlider images={image_list} discount={10} isFeatured />
+          </div>
+
+          {/* Product Details */}
+          <div className="flex flex-col justify-start space-y-4 col-span-4 overflow-y-auto pr-1 pt-10">
+            <div className="border-r-6 rounded-md p-2 flex flex-col justify-start space-y-4 col-span-3 border-blue-100">
+              <h1 className="text-3xl font-bold">نام محصول</h1>
+              <p className="text-xl font-semibold">
+                قیمت: ۵۰۰۰۰ تومان به ازای هر متر
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-200">
+                این محصول با کیفیت بالا مناسب برای پروژه‌های مختلف بوده و در
+                اندازه‌های دلخواه قابل سفارش است.
+              </p>
+
+              {/* Length Input */}
+              <div className="flex items-center space-x-2">
+                <input
+                  type="number"
+                  min={1}
+                  placeholder="طول (متر)"
+                  className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600"
+                />
+                <button className="bg-blue-100 hover:scale-105 ease-out transition-all cursor-pointer hover:bg-blue-200 hover:text-blue-900 text-black px-4 py-2 rounded-lg dark:bg-slate-500 hover:dark:text-black dark:text-gray-100">
+                  افزودن به سبد خرید
+                </button>
+              </div>
+            </div>
+
+            {/* item Sepcs */}
+            <div className="mt-6">
+              <h2 className="text-lg font-semibold mb-4">مشخصات کابل</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-3">
+                {specs.map((item) => (
+                  <ProductDetailSpec
+                    label={item.label}
+                    value={item.value}
+                    key={item.label}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Comment Box */}
+            <div className="mt-4 pl-3">
+              <label className="block mb-1">ثبت نظر</label>
+              <textarea
+                className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600 min-h-30 max-h-60 "
+                rows={3}
+                placeholder="نظر خود را بنویسید..."
+              />
+              <button className="mt-2 hover:scale-105 ease-out transition-all cursor-pointer bg-blue-100 hover:bg-blue-200 text-black px-4 py-2 rounded-lg dark:bg-slate-500 dark:text-gray-100">
+                ارسال نظر
+              </button>
+            </div>
+
+            {/* previous comments */}
+            <div className="flex items-center my-6">
+              <div className="flex-grow border-t border-black mx-2" />
+              <p className="px-4 text-center whitespace-nowrap text-black dark:text-gray-100">
+                نمایش نظرات (1)
+              </p>
+              <div className="flex-grow border-t border-black mx-2" />
+            </div>
+            <ul className="mt-2">
+              {comments.map((item) => (
+                <ProductPageComment
+                  key={item.id}
+                  text={item.text}
+                  userName={item.userName}
+                />
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </MainLayout>
+  );
+}
