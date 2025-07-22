@@ -2,55 +2,8 @@ import MainLayout from "@/components/layouts/MainLayout";
 import ProductImageSlider from "@/components/productPage/slider/ProductImageSlider";
 import ProductDetailSpec from "@/components/productPage/spec/ProductDetailSpec";
 import ProductPageComment from "@/components/productPage/comment/ProductPageComment";
+import { productComments, productImageList, productSpecs } from "../../../public/api/examples";
 
-const comments: {
-  id: number;
-  userName: string;
-  text: string;
-}[] = [
-  {
-    id: 1,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 2,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 3,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 4,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 5,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-];
-const image_list = [
-  "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg",
-  "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg",
-  "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg",
-  "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg",
-];
-const specs: {
-  label: string;
-  value: string;
-}[] = [
-  { label: "جنس هادی", value: "مس خالص" },
-  { label: "تعداد رشته", value: "7 رشته" },
-  { label: "مقاومت کششی", value: "50 نیوتن/میلی‌متر مربع" },
-  { label: "روکش", value: "PVC مقاوم" },
-  { label: "سطح مقطع", value: "2.5 میلی‌متر مربع" },
-  { label: "کلاس انعطاف‌پذیری", value: "کلاس 5" },
-];
 
 export default function page() {
   return (
@@ -59,7 +12,7 @@ export default function page() {
         <div className="bg-white dark:bg-slate-600 shadow-xl overflow-y-auto md:overflow-y-hidden rounded-2xl md:p-6 p-4 w-full h-full grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-6">
           {/* Product Image */}
           <div className="flex justify-center items-center md:col-span-2">
-            <ProductImageSlider images={image_list} discount={10} isFeatured />
+            <ProductImageSlider images={productImageList} discount={10} isFeatured />
           </div>
 
           {/* Product Details */}
@@ -92,7 +45,7 @@ export default function page() {
             <div className="mt-6">
               <h2 className="text-lg font-semibold mb-4">مشخصات کابل</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
-                {specs.map((item) => (
+                {productSpecs.map((item) => (
                   <ProductDetailSpec
                     label={item.label}
                     value={item.value}
@@ -124,7 +77,7 @@ export default function page() {
               <div className="flex-grow border-t border-black mx-2" />
             </div>
             <ul className="mt-2">
-              {comments.map((item) => (
+              {productComments.map((item) => (
                 <ProductPageComment
                   key={item.id}
                   text={item.text}
