@@ -15,7 +15,7 @@ const MainHeader = () => {
                 className='w-52 h-10 flex flex-row-reverse items-center p-1 rounded-sm bg-white border-[1px]'
             >
                 <div
-                    className='size-fit p-1 m-auto text-blue-500'
+                    className='size-fit p-1 m-auto text-blue-400'
                 >
                     <FaUser size={18} />
                 </div>
@@ -25,7 +25,7 @@ const MainHeader = () => {
                 >
                     <Link
                         href={`/login`}
-                        className='size-full flex items-center justify-center pb-2 hover:text-blue-500 transition-colors'
+                        className='size-full flex items-center justify-center pb-2 hover:text-blue-400 transition-colors'
                     >
                         <p>ورود</p>
                     </Link>
@@ -37,7 +37,7 @@ const MainHeader = () => {
 
                     <Link
                         href={`/sign-up`}
-                        className='size-full items-center justify-center mx-3 hover:text-blue-500 transition-colors'
+                        className='size-full items-center justify-center mx-3 hover:text-blue-400 transition-colors'
                     >
                         <p>ثبت نام</p>
                     </Link>
