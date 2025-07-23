@@ -3,6 +3,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import { banners } from "../../public/api/examples";
 import CircularProductsContainer from "@/components/products/CircularProductsContainer";
 import NormalProductsContainer from "@/components/products/NormalProductsContainer";
+import BigProductsContainer from "@/components/products/BigProductsContainer";
 
 export default function Home() {
 
@@ -17,6 +18,12 @@ export default function Home() {
           className="w-full h-fit my-16"
         >
           <CircularProductsContainer />
+        </section>
+
+        <section
+          className="w-full h-fit my-16"
+        >
+          <BigProductsContainer />
         </section>
 
         <section

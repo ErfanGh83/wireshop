@@ -301,3 +301,38 @@ export const wireAndCableProducts = [
         description: "FPLR، سایز 18 AWG، مناسب سیستم های اعلام حریق"
     }
 ];
+
+export const bigProducts = [
+    {
+        id: "12",
+        title: "کانال انعطاف پذیر Liquidtight",
+        imageUrl: "/images/thumbnail4.jpg",
+        price: 1.25,
+        discount: 0,
+        description: 'سایز 3/4 اینچ، پوشش PVC، مناسب فضاهای بیرونی و مرطوب'
+    },
+    {
+        id: "13",
+        title: "کابل رومکس NM-B",
+        imageUrl: "/images/thumbnail3.jpg",
+        price: 0.75,
+        discount: 10,
+        description: "سایز 12/2 AWG با سیم زمین، مناسب مدارهای انشعابی مسکونی"
+    },
+    {
+        id: "14",
+        title: "کابل کواکسیال RG6",
+        imageUrl: "/images/thumbnail2.jpg",
+        price: 0.45,
+        discount: 0,
+        description: "سه لایه شیلد، سایز 18 AWG، مناسب تلویزیون کابلی و ماهواره"
+    },
+    {
+        id: "15",
+        title: "کابل اعلام حریق",
+        imageUrl: "/images/thumbnail1.jpg",
+        price: 1.65,
+        discount: 5,
+        description: "FPLR، سایز 18 AWG، مناسب سیستم های اعلام حریق"
+    }
+]
