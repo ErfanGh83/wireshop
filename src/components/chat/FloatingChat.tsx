@@ -16,7 +16,7 @@ export default function FloatingChat() {
           isOpen
             ? " bg-blue-400 hover:bg-blue-500 dark:hover:bg-purple-400 dark:bg-purple-600 dark:text-gray-300"
             : " bg-blue-100 hover:bg-blue-200 dark:hover:bg-purple-400 dark:bg-purple-500 dark:text-gray-300"
-        } fixed bottom-8 right-8 z-55 transition-all cursor-pointer text-black p-4 rounded-full shadow-lg dark:text-gray-100`}
+        } fixed bottom-8 left-8 z-55 transition-all cursor-pointer text-black p-4 rounded-full shadow-lg dark:text-gray-100`}
       >
         <FaCommentDots className="w-6 h-6" />
       </button>
@@ -34,11 +34,11 @@ export default function FloatingChat() {
             />
 
             <motion.div
-              exit={{ x: 30, opacity: 0 }}
+              exit={{ x: -30, opacity: 0 }}
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut" }}
-              className="fixed bottom-24 right-6 w-70 md:w-120 max-w-full h-120 bg-white dark:bg-slate-700 text-black dark:text-gray-100 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+              className="fixed bottom-24 left-6 w-70 md:w-120 max-w-full h-120 bg-white dark:bg-slate-700 text-black dark:text-gray-100 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-300 dark:border-gray-600">
                 <h2 className="font-semibold">پشتیبانی</h2>
