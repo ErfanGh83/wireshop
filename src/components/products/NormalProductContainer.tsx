@@ -28,15 +28,16 @@ const NormalProductContainer = ({
     return (
         <Link
             href={`/products/${id}`}
-            className={`group relative bg-white dark:bg-gray-500 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-transparent hover:shadow-xl dark:hover:border-purple-400 ${className}`} dir="rtl">
+            className={`group relative bg-white dark:bg-gray-500 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-slate-700 hover:shadow-xl dark:hover:border-purple-400 ${className}`} dir="rtl">
             {discount > 0 && (
-                <div className="absolute top-0 left-0 bg-red-500 text-white text-[5px] min-[380px]:text-[8px] font-bold px-2 py-1 z-10">
+                <div className="absolute top-0 left-0 bg-red-500 text-white text-xs sm:text-sm md:text-md xl:text-lg font-bold px-2 py-1 z-10">
                     %{discount} تخفیف
                 </div>
             )}
 
             {isSpecial && (
-                <div className="absolute top-[5%] left-0 bg-purple-500 text-white text-[8px] sm:text-xs font-bold px-2 py-1 z-10">
+                <div className={`absolute left-0 bg-purple-500 text-white text-xs sm:text-sm md:text-md xl:text-lg font-bold px-2 py-1 z-10 
+                ${!discount? 'top-0' : 'top-[5%] sm:top-[6%] md:top-[7%] xl:top-[9%]'}`}>
                     ویژه
                 </div>
             )}

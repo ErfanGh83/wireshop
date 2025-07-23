@@ -98,7 +98,7 @@ export const banners = [
         backgroundImageUrl: '/images/power-bg.avif',
         childrenImages: [
             '/images/power-cable.png',
-            '/images/power-cable2.webp'
+            '/images/power-cable2.png'
         ],
         description: "کابل‌های برق صنعتی با استاندارد ISO 9001، مقاوم در برابر حرارت تا 70 درجه سانتیگراد. مناسب برای مصارف صنعتی و کارگاه‌های تولیدی.",
         link: "/products/power-cables"
