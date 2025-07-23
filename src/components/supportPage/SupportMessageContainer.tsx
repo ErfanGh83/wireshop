@@ -6,6 +6,7 @@ interface Message {
   message: string;
   date: string;
   status: "pending" | "replied";
+  repliedMessage?: string
 }
 
 const messages: Message[] = [
@@ -20,9 +21,10 @@ const messages: Message[] = [
   {
     id: 2,
     userName: "سارا محمدی",
-    message: "لطفاً فاکتور خرید من را بررسی کنید.",
+    message: "لطفاً حقوق من را پرداخت کنید.",
     date: "۱۴۰۳/۰۵/۰۲",
     status: "replied",
+    repliedMessage: "در اسرع وقت پرداخت میشود 😁"
   },
 ];
 
@@ -38,6 +40,7 @@ function SupportMessageContainer() {
           message={msg.message}
           status={msg.status}
           userName={msg.userName}
+          repliedMessage={ msg.repliedMessage || "" }
         />
       ))}
     </div>
