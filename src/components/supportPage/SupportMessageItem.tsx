@@ -43,7 +43,7 @@ function SupportMessageItem({
         <motion.textarea
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          value={repliedMessage}
+          defaultValue={repliedMessage}
           disabled={status == "replied"}
           placeholder="پاسخ شما..."
           className="w-full mt-2 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-500 dark:bg-slate-600 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm resize-none min-h-[80px]"
@@ -62,7 +62,7 @@ function SupportMessageItem({
         </span>
 
         <div className="flex flex-col-reverse md:flex-row gap-3">
-          {isMaximized && (
+          {status=="pending" && isMaximized && (
             <button className="bg-blue-50 py-2 px-3 select-none text-sm rounded-2xl cursor-pointer hover:bg-blue-100 text-gray-700 hover:text-gray-900 active:bg-blue-200 transition-all">
               ارسال پاسخ
             </button>
