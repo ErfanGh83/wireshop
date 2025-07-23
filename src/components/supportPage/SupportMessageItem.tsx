@@ -62,14 +62,14 @@ function SupportMessageItem({
         </span>
 
         <div className="flex flex-col-reverse md:flex-row gap-3">
-          {status=="pending" && isMaximized && (
+          {status == "pending" && isMaximized && (
             <button className="bg-blue-50 py-2 px-3 select-none text-sm rounded-2xl cursor-pointer hover:bg-blue-100 text-gray-700 hover:text-gray-900 active:bg-blue-200 transition-all">
               ارسال پاسخ
             </button>
           )}
           <button
             onClick={() => setIsMaximized((prev) => !prev)}
-            className="bg-indigo-400 px-3 select-none py-2 rounded-2xl dark:text-blue-300 text-white cursor-pointer hover:bg-indigo-300 transition-all active:bg-indigo-200 text-sm"
+            className="bg-indigo-400 dark:bg-purple-500 px-3 select-none py-2 rounded-2xl text-white cursor-pointer dark:hover:bg-purple-400 dark:active:bg-purple-300 hover:bg-indigo-300 transition-all active:bg-indigo-200 text-sm"
           >
             {isMaximized ? "نمایش کمتر" : "نمایش بیشتر"}
           </button>
