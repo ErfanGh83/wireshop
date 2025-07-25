@@ -24,7 +24,7 @@ const Page = () => {
 
       <div className='w-2/5 h-12 fixed z-10 top-0 right-0'>
         <div className='w-full h-full flex flex-row-reverse items-center justify-end px-4 gap-2'>
-          
+
           <button
             onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
             className='size-fit mx-1 my-1 cursor-pointer text-xl text-blue-500'
@@ -43,6 +43,7 @@ const Page = () => {
       </div>
 
 
+
       {/* Form Container */}
       <div className='w-2/5 h-full flex justify-center items-center bg-white border-l-[2px] border-gray-100 relative overflow-hidden'>
 
@@ -54,8 +55,9 @@ const Page = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -100, opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="absolute w-full h-full flex items-center justify-center"
+              className="absolute w-full h-full flex flex-col items-center justify-center gap-6"
             >
+              <h2 className="text-3xl font-bold text-gray-800">ورود</h2>
               <LoginFormWrapper />
             </motion.div>
           )}
@@ -67,14 +69,16 @@ const Page = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="absolute w-full h-full flex items-center justify-center"
+              className="absolute w-full h-full flex flex-col items-center justify-center gap-6"
             >
+              <h2 className="text-3xl font-bold text-gray-800">ثبت نام</h2>
               <SignUpFormWrapper />
             </motion.div>
           )}
         </AnimatePresence>
 
       </div>
+
     </div>
   );
 };
