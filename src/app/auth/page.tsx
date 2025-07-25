@@ -1,0 +1,82 @@
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
+import LoginFormWrapper from '@/components/auth/LoginFormWrapper';
+import SignUpFormWrapper from '@/components/auth/SignUpFromWrapper';
+
+const Page = () => {
+  const [mode, setMode] = useState<'login' | 'signup'>('login');
+
+  return (
+    <div className='w-screen h-screen flex items-center justify-start bg-transparent'>
+      {/* Background Image */}
+      <div className='w-screen h-screen fixed -z-10 top-0 left-0'>
+        <Image
+          src="/images/auth-bg.jpg"
+          alt="Authentication Background"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+
+      <div className='w-2/5 h-12 fixed z-10 top-0 right-0'>
+        <div className='w-full h-full flex flex-row-reverse items-center justify-end px-4 gap-2'>
+          
+          <button
+            onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
+            className='size-fit mx-1 my-1 cursor-pointer text-xl text-blue-500'
+          >
+            {mode === 'login' ? ' ثبت نام کنید' : ' از اینجا وارد شوید'}
+          </button>
+
+          <p className='text-xl text-gray-700'>
+            {mode === 'login'
+              ? 'حساب کاربری ندارید؟'
+              : 'حساب کاربری دارید؟'}
+          </p>
+        </div>
+
+        <hr className='w-1/5 text-gray-400' />
+      </div>
+
+
+      {/* Form Container */}
+      <div className='w-2/5 h-full flex justify-center items-center bg-white border-l-[2px] border-gray-100 relative overflow-hidden'>
+
+        <AnimatePresence mode="wait">
+          {mode === 'login' && (
+            <motion.div
+              key="login"
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -100, opacity: 0 }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              className="absolute w-full h-full flex items-center justify-center"
+            >
+              <LoginFormWrapper />
+            </motion.div>
+          )}
+
+          {mode === 'signup' && (
+            <motion.div
+              key="signup"
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 100, opacity: 0 }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              className="absolute w-full h-full flex items-center justify-center"
+            >
+              <SignUpFormWrapper />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      </div>
+    </div>
+  );
+};
+
+export default Page;
