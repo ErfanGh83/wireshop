@@ -40,6 +40,12 @@
   }
 }
 
+@layer utilities {
+  .font-yekan {
+    font-family: 'Yekan', sans-serif;
+  }
+}
+
 /* Yekan Font */
 @font-face {
   font-family: 'Yekan';

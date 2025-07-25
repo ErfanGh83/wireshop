@@ -17,7 +17,7 @@ const SignupOrLoginButton = () => {
                 className='size-full flex items-center justify-center gap-1 text-sm md:text-lg font-normal'
             >
                 <Link
-                    href={`/login`}
+                    href={`/auth?mode=login`}
                     className='size-full flex items-center justify-center md:pb-1 hover:text-blue-400 dark:hover:text-purple-400 transition-colors'
                 >
                     <p>ورود</p>
@@ -29,7 +29,7 @@ const SignupOrLoginButton = () => {
                 </div>
 
                 <Link
-                    href={`/sign-up`}
+                    href={`/auth?mode=signup`}
                     className='size-full items-center justify-center pt-1 md:pt-0 mr-2 md:mx-3 hover:text-blue-400 dark:hover:text-purple-400 transition-colors'
                 >
                     <p>ثبت نام</p>
