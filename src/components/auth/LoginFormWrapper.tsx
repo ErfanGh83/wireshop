@@ -11,6 +11,7 @@ const LoginFormWrapper = () => {
       label: 'شماره تلفن',
       icon: <PiPhone className='rotate-270' />,
       type: 'tel',
+      placeholder: 'شماره تلفن خود را وارد کنید',
       error: '',
     },
   ];
