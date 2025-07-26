@@ -1,33 +1,38 @@
 import { z } from 'zod'
 
+// Helper schema for Iranian phone numbers (09xxxxxxxxx)
+const IranianPhoneSchema = z.string()
+  .length(11, 'شماره تلفن باید ۱۱ رقم باشد')
+  .regex(/^09/, 'شماره تلفن باید با ۰۹ شروع شود')
+  .regex(/^[0-9]+$/, 'شماره تلفن باید فقط شامل اعداد باشد')
+
 // 1. ارسال کد تأیید
 export const SendCodeSchema = z.object({
-  phone: z.string().min(10, 'شماره تلفن باید حداقل ۱۰ رقم باشد'),
+  phone: IranianPhoneSchema,
 })
 export type SendCodeInput = z.infer<typeof SendCodeSchema>
 
 // 2. تأیید کد
 export const VerifyCodeSchema = z.object({
-  phone: z.string().min(10, 'شماره تلفن باید حداقل ۱۰ رقم باشد'),
+  phone: IranianPhoneSchema,
   code: z.string().length(6, 'کد تأیید باید ۶ رقم باشد'),
 })
 export type VerifyCodeInput = z.infer<typeof VerifyCodeSchema>
 
-// 3. تکمیل ثبت‌نام (با نام کاربری اضافه‌شده)
+// 3. تکمیل ثبت‌نام
 export const CompleteSignupSchema = z.object({
-  phone: z.string().min(10, 'شماره تلفن باید حداقل ۱۰ رقم باشد'),
-  username: z.string().min(3, 'نام کاربری باید حداقل ۳ کاراکتر باشد'),
+  phone: IranianPhoneSchema,
   password: z.string().min(6, 'رمز عبور باید حداقل ۶ کاراکتر باشد'),
   birthdate: z.string().regex(
-    /^\d{4}-\d{2}-\d{2}$/,
-    'تاریخ تولد باید به فرمت سال - ماه - روز باشد'
+    /^[۰-۹]{4}-[۰-۹]{2}-[۰-۹]{2}$/,
+    'تاریخ تولد باید به فرمت شمسی و با اعداد فارسی وارد شود'
   ),
 })
 export type CompleteSignupInput = z.infer<typeof CompleteSignupSchema>
 
 // 4. ورود
 export const LoginSchema = z.object({
-  phone: z.string().min(10, 'شماره تلفن باید حداقل ۱۰ رقم باشد'),
+  phone: IranianPhoneSchema,
   password: z.string().min(6, 'رمز عبور الزامی است و باید حداقل ۶ کاراکتر باشد'),
 })
 export type LoginInput = z.infer<typeof LoginSchema>

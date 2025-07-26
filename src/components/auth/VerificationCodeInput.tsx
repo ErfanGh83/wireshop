@@ -9,6 +9,7 @@ interface VerificationCodeInputProps {
   resetCooldown: () => void;
   onChange: (code: string) => void;
   onSubmit: () => void;
+  error?: string;
 }
 
 const VerificationCodeInput = ({
@@ -17,6 +18,7 @@ const VerificationCodeInput = ({
   onBack,
   onChange,
   onSubmit,
+  error,
 }: VerificationCodeInputProps) => {
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -27,21 +29,28 @@ const VerificationCodeInput = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit()
+    onSubmit();
   };
 
   return (
     <form className="w-full flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
-      <div className='w-full flex flex-row items-center border-2 border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden transition-all focus-within:border-blue-500 dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-200 dark:focus-within:ring-blue-900'>
-        <input
-          className='w-full h-12 px-4 text-lg bg-transparent border-none focus:outline-none placeholder-gray-400 dark:placeholder-gray-500 text-center text-gray-800 dark:text-gray-100'
-          placeholder='کد تأیید'
-          type='text'
-          inputMode='numeric'
-          pattern='[0-9]*'
-          onChange={handleCodeChange}
-          maxLength={6}
-        />
+      <div className={`w-full flex flex-col gap-1`}>
+        <div className={`w-full flex flex-row items-center border-2 rounded-lg overflow-hidden transition-all
+          ${error ? 'border-red-500 dark:border-red-400' : 'border-gray-200 dark:border-gray-600 focus-within:border-blue-500 dark:focus-within:border-blue-400'}
+          focus-within:ring-2 ${error ? 'focus-within:ring-red-200 dark:focus-within:ring-red-900' : 'focus-within:ring-blue-200 dark:focus-within:ring-blue-900'}`}>
+          <input
+            className='w-full h-12 px-4 text-lg bg-transparent border-none focus:outline-none placeholder-gray-400 dark:placeholder-gray-500 text-center text-gray-800 dark:text-gray-100'
+            placeholder='کد تأیید'
+            type='text'
+            inputMode='numeric'
+            pattern='[0-9]*'
+            onChange={handleCodeChange}
+            maxLength={6}
+          />
+        </div>
+        {error && (
+          <p className="text-red-600 dark:text-red-400 text-sm">{error}</p>
+        )}
       </div>
 
       <div className="flex flex-row items-center justify-between">
