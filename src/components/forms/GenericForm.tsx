@@ -78,7 +78,7 @@ const GenericForm: React.FC<GenericFormProps> = ({
               value={field.value ?? formData[field.name] ?? ''}
               onChange={handleChange}
               dir='rtl'
-              className='w-full h-12 flex px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-none bg-gray-200 border-[2px] border-gray-500 rounded-lg'
+              className='w-full h-12 flex px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-200 text-gray-800 focus:text-gray-700 placeholder:text-gray-400 focus:placeholder:text-blue-400 border-[2px] border-gray-200 rounded-lg'
             />
 
             {field.error && (
