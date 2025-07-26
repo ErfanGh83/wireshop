@@ -11,6 +11,8 @@ import DatePicker from 'react-multi-date-picker';
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { CompleteSignupSchema, VerifyCodeSchema } from '@/zod/schemas';
+import { validateSignupForm } from './validateSignupForm';
+import { validateVerificationCode } from './validateVerificationCode';
 
 const STORAGE_KEY = 'auth:signup-form';
 
@@ -65,34 +67,8 @@ const SignUpFormWrapper = () => {
         }
     };
 
-    const validateSignupForm = () => {
-        try {
-            CompleteSignupSchema.parse(formData);
-            setErrors({});
-            return true;
-        } catch (error: any) {
-            // Zod errors have "issues" array
-            if (error?.issues && Array.isArray(error.issues)) {
-                const newErrors: Record<string, string> = {};
-                for (const issue of error.issues) {
-                    const field = issue.path?.[0];
-                    if (typeof field === 'string') {
-                        newErrors[field] = issue.message;
-                    }
-                }
-                setErrors(newErrors);
-            } else {
-                console.error('Validation error:', error);
-                setErrors({ general: 'خطایی در اعتبارسنجی داده‌ها رخ داد' });
-            }
-            return false;
-        }
-    };
-
-
-
     const handleSubmit = () => {
-        if (validateSignupForm()) {
+        if (validateSignupForm({ formData: formData, setErrors: setErrors, schema: CompleteSignupSchema})) {
             setStep('verify');
         }
     };
@@ -112,29 +88,8 @@ const SignUpFormWrapper = () => {
         setVerificationError('');
     };
 
-    const validateVerificationCode = () => {
-        try {
-            VerifyCodeSchema.parse({
-                phone: formData.phone,
-                code: code
-            });
-            setVerificationError('');
-            return true;
-        } catch (error: any) {
-            const zodErrors = error?.errors;
-            if (Array.isArray(zodErrors)) {
-                setVerificationError(zodErrors.map(err => err.message).join(', '));
-            } else {
-                console.error('Verification error:', error);
-                setVerificationError('خطایی در اعتبارسنجی کد رخ داد');
-            }
-            return false;
-        }
-    };
-
-
     const handleFinalSubmission = () => {
-        if (validateVerificationCode()) {
+        if (validateVerificationCode({setError:setVerificationError, formData: { phone: formData.phone }, code: code, schema:VerifyCodeSchema})) {
             console.log('Final submission:', {
                 ...formData,
                 code
