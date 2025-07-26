@@ -1,5 +1,6 @@
 import { BiTimer } from "react-icons/bi";
 import { formatTime } from "@/lib/utils";
+import { FormEvent } from "react";
 
 interface VerificationCodeInputProps {
   onBack: () => void;
@@ -7,6 +8,7 @@ interface VerificationCodeInputProps {
   cooldown: number;
   resetCooldown: () => void;
   onChange: (code: string) => void;
+  onSubmit: () => void;
 }
 
 const VerificationCodeInput = ({
@@ -14,6 +16,7 @@ const VerificationCodeInput = ({
   cooldown,
   onBack,
   onChange,
+  onSubmit,
 }: VerificationCodeInputProps) => {
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -22,8 +25,13 @@ const VerificationCodeInput = ({
     }
   };
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    onSubmit()
+  };
+
   return (
-    <form className="w-full flex flex-col gap-4 mt-4">
+    <form className="w-full flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
       <div className='w-full flex flex-row items-center border-2 border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden transition-all focus-within:border-blue-500 dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-200 dark:focus-within:ring-blue-900'>
         <input
           className='w-full h-12 px-4 text-lg bg-transparent border-none focus:outline-none placeholder-gray-400 dark:placeholder-gray-500 text-center text-gray-800 dark:text-gray-100'
@@ -61,6 +69,13 @@ const VerificationCodeInput = ({
           بازگشت
         </button>
       </div>
+
+      <button
+        type='submit'
+        className='w-full h-12 bg-blue-500 hover:bg-blue-600 transition-colors text-white cursor-pointer rounded-md'
+      >
+        تایید
+      </button>
     </form>
   );
 };

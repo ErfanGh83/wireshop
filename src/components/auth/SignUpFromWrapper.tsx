@@ -6,6 +6,10 @@ import { MdLock, MdPerson } from 'react-icons/md';
 import { AnimatePresence, motion } from 'framer-motion';
 import GenericForm, { FormField } from '../forms/GenericForm';
 import VerificationCodeInput from './VerificationCodeInput';
+import { BiCalendar } from 'react-icons/bi';
+import DatePicker from 'react-multi-date-picker';
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 
 const STORAGE_KEY = 'auth:signup-form';
 
@@ -13,11 +17,12 @@ const SignUpFormWrapper = () => {
     const [formData, setFormData] = useState<Record<string, string>>({
         name: '',
         phone: '',
+        birthdate: '',
         password: '',
     });
 
     const [step, setStep] = useState<'signup' | 'verify'>('signup');
-    const [, setCode] = useState('');
+    const [code, setCode] = useState('');
     const [cooldown, setCooldown] = useState(60);
 
     // Load saved form data
@@ -43,6 +48,18 @@ const SignUpFormWrapper = () => {
         return () => clearInterval(timer);
     }, [step, cooldown]);
 
+    useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+        try {
+            const parsedData = JSON.parse(stored);
+            setFormData(parsedData);
+        } catch (err) {
+            console.error('Failed to parse stored form:', err);
+        }
+    }
+}, []);
+
     const handleChange = (name: string, value: string) => {
         const updated = { ...formData, [name]: value };
         setFormData(updated);
@@ -50,13 +67,17 @@ const SignUpFormWrapper = () => {
     };
 
     const handleSubmit = () => {
-        console.log('Form submitted:', formData);
-        setStep('verify');
+        //validation
+        if (formData) {
+            setStep('verify');
+        }
+        else {
+            //throw an error
+        }
     };
 
     const handleResendCode = () => {
         setCooldown(60);
-        console.log('Code resent');
     };
 
     const handleBack = () => {
@@ -65,21 +86,60 @@ const SignUpFormWrapper = () => {
 
     const handleCodeChange = (code: string) => {
         setCode(code);
-        if (code.length === 6) {
-            console.log('Verification code entered:', code);
-            // Verify here...
-        }
     };
+
+    const handleFinalSubmission = () => {
+
+        const codeVerificationObj = {
+            code: code,
+            phone: formData.phone
+        }
+
+        if (codeVerificationObj) {
+            //valid
+            console.log(formData)
+        }
+        else {
+            //throw an error
+        }
+    }
 
     const fields: FormField[] = [
         {
             name: 'name',
-            label: 'نام',
+            label: 'نام کاربری',
             icon: <MdPerson />,
             type: 'text',
-            placeholder: 'نام خود را وارد کنید',
+            placeholder: 'نام کاربری خود را وارد کنید',
             value: formData.name,
             onChange: (val: string) => handleChange('name', val),
+        },
+
+        {
+            name: 'birthdate',
+            label: 'تاریخ تولد',
+            icon: <BiCalendar />,
+            customRender: (
+                <DatePicker
+                    calendar={persian}
+                    locale={persian_fa}
+                    calendarPosition="bottom-right"
+                    value={formData.birthdate}
+                    onChange={(date) => handleChange('birthdate', date?.format?.('YYYY-MM-DD') ?? '')}
+                    style={{
+                        direction: 'rtl',
+                        width: '100%',
+                        height: '48px',
+                        borderRadius: '0.5rem',
+                        border: '2px solid #e5e7eb',
+                        padding: '0 1rem',
+                        fontFamily: 'inherit',
+                        fontSize: '1rem',
+                    }}
+                    containerStyle={{ width: '100%' }}
+                    inputClass="text-right"
+                />
+            ),
         },
         {
             name: 'phone',
@@ -130,6 +190,7 @@ const SignUpFormWrapper = () => {
                             onResendCode={handleResendCode}
                             resetCooldown={() => setCooldown(60)}
                             onChange={handleCodeChange}
+                            onSubmit={handleFinalSubmission}
                         />
                     </motion.div>
                 )}

@@ -11,6 +11,7 @@ export type FormField = {
   error?: string;
   value?: string;
   onChange?: (value: string) => void;
+  customRender?: React.ReactNode; // ✅ New
 };
 
 export type GenericFormProps = {
@@ -31,10 +32,8 @@ const GenericForm: React.FC<GenericFormProps> = ({
 
     const field = fields.find((f) => f.name === name);
     if (field?.onChange) {
-      // Use controlled onChange from parent if exists
       field.onChange(value);
     } else {
-      // Internal state handling
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
@@ -44,8 +43,7 @@ const GenericForm: React.FC<GenericFormProps> = ({
 
     const finalData: Record<string, string> = {};
     for (const field of fields) {
-      finalData[field.name] =
-        field.value ?? formData[field.name] ?? '';
+      finalData[field.name] = field.value ?? formData[field.name] ?? '';
     }
 
     onSubmit(finalData);
@@ -53,7 +51,10 @@ const GenericForm: React.FC<GenericFormProps> = ({
 
   return (
     <form className='w-3/5 h-fit' onSubmit={handleSubmit}>
-      <h2 className="w-fit mx-auto mb-16 text-3xl font-bold text-gray-800 dark:text-gray-100">{submitLabel}</h2>
+      <h2 className="w-fit mx-auto mb-16 text-3xl font-bold text-gray-800 dark:text-gray-100">
+        {submitLabel}
+      </h2>
+
       <div className='w-full h-fit flex flex-col gap-4 mb-8'>
         {fields.map((field) => (
           <div
@@ -61,25 +62,26 @@ const GenericForm: React.FC<GenericFormProps> = ({
             className='w-full h-24 flex flex-col focus-within:text-blue-500'
           >
             <div className='size-fit flex flex-row-reverse items-center mb-1 text-2xl gap-x-1'>
-              <label
-                htmlFor={field.name}
-                className='text-xl transition-colors duration-200'
-              >
+              <label htmlFor={field.name} className='text-xl transition-colors duration-200'>
                 {field.label}
               </label>
               <span className='transition-colors duration-200'>{field.icon}</span>
             </div>
 
-            <input
-              id={field.name}
-              name={field.name}
-              type={field.type || 'text'}
-              placeholder={field.placeholder}
-              value={field.value ?? formData[field.name] ?? ''}
-              onChange={handleChange}
-              dir='rtl'
-              className='w-full h-12 flex px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-200 text-gray-800 focus:text-gray-700 placeholder:text-gray-400 focus:placeholder:text-blue-400 border-[2px] border-gray-200 rounded-lg'
-            />
+            {field.customRender ? (
+              field.customRender
+            ) : (
+              <input
+                id={field.name}
+                name={field.name}
+                type={field.type || 'text'}
+                placeholder={field.placeholder}
+                value={field.value ?? formData[field.name] ?? ''}
+                onChange={handleChange}
+                dir='rtl'
+                className='w-full h-12 flex px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-200 text-gray-800 focus:text-gray-700 placeholder:text-gray-400 focus:placeholder:text-blue-400 border-[2px] border-gray-200 rounded-lg'
+              />
+            )}
 
             {field.error && (
               <p className='text-sm mt-1 text-red-600'>{field.error}</p>
@@ -88,14 +90,12 @@ const GenericForm: React.FC<GenericFormProps> = ({
         ))}
       </div>
 
-      <div>
-        <button
-          type='submit'
-          className='w-full h-12 bg-blue-500 hover:bg-blue-600 transition-colors text-white cursor-pointer rounded-md'
-        >
-          {submitLabel}
-        </button>
-      </div>
+      <button
+        type='submit'
+        className='w-full h-12 bg-blue-500 hover:bg-blue-600 transition-colors text-white cursor-pointer rounded-md'
+      >
+        {submitLabel}
+      </button>
     </form>
   );
 };
