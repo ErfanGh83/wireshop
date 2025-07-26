@@ -39,7 +39,6 @@ const Page = () => {
               transition={{ duration: 0.4, ease: 'easeInOut' }}
               className="absolute w-full h-full flex flex-col items-center justify-center gap-6"
             >
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">ورود</h2>
               <LoginFormWrapper />
             </motion.div>
           )}
@@ -53,7 +52,6 @@ const Page = () => {
               transition={{ duration: 0.4, ease: 'easeInOut' }}
               className="absolute w-full h-full flex flex-col items-center justify-center gap-6"
             >
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">ثبت نام</h2>
               <SignUpFormWrapper />
             </motion.div>
           )}

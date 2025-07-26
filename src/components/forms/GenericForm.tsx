@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
@@ -9,6 +9,8 @@ export type FormField = {
   type?: string;
   placeholder?: string;
   error?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 };
 
 export type GenericFormProps = {
@@ -26,16 +28,32 @@ const GenericForm: React.FC<GenericFormProps> = ({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    const field = fields.find((f) => f.name === name);
+    if (field?.onChange) {
+      // Use controlled onChange from parent if exists
+      field.onChange(value);
+    } else {
+      // Internal state handling
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    const finalData: Record<string, string> = {};
+    for (const field of fields) {
+      finalData[field.name] =
+        field.value ?? formData[field.name] ?? '';
+    }
+
+    onSubmit(finalData);
   };
 
   return (
     <form className='w-3/5 h-fit' onSubmit={handleSubmit}>
+      <h2 className="w-fit mx-auto mb-16 text-3xl font-bold text-gray-800 dark:text-gray-100">{submitLabel}</h2>
       <div className='w-full h-fit flex flex-col gap-4 mb-8'>
         {fields.map((field) => (
           <div
@@ -57,7 +75,7 @@ const GenericForm: React.FC<GenericFormProps> = ({
               name={field.name}
               type={field.type || 'text'}
               placeholder={field.placeholder}
-              value={formData[field.name] || ''}
+              value={field.value ?? formData[field.name] ?? ''}
               onChange={handleChange}
               dir='rtl'
               className='w-full h-12 flex px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-none bg-gray-200 border-[2px] border-gray-500 rounded-lg'
@@ -68,13 +86,12 @@ const GenericForm: React.FC<GenericFormProps> = ({
             )}
           </div>
         ))}
-
       </div>
 
       <div>
         <button
           type='submit'
-          className='w-full h-12 bg-blue-500 text-white cursor-pointer rounded-md'
+          className='w-full h-12 bg-blue-500 hover:bg-blue-600 transition-colors text-white cursor-pointer rounded-md'
         >
           {submitLabel}
         </button>
