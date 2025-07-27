@@ -101,6 +101,10 @@ export const useSignUpHandlers = () => {
                     'خطایی در ارسال مجدد کد رخ داد'
                 );
             }
+            else {
+                toast.error('خطایی از سمت سرور رخ داده است');
+            }
+
         }
     };
 

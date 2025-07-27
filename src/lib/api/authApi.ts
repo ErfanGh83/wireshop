@@ -1,18 +1,22 @@
 import { API_ENDPOINTS } from "./constants";
 import { post, get } from './apiClient';
+import { normalizeIranianPhone, toEnglishDigits } from "../utils";
 
 export async function requestOtp(phone: string) {
-  return post(API_ENDPOINTS.REQUEST_OTP, { phone });
+  const fixedPhone = normalizeIranianPhone(phone)
+  return post(API_ENDPOINTS.REQUEST_OTP, { phone:fixedPhone });
   // Handles 200, 409, 500 errors
 }
 
 export async function verifyOtp(phone: string, code: string) {
-  return post(API_ENDPOINTS.VERIFY_OTP, { phone, code });
+  const fixedPhone = normalizeIranianPhone(phone)
+  return post(API_ENDPOINTS.VERIFY_OTP, { phone:fixedPhone, code });
   // Handles 200, 400, 500 errors
 }
 
 export async function createUser(phone: string, password: string, birthdate: string) {
-  return post(API_ENDPOINTS.CREATE_USER, { phone, password, birthdate });
+  const fixedBirthdate = toEnglishDigits(birthdate);
+  return post(API_ENDPOINTS.CREATE_USER, { phone, password, fixedBirthdate });
   // Handles 201 (JWT returned), 400
 }
 

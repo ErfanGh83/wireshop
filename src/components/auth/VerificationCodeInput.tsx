@@ -45,7 +45,7 @@ const VerificationCodeInput = ({
             inputMode='numeric'
             pattern='[0-9]*'
             onChange={handleCodeChange}
-            maxLength={6}
+            maxLength={7}
           />
         </div>
         {error && (

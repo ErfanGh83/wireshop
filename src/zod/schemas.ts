@@ -1,10 +1,11 @@
 import { z } from 'zod'
 
 // Helper schema for Iranian phone numbers (09xxxxxxxxx)
-const IranianPhoneSchema = z.string()
+const IranianPhoneSchema = z
+  .string()
   .length(11, 'شماره تلفن باید ۱۱ رقم باشد')
-  .regex(/^09/, 'شماره تلفن باید با ۰۹ شروع شود')
-  .regex(/^[0-9]+$/, 'شماره تلفن باید فقط شامل اعداد باشد')
+  .regex(/^09\d{9}$/, 'شماره تلفن باید با ۰۹ شروع شود و فقط شامل اعداد باشد')
+  .regex(/^[0-9۰-۹]+$/, 'شماره تلفن باید فقط شامل اعداد باشد');
 
 // 1. ارسال کد تأیید
 export const SendCodeSchema = z.object({
@@ -15,7 +16,7 @@ export type SendCodeInput = z.infer<typeof SendCodeSchema>
 // 2. تأیید کد
 export const VerifyCodeSchema = z.object({
   phone: IranianPhoneSchema,
-  code: z.string().length(6, 'کد تأیید باید ۶ رقم باشد'),
+  code: z.string().length(7, 'کد تأیید باید 7 رقم باشد'),
 })
 export type VerifyCodeInput = z.infer<typeof VerifyCodeSchema>
 
