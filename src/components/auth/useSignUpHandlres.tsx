@@ -8,9 +8,10 @@ import {
     createUser,
     requestOtp,
     verifyOtp,
-} from '@/lib/api/authApi'; // adjust path if needed
+} from '@/lib/api/authApi';
 
 import { ApiError } from '@/lib/api/apiClient';
+import { toast } from 'react-toastify';
 
 const STORAGE_KEY = 'auth:signup-form';
 
@@ -74,7 +75,7 @@ export const useSignUpHandlers = () => {
         if (!isValid) return;
 
         try {
-            await createUser(formData.phone); // Send phone number to get verification code
+            await requestOtp(formData.phone); // Send phone number to get verification code
             setStep('verify');
         } catch (err) {
             if (err instanceof ApiError && err.status === 409) {
@@ -83,7 +84,7 @@ export const useSignUpHandlers = () => {
                     phone: 'کاربر قبلاً ثبت‌نام کرده است',
                 }));
             } else {
-                console.error('Signup error:', err);
+                toast.error('خطایی از سمت سرور رخ داده است');
             }
         }
     };
@@ -91,15 +92,13 @@ export const useSignUpHandlers = () => {
 
     const handleResendCode = async () => {
         try {
-            await requestOtp(formData.phone, code);
+            await requestOtp(formData.phone);
             setCooldown(60);
             setVerificationError('');
         } catch (err) {
             if (err instanceof ApiError) {
                 setVerificationError(
-                    err.status === 400
-                        ? 'کد نامعتبر یا منقضی شده است'
-                        : 'خطایی در ارسال مجدد کد رخ داد'
+                    'خطایی در ارسال مجدد کد رخ داد'
                 );
             }
         }
@@ -116,6 +115,7 @@ export const useSignUpHandlers = () => {
         setVerificationError('');
     };
 
+    //if code is verified and user data gets sent to the backend
     const handleFinalSubmission = async () => {
         const isValid = validateVerificationCode({
             setError: setVerificationError,
@@ -126,8 +126,29 @@ export const useSignUpHandlers = () => {
 
         if (!isValid) return;
 
+        const verificationResult = await verifyOtp(formData.phone, code)
+
+        if (verificationResult === 'not ok') {
+            setVerificationError('کد وارد شده نامعتبر است.')
+            return;
+        }
+
         try {
-            const result = await verifyOtp(
+            const verificationResult = await verifyOtp(formData.phone, code)
+            console.log('verification successful:', verificationResult)
+        }
+        catch (err) {
+            if (err instanceof ApiError && err.status === 400) {
+                setVerificationError('کد وارد شده نادرست است یا منقضی شده');
+            } else {
+                setVerificationError('خطایی در ثبت‌نام نهایی رخ داد');
+                console.error('Final submission error:', err);
+            }
+        }
+
+
+        try {
+            const result = await createUser(
                 formData.phone,
                 formData.password,
                 formData.birthdate

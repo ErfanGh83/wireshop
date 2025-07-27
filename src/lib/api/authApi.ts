@@ -1,18 +1,18 @@
 import { API_ENDPOINTS } from "./constants";
 import { post, get } from './apiClient';
 
-export async function createUser(phone: string) {
-  return post(API_ENDPOINTS.CREATE_USER, { phone });
+export async function requestOtp(phone: string) {
+  return post(API_ENDPOINTS.REQUEST_OTP, { phone });
   // Handles 200, 409, 500 errors
 }
 
-export async function requestOtp(phone: string, code: string) {
-  return post(API_ENDPOINTS.REQUEST_OTP, { phone, code });
+export async function verifyOtp(phone: string, code: string) {
+  return post(API_ENDPOINTS.VERIFY_OTP, { phone, code });
   // Handles 200, 400, 500 errors
 }
 
-export async function verifyOtp(phone: string, password: string, birthdate: string) {
-  return post(API_ENDPOINTS.VERIFY_OTP, { phone, password, birthdate });
+export async function createUser(phone: string, password: string, birthdate: string) {
+  return post(API_ENDPOINTS.CREATE_USER, { phone, password, birthdate });
   // Handles 201 (JWT returned), 400
 }
 

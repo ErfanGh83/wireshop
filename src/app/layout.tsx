@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 
@@ -24,6 +26,7 @@ export default function RootLayout({
         className={`${vazir.variable} font-yekan antialiased bg-gray-800 text-right text-black dark:text-white scrollbar-modern`}
       >
         {children}
+        <ToastContainer position="top-center" autoClose={4000} />
       </body>
     </html>
   );
