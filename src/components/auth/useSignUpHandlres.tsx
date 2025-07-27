@@ -1,10 +1,16 @@
-// components/signup/useSignUpHandlers.ts
 'use client';
 
 import { useEffect, useState } from 'react';
 import { CompleteSignupSchema, VerifyCodeSchema } from '@/zod/schemas';
 import { validateSignupForm } from './validateSignupForm';
 import { validateVerificationCode } from './validateVerificationCode';
+import {
+    createUser,
+    requestOtp,
+    verifyOtp,
+} from '@/lib/api/authApi'; // adjust path if needed
+
+import { ApiError } from '@/lib/api/apiClient';
 
 const STORAGE_KEY = 'auth:signup-form';
 
@@ -58,22 +64,47 @@ export const useSignUpHandlers = () => {
         }
     };
 
-    const handleSubmit = () => {
-        if (
-            validateSignupForm({
-                formData,
-                setErrors,
-                schema: CompleteSignupSchema,
-            })
-        ) {
+    const handleSubmit = async () => {
+        const isValid = validateSignupForm({
+            formData,
+            setErrors,
+            schema: CompleteSignupSchema,
+        });
+
+        if (!isValid) return;
+
+        try {
+            await createUser(formData.phone); // Send phone number to get verification code
             setStep('verify');
+        } catch (err) {
+            if (err instanceof ApiError && err.status === 409) {
+                setErrors((prev) => ({
+                    ...prev,
+                    phone: 'کاربر قبلاً ثبت‌نام کرده است',
+                }));
+            } else {
+                console.error('Signup error:', err);
+            }
         }
     };
 
-    const handleResendCode = () => {
-        setCooldown(60);
-        setVerificationError('');
+
+    const handleResendCode = async () => {
+        try {
+            await requestOtp(formData.phone, code);
+            setCooldown(60);
+            setVerificationError('');
+        } catch (err) {
+            if (err instanceof ApiError) {
+                setVerificationError(
+                    err.status === 400
+                        ? 'کد نامعتبر یا منقضی شده است'
+                        : 'خطایی در ارسال مجدد کد رخ داد'
+                );
+            }
+        }
     };
+
 
     const handleBack = () => {
         setStep('signup');
@@ -85,22 +116,34 @@ export const useSignUpHandlers = () => {
         setVerificationError('');
     };
 
-    const handleFinalSubmission = () => {
-        if (
-            validateVerificationCode({
-                setError: setVerificationError,
-                formData: { phone: formData.phone },
-                code,
-                schema: VerifyCodeSchema,
-            })
-        ) {
-            console.log('Final submission:', {
-                ...formData,
-                code,
-            });
-            // API call here
+    const handleFinalSubmission = async () => {
+        const isValid = validateVerificationCode({
+            setError: setVerificationError,
+            formData: { phone: formData.phone },
+            code,
+            schema: VerifyCodeSchema,
+        });
+
+        if (!isValid) return;
+
+        try {
+            const result = await verifyOtp(
+                formData.phone,
+                formData.password,
+                formData.birthdate
+            );
+            console.log('Signup successful:', result); // likely contains JWT
+            // Store token or redirect...
+        } catch (err) {
+            if (err instanceof ApiError && err.status === 400) {
+                setVerificationError('شماره تلفن هنوز تأیید نشده است');
+            } else {
+                setVerificationError('خطایی در ثبت‌نام نهایی رخ داد');
+                console.error('Final submission error:', err);
+            }
         }
     };
+
 
     return {
         formData,
