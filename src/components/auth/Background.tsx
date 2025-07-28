@@ -12,7 +12,7 @@ const Background = ({ backgroundImage }: Props) => {
                 src={backgroundImage}
                 alt="Authentication Background"
                 fill
-                className="object-cover"
+                className="object-cover blur-xs"
                 priority
             />
         </div>

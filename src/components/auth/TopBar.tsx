@@ -9,8 +9,8 @@ type Props = {
 
 const TopBar = ({mode, setMode}: Props) => {
     return (
-        <div className='w-2/5 h-12 bg-transparent fixed z-10 top-0 right-0'>
-            <div className='w-full h-full flex flex-row-reverse items-center justify-end px-4 gap-2'>
+        <div className='size-full'>
+            <div className='size-full flex flex-row-reverse items-center justify-end px-4 gap-2'>
 
                 <button
                     onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
@@ -27,8 +27,6 @@ const TopBar = ({mode, setMode}: Props) => {
 
                 <Link href={'/'} className='size-fit'><FaXmark /></Link>
             </div>
-
-            <hr className='w-1/5 text-gray-400' />
         </div>
     )
 }
