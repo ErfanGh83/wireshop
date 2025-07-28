@@ -4,13 +4,13 @@ import { normalizeIranianPhone, toEnglishDigits } from "../utils";
 
 export async function requestOtp(phone: string) {
   const fixedPhone = normalizeIranianPhone(phone)
-  return post(API_ENDPOINTS.REQUEST_OTP, { phone:fixedPhone });
+  return post(API_ENDPOINTS.REQUEST_OTP, { phone: fixedPhone });
   // Handles 200, 409, 500 errors
 }
 
 export async function verifyOtp(phone: string, code: string) {
   const fixedPhone = normalizeIranianPhone(phone)
-  return post(API_ENDPOINTS.VERIFY_OTP, { phone:fixedPhone, code });
+  return post(API_ENDPOINTS.VERIFY_OTP, { phone: fixedPhone, code });
   // Handles 200, 400, 500 errors
 }
 
@@ -21,7 +21,8 @@ export async function createUser(phone: string, password: string, birthdate: str
 }
 
 export async function login(phone: string, password: string) {
-  return post(API_ENDPOINTS.LOGIN, { phone, password });
+  const fixedPhone = normalizeIranianPhone(phone)
+  return post(API_ENDPOINTS.LOGIN, { phone: fixedPhone, password });
   // Handles 200 (JWT returned), 401, 404
 }
 

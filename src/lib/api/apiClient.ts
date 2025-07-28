@@ -1,4 +1,3 @@
-// lib/api/apiClient.ts
 import { BASE_URL } from './constants';
 
 /** Generic JSON types for request/response */
