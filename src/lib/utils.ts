@@ -27,3 +27,29 @@ export const initializeTheme = (): void => {
   const theme = getInitialTheme();
   saveTheme(theme);
 };
+
+export const formatTime = (seconds: number) => {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${mins}:${secs < 10 ? '0' : ''}${secs}`
+}
+
+export function toEnglishDigits(input: string): string {
+  const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
+  return input.replace(/[۰-۹]/g, (d) => persianDigits.indexOf(d).toString());
+}
+
+export function normalizeIranianPhone(phone: string): string {
+  const digitsOnly = phone.replace(/\D/g, '');
+
+  if (/^0\d{10}$/.test(digitsOnly)) {
+    return '+98' + digitsOnly.slice(1);
+  }
+
+  if (/^\+989\d{9}$/.test(phone)) {
+    return phone;
+  }
+
+  throw new Error('Invalid Iranian phone number');
+}
+
