@@ -3,28 +3,31 @@ import SupportMessageItem from "./SupportMessageItem";
 interface Message {
   id: number;
   userName: string;
-  message: string;
+  lastMessage: string;
   date: string;
-  status: "pending" | "replied";
-  repliedMessage?: string
+  isNew: boolean;
+  repliedMessage?: string,
+  url: string;
 }
 
 const messages: Message[] = [
   {
     id: 1,
     userName: "علی رضایی",
-    message:
+    lastMessage:
       "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
     date: "۱۴۰۳/۰۵/۰۱",
-    status: "pending",
+    isNew: true,
+    url: "test",
   },
   {
     id: 2,
     userName: "سارا محمدی",
-    message: "لطفاً حقوق من را پرداخت کنید.",
+    lastMessage: "لطفاً حقوق من را پرداخت کنید.",
     date: "۱۴۰۳/۰۵/۰۲",
-    status: "replied",
-    repliedMessage: "در اسرع وقت پرداخت میشود 😁"
+    isNew: false,
+    repliedMessage: "در اسرع وقت پرداخت میشود 😁",
+    url:"test1",
   },
 ];
 
@@ -37,10 +40,10 @@ function SupportMessageContainer() {
         <SupportMessageItem
           key={msg.id}
           date={msg.date}
-          message={msg.message}
-          status={msg.status}
+          lastMessage={msg.lastMessage}
+          isNew={msg.isNew}
           userName={msg.userName}
-          repliedMessage={ msg.repliedMessage || "" }
+          chatUrl={msg.url}
         />
       ))}
     </div>
