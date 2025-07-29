@@ -12,8 +12,10 @@ function SupportModalItem({ sender, text }: Props) {
     >
       <div
         className={`
-          max-w-[75%]
+          max-w-[90%]
+          md:max-w-[75%]
           px-4 py-2
+          text-justify
           rounded-xl
           text-sm
           leading-relaxed
