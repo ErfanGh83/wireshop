@@ -14,7 +14,7 @@ const UserInfoContainer = ({ title, link, icon, description, className }: Props)
 
     return (
         <div
-            className={`size-full relative flex flex-row-reverse items-center justify-around px-6 gap-2 transition-all shadow-sm rounded-md ${className}`}
+            className={`size-full relative flex flex-row-reverse items-center justify-around px-6 gap-4 transition-all border-[1px] border-gray-700 rounded-md ${className}`}
         >
             <Link href={link} className='size-fit text-lg border-2 border-black text-black hover:border-blue-500 hover:text-blue-500 rounded-full font-semibold absolute top-[10%] left-[2%] z-10 transition-colors'>
                 <PiPlus />
