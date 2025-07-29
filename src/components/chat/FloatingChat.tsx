@@ -1,12 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCommentDots } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  connectSocket,
+  disconnectSocket,
+  identify,
+  onMessageSaved,
+  onReceiveMessage,
+} from "@/lib/socket";
+import { getUserConversation } from "@/lib/api/chatApi";
+import { Conversation, Message } from "@/types/chat";
 
 export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
+  const [chat, setChat] = useState<Conversation | null>(null);
+  const [messageText, setMessageText] = useState("");
+
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    if (!userId) return 
+    
+    connectSocket();
+
+    identify(userId, "user");
+
+    getUserConversation().then((conversation) => {
+      setChat(conversation);
+    });
+
+    onReceiveMessage((msg: Message) => {
+      setChat((prev) =>
+        prev ? { ...prev, messages: [...prev.messages, msg] } : null
+      );
+    });
+
+    onMessageSaved((msg: Message) => {
+      setChat((prev) =>
+        prev ? { ...prev, messages: [...prev.messages, msg] } : null
+      );
+    });
+
+    return () => {
+      disconnectSocket();
+    };
+  }, []);
+
+  function handleSendMessage() {
+    if (messageText.trim() && userId) {
+      import("@/lib/socket").then(({ sendMessage }) => {
+        sendMessage(userId, messageText.trim());
+      });
+      setMessageText("");
+    }
+  }
 
   return (
     <>
@@ -24,7 +74,6 @@ export default function FloatingChat() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* backdrop has bug with hamburger menu */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -51,24 +100,37 @@ export default function FloatingChat() {
               </div>
 
               <div className="flex-1 p-4 overflow-y-auto space-y-2 text-sm">
-                <div className="bg-blue-100 text-right p-2 rounded-lg w-fit self-end ml-auto dark:bg-slate-600">
-                  سلام! چطور می‌تونم کمکتون کنم؟
-                </div>
+                {chat?.messages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className={`${
+                      msg.senderId === userId
+                        ? "bg-blue-100 self-end ml-auto dark:bg-slate-600"
+                        : "bg-gray-200 self-start mr-auto dark:bg-slate-500"
+                    } text-right p-2 rounded-lg w-fit`}
+                  >
+                    {msg.content}
+                  </div>
+                ))}
               </div>
 
-              {/* Input */}
               <div className="p-3">
                 <div className="flex items-center space-x-2">
                   <textarea
                     placeholder="پیام شما..."
                     rows={1}
+                    value={messageText}
+                    onChange={(e) => setMessageText(e.target.value)}
                     onInput={(e) => {
                       e.currentTarget.style.height = "auto";
                       e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
                     }}
                     className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-purple-400 dark:bg-slate-600 dark:border-gray-500 resize-none max-h-32 leading-6 overflow-auto"
                   />
-                  <button className="bg-blue-100 hover:bg-blue-200 hover:dark:bg-purple-300 cursor-pointer transition-all px-4 mb-auto py-2 rounded-lg text-black dark:bg-slate-500 dark:text-gray-100">
+                  <button
+                    className="bg-blue-100 hover:bg-blue-200 hover:dark:bg-purple-300 cursor-pointer transition-all px-4 mb-auto py-2 rounded-lg text-black dark:bg-slate-500 dark:text-gray-100"
+                    onClick={handleSendMessage}
+                  >
                     ارسال
                   </button>
                 </div>
