@@ -7,7 +7,10 @@ import UserShipmentContainer from "@/components/dashboard/UserShipmentsContainer
 import { MdDoneAll } from "react-icons/md";
 import { RiRefund2Line } from "react-icons/ri";
 import { FaShippingFast } from "react-icons/fa";
-import { BiUser } from "react-icons/bi";
+import { BiEdit, BiUser, BiWallet } from "react-icons/bi";
+import UserInfoContainer from "@/components/dashboard/UserInfoContainer";
+import { BsStars } from "react-icons/bs";
+import { GiGoldBar } from "react-icons/gi";
 
 export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading } = useAuthUser();
@@ -45,41 +48,74 @@ export default function DashboardPage() {
                         لطفا ابتدا وارد حساب کاربری خود شوید
                     </Link>
                 ) : (
-                    <div className="size-full max-w-[2000px] px-36 h-fit flex flex-col items-center justify-center gap-4">
+                    <div className="size-full max-w-[2000px] mx-auto px-36 h-fit flex flex-col items-center justify-center gap-4">
                         <div
-                            className="w-4/5 h-[200px] flex px-8"
+                            className="w-4/5 h-[200px] flex flex-col px-8"
                         >
                             <div
-                                className="size-full flex flex-row-reverse justify-end p-4 border-[2px] border-gray-200 rounded-md"
+                                className="size-full flex flex-col p-4 border-[1px] gap-2 border-gray-300 rounded-md"
                             >
                                 <div
-                                    className="size-fit flex flex-row-reverse gap-2 justify-center"
+                                    className="w-full h-fit flex flex-row-reverse justify-end"
                                 >
+                                    <Link href={'/edit-user'} className="mx-2 mt-1">
+                                        <BiEdit className="text-3xl text-blue-500" />
+                                    </Link>
+
                                     <div
-                                        className="flex flex-col justify-center"
+                                        className="size-fit flex flex-row-reverse gap-2 justify-center"
                                     >
                                         <div
-                                            className="w-fit h-fit flex flex-row"
+                                            className="flex flex-col justify-center"
                                         >
-                                            <p className="text-xl font-medium ml-2">نام کاربری:</p>
-                                            <p className="text-xl font-semibold">{userInfo ? 'user_' + userInfo.user.id.split('-')[0] : ''}</p>
+                                            <div
+                                                className="w-fit h-fit flex flex-row"
+                                            >
+                                                <p className="text-xl font-medium ml-2">نام کاربری:</p>
+                                                <p className="text-xl font-semibold">{userInfo ? 'user_' + userInfo.user.id.split('-')[0] : ''}</p>
+                                            </div>
+
+                                            <div
+                                                className="w-fit h-fit flex flex-row"
+                                            >
+                                                <p className="text-lg font-light text-gray-700 ml-2">شماره تلفن:</p>
+                                                <p className="text-lg text-gray-700">{userInfo ? '0' + userInfo.user.phone.slice(3) : ''}</p>
+                                            </div>
                                         </div>
 
                                         <div
-                                            className="w-fit h-fit flex flex-row"
+                                            className="size-fit rounded-full border-5 p-1 text-5xl border-gray-700 text-gray-700"
                                         >
-                                            <p className="text-lg font-light text-gray-700 ml-2">شماره تلفن:</p>
-                                            <p className="text-lg text-gray-700">{userInfo ? '0' + userInfo.user.phone.slice(3) : ''}</p>
+                                            <BiUser />
                                         </div>
-                                    </div>
-
-                                    <div
-                                        className="size-fit rounded-full border-5 p-1 text-6xl border-gray-700 text-gray-700"
-                                    >
-                                        <BiUser />
                                     </div>
                                 </div>
 
+
+
+                                <div className="size-full flex flex-row gap-2">
+                                    <UserInfoContainer
+                                        title={'کیف پول'}
+                                        link="/refunded-orders"
+                                        description={"موجودی: 50،000 ریال"}
+                                        icon={<BiWallet />}
+                                        className={"text-black"}
+                                    />
+                                    <UserInfoContainer
+                                        title={'امتیازات'}
+                                        link="/points"
+                                        description={"مقدار: 1000 امتیاز"}
+                                        icon={<BsStars />}
+                                        className={"text-black"}
+                                    />
+                                    <UserInfoContainer
+                                        title={'اشتراک وایرپلاس'}
+                                        link="/refunded-orders"
+                                        description={"در حال حاضر اشتراکی ندارید"}
+                                        icon={<GiGoldBar />}
+                                        className={"text-yellow-500"}
+                                    />
+                                </div>
                             </div>
                         </div>
 
