@@ -21,3 +21,11 @@ export interface LoginRequest {
   phone: string;
   password: string;
 }
+
+// User info
+export interface User {
+  id: string;
+  phone: string;
+  birthdate: string;
+  role: string;
+}

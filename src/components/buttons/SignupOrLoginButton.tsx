@@ -57,10 +57,10 @@ const SignupOrLoginButton = () => {
                         </>
                         :
                         <Link
-                            href={'/profile'}
+                            href={'/dashboard'}
                             className='size-fit items-center justify-center hover:text-blue-400 dark:hover:text-purple-400 transition-colors'
                         >
-                            پروفایل
+                            داشبورد
                         </Link>
                 }
             </div>

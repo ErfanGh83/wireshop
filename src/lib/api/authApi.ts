@@ -1,6 +1,7 @@
 import { API_ENDPOINTS } from "./constants";
 import { post, get } from './apiClient';
 import { normalizeIranianPhone, toEnglishDigits } from "../utils";
+import { UserInfo } from "@/components/auth/useAuthUser";
 
 export async function requestOtp(phone: string) {
   const fixedPhone = normalizeIranianPhone(phone)
@@ -31,7 +32,7 @@ export async function logout() {
   // Handles 200
 }
 
-export async function whoAmI() {
+export async function whoAmI():Promise<UserInfo> {
   return get(API_ENDPOINTS.WHO_AM_I);
   // Handles 200, 401
 }
