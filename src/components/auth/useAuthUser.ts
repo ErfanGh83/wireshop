@@ -1,3 +1,4 @@
+// hooks/useAuthUser.ts
 "use client";
 
 import { whoAmI } from "@/lib/api/authApi";
@@ -7,7 +8,7 @@ import { useEffect, useState } from "react";
 export interface User {
   id: string;
   phone: string;
-  birthdate: Date;
+  birthdate: Date; // API returns a string, we'll convert to Date
   role: string;
 }
 
@@ -15,6 +16,7 @@ export interface UserInfo {
   user: User;
 }
 
+// Tell TS that whoAmI returns a Promise<UserInfo>
 export function useAuthUser() {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,7 +29,8 @@ export function useAuthUser() {
         setIsLoggedIn(loggedIn);
 
         if (loggedIn) {
-          const info = await whoAmI();
+          const info: UserInfo = await whoAmI();
+          // Convert birthdate to Date
           info.user.birthdate = new Date(info.user.birthdate);
           setUserInfo(info);
         }

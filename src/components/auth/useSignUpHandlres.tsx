@@ -12,6 +12,7 @@ import {
 
 import { ApiError } from '@/lib/api/apiClient';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const STORAGE_KEY = 'auth:signup-form';
 
@@ -27,6 +28,7 @@ export const useSignUpHandlers = () => {
     const [code, setCode] = useState('');
     const [cooldown, setCooldown] = useState(60);
     const [verificationError, setVerificationError] = useState('');
+    const router = useRouter()
 
     // Load saved form data
     useEffect(() => {
@@ -158,6 +160,7 @@ export const useSignUpHandlers = () => {
                 formData.birthdate
             );
             console.log('Signup successful:', result); // likely contains JWT
+            router.push('/')
             // Store token or redirect...
         } catch (err) {
             if (err instanceof ApiError && err.status === 400) {

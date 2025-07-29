@@ -17,7 +17,8 @@ export async function verifyOtp(phone: string, code: string) {
 
 export async function createUser(phone: string, password: string, birthdate: string) {
   const fixedBirthdate = toEnglishDigits(birthdate);
-  return post(API_ENDPOINTS.CREATE_USER, { phone, password, fixedBirthdate });
+  const fixedPhone = normalizeIranianPhone(phone)
+  return post(API_ENDPOINTS.CREATE_USER, { phone:fixedPhone, password, birthdate:fixedBirthdate });
   // Handles 201 (JWT returned), 400
 }
 
