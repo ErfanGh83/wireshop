@@ -63,9 +63,11 @@ export async function post<TResponse>(
 /** GET method with strict typing */
 export async function get<TResponse>(
   endpoint: string,
+  params: string = '',
   options: Omit<RequestInit, 'method'> = {}
 ): Promise<TResponse> {
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
+  console.log('get request sent to ' + `${BASE_URL}${endpoint}?${params}`)
+  const response = await fetch(`${BASE_URL}${endpoint}?${params}`, {
     method: 'GET',
     credentials: 'include',
     ...options,
@@ -73,12 +75,12 @@ export async function get<TResponse>(
 
   const parsed = await safeJsonParse(response);
 
-  if (!response.ok) {
-    const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
-      ? String((parsed as Record<string, unknown>).message)
-      : 'Request failed';
-    throw new ApiError(message, response.status, parsed);
-  }
+  // if (!response.ok) {
+  //   const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
+  //     ? String((parsed as Record<string, unknown>).message)
+  //     : 'Request failed';
+  //   throw new ApiError(message, response.status, parsed);
+  // }
 
   return parsed as TResponse;
 }
