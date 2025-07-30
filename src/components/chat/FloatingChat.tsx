@@ -19,24 +19,29 @@ export default function FloatingChat() {
   const [chat, setChat] = useState<Conversation | null>(null);
   const [messageText, setMessageText] = useState("");
 
-  const userId = localStorage.getItem("userId");
+  // const userId = localStorage.getItem("userId");
+  const userId = "b1f53907-7a31-4fbe-887c-5506eec49a99";
+  console.log("chat", chat)
 
   useEffect(() => {
-    if (!userId) return 
+    getUserConversation().then((conversation) => {
+      setChat(conversation);
+    });
+  }, [])
+
+  useEffect(() => {
+    if (!userId || !isOpen) return 
     
     connectSocket();
 
     identify(userId, "user");
 
-    getUserConversation().then((conversation) => {
-      setChat(conversation);
-    });
 
-    onReceiveMessage((msg: Message) => {
-      setChat((prev) =>
-        prev ? { ...prev, messages: [...prev.messages, msg] } : null
-      );
-    });
+    // onReceiveMessage((msg: Message) => {
+    //   setChat((prev) =>
+    //     prev ? { ...prev, messages: [...prev.messages, msg] } : null
+    //   );
+    // });
 
     onMessageSaved((msg: Message) => {
       setChat((prev) =>
@@ -47,7 +52,7 @@ export default function FloatingChat() {
     return () => {
       disconnectSocket();
     };
-  }, []);
+  }, [isOpen]);
 
   function handleSendMessage() {
     if (messageText.trim() && userId) {
