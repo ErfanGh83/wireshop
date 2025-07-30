@@ -18,7 +18,7 @@ const ProductsPage = () => {
                 <div className={`fixed sm:sticky top-0 h-screen overflow-y-auto transition-all duration-300 ease-in-out 
                                ${filtersModuleIsOpen ? 'w-full sm:w-80 3xl:w-100 @min-4xl:w-1/2' : 'w-0'} bg-white dark:bg-slate-800 z-50 sm:z-20`}>
                     {filtersModuleIsOpen && (
-                        <div className="p-4">
+                        <div className="max-h-screen overflow-hidden p-4">
                             <FiltersModule
                                 setFilters={setFilters}
                                 filters={filters}
@@ -44,7 +44,7 @@ const ProductsPage = () => {
                     <div className="p-4 max-w-[2000px] mx-auto">
                         <LoadMore
                             filters={filters}
-                            search="phone"
+                            search=''
                             order="price-desc"
                         />
                     </div>

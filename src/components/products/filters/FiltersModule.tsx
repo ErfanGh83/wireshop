@@ -3,9 +3,9 @@
 import { Filters } from '@/types/products'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
-import { MdArrowDropDown } from 'react-icons/md'
 import Brands from './filters/Brands'
 import PriceRange from './filters/PriceRange'
+import Categories from './filters/Categories'
 
 type Props = {
     filters: Filters | null
@@ -14,7 +14,7 @@ type Props = {
     filtersModuleIsOpen: boolean
 }
 
-const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen, filtersModuleIsOpen }: Props) => {
+const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => {
     // Initialize all filter states with defaults or values from props
     const [brands, setBrands] = useState<string[]>(filters?.brands || [])
     const [priceRange, setPriceRange] = useState<[number, number]>(filters?.priceRange || [0, 1000])
@@ -55,7 +55,7 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen, filtersModul
     }
 
     return (
-        <div className='relative h-full w-full pt-6 sm:pt-12 flex flex-row bg-white dark:bg-slate-800'>
+        <div className='relative h-screen py-10 sm:h-[84vh] w-full overflow-y-auto sm:pt-12 flex flex-row border-l-2 px-2 border-gray-200 bg-white dark:bg-slate-800'>
             <button
                 onClick={handleClose}
                 className='absolute top-2 right-2 size-fit hover:cursor-pointer'
@@ -63,46 +63,49 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen, filtersModul
                 <FaXmark className='m-auto' size={24} />
             </button>
 
-            <div className='size-full flex flex-col p-4 space-y-4'>
-                {/* Brands Filter */}
-                <Brands
-                    brands={brands}
-                    setBrands={setBrands}
-                />
+            <div className='w-full h-fit flex flex-col items-center justify-between'>
 
-                {/* Price Range Filter */}
-                <PriceRange
-                    priceRange={priceRange}
-                    setPriceRange={setPriceRange}
-                    min={0}
-                    max={10000}
-                />
-
-                {/* In Stock Filter */}
-                <div className='w-full flex items-center justify-between p-4 bg-blue-100 rounded-lg'>
-                    <label htmlFor='inStock' className='text-lg cursor-pointer'>
-                        فقط کالاهای موجود
-                    </label>
-                    <input
-                        id='inStock'
-                        type='checkbox'
-                        checked={onlyInStock}
-                        onChange={(e) => setOnlyInStock(e.target.checked)}
-                        className='w-5 h-5 cursor-pointer'
+                <div
+                    className='h-full w-full flex flex-col items-center space-y-4'
+                >
+                    {/* Brands Filter */}
+                    <Brands
+                        brands={brands}
+                        setBrands={setBrands}
                     />
-                </div>
 
-                {/* Category Filter */}
-                <div className='w-full flex flex-col items-center justify-between text-2xl bg-blue-100 rounded-lg overflow-hidden'>
-                    <div className='w-full h-16 flex flex-row items-center justify-between px-4 cursor-pointer'>
-                        <p>دسته بندی</p>
-                        <MdArrowDropDown className='-rotate-90' />
+                    {/* Price Range Filter */}
+                    <PriceRange
+                        priceRange={priceRange}
+                        setPriceRange={setPriceRange}
+                        min={0}
+                        max={10000}
+                    />
+
+                    {/* In Stock Filter */}
+                    <div className='w-full flex items-center justify-between p-4 bg-blue-100 rounded-lg'>
+                        <label htmlFor='inStock' className='text-lg cursor-pointer'>
+                            فقط کالاهای موجود
+                        </label>
+                        <input
+                            id='inStock'
+                            type='checkbox'
+                            checked={onlyInStock}
+                            onChange={(e) => setOnlyInStock(e.target.checked)}
+                            className='w-5 h-5 cursor-pointer'
+                        />
                     </div>
-                    {/* Category selection would go here */}
+
+                    {/* Category Filter */}
+                    <Categories
+                        category={category}
+                        setCategory={setCategory}
+                    />
+
                 </div>
 
                 {/* Action Buttons */}
-                <div className='flex justify-between mt-4'>
+                <div className='w-full flex justify-between mt-4'>
                     <button
                         onClick={resetFilters}
                         className='px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300'
