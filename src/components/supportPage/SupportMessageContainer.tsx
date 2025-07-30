@@ -1,6 +1,9 @@
+'use client'
+
 import { getAllConversations } from "@/lib/api/chatApi";
 import SupportMessageItem from "./SupportMessageItem";
-import { Suspense } from "react";
+import { useEffect, useState } from "react";
+import { AllConversation } from "@/types/chat";
 
 interface Message {
   id: number;
@@ -22,20 +25,16 @@ const messages: Message[] = [
     isNew: true,
     url: "test",
   },
-  // {
-  //   id: 2,
-  //   userName: "سارا محمدی",
-  //   lastMessage: "لطفاً حقوق من را پرداخت کنید.",
-  //   date: "۱۴۰۳/۰۵/۰۲",
-  //   isNew: false,
-  //   repliedMessage: "در اسرع وقت پرداخت میشود 😁",
-  //   url:"test1",
-  // },
 ];
 
-async function SupportMessageContainer() {
-  const data = await getAllConversations().then((result) => result);
-  console.log(data);
+function SupportMessageContainer() {
+  const [data, setData] = useState<AllConversation | null>()
+  
+  useEffect(() => {
+    getAllConversations().then((result) => { setData(result);  console.log(result)})
+  }, [])
+
+  if(!data) return <h5>در حال بارگذاری...</h5>
 
   return (
     <div className="p-1 md:p-4 lg:p-6 space-y-4 mx-auto max-w-[1200px]">
@@ -43,12 +42,12 @@ async function SupportMessageContainer() {
 
       {messages.map((msg) => (
         <SupportMessageItem
-          key={msg.id}
-          date={msg.date}
+          key={data.id}
+          date={data.updatedAt}
           lastMessage={msg.lastMessage}
-          isNew={msg.isNew}
+          isNew={data.newMessage}
           userName={msg.userName}
-          conversationId={data.conversationId}
+          conversationId={data.id}
         />
       ))}
     </div>
