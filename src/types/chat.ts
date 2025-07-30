@@ -11,12 +11,16 @@ export interface Conversation {
   messages: Message[];
 }
 
+// export interface AllConversation {
+//   id: string;
+//   newMessage: boolean;
+//   userId: string;
+//   userPhone: string;
+//   updatedAt: string;
+// }
 export interface AllConversation {
-  id: string;
-  newMessage: boolean;
-  userId: string;
-  userPhone: string;
-  updatedAt: string;
+  conversationId: string;
+  messages: Message[]
 }
 
 export interface ConversationByID {

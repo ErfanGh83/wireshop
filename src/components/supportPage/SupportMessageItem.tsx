@@ -8,10 +8,10 @@ interface Props {
   userName: string;
   date: string;
   lastMessage: string;
-  chatUrl: string;
+  conversationId: string;
 }
 
-function SupportMessageItem({ date, lastMessage, isNew, userName, chatUrl }: Props) {
+function SupportMessageItem({ date, lastMessage, isNew, userName, conversationId }: Props) {
   // const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -71,7 +71,7 @@ function SupportMessageItem({ date, lastMessage, isNew, userName, chatUrl }: Pro
 
           <SupportModal
             isOpen={isModalOpen}
-            chatUrl={chatUrl}
+            conversationId={conversationId}
             onClose={() => setIsModalOpen(false)}
             userName={userName}
           />

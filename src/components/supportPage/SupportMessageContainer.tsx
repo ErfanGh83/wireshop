@@ -1,4 +1,6 @@
+import { getAllConversations } from "@/lib/api/chatApi";
 import SupportMessageItem from "./SupportMessageItem";
+import { Suspense } from "react";
 
 interface Message {
   id: number;
@@ -6,7 +8,7 @@ interface Message {
   lastMessage: string;
   date: string;
   isNew: boolean;
-  repliedMessage?: string,
+  repliedMessage?: string;
   url: string;
 }
 
@@ -20,18 +22,21 @@ const messages: Message[] = [
     isNew: true,
     url: "test",
   },
-  {
-    id: 2,
-    userName: "سارا محمدی",
-    lastMessage: "لطفاً حقوق من را پرداخت کنید.",
-    date: "۱۴۰۳/۰۵/۰۲",
-    isNew: false,
-    repliedMessage: "در اسرع وقت پرداخت میشود 😁",
-    url:"test1",
-  },
+  // {
+  //   id: 2,
+  //   userName: "سارا محمدی",
+  //   lastMessage: "لطفاً حقوق من را پرداخت کنید.",
+  //   date: "۱۴۰۳/۰۵/۰۲",
+  //   isNew: false,
+  //   repliedMessage: "در اسرع وقت پرداخت میشود 😁",
+  //   url:"test1",
+  // },
 ];
 
-function SupportMessageContainer() {
+async function SupportMessageContainer() {
+  const data = await getAllConversations().then((result) => result);
+  console.log(data);
+
   return (
     <div className="p-1 md:p-4 lg:p-6 space-y-4 mx-auto max-w-[1200px]">
       <h1 className="text-2xl font-bold mb-4">پیام‌های کاربران</h1>
@@ -43,7 +48,7 @@ function SupportMessageContainer() {
           lastMessage={msg.lastMessage}
           isNew={msg.isNew}
           userName={msg.userName}
-          chatUrl={msg.url}
+          conversationId={data.conversationId}
         />
       ))}
     </div>

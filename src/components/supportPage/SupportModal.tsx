@@ -7,14 +7,14 @@ import SupportModalItem from "./SupportModalItem";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  chatUrl: string;
+  conversationId: string;
   userName: string;
 }
 
 export default function SupportModal({
   isOpen,
   onClose,
-  chatUrl,
+  conversationId,
   userName,
 }: ModalProps) {
   // const items = connectIo
