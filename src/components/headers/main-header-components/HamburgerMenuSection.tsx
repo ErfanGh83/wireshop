@@ -25,7 +25,7 @@ const HamburgerMenuSection = () => {
                 {hamMenuIsOpen && (
                     <>
                         <motion.div
-                            className="w-screen h-screen fixed top-0 left-0 z-20 bg-opacity-50"
+                            className="w-screen h-screen fixed top-0 left-0 z-40 bg-opacity-50"
                             onClick={handleClick}
                             initial={{ x: "100%" }}
                             animate={{ x: 0 }}
@@ -36,7 +36,7 @@ const HamburgerMenuSection = () => {
                         </motion.div>
 
                         <motion.div
-                            className="w-screen h-screen fixed top-0 left-0 z-10 bg-black/20"
+                            className="w-screen h-screen fixed top-0 left-0 z-30 bg-black/20"
                             onClick={handleClick}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}

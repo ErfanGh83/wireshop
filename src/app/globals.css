@@ -85,24 +85,30 @@
 
 /* Remove duplicate @keyframes and combine them */
 @keyframes glow-blue {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(75, 141, 248, 0.4), 
-               0 0 12px rgba(85, 147, 248, 0.6);
+
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(75, 141, 248, 0.4),
+      0 0 12px rgba(85, 147, 248, 0.6);
   }
+
   50% {
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8), 
-               0 0 20px rgba(85, 147, 248, 1);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8),
+      0 0 20px rgba(85, 147, 248, 1);
   }
 }
 
 @keyframes glow-purple {
-  0%, 100% {
-    box-shadow: 0 0 6px rgba(178, 38, 234, 0.4), 
-               0 0 12px rgba(194, 85, 248, 0.6);
+
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(178, 38, 234, 0.4),
+      0 0 12px rgba(194, 85, 248, 0.6);
   }
+
   50% {
-    box-shadow: 0 0 12px rgba(194, 85, 248, 0.8), 
-               0 0 20px rgba(194, 85, 248, 0.1);
+    box-shadow: 0 0 12px rgba(194, 85, 248, 0.8),
+      0 0 20px rgba(194, 85, 248, 0.1);
   }
 }
 
@@ -160,4 +166,3 @@ html {
 body {
   font-family: 'Yekan', sans-serif;
 }
-

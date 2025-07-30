@@ -2,30 +2,47 @@
 
 import { API_ENDPOINTS } from "@/lib/api/constants"
 import { get } from "./apiClient";
+import { Filters } from "@/types/products";
 
 type Props = {
     page?: number
     search?: string
     order?: string
+    filters?: Filters | null
 }
 
-export const fetchProducts = async ({ page, search, order }:Props) => {
-    let params = ''
-    const limit = 12
+export const fetchProducts = async ({ page, search, order, filters }: Props) => {
+    const limit = 12;
+    const params = new URLSearchParams();
 
-    if(search){
-        params = `q=${search}`
+    if (search) {
+        params.append('q', search);
     }
 
-    if(page) {
-        params = `&skip=${page*limit}&limit=${limit}`
+    if (page !== undefined) {
+        params.append('skip', String((page - 1) * limit));
+        params.append('limit', String(limit));
     }
 
-    if(order){
-        params = params + `&sortBy=${order}`
+    if (order) {
+        params.append('sortBy', order);
     }
 
-    console.log(params)
-    
-    return get(API_ENDPOINTS.PRODUCTS, params);
+    if (filters) {
+        if (filters.brands?.length > 0) {
+            params.append('brands', filters.brands.join(','));
+        }
+        if (filters.priceRange) {
+            params.append('minPrice', String(filters.priceRange[0]));
+            params.append('maxPrice', String(filters.priceRange[1]));
+        }
+        if (filters.onlyInStock) {
+            params.append('inStock', 'true');
+        }
+        if (filters.category) {
+            params.append('category', filters.category);
+        }
+    }
+
+    return get(API_ENDPOINTS.PRODUCTS, params.toString());
 }

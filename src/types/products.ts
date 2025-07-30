@@ -51,4 +51,11 @@ interface ProductsResponse {
   limit: number;
 }
 
-export type {ProductsResponse, IProduct}
+interface Filters {
+  brands: string[];
+  priceRange: [number, number];
+  onlyInStock: boolean;
+  category: string;
+}
+
+export type {ProductsResponse, IProduct, Filters}

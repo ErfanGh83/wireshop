@@ -14,7 +14,7 @@ const MainLayout = ({children}:Props) => {
             className='w-screen h-screen flex flex-col overflow-x-hidden overflow-y-auto bg-white text-black'
         >
             <header
-                className='w-screen h-fit flex flex-col'
+                className='w-screen h-fit flex flex-col dark:border-b-2 dark:border-slate-800'
             >
                 <MainHeader />
                 <FilterHeader />

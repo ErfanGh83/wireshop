@@ -1,30 +1,45 @@
 "use client";
 
 import { fetchProducts } from "@/lib/api/action";
-import { ProductsResponse, IProduct } from "@/types/products";
+import { ProductsResponse, IProduct, Filters } from "@/types/products";
 import React, { useEffect, useState } from "react";
 import { VscLoading } from "react-icons/vsc";
 import { useInView } from "react-intersection-observer";
 import NormalProductContainer from "./NormalProductContainer";
 
-const LoadMore = () => {
+interface LoadMoreProps {
+    filters?: Filters | null;
+    search?: string;
+    order?: string;
+}
+
+const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     const { ref, inView } = useInView();
 
-    const [page, setPage] = useState(2);
+    const [page, setPage] = useState(1);
     const [products, setProducts] = useState<IProduct[]>([]);
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
 
-    const loadProducts = async (pageNum: number) => {
+    const loadProducts = async (pageNum: number, reset = false) => {
         setLoading(true);
         try {
-            const res: ProductsResponse = await fetchProducts({ page: pageNum }) as ProductsResponse;
+            const res: ProductsResponse = await fetchProducts({ 
+                page: pageNum, 
+                filters,
+                search,
+                order
+            }) as ProductsResponse;
             
-            if (res.products.length > 0) {
-                setProducts((prev) => [...prev, ...res.products]);
-                setPage((prev) => prev + 1);
+            if (reset) {
+                setProducts(res.products);
+                setPage(2); // Next load will be page 2
+                setHasMore(res.products.length >= 12); // Assuming 12 is your limit
             } else {
-                setHasMore(false);
+                setProducts(prev => [...prev, ...res.products]);
+                setPage(prev => prev + 1);
+                setHasMore(res.products.length > 0);
             }
         } catch (error) {
             console.error("Error fetching products:", error);
@@ -32,14 +47,22 @@ const LoadMore = () => {
         setLoading(false);
     };
 
-    // First load
+    // Reset products when filters/search/order change
     useEffect(() => {
-        loadProducts(0);
-    }, []);
+        setInitialLoad(false);
+        loadProducts(1, true);
+    }, [filters, search, order]);
+
+    // First load (only if no filters/search/order)
+    useEffect(() => {
+        if (initialLoad) {
+            loadProducts(1, true);
+        }
+    }, [initialLoad]);
 
     // Load more when visible
     useEffect(() => {
-        if (inView && hasMore && !loading) {
+        if (inView && hasMore && !loading && !initialLoad) {
             loadProducts(page);
         }
     }, [inView]);
