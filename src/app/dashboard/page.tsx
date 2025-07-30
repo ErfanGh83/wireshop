@@ -38,7 +38,7 @@ export default function DashboardPage() {
 
     return (
         <MainLayout>
-            <div className="size-full flex flex-col min-h-screen pt-12 bg-white dark:bg-slate-800 text-black dark:text-white">
+            <div className="w-screen flex flex-col h-full py-6 sm:pt-12 items-center justify-start sm:pt-0 bg-white dark:bg-slate-800 text-black dark:text-white overflow-y-scroll">
                 {!isLoggedIn ? (
                     <Link
                         href={"/auth"}
@@ -60,7 +60,7 @@ export default function DashboardPage() {
                         لطفا ابتدا وارد حساب کاربری خود شوید
                     </Link>
                 ) : (
-                    <div className="size-full max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 h-fit flex flex-col items-center justify-center gap-4">
+                    <div className="h-fit max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 flex flex-col items-center justify-center gap-4">
                         {/* Main User Card */}
                         <div className="w-full lg:w-4/5 h-auto flex flex-col px-2 sm:px-4 md:px-8">
                             <div className="size-full flex flex-col p-2 sm:p-4 border-[1px] gap-2 border-gray-300 dark:border-none bg-white dark:bg-slate-700 rounded-md">
@@ -151,7 +151,7 @@ export default function DashboardPage() {
 
                         {/* Orders Section */}
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-4 sm:mt-8">سفارشات من</h2>
-                        <div className="w-full lg:w-4/5 h-auto flex flex-col sm:flex-row-reverse gap-4 sm:gap-8 pt-2 px-2 sm:px-8">
+                        <div className="w-full lg:w-4/5 h-fit flex flex-col sm:flex-row-reverse gap-4 sm:gap-8 pt-2 px-2 sm:px-8">
                             <UserShipmentContainer 
                                 title={'سفارشات مرجوع شده'} 
                                 link="/refunded-orders" 
