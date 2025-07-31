@@ -52,7 +52,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="relative w-fit">
+        <div className="relative w-fit mx-auto">
             {/* Search bar */}
             <div
                 className={`container group w-[320px] min-[460px]:w-[260px] sm:w-[360px] md:w-[460px] xl:w-[600px] h-8 md:h-10 flex flex-row-reverse border-2 border-transparent bg-blue-100 dark:bg-slate-500 rounded-sm m-auto overflow-hidden  
