@@ -54,10 +54,14 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
         setFiltersModuleOpen(false)
     }
 
+    const handleCloseWithoutApplying = () => {
+        setFiltersModuleOpen(false)
+    }
+
     return (
         <div className='relative h-screen py-10 sm:h-[84vh] w-full overflow-y-auto sm:pt-12 flex flex-row border-l-2 px-2 border-gray-200 bg-white dark:bg-slate-800'>
             <button
-                onClick={handleClose}
+                onClick={handleCloseWithoutApplying}
                 className='absolute top-2 right-2 size-fit hover:cursor-pointer'
             >
                 <FaXmark className='m-auto' size={24} />

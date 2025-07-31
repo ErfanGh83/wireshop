@@ -6,7 +6,7 @@ import { Filters } from "@/types/products";
 
 type Props = {
     page?: number
-    search?: string
+    search?: string | null
     order?: string
     filters?: Filters | null
 }

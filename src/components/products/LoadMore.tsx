@@ -9,7 +9,7 @@ import NormalProductContainer from "./NormalProductContainer";
 
 interface LoadMoreProps {
   filters?: Filters | null;
-  search?: string;
+  search?: string | null;
   order?: string;
 }
 

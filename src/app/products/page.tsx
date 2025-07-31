@@ -6,10 +6,13 @@ import FiltersModule from '@/components/products/filters/FiltersModule'
 import LoadMore from '@/components/products/LoadMore'
 import { Filters } from '@/types/products'
 import React, { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const ProductsPage = () => {
     const [filters, setFilters] = useState<Filters | null>(null)
     const [filtersModuleIsOpen, setFiltersModuleOpen] = useState(false)
+    const searchParams = useSearchParams()
+    const searchedString = searchParams.get("q")
 
     return (
         <MainLayout>
@@ -44,7 +47,7 @@ const ProductsPage = () => {
                     <div className="p-4 max-w-[2000px] mx-auto">
                         <LoadMore
                             filters={filters}
-                            search=''
+                            search={searchedString || ''}
                             order="price-desc"
                         />
                     </div>

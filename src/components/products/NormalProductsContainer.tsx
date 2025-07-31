@@ -1,6 +1,7 @@
 import React from 'react'
 import { wireAndCableProducts } from '../../../public/api/examples'
 import NormalProductContainer from './NormalProductContainer'
+import Link from 'next/link'
 
 const NormalProductsContainer = () => {
   return (
@@ -26,9 +27,12 @@ const NormalProductsContainer = () => {
       </div>
 
       <div className="mt-10 text-center">
-        <button className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-purple-700 dark:bg-purple-600 text-white px-6 py-2 rounded-md cursor-pointer transition-colors">
+        <Link
+          href={`/products`}
+          className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-purple-700 dark:bg-purple-600 text-white px-6 py-2 rounded-md cursor-pointer transition-colors"
+        >
           مشاهده محصولات بیشتر
-        </button>
+        </Link>
       </div>
     </div>
   )
