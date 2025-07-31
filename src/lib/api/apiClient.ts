@@ -60,27 +60,65 @@ export async function post<TResponse>(
   return parsed as TResponse;
 }
 
-/** GET method with strict typing */
+const MAX_RETRIES = 3;
+const RETRY_DELAY_MS = 1000; // 1 second between retries
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export async function get<TResponse>(
   endpoint: string,
   params: string = '',
   options: Omit<RequestInit, 'method'> = {}
 ): Promise<TResponse> {
-  console.log('get request sent to ' + `${BASE_URL}${endpoint}?${params}`)
-  const response = await fetch(`${BASE_URL}${endpoint}?${params}`, {
-    method: 'GET',
-    credentials: 'include',
-    ...options,
-  });
+  const url = `${BASE_URL}${endpoint}?${params}`;
+  console.log('get request sent to ' + url);
 
-  const parsed = await safeJsonParse(response);
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000); // Optional: timeout after 8s
 
-  // if (!response.ok) {
-  //   const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
-  //     ? String((parsed as Record<string, unknown>).message)
-  //     : 'Request failed';
-  //   throw new ApiError(message, response.status, parsed);
-  // }
+      const response = await fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+        signal: controller.signal,
+        ...options,
+      });
 
-  return parsed as TResponse;
+      clearTimeout(timeoutId);
+
+      const parsed = await safeJsonParse(response);
+
+      if (!response.ok) {
+        const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
+          ? String((parsed as Record<string, unknown>).message)
+          : 'Request failed';
+        throw new ApiError(message, response.status, parsed);
+      }
+
+      return parsed as TResponse;
+
+    } catch (error) {
+      const isLastAttempt = attempt === MAX_RETRIES;
+
+      // Handle AbortError separately
+      if (error === 'ABORT_ERR') {
+        console.warn(`Request timed out on attempt ${attempt}`);
+      } else {
+        console.warn(`Fetch attempt ${attempt} failed:`, error);
+      }
+
+      if (isLastAttempt) {
+        throw error; // rethrow after max attempts
+      }
+
+      // Retry after delay
+      await delay(RETRY_DELAY_MS);
+    }
+  }
+
+  // This should never be reached
+  throw new Error('Unexpected error in get()');
 }

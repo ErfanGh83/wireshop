@@ -21,8 +21,11 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const [error, setError] = useState(false);
+  console.log(error)
   const loadProducts = async (pageNum: number, reset = false) => {
     setLoading(true);
+    setError(false); // reset on new load
     try {
       const res = (await fetchProducts({
         page: pageNum,
@@ -42,9 +45,11 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
       }
     } catch (error) {
       console.error("Error fetching products:", error);
+      setError(true);
     }
     setLoading(false);
   };
+
 
   // Reload when filters/search/order change
   useEffect(() => {
@@ -60,6 +65,8 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
       loadProducts(page);
     }
   }, [inView, hasMore, loading, page]);
+
+  if (!products) return <p>Failed to load products. Please try again.</p>;
 
   return (
     <>
