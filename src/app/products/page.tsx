@@ -7,21 +7,25 @@ import LoadMore from '@/components/products/LoadMore'
 import { Filters } from '@/types/products'
 import React, { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import OrdersButton from '@/components/buttons/OrdersButton'
+import OrdersModule from '@/components/products/sort/OrdersModule'
 
 const ProductsPage = () => {
     const [filters, setFilters] = useState<Filters | null>(null)
     const [filtersModuleIsOpen, setFiltersModuleOpen] = useState(false)
+    const [order, setOrder] = useState<string | null>('most-popular')
+    const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false)
     const searchParams = useSearchParams()
     const searchedString = searchParams.get("q")
 
     return (
         <MainLayout>
-            <div className="relative flex size-full">
+            <div className="relative flex size-full bg-white dark:bg-slate-800">
                 {/* Sticky Filters Column */}
                 <div className={`fixed sm:sticky top-0 h-screen overflow-y-auto transition-all duration-300 ease-in-out 
                                ${filtersModuleIsOpen ? 'w-full sm:w-80 3xl:w-100 @min-4xl:w-1/2' : 'w-0'} bg-white dark:bg-slate-800 z-50 sm:z-20`}>
                     {filtersModuleIsOpen && (
-                        <div className="max-h-screen overflow-hidden p-4">
+                        <div className="max-h-screen overflow-hidden">
                             <FiltersModule
                                 setFilters={setFilters}
                                 filters={filters}
@@ -34,7 +38,8 @@ const ProductsPage = () => {
 
                 {/* Main Content Area */}
                 <div className=" overflow-y-auto flex-1">
-                    <div className="size-fit sticky top-0 z-20  dark:bg-slate-800 p-4 flex justify-end">
+                    <div className='w-full flex flex-row-reverse gap-2 px-4 pt-2 sticky top-0 z-20 justify-end bg-transparent'>
+
                         {
                             !filtersModuleIsOpen &&
                             <FiltersButton
@@ -42,13 +47,36 @@ const ProductsPage = () => {
                                 filtersModuleIsOpen={filtersModuleIsOpen}
                             />
                         }
+
+
+                        {
+                            !filtersModuleIsOpen && (
+                                <div className='size-fit flex relative'>
+
+                                    <OrdersButton
+                                        setOrdersModuleIsOpen={setOrdersModuleIsOpen}
+                                        ordersModuleIsOpen={ordersModuleIsOpen}
+                                    />
+
+                                    {
+                                        ordersModuleIsOpen &&
+                                        <OrdersModule
+                                            setOrder={setOrder}
+                                            order={order}
+                                        />
+                                    }
+                                </div>
+                            )
+                        }
+
                     </div>
+
 
                     <div className="p-4 max-w-[2000px] mx-auto">
                         <LoadMore
                             filters={filters}
                             search={searchedString || ''}
-                            order="price-desc"
+                            order={order}
                         />
                     </div>
                 </div>

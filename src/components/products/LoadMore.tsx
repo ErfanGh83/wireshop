@@ -10,7 +10,7 @@ import NormalProductContainer from "./NormalProductContainer";
 interface LoadMoreProps {
   filters?: Filters | null;
   search?: string | null;
-  order?: string;
+  order?: string | null;
 }
 
 const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
@@ -70,7 +70,7 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
+      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 ">
         {products.map((product) => (
           <NormalProductContainer
             key={product.id}

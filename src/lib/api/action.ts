@@ -7,7 +7,7 @@ import { Filters } from "@/types/products";
 type Props = {
     page?: number
     search?: string | null
-    order?: string
+    order?: string | null
     filters?: Filters | null
 }
 
