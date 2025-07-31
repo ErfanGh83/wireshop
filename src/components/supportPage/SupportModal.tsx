@@ -3,6 +3,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosClose } from "react-icons/io";
 import SupportModalItem from "./SupportModalItem";
+import { useEffect, useState } from "react";
+import {
+  connectSocket,
+  disconnectSocket,
+  joinConversation,
+  onMessageSaved,
+} from "@/lib/socket";
+import { Message } from "@/types/chat";
+import { getConversationByID } from "@/lib/api/chatApi";
 
 interface ModalProps {
   isOpen: boolean;
@@ -17,25 +26,44 @@ export default function SupportModal({
   conversationId,
   userName,
 }: ModalProps) {
-  // const items = connectIo
-  const items = [
-    {
-      sender: "user",
-      text: "سلام، سفارشم هنوز به دستم نرسیده.",
-    },
-    {
-      sender: "admin",
-      text: "سلام! لطفاً شماره سفارش‌تون رو ارسال کنید تا بررسی کنیم.",
-    },
-    {
-      sender: "user",
-      text: "#123456",
-    },
-    {
-      sender: "admin",
-      text: "متشکرم. سفارشتون در حال ارسال هست و فردا به دستتون می‌رسه.",
-    },
-  ];
+  const [chat, setChat] = useState<Message[] | null>(null);
+  const [messageText, setMessageText] = useState("");
+
+  // const adminId = localStorage.getItem("adminId");
+  const adminId = "e4b66712-fc59-4a86-b3e4-57d68873ec30";
+  console.log("support", chat);
+
+  useEffect(() => {
+    getConversationByID(conversationId).then((conversation) => {
+      setChat(conversation.messages);
+      console.log("conversation", conversation);
+    });
+  }, [conversationId]);
+
+  useEffect(() => {
+    if (!adminId || !isOpen) return;
+
+    connectSocket();
+
+    joinConversation(adminId, conversationId);
+
+    onMessageSaved((msg: Message) => {
+      setChat((prev) => (prev ? [...prev, msg] : null));
+    });
+
+    return () => {
+      disconnectSocket();
+    };
+  }, [isOpen]);
+
+  function handleSendMessage() {
+    if (messageText.trim() && adminId) {
+      import("@/lib/socket").then(({ sendMessage }) => {
+        sendMessage(adminId, messageText.trim());
+      });
+      setMessageText("");
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -74,17 +102,15 @@ export default function SupportModal({
 
               {/* Messages */}
               <div className="flex-1 overflow-y-auto space-y-2 pr-1">
-                {items.map((item, index) => (
+                {chat?.map((item) => (
                   <SupportModalItem
-                    key={index}
-                    sender={item.sender as "user" | "admin"}
-                    text={item.text}
+                    key={item.id}
+                    sender={item.senderId === adminId ? "admin" : "user"}
+                    text={item.content}
                   />
                 ))}
               </div>
 
-              {/* ارسال پیام (خام، بدون منطق) */}
-              {/* فرم ارسال پیام (نسخه textarea، بدون منطق) */}
               <div className="mt-4 flex gap-2">
                 <textarea
                   placeholder="پیام شما..."
@@ -93,9 +119,14 @@ export default function SupportModal({
                     e.currentTarget.style.height = "auto";
                     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
                   }}
+                  value={messageText}
+                  onChange={(e) => setMessageText(e.target.value)}
                   className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-purple-400 dark:bg-slate-600 dark:border-gray-500 resize-none max-h-32 leading-6 overflow-auto"
                 />
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all h-fit">
+                <button
+                  onClick={handleSendMessage}
+                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all h-fit"
+                >
                   ارسال
                 </button>
               </div>
@@ -106,4 +137,3 @@ export default function SupportModal({
     </AnimatePresence>
   );
 }
-
