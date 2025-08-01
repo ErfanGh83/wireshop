@@ -19,7 +19,7 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
     const [brands, setBrands] = useState<string[]>(filters?.brands || [])
     const [priceRange, setPriceRange] = useState<[number, number]>(filters?.priceRange || [0, 1000])
     const [onlyInStock, setOnlyInStock] = useState<boolean>(filters?.onlyInStock || false)
-    const [category, setCategory] = useState<string>(filters?.category || '')
+    const [category, setCategory] = useState<string | null>(filters?.category || '')
 
     // Update local states when filters prop changes (e.g., when reset)
     useEffect(() => {
