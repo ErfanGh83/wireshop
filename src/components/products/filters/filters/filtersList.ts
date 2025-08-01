@@ -25,51 +25,51 @@ export const categories = [
         fa: 'نوع کابل',
         en: 'cable type',
         children: [
-          { fa: 'CAT5', en: 'CAT5' },
-          { fa: 'CAT6', en: 'CAT6' },
-          { fa: 'CAT6a', en: 'CAT6a' },
-          { fa: 'CAT7', en: 'CAT7' }
+          { id: 1, fa: 'CAT5', en: 'CAT5' },
+          { id: 2, fa: 'CAT6', en: 'CAT6' },
+          { id: 3, fa: 'CAT6a', en: 'CAT6a' },
+          { id: 4, fa: 'CAT7', en: 'CAT7' }
         ],
       },
       {
         fa: 'شیلد و نویزگیری',
         en: 'shielding',
         children: [
-          { fa: 'بدون شیلد', en: 'UTP' },
-          { fa: 'فویل دار', en: 'FTP' },
-          { fa: 'شیلد دار', en: 'STP' },
-          { fa: 'شیلد + فویل', en: 'SFTP' }
+          { id: 5, fa: 'بدون شیلد', en: 'UTP' },
+          { id: 6, fa: 'فویل دار', en: 'FTP' },
+          { id: 7, fa: 'شیلد دار', en: 'STP' },
+          { id: 8, fa: 'شیلد + فویل', en: 'SFTP' }
         ],
       },
       {
         fa: 'روکش',
         en: 'jacket',
         children: [
-          { fa: 'PVC', en: 'PVC' },
-          { fa: 'نسوز', en: 'LSZH' },
-          { fa: 'بیرونی', en: '(outdoor)PE' },
-          { fa: 'دوروکش', en: 'Double' }
+          { id: 9, fa: 'PVC', en: 'PVC' },
+          { id: 10, fa: 'نسوز', en: 'LSZH' },
+          { id: 11, fa: 'بیرونی', en: '(outdoor)PE' },
+          { id: 12, fa: 'دوروکش', en: 'Double' }
         ],
       },
       {
         fa: 'جنس مغزی',
         en: 'core material',
         children: [
-          { fa: 'مس', en: 'copper' },
-          { fa: 'cca', en: 'cca' }
+          { id: 13, fa: 'مس', en: 'copper' },
+          { id: 14, fa: 'cca', en: 'cca' }
         ],
       },
       {
         fa: 'تست',
         en: 'test',
         children: [
-          { fa: 'بدون تست', en: 'without-test' },
+          { id: 15, fa: 'بدون تست', en: 'without-test' },
           {
             fa: 'با تست',
             en: 'with-test',
             children: [
-              { fa: 'چنل', en: 'channel' },
-              { fa: 'پرمنت', en: 'permanent' }
+              { id: 16, fa: 'چنل', en: 'channel' },
+              { id: 17, fa: 'پرمنت', en: 'permanent' }
             ]
           }
         ],
@@ -88,31 +88,31 @@ export const categories = [
             fa: 'سیم افشان',
             en: 'flexible wire',
             children: [
-              { fa: 'باروکش پی وی سی', en: 'PVC' },
-              { fa: 'نایلون', en: 'nylon' }
+              { id: 18, fa: 'باروکش پی وی سی', en: 'PVC' },
+              { id: 19, fa: 'نایلون', en: 'nylon' }
             ],
           },
-          { fa: 'سیم مفتول', en: 'solid wire' },
-          { fa: 'سیم ارت', en: 'ground wire' }
+          { id: 20, fa: 'سیم مفتول', en: 'solid wire' },
+          { id: 21, fa: 'سیم ارت', en: 'ground wire' }
         ]
       },
       {
         fa: 'کابل برق',
         en: 'power cable',
         children: [
-          { fa: 'کابل افشان', en: 'flexible cable' },
-          { fa: 'کابل مفتول', en: 'solid cable' },
-          { fa: 'کابل قدرت', en: 'power cable' },
-          { fa: 'کابل اعلام حریق', en: 'fire alarm cable' },
-          { fa: 'کابل فرمان AWG', en: 'AWG control cable' },
-          { fa: 'کابل کولری', en: 'AC cable' },
-          { fa: 'کابل آلومینیوم', en: 'aluminum cable' },
+          { id: 22, fa: 'کابل افشان', en: 'flexible cable' },
+          { id: 23, fa: 'کابل مفتول', en: 'solid cable' },
+          { id: 24, fa: 'کابل قدرت', en: 'power cable' },
+          { id: 25, fa: 'کابل اعلام حریق', en: 'fire alarm cable' },
+          { id: 26, fa: 'کابل فرمان AWG', en: 'AWG control cable' },
+          { id: 27, fa: 'کابل کولری', en: 'AC cable' },
+          { id: 28, fa: 'کابل آلومینیوم', en: 'aluminum cable' },
           {
             fa: 'کابل صنعتی',
             en: 'industrial cable',
             children: [
-              { fa: 'فشار متوسط', en: 'medium voltage' },
-              { fa: 'فشار قوی', en: 'high voltage' }
+              { id: 29, fa: 'فشار متوسط', en: 'medium voltage' },
+              { id: 30, fa: 'فشار قوی', en: 'high voltage' }
             ]
           }
         ]
@@ -127,31 +127,31 @@ export const categories = [
         fa: 'کابل دوربین',
         en: 'CCTV cable',
         children: [
-          { fa: 'RG59', en: 'RG59' },
-          { fa: 'RG6', en: 'RG6' },
-          { fa: 'RG11', en: 'RG11' },
-          { fa: 'ترکیبی', en: 'combo' },
+          { id: 31, fa: 'RG59', en: 'RG59' },
+          { id: 32, fa: 'RG6', en: 'RG6' },
+          { id: 33, fa: 'RG11', en: 'RG11' },
+          { id: 34, fa: 'ترکیبی', en: 'combo' },
         ]
       },
-      { fa: 'کابل آنتن', en: 'antenna cable' },
-      { fa: 'کابل رادیو', en: 'radio cable' }
+      { id: 35, fa: 'کابل آنتن', en: 'antenna cable' },
+      { id: 36, fa: 'کابل رادیو', en: 'radio cable' }
     ]
   },
   {
     fa: 'کابل فیبر نوری ',
     en: 'fiber optic cable',
     children: [
-      { fa: 'سینگل مد', en: 'single mode' },
-      { fa: 'مالی مد', en: 'multi mode' }
+      { id: 37, fa: 'سینگل مد', en: 'single mode' },
+      { id: 38, fa: 'مالی مد', en: 'multi mode' }
     ]
   },
   {
     fa: 'کابل مخابراتی',
     en: 'telecommunication cable',
     children: [
-      { fa: 'کابل مخابراتی هوایی', en: 'aerial telecom cable' },
-      { fa: 'کابل مخابراتی زمینی', en: 'underground telecom cable' },
-      { fa: 'سیم های مخابراتی', en: 'telecom wires' }
+      { id: 39, fa: 'کابل مخابراتی هوایی', en: 'aerial telecom cable' },
+      { id: 40, fa: 'کابل مخابراتی زمینی', en: 'underground telecom cable' },
+      { id: 41, fa: 'سیم های مخابراتی', en: 'telecom wires' }
     ]
   },
   {
@@ -162,31 +162,32 @@ export const categories = [
         fa: 'شبکه',
         en: 'network',
         children: [
-          { fa: 'پچ کورد', en: 'patch cord' },
-          { fa: 'پچ پنل', en: 'patch panel' },
-          { fa: 'رک', en: 'rack' },
-          { fa: 'ترانک', en: 'trunking' },
-          { fa: 'اتصالات', en: 'connectors' },
-          { fa: 'مدیریت کابل', en: 'cable management' },
+          { id: 42, fa: 'پچ کورد', en: 'patch cord' },
+          { id: 43, fa: 'پچ پنل', en: 'patch panel' },
+          { id: 44, fa: 'رک', en: 'rack' },
+          { id: 45, fa: 'ترانک', en: 'trunking' },
+          { id: 46, fa: 'اتصالات', en: 'connectors' },
+          { id: 47, fa: 'مدیریت کابل', en: 'cable management' },
         ]
       },
       {
         fa: 'سیم و کابل',
         en: 'wire & cable',
         children: [
-          { fa: 'سینی', en: 'tray' },
-          { fa: 'لوله', en: 'conduit' },
-          { fa: 'داکت', en: 'duct' },
-          { fa: 'تابلو برق', en: 'electrical panel' },
-          { fa: 'اتصالات', en: 'connectors' }
+          { id: 48, fa: 'سینی', en: 'tray' },
+          { id: 49, fa: 'لوله', en: 'conduit' },
+          { id: 50, fa: 'داکت', en: 'duct' },
+          { id: 51, fa: 'تابلو برق', en: 'electrical panel' },
+          { id: 52, fa: 'اتصالات', en: 'connectors' }
         ]
       },
-      { fa: 'کواکسیال', en: 'coaxial' },
-      { fa: 'مخابراتی', en: 'telecommunication' },
-      { fa: 'ابزارآلات', en: 'tools' }
+      { id: 53, fa: 'کواکسیال', en: 'coaxial' },
+      { id: 54, fa: 'مخابراتی', en: 'telecommunication' },
+      { id: 55, fa: 'ابزارآلات', en: 'tools' }
     ]
   },
   {
+    id: 56,
     fa: 'متفرقه',
     en: 'miscellaneous'
   }
