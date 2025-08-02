@@ -47,9 +47,9 @@ function SupportMessageContainer() {
         <SupportMessageItem
           key={item.id}
           date={item.updatedAt}
-          lastMessage={messages.lastMessage}
+          lastMessage={item.lastMessage}
           isNew={item.newMessage}
-          userName={messages.userName}
+          userName={item.userPhone}
           conversationId={item.id}
         />
       ))}

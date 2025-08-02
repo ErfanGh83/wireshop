@@ -2,17 +2,28 @@
 
 import { useState } from "react";
 import SupportModal from "./SupportModal";
+import { lastMessage } from "@/types/chat";
+import { formatRelativeTime } from "@/lib/date_formatter";
 
 interface Props {
   isNew: boolean;
   userName: string;
   date: string;
-  lastMessage: string;
+  lastMessage?: lastMessage;
   conversationId: string;
 }
 
-function SupportMessageItem({ date, lastMessage, isNew, userName, conversationId }: Props) {
+function SupportMessageItem({
+  date,
+  lastMessage,
+  isNew,
+  userName,
+  conversationId,
+}: Props) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+
+  if (!lastMessage) return;
 
   return (
     <div
@@ -23,26 +34,29 @@ function SupportMessageItem({ date, lastMessage, isNew, userName, conversationId
     >
       <div className="flex justify-between items-center">
         <span className="font-semibold text-xl">{userName}</span>
-        <span className="text-sm text-gray-500 dark:text-gray-400">{date}</span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">{formatRelativeTime(date)}</span>
       </div>
       <p
         className={`text-gray-700 dark:text-gray-200 text-justify transition-all ease-in-out text-ellipsis text-sm`}
       >
-        {lastMessage}
+        {lastMessage.content}
       </p>
 
-
       <div className="flex justify-between items-start pt-2">
-        <span
-          className={`text-xs font-medium px-2 py-1 rounded-full ${
-            isNew === true
-              ? "bg-blue-100 text-blue-800"
-              : "bg-green-100 text-green-800"
-          }`}
-        >
-          {isNew === true ? "پیام جدید" : "مشاهده شده"}
-        </span>
-
+        <div className="flex flex-row gap-3">
+          <span
+            className={`text-xs font-medium px-2 py-1 rounded-full ${
+              isNew === true
+                ? "bg-blue-100 text-blue-800"
+                : "bg-green-100 text-green-800"
+            }`}
+          >
+            {isNew === true ? "پیام جدید" : "مشاهده شده"}
+          </span>
+          <span className="text-emerald-500 bg-emerald-100 px-2 py-1 rounded-full text-xs">
+            {lastMessage.senderRole === "user" ? "از کاربر" : "از پشتیبانی"}
+          </span>
+        </div>
         <div className="flex flex-col-reverse md:flex-row gap-3">
           <button
             onClick={() => setIsModalOpen(true)}
