@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { ReactElement } from 'react'
+import React, { Dispatch, ReactElement, SetStateAction } from 'react'
 
 type Props = {
     title: string;
@@ -7,17 +7,28 @@ type Props = {
     description: string;
     icon: ReactElement;
     className?: string;
+    setModuleIsOpen?: Dispatch<SetStateAction<boolean>>
 }
 
-const UserInfoContainer = ({ title, link, icon, description, className }: Props) => {
+const UserInfoContainer = ({ title, link, icon, description, className, setModuleIsOpen }: Props) => {
 
     return (
         <div
             className={`w-full h-20 lg:h-36 relative flex flex-row-reverse items-center justify-around px-6 gap-4 transition-all border-[1px] border-gray-700 rounded-md ${className}`}
         >
-            <Link href={link} className='size-6 flex items-center justify-center pb-[3px] text-lg border-[2px] border-gray-700 dark:border-gray-200 text-gray-700 dark:text-gray-200 hover:border-blue-500 hover:text-blue-500 rounded-full font-semibold absolute top-[7%] left-[2%] z-10 transition-colors'>
-                +
-            </Link>
+            {
+                setModuleIsOpen ?
+                    <button
+                        onClick={() => setModuleIsOpen(true)}
+                        className='size-6 flex items-center justify-center pb-[3px] text-lg border-[2px] cursor-pointer border-gray-700 dark:border-gray-200 text-gray-700 dark:text-gray-200 hover:border-blue-500 hover:text-blue-500 rounded-full font-semibold absolute top-[7%] left-[2%] z-10 transition-colors'
+                    >
+                        +
+                    </button>
+                    :
+                    <Link href={link} className='size-6 flex items-center justify-center pb-[3px] text-lg border-[2px] border-gray-700 dark:border-gray-200 text-gray-700 dark:text-gray-200 hover:border-blue-500 hover:text-blue-500 rounded-full font-semibold absolute top-[7%] left-[2%] z-10 transition-colors'>
+                        +
+                    </Link>
+            }
             <div
                 className='size-full flex flex-col justify-center gap-[2px]'
             >
