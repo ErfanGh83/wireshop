@@ -38,7 +38,7 @@ export default function DashboardPage() {
 
     return (
         <MainLayout>
-            <div className="w-screen flex flex-col h-full py-6 sm:pt-12 items-center justify-start sm:pt-0 bg-white dark:bg-slate-800 text-black dark:text-white overflow-y-scroll">
+            <div className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-800 text-black dark:text-white overflow-y-scroll">
                 {!isLoggedIn ? (
                     <Link
                         href={"/auth"}
@@ -63,7 +63,7 @@ export default function DashboardPage() {
                     <div className="h-fit max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 flex flex-col items-center justify-center gap-4">
                         {/* Main User Card */}
                         <div className="w-full lg:w-4/5 h-auto flex flex-col px-2 sm:px-4 md:px-8">
-                            <div className="size-full flex flex-col p-2 sm:p-4 border-[1px] gap-2 border-gray-300 dark:border-none bg-white dark:bg-slate-700 rounded-md">
+                            <div className="size-full flex flex-col p-2 sm:p-4 border-[1px] gap-2 border-gray-300 dark:border-none bg-blue-100/60 dark:bg-slate-700 rounded-md">
                                 {/* User Header Section */}
                                 <div className="w-full h-fit flex flex-col sm:flex-rowitems-center justify-between gap-4">
                                     <div className="w-full h-fit flex flex-col-reverse sm:flex-row-reverse items-center sm:items-start sm:justify-end gap-2 sm:gap-4">
@@ -92,7 +92,7 @@ export default function DashboardPage() {
 
                                     <button
                                         onClick={handleLogout}
-                                        className="w-full sm:w-48 py-1 px-2 rounded-md border-[1px] border-gray-600 hover:border-transparent dark:bg-slate-600 hover:bg-red-500 cursor-pointer hover:text-white transition-colors text-sm sm:text-base"
+                                        className="w-48 py-1 px-2 mx-auto sm:mx-0 rounded-md border-[1px] border-gray-800 hover:border-transparent bg-white text-gray-900 dark:bg-slate-600 hover:bg-red-500 cursor-pointer hover:text-white transition-colors text-sm sm:text-base"
                                     >
                                         خروج از حساب کاربری
                                     </button>
@@ -105,21 +105,21 @@ export default function DashboardPage() {
                                         link="/refunded-orders"
                                         description={"موجودی: 50،000 ریال"}
                                         icon={<BiWallet />}
-                                        className={"text-black bg-white dark:bg-slate-600 dark:text-white"}
+                                        className={"text-blue-500 bg-gray-100 dark:bg-slate-600 dark:text-white"}
                                     />
                                     <UserInfoContainer
                                         title={'امتیازات'}
                                         link="/points"
                                         description={"مقدار: 1000 امتیاز"}
                                         icon={<BsStars />}
-                                        className={"text-black bg-white dark:bg-slate-600 dark:text-white"}
+                                        className={"text-blue-500 bg-gray-100 dark:bg-slate-600 dark:text-white"}
                                     />
                                     <UserInfoContainer
                                         title={'آدرس ها'}
                                         link="/addresses"
                                         description={"آدرس فعلی: تهران، میدان رسالت ..."}
                                         icon={<FaMap />}
-                                        className={"text-black bg-white dark:bg-slate-600 dark:text-white"}
+                                        className={"text-blue-500 bg-gray-100 dark:bg-slate-600 dark:text-white"}
                                     />
                                 </div>
 
