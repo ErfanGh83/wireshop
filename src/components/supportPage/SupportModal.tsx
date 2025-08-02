@@ -3,12 +3,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosClose } from "react-icons/io";
 import SupportModalItem from "./SupportModalItem";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   connectSocket,
   disconnectSocket,
   joinConversation,
-  onMessageSaved,
+  onReceiveMessage,
+  sendMessage,
 } from "@/lib/socket";
 import { Message } from "@/types/chat";
 import { getConversationByID } from "@/lib/api/chatApi";
@@ -26,42 +27,38 @@ export default function SupportModal({
   conversationId,
   userName,
 }: ModalProps) {
+  const messageRef = useRef<HTMLTextAreaElement | null>(null);
   const [chat, setChat] = useState<Message[] | null>(null);
-  const [messageText, setMessageText] = useState("");
+  // const [messageText, setMessageText] = useState("");
 
   // const adminId = localStorage.getItem("adminId");
-  const adminId = "e4b66712-fc59-4a86-b3e4-57d68873ec30";
+  const adminId = "9c415b47-30a4-4b3e-bb52-d9aca316c0bf";
   console.log("support", chat);
-
-  useEffect(() => {
-    getConversationByID(conversationId).then((conversation) => {
-      setChat(conversation.messages);
-      console.log("conversation", conversation);
-    });
-  }, [conversationId]);
 
   useEffect(() => {
     if (!adminId || !isOpen) return;
 
-    connectSocket();
+    getConversationByID(conversationId).then((conversation) => {
+      setChat(conversation.messages);
+    });
 
-    joinConversation(adminId, conversationId);
+    connectSocket(adminId, "support");
 
-    onMessageSaved((msg: Message) => {
-      setChat((prev) => (prev ? [...prev, msg] : null));
+    joinConversation(conversationId);
+
+    onReceiveMessage((msg: Message) => {
+      setChat((prev) => (prev ? [ ...prev,  msg]: [msg]));
     });
 
     return () => {
       disconnectSocket();
     };
-  }, [isOpen]);
+  }, [isOpen, conversationId]);
 
   function handleSendMessage() {
-    if (messageText.trim() && adminId) {
-      import("@/lib/socket").then(({ sendMessage }) => {
-        sendMessage(adminId, messageText.trim());
-      });
-      setMessageText("");
+    if (messageRef.current && messageRef.current.value && adminId) {
+      sendMessage(messageRef.current.value.trim());
+      messageRef.current.value = "";
     }
   }
 
@@ -105,7 +102,7 @@ export default function SupportModal({
                 {chat?.map((item) => (
                   <SupportModalItem
                     key={item.id}
-                    sender={item.senderId === adminId ? "admin" : "user"}
+                    sender={item.senderRole === "user" ? "user" : "support"}
                     text={item.content}
                   />
                 ))}
@@ -113,14 +110,13 @@ export default function SupportModal({
 
               <div className="mt-4 flex gap-2">
                 <textarea
+                  ref={messageRef}
                   placeholder="پیام شما..."
                   rows={1}
                   onInput={(e) => {
                     e.currentTarget.style.height = "auto";
                     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
                   }}
-                  value={messageText}
-                  onChange={(e) => setMessageText(e.target.value)}
                   className="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-purple-400 dark:bg-slate-600 dark:border-gray-500 resize-none max-h-32 leading-6 overflow-auto"
                 />
                 <button
