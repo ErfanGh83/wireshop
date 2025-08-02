@@ -29,14 +29,14 @@ const CategoryItem = ({
   return (
     <div>
       <div
-        className="flex flex-row-reverse justify-between items-center gap-2 cursor-pointer hover:bg-gray-200 p-2 rounded"
+        className="flex flex-row-reverse justify-between items-center gap-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-600 p-2 rounded"
         onClick={handleClick}
       >
         {isLeaf ? (
           selectedCategory === node.id ? (
-            <MdRadioButtonChecked className="text-blue-500 text-2xl" />
+            <MdRadioButtonChecked className="text-blue-500 dark:text-blue-300 text-2xl" />
           ) : (
-            <MdRadioButtonUnchecked className="text-gray-500 text-2xl" />
+            <MdRadioButtonUnchecked className="text-gray-500 dark:text-gray-200 text-2xl" />
           )
         ) : (
           <MdArrowDropDown

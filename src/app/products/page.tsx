@@ -25,7 +25,7 @@ const ProductsPage = () => {
                 <div className={`fixed sm:sticky top-0 h-screen overflow-y-auto transition-all duration-300 ease-in-out 
                                ${filtersModuleIsOpen ? 'w-full sm:w-80 3xl:w-100 @min-4xl:w-1/2' : 'w-0'} bg-white dark:bg-slate-800 z-50 sm:z-20`}>
                     {filtersModuleIsOpen && (
-                        <div className="max-h-screen overflow-hidden">
+                        <div className="h-full overflow-hidden">
                             <FiltersModule
                                 setFilters={setFilters}
                                 filters={filters}

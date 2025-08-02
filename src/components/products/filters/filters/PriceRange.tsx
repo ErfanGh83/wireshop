@@ -45,9 +45,9 @@ const PriceRange = ({
   }
 
   return (
-    <div className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 rounded-lg overflow-hidden ${isOpen ? 'h-fit' : 'h-16'}`}>
+    <div className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${isOpen ? 'h-fit' : 'h-16'}`}>
       <div 
-        className='w-full h-16 flex flex-row items-center justify-between px-4 cursor-pointer'
+        className='w-full h-16 px-4 py-4 flex flex-row items-center justify-between cursor-pointer'
         onClick={handleToggle}
       >
         <p>محدوده قیمت</p>
@@ -55,7 +55,7 @@ const PriceRange = ({
       </div>
 
       {isOpen && (
-        <div className='w-full bg-gray-100 p-4 space-y-4'>
+        <div className='w-full h-[400px] overflow-y-auto bg-gray-100 dark:bg-slate-500 p-4 space-y-4'>
           <div className='flex justify-between items-center'>
             <span className='text-lg'>{localRange[0].toLocaleString()}</span>
             <span className='text-lg'>تا</span>
@@ -71,7 +71,7 @@ const PriceRange = ({
                 max={max}
                 value={localRange[0]}
                 onChange={handleChange(0)}
-                className='w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer'
+                className='w-full h-2 bg-blue-200 dark:bg-blue-500 rounded-lg appearance-none cursor-pointer'
               />
             </div>
             
@@ -83,7 +83,7 @@ const PriceRange = ({
                 max={max}
                 value={localRange[1]}
                 onChange={handleChange(1)}
-                className='w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer'
+                className='w-full h-2 bg-blue-200 dark:bg-blue-500 rounded-lg appearance-none cursor-pointer'
               />
             </div>
           </div>
