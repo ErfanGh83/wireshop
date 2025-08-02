@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import AddressModule from "@/components/dashboard/AddressModule";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading } = useAuthUser();
@@ -43,18 +44,28 @@ export default function DashboardPage() {
         <MainLayout>
             <>
                 {
-                    addressesModuleIsOpen ?
-                        <div
-                            className="w-screen h-screen fixed top-0 left-0 z-50 bg-black/20"
-                        >
-                            <div
-                                className="size-full flex items-center justify-center"
+                    addressesModuleIsOpen && (
+                        <AnimatePresence>
+                            <motion.div
+                                key="address-modal-backdrop"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="w-screen h-screen fixed top-0 left-0 z-50 bg-black/20 flex items-center justify-center"
                             >
-                                <AddressModule setModuleIsOpen={setAddressesModuleIsOpen} />
-                            </div>
-                        </div>
-                        :
-                        null
+                                <motion.div
+                                    key="address-modal-content"
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                                >
+                                    <AddressModule setModuleIsOpen={setAddressesModuleIsOpen} />
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
+                    )
                 }
                 <div className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-800 text-black dark:text-white overflow-y-scroll">
                     {!isLoggedIn ? (
