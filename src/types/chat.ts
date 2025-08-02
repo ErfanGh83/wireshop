@@ -2,6 +2,7 @@ export interface Message {
   id: string;
   senderId: string;
   senderName: string;
+  senderRule: "user" | "admin" | "support",
   content: string;
   sentAt: string;
 }

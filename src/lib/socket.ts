@@ -3,40 +3,39 @@ import { BASE_SOCKET_URL } from "./api/constants";
 
 let socket: Socket | null = null;
 
-export const connectSocket = () => {
+export const connectSocket = (
+  userId: string,
+  role: "user" | "admin" | "support"
+) => {
   if (!socket) {
     socket = io(BASE_SOCKET_URL, {
       transports: ["websocket"],
+      auth: {
+        userId,
+        role,
+      },
     });
 
     socket.on("connect", () => {
-      console.log("connected:", socket!.id);
+      console.log("Socket connected:", socket!.id);
     });
 
     socket.on("disconnect", () => {
-      console.log("disconnected");
+      console.log("Socket disconnected");
     });
   }
 };
 
-export const identify = (userId: string, role: "user" | "admin") => {
-  socket?.emit("identify", { userId, role });
+export const joinConversation = (conversationId: string) => {
+  socket?.emit("joinConversation", { conversationId });
 };
 
-export const joinConversation = (adminId: string, conversationId: string) => {
-  socket?.emit("joinConversation", { adminId, conversationId });
-};
-
-export const sendMessage = (senderId: string, content: string) => {
-  socket?.emit("sendMessage", { senderId, content });
+export const sendMessage = (content: string) => {
+  socket?.emit("sendMessage", { content });
 };
 
 export const onReceiveMessage = (callback: (msg: any) => void) => {
   socket?.on("receiveMessage", callback);
-};
-
-export const onMessageSaved = (callback: (msg: any) => void) => {
-  socket?.on("messageSaved", callback);
 };
 
 export const disconnectSocket = () => {
