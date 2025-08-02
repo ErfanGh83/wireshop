@@ -18,18 +18,15 @@ export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [chat, setChat] = useState<Conversation | null>(null);
 
-  console.log("chat", chat);
 
   const userId = "4365a1d7-8bc6-4dc9-8c9c-093efc186dfe";
 
   useEffect(() => {
+    if (!userId || !isOpen) return;
+
     getUserConversation().then((conversation) => {
       setChat(conversation);
     });
-  }, []);
-
-  useEffect(() => {
-    if (!userId || !isOpen) return;
 
     connectSocket(userId, "user");
 
@@ -82,7 +79,7 @@ export default function FloatingChat() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut" }}
-              className="fixed bottom-24 left-6 w-70 md:w-120 max-w-full h-120 bg-white dark:bg-slate-700 text-black dark:text-gray-100 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+              className="fixed bottom-24 left-2 sm:left-6 w-70 mr-2 @min-xs:w-10 sm:w-100 md:w-120 max-w-full h-120 bg-white dark:bg-slate-700 text-black dark:text-gray-100 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-300 dark:border-gray-600">
                 <h2 className="font-semibold">پشتیبانی</h2>
