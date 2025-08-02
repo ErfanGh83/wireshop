@@ -18,7 +18,6 @@ export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [chat, setChat] = useState<Conversation | null>(null);
 
-
   const userId = "4365a1d7-8bc6-4dc9-8c9c-093efc186dfe";
 
   useEffect(() => {
@@ -95,11 +94,12 @@ export default function FloatingChat() {
                 {chat?.messages.map((msg) => (
                   <div
                     key={msg.id}
-                    className={`${
-                      msg.senderRole != "user"
-                        ? "bg-blue-100 self-end ml-auto dark:bg-slate-600"
-                        : "bg-gray-200 self-start mr-auto dark:bg-slate-500"
-                    } text-right p-2 rounded-lg w-fit`}
+                    className={`break-words overflow-wrap break-word max-w-[75%] whitespace-pre-wrap px-3 py-2 rounded-lg w-fit
+                    ${
+                      msg.senderRole === "user"
+                        ? "bg-blue-100 self-end ml-auto dark:bg-slate-600 text-right"
+                        : "bg-gray-200 self-start mr-auto dark:bg-slate-500 text-right"
+                    }`}
                   >
                     {msg.content}
                   </div>
