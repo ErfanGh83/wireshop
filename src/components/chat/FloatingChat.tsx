@@ -99,7 +99,7 @@ export default function FloatingChat() {
                   <div
                     key={msg.id}
                     className={`${
-                      msg.senderRule != "user"
+                      msg.senderRole != "user"
                         ? "bg-blue-100 self-end ml-auto dark:bg-slate-600"
                         : "bg-gray-200 self-start mr-auto dark:bg-slate-500"
                     } text-right p-2 rounded-lg w-fit`}
