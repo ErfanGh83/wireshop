@@ -53,7 +53,7 @@ function SupportMessageItem({
           >
             {isNew === true ? "پیام جدید" : "مشاهده شده"}
           </span>
-          <span className="text-emerald-500 bg-emerald-100 px-2 py-1 rounded-full text-xs">
+          <span className="text-emerald-500 bg-emerald-100 px-2 py-1 rounded-full text-xs hidden sm:block">
             {lastMessage.senderRole === "user" ? "از کاربر" : "از پشتیبانی"}
           </span>
         </div>

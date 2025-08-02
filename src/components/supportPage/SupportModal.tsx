@@ -81,7 +81,7 @@ export default function SupportModal({
             onClick={onClose}
           >
             <div
-              className="bg-white dark:bg-slate-800 w-full max-w-lg mx-auto rounded-xl shadow-xl p-4 md:p-6 relative flex flex-col max-h-[90vh]"
+              className="bg-white dark:bg-slate-800 w-[350px] md:w-[500px] lg:w-[700px] mx-auto rounded-xl shadow-xl p-4 md:p-6 relative flex flex-col max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
