@@ -1,49 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaCommentDots } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   connectSocket,
   disconnectSocket,
-  identify,
-  onMessageSaved,
   onReceiveMessage,
+  sendMessage,
 } from "@/lib/socket";
 import { getUserConversation } from "@/lib/api/chatApi";
 import { Conversation, Message } from "@/types/chat";
 
 export default function FloatingChat() {
+  const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [chat, setChat] = useState<Conversation | null>(null);
-  const [messageText, setMessageText] = useState("");
 
-  // const userId = localStorage.getItem("userId");
-  const userId = "b1f53907-7a31-4fbe-887c-5506eec49a99";
-  console.log("chat", chat)
+  console.log("chat", chat);
+
+  const userId = "4365a1d7-8bc6-4dc9-8c9c-093efc186dfe";
 
   useEffect(() => {
     getUserConversation().then((conversation) => {
       setChat(conversation);
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
-    if (!userId || !isOpen) return 
-    
-    connectSocket();
+    if (!userId || !isOpen) return;
 
-    identify(userId, "user");
+    connectSocket(userId, "user");
 
-
-    // onReceiveMessage((msg: Message) => {
-    //   setChat((prev) =>
-    //     prev ? { ...prev, messages: [...prev.messages, msg] } : null
-    //   );
-    // });
-
-    onMessageSaved((msg: Message) => {
+    onReceiveMessage((msg: Message) => {
       setChat((prev) =>
         prev ? { ...prev, messages: [...prev.messages, msg] } : null
       );
@@ -55,11 +45,11 @@ export default function FloatingChat() {
   }, [isOpen]);
 
   function handleSendMessage() {
-    if (messageText.trim() && userId) {
-      import("@/lib/socket").then(({ sendMessage }) => {
-        sendMessage(userId, messageText.trim());
-      });
-      setMessageText("");
+    const textarea = messageInputRef.current;
+    if (textarea && textarea.value.trim()) {
+      sendMessage(textarea.value.trim());
+      textarea.value = "";
+      textarea.style.height = "auto";
     }
   }
 
@@ -109,7 +99,7 @@ export default function FloatingChat() {
                   <div
                     key={msg.id}
                     className={`${
-                      msg.senderId === userId
+                      msg.senderRule != "user"
                         ? "bg-blue-100 self-end ml-auto dark:bg-slate-600"
                         : "bg-gray-200 self-start mr-auto dark:bg-slate-500"
                     } text-right p-2 rounded-lg w-fit`}
@@ -122,10 +112,9 @@ export default function FloatingChat() {
               <div className="p-3">
                 <div className="flex items-center space-x-2">
                   <textarea
+                    ref={messageInputRef}
                     placeholder="پیام شما..."
                     rows={1}
-                    value={messageText}
-                    onChange={(e) => setMessageText(e.target.value)}
                     onInput={(e) => {
                       e.currentTarget.style.height = "auto";
                       e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
