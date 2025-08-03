@@ -101,7 +101,7 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
   return (
     <>
       {error && products.length === 0 ? (
-        <div className="size-full flex flex-col items-center justify-center gap-4">
+        <div className="size-full flex flex-col pt-16 items-center justify-center gap-4">
           {error === "محصولی با مشخصات داده شده یافت نشد" ? (
             <>
               <div className="size-fit text-8xl mt-24">

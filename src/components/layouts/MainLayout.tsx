@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import MainHeader from '../headers/MainHeader'
-import FilterHeader from '../headers/SubHeader'
 import FloatingChat from '../chat/FloatingChat'
+import SubHeader from '../headers/SubHeader'
 
 type Props = {
     children: ReactElement
@@ -17,7 +17,7 @@ const MainLayout = ({children}:Props) => {
                 className='w-screen h-fit flex flex-col dark:border-b-2 dark:border-slate-800'
             >
                 <MainHeader />
-                <FilterHeader />
+                <SubHeader />
             </header>
 
             <main

@@ -13,7 +13,7 @@ const HamburgerMenuButton = ({ hamMenuIsOpen, setHamMenuIsOpen }: Props) => {
 
     return (
         <motion.button
-            className={`size-8 xl:size-10 flex flex-col items-center justify-center space-y-1.5 bg-transparent hover:cursor-pointer focus:outline-none relative z-50 hover:bg-blue-100 dark:hover:bg-slate-700 transition-colors 
+            className={`sm:hidden size-8 xl:size-10 flex flex-col items-center justify-center space-y-1.5 bg-transparent hover:cursor-pointer focus:outline-none relative z-50 hover:bg-blue-100 dark:hover:bg-slate-700 transition-colors 
                 ${hamMenuIsOpen ? 'rounded-full dark:bg-slate-600' : 'rounded-sm'}`}
             onClick={handleClick}
             aria-label={hamMenuIsOpen ? "Close menu" : "Open menu"}
