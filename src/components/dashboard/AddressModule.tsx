@@ -53,7 +53,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
   };
 
   return (
-    <div className="w-full max-w-[95vw] sm:w-[500px] md:w-[600px] h-[400px] md:h-[500px] relative">
+    <div className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative">
       <AnimatePresence mode="wait">
         {showForm ? (
           <AddressFormModule setShowForm={setShowForm} addNewAddress={addNewAddress} />
@@ -72,9 +72,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
               <FaXmark size={20} />
             </button>
 
-            <h2 className="py-2 text-center text-lg font-semibold">انتخاب آدرس ها</h2>
-            <hr className="w-4/5 mx-auto" />
-
+            <h2 className="py-4 text-center text-lg font-semibold">انتخاب آدرس ها</h2>
             <div className="size-full flex flex-col py-4 gap-4 overflow-y-auto px-4">
               {addresses.length ? (
                 addresses.map((address) => (

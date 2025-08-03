@@ -18,11 +18,14 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import AddressModule from "@/components/dashboard/AddressModule";
 import { AnimatePresence, motion } from "framer-motion";
+import OrdersModule from "@/components/dashboard/OrdersModule";
 
 export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading } = useAuthUser();
     const router = useRouter()
     const [addressesModuleIsOpen, setAddressesModuleIsOpen] = useState(false)
+    const [activeOrdersTab, setActiveOrdersTab] = useState<'in_progress' | 'completed' | 'cancelled'>("in_progress")
+    const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false)
 
     const handleLogout = () => {
         logout()
@@ -67,6 +70,32 @@ export default function DashboardPage() {
                         </AnimatePresence>
                     )
                 }
+
+                {
+                    ordersModuleIsOpen && (
+                        <AnimatePresence>
+                            <motion.div
+                                key="address-modal-backdrop"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="w-screen h-screen fixed top-0 left-0 z-50 bg-black/20 flex items-center justify-center"
+                            >
+                                <motion.div
+                                    key="address-modal-content"
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                                >
+                                    <OrdersModule setModuleIsOpen={setOrdersModuleIsOpen} tab={activeOrdersTab} />
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
+                    )
+                }
+
                 <div className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-800 text-black dark:text-white overflow-y-scroll">
                     {!isLoggedIn ? (
                         <Link
@@ -184,20 +213,20 @@ export default function DashboardPage() {
                             <div className="w-full lg:w-4/5 h-fit flex flex-col sm:flex-row-reverse gap-4 sm:gap-8 pt-2 px-2 sm:px-8">
                                 <UserShipmentContainer
                                     title={'سفارشات مرجوع شده'}
-                                    link="/refunded-orders"
                                     icon={<RiRefund2Line />}
+                                    onClick={() => { setActiveOrdersTab('cancelled'); setOrdersModuleIsOpen(true) }}
                                     className={"text-red-600 dark:text-red-500 bg-white dark:bg-slate-600 dark:hover:border-red-500"}
                                 />
                                 <UserShipmentContainer
                                     title={'سفارشات جاری'}
-                                    link="/current-orders"
                                     icon={<FaShippingFast />}
+                                    onClick={() => { setActiveOrdersTab('in_progress'); setOrdersModuleIsOpen(true) }}
                                     className={"text-blue-500 bg-white dark:bg-slate-600 dark:hover:border-blue-500"}
                                 />
                                 <UserShipmentContainer
                                     title={'سفارشات انجام شده'}
-                                    link="/completed-orders"
                                     icon={<MdDoneAll />}
+                                    onClick={() => { setActiveOrdersTab('completed'); setOrdersModuleIsOpen(true)}}
                                     className={"text-green-500 bg-white dark:bg-slate-600 dark:hover:border-green-500"}
                                 />
                             </div>
