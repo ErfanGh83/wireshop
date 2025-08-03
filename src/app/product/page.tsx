@@ -16,15 +16,42 @@ export default function ProductPage() {
   const id = searchParams.get("id");
 
   const [product, setProduct] = useState<ProductDetail | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!id) return;
 
     get<ProductDetail>(`${BASE_URL}${API_ENDPOINTS.PRODUCT_DETAIL}/${id}`)
       .then(setProduct)
+      .catch((err) => {
+        console.error(err);
+        setError("خطا در دریافت محصول.");
+      });
   }, [id]);
 
+  if (!id) {
+    return (
+      <MainLayout>
+        <div className="text-center mt-10">شناسه محصول یافت نشد.</div>
+      </MainLayout>
+    );
+  }
 
+  if (error) {
+    return (
+      <MainLayout>
+        <div className="text-center mt-10 text-red-500">{error}</div>
+      </MainLayout>
+    );
+  }
+
+  if (!product) {
+    return (
+      <MainLayout>
+        <div className="flex justify-center items-center mt-10">loading...</div>
+      </MainLayout>
+    );
+  }
   return (
     <MainLayout>
       <div className=" overflow-y-auto size-full bg-blue-100 dark:bg-slate-500 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto">
