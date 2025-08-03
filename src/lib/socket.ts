@@ -3,17 +3,10 @@ import { BASE_SOCKET_URL } from "./api/constants";
 
 let socket: Socket | null = null;
 
-export const connectSocket = (
-  userId: string,
-  role: "user" | "admin" | "support"
-) => {
+export const connectSocket = () => {
   if (!socket) {
     socket = io(BASE_SOCKET_URL, {
       transports: ["websocket"],
-      auth: {
-        userId,
-        role,
-      },
     });
 
     socket.on("connect", () => {

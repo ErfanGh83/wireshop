@@ -21,10 +21,8 @@ export default function FloatingChat() {
   const [chat, setChat] = useState<Conversation | null>(null);
   const [err, setErr] = useState<Error>();
 
-  const userId = "4365a1d7-8bc6-4dc9-8c9c-093efc186dfe";
-
   useEffect(() => {
-    if (!userId || !isOpen) return;
+    if (!isOpen) return;
 
     getUserConversation()
       .then((conversation) => {
@@ -38,7 +36,7 @@ export default function FloatingChat() {
         })
       );
 
-    connectSocket(userId, "user");
+    connectSocket();
 
     onReceiveMessage((msg: Message) => {
       setChat((prev) =>

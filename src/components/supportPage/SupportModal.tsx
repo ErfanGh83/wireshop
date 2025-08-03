@@ -33,12 +33,8 @@ export default function SupportModal({
   const [chat, setChat] = useState<Message[] | null>(null);
   const [err, setErr] = useState<Error>();
 
-  // const adminId = localStorage.getItem("adminId");
-  const adminId = "9c415b47-30a4-4b3e-bb52-d9aca316c0bf";
-  console.log("support", chat);
-
   useEffect(() => {
-    if (!adminId || !isOpen) return;
+    if (!isOpen) return;
 
     getConversationByID(conversationId)
       .then((conversation) => {
@@ -52,7 +48,7 @@ export default function SupportModal({
         })
       );
 
-    connectSocket(adminId, "support");
+    connectSocket();
 
     joinConversation(conversationId);
 
@@ -66,7 +62,7 @@ export default function SupportModal({
   }, [isOpen, conversationId]);
 
   function handleSendMessage() {
-    if (messageRef.current && messageRef.current.value && adminId) {
+    if (messageRef.current && messageRef.current.value) {
       sendMessage(messageRef.current.value.trim());
       messageRef.current.value = "";
     }
