@@ -20,7 +20,7 @@ export const fetchProducts = async ({ page, search, order, filters }: Props) => 
     }
 
     if (page !== undefined) {
-        params.append('skip', String((page - 1) * limit));
+        params.append('page', String((page)));
         params.append('limit', String(limit));
     }
 

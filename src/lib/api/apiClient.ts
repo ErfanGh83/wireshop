@@ -90,6 +90,7 @@ export async function get<TResponse>(
       clearTimeout(timeoutId);
 
       const parsed = await safeJsonParse(response);
+      console.log(parsed)
 
       if (!response.ok) {
         const status = response.status;

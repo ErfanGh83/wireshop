@@ -1,13 +1,32 @@
 "use client";
 
 import { fetchProducts } from "@/lib/api/action";
-import { ProductsResponse, IProduct, Filters } from "@/types/products";
+import { Filters } from "@/types/products";
 import React, { useEffect, useState } from "react";
 import { VscLoading } from "react-icons/vsc";
 import { useInView } from "react-intersection-observer";
 import NormalProductContainer from "./NormalProductContainer";
 import { LuCable } from "react-icons/lu";
 import { FaShoppingCart } from "react-icons/fa";
+
+interface BackendProduct {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  weightKg: number;
+  stock: number;
+  images: string[];
+  category: { id: string; name: string };
+  attributes: { id: string; name: string; value: string }[];
+}
+
+interface BackendResponse {
+  data: BackendProduct[];
+  page: number;
+  limit: number;
+  total: number;
+}
 
 interface LoadMoreProps {
   filters?: Filters | null;
@@ -19,10 +38,9 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
   const { ref, inView } = useInView();
 
   const [page, setPage] = useState(1);
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<BackendProduct[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-
   const [error, setError] = useState<null | string>(null);
 
   const loadProducts = async (pageNum: number, reset = false) => {
@@ -35,38 +53,37 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
         filters,
         search,
         order,
-      })) as ProductsResponse;
+      })) as BackendResponse;
+
+      const newProducts = res.data ?? [];
+      console.log(newProducts)
 
       if (reset) {
-        setProducts(res.products);
+        setProducts(newProducts);
         setPage(2);
-        setHasMore(res.products.length >= 12);
+        setHasMore(newProducts.length >= res.limit);
       } else {
-        setProducts((prev) => [...prev, ...res.products]);
+        setProducts((prev) => [...prev, ...newProducts]);
         setPage((prev) => prev + 1);
-        setHasMore(res.products.length > 0);
+        setHasMore(newProducts.length > 0);
       }
     } catch (err) {
+      const stringError = String(err);
 
-      const stringError = (err as string).toString()
-
-      if (stringError === 'TypeError: fetch failed') {
+      if (stringError.includes("fetch failed")) {
         setError("خطای شبکه یا سرور");
-      }
-      else if (stringError === 'ApiError: Request failed with status 404') {
-        setError("محصولی با مشخصات داده شده یافت نشد")
-      }
-      else if (stringError === 'ApiError: Request failed with status 500') {
+      } else if (stringError.includes("status 404")) {
+        setError("محصولی با مشخصات داده شده یافت نشد");
+      } else if (stringError.includes("status 500")) {
         setError("خطای شبکه یا سرور");
-      }
-      else {
+      } else {
         setError("خطا در بارگذاری محصولات");
       }
     }
+
     setLoading(false);
   };
 
-  // Reload when filters/search/order change
   useEffect(() => {
     setPage(1);
     setHasMore(true);
@@ -74,7 +91,6 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     loadProducts(1, true);
   }, [filters, search, order]);
 
-  // Infinite scroll trigger
   useEffect(() => {
     if (inView && hasMore && !loading && !error) {
       loadProducts(page);
@@ -83,36 +99,40 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
 
   return (
     <>
-      {error && products.length === 0 ? (
-        <div
-          className="size-full flex flex-col items-center justify-center gap-4"
-        >
+      {error || products.length === 0 ? (
+        <div className="size-full flex flex-col items-center justify-center gap-4">
+          {error === "محصولی با مشخصات داده شده یافت نشد" || !products.length ? (
+            <>
+              <div className="size-fit text-8xl mt-24">
+                <FaShoppingCart color="gray" />
+              </div>
+              <p className="text-4xl font-bold text-black">محصولی با مشخصات داده شده یافت نشد</p>
+            </>
 
-          {
-            error === "محصولی با مشخصات داده شده یافت نشد" ?
-              <div className="size-fit text-7xl">
-                <FaShoppingCart color="gray"/>
+          ) : (
+            <>
+              <div className="size-fit text-8xl">
+                <LuCable color="gray" />
               </div>
-              :
-              <div className="size-fit text-7xl">
-                <LuCable />
-              </div>
-          }
-          <p className="text-center text-xl sm:text-2xl xl:text-4xl text-black font-bold mt-8">{error}</p>
+              <p className="text-4xl font-bold text-black">خطای اتصال به شبکه رخ داده است</p>
+            </>
+          )}
+          <p className="text-center text-xl sm:text-2xl xl:text-4xl text-black font-bold mt-8">
+            {error}
+          </p>
         </div>
-
       ) : (
         <>
-          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 ">
+          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
             {products.map((product) => (
               <NormalProductContainer
                 key={product.id}
                 id={product.id}
-                title={product.title}
-                imageUrl={product.thumbnail}
+                title={product.name}
+                imageUrl={product.images?.[0] || "/placeholder.png"}
                 price={product.price}
-                isSpecial={product.rating > 4}
-                discount={product.discountPercentage}
+                isSpecial={product.stock > 0}
+                discount={0}
                 description={product.description}
               />
             ))}
