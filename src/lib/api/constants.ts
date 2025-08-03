@@ -7,5 +7,7 @@ export const API_ENDPOINTS = {
   LOGIN: "/api/auth/login", //method: POST, request body: phone number + password, 200: Login successful (gives a JWT token), 401: Invalid password, 404: User not found.
   LOGOUT: "/api/auth/logout", //method: POST, 200: Logged out successfully.
   WHO_AM_I: "/api/auth/whoami", //method: GET, 200: Current user info, 401: Unauthorized.
-  PRODUCTS: "/products"
+  PRODUCTS: "/products",
+  MY_CONVERSATION: "/api/chat/my-conversation",
+  ALL_CONVERSATIONS: "/api/chat",
 };
