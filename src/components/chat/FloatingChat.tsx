@@ -16,7 +16,7 @@ export default function FloatingChat() {
           isOpen
             ? " bg-blue-400 hover:bg-blue-500 dark:hover:bg-slate-800 dark:bg-slate-700 "
             : " bg-blue-100 hover:bg-blue-200 dark:hover:bg-slate-700 dark:bg-slate-500 "
-        } fixed bottom-8 right-8 z-18 transition-all cursor-pointer text-black p-4 rounded-full shadow-lg dark:text-gray-100`}
+        } fixed bottom-20 sm:bottom-8 right-6 z-18 transition-all cursor-pointer text-black p-4 rounded-full shadow-lg dark:text-gray-100`}
       >
         <FaCommentDots className="w-6 h-6" />
       </button>

@@ -13,10 +13,10 @@ const UserRelatedLists = ({ title, link, icon, className }: Props) => {
     return (
         <Link
             href={link}
-            className={`w-fit h-12 relative flex flex-row items-center justify-around px-3 gap-1 transition-all border-[1px] border-black rounded-md ${className}`}
+            className={`w-full h-16 sm:h-12 py-1 relative flex flex-col sm:flex-row items-center justify-center sm:justify-start px-3 gap-2 transition-all ${className}`}
         >
-            <div className='text-2xl font-thin'>{icon}</div>
-            <p className='text-xl font-medium'>{title}</p>
+            <div className='text-lg sm:text-2xl font-thin'>{icon}</div>
+            <p className='text-xs sm:text-xl font-medium'>{title}</p>
         </Link>
     )
 }

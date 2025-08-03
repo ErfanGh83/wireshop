@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaXmark } from 'react-icons/fa6';
 import { Address } from '@/types/address';
+import { BiArrowBack } from 'react-icons/bi';
 
 interface AddressFormProps {
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,14 +72,14 @@ const AddressFormModule = ({ setShowForm, addNewAddress }: AddressFormProps) => 
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-      className="w-full max-w-[95vw] sm:w-[500px] md:w-[600px] bg-white rounded-md overflow-hidden shadow-lg"
+      className="w-screen h-screen sm:h-[600px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] bg-white rounded-md overflow-hidden shadow-lg"
     >
       <div className="p-4 relative">
         <button
           onClick={() => setShowForm(false)}
-          className="absolute left-4 top-4 text-gray-500 hover:text-red-500 transition-colors"
+          className="absolute left-4 top-4 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
         >
-          <FaXmark size={20} />
+          <BiArrowBack size={20}/>
         </button>
         <h2 className="text-center text-lg font-semibold py-2">افزودن آدرس جدید</h2>
       </div>
