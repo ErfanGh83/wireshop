@@ -56,7 +56,6 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
       })) as BackendResponse;
 
       const newProducts = res.data ?? [];
-      console.log(newProducts)
 
       if (reset) {
         setProducts(newProducts);
@@ -97,16 +96,18 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     }
   }, [inView, hasMore, loading, page, error]);
 
+  console.log(products)
+
   return (
     <>
-      {error || products.length === 0 ? (
+      {error && products.length === 0 ? (
         <div className="size-full flex flex-col items-center justify-center gap-4">
-          {error === "محصولی با مشخصات داده شده یافت نشد" || !products.length ? (
+          {error === "محصولی با مشخصات داده شده یافت نشد" ? (
             <>
               <div className="size-fit text-8xl mt-24">
                 <FaShoppingCart color="gray" />
               </div>
-              <p className="text-4xl font-bold text-black">محصولی با مشخصات داده شده یافت نشد</p>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-black">محصولی با مشخصات داده شده یافت نشد</p>
             </>
 
           ) : (
@@ -114,12 +115,9 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
               <div className="size-fit text-8xl">
                 <LuCable color="gray" />
               </div>
-              <p className="text-4xl font-bold text-black">خطای اتصال به شبکه رخ داده است</p>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-black">خطای اتصال به شبکه رخ داده است</p>
             </>
           )}
-          <p className="text-center text-xl sm:text-2xl xl:text-4xl text-black font-bold mt-8">
-            {error}
-          </p>
         </div>
       ) : (
         <>
