@@ -52,18 +52,18 @@ export default function CartContainer() {
             </span>
           </div>
 
-          <div className="text-right mt-4 p-2 bg-gray-100 max-w-sm rounded shadow">
+          <div className="text-right mt-4 p-2 bg-gray-100 dark:bg-gray-800/70 max-w-sm rounded shadow">
             <span className="font-semibold text-xl text-gray-700 dark:text-white">
               روش ارسال:
             </span>
-            <span className="font-bold text-xl pr-1 text-green-500 dark:text-white">
+            <span className="font-bold text-xl pr-1 text-green-500">
               <RiEBike2Line className="inline-block mx-1 text-xl" />
               موتور
             </span>
           </div>
 
           <div className="flex justify-end">
-            <button className="mt-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-xl transition">
+            <button className="mt-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full cursor-pointer active:bg-blue-400 dark:bg-purple-900 dark:hover:bg-purple-800 dark:hover:active:bg-purple-600 transition">
               ادامه فرایند خرید
             </button>
           </div>
