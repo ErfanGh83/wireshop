@@ -22,10 +22,10 @@ const SubHeaderItem = ({
 
   const content = (
     <>
-      <span className={`text-md md:text-xl font-medium ${isActive ? 'text-blue-500' : ''}`}>
+      <span className={`text-md md:text-xl font-medium ${isActive ? 'text-blue-500 dark:text-blue-400' : 'text-black dark:text-gray-200'}`}>
         {title}
       </span>
-      <span className={`text-lg ml-2 ${isActive ? 'text-blue-500' : ''}`}>
+      <span className={`text-lg ml-2 ${isActive ? 'text-blue-500 dark:text-blue-400' : 'text-black dark:text-gray-200'}`}>
         {icon}
       </span>
     </>
@@ -33,7 +33,7 @@ const SubHeaderItem = ({
 
   return (
     <button
-      className={`w-fit h-8 rounded-full flex items-center justify-between pl-1 pr-2 py-[1px] md:pl-2 md:pr-4 md:py-1 cursor-pointer hover:scale-105 dark:hover:bg-slate-500 dark:border-[1px] dark:border-transparent dark:hover:border-purple-500 transition-colors ${className}`}
+      className={`w-fit h-8 rounded-full flex items-center justify-between pl-1 pr-2 py-[1px] md:pl-2 md:pr-4 md:py-1 cursor-pointer hover:scale-105 dark:border-[1px] dark:border-transparent transition-all ${className}`}
     >
       <Link
         href={link}

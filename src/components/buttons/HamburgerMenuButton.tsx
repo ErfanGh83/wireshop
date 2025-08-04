@@ -21,7 +21,7 @@ const HamburgerMenuButton = ({ hamMenuIsOpen, setHamMenuIsOpen }: Props) => {
         >
             {/* Top line */}
             <motion.span
-                className={`block h-1 w-6 bg-blue-400 dark:bg-purple-500 rounded-full 
+                className={`block h-1 w-6 bg-blue-400  rounded-full 
                     ${hamMenuIsOpen ? 'bg-blue-500' : ''}`}
                 initial={false}
                 animate={{
@@ -39,7 +39,7 @@ const HamburgerMenuButton = ({ hamMenuIsOpen, setHamMenuIsOpen }: Props) => {
 
             {/* Middle line */}
             <motion.span
-                className="block h-1 w-3 bg-blue-400 dark:bg-purple-500  rounded-full ml-1"
+                className="block h-1 w-3 bg-blue-400  rounded-full ml-1"
                 initial={false}
                 animate={{
                     opacity: hamMenuIsOpen ? 0 : 1,
@@ -55,7 +55,7 @@ const HamburgerMenuButton = ({ hamMenuIsOpen, setHamMenuIsOpen }: Props) => {
 
             {/* Bottom line */}
             <motion.span
-                className={`block h-1 w-6 bg-blue-400 dark:bg-purple-500  rounded-full 
+                className={`block h-1 w-6 bg-blue-400  rounded-full 
                     ${hamMenuIsOpen ? 'bg-blue-500' : ''}`}
                 initial={false}
                 animate={{

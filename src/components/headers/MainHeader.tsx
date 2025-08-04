@@ -8,7 +8,7 @@ import Image from 'next/image'
 const MainHeader = () => {
   return (
     <>
-      <div className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 border-b-1 bg-white dark:bg-slate-700 border-gray-100 dark:border-transparent'>
+      <div className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 border-b-1 bg-white dark:bg-slate-800 border-gray-100 dark:border-transparent'>
         <div className='h-fit w-fit sm:w-1/3 flex flex-row-reverse items-center gap-x-4'>
           <SignupOrLoginButton />
 
@@ -33,7 +33,7 @@ const MainHeader = () => {
               alt="logo"
               width={200}
               height={200}
-              className="object-contain"
+              className="object-contain dark:invert dark:hue-rotate-180"
             />
           </div>
         </div>
@@ -41,7 +41,7 @@ const MainHeader = () => {
       </div>
 
       {/* Additional Search Bar - Only shown on very small screens */}
-      <div className='sm:hidden w-full flex items-center justify-center px-4 py-2 border-b dark:bg-slate-600 border-gray-100 dark:border-none'>
+      <div className='sm:hidden w-full flex items-center justify-center px-4 py-2 border-b dark:bg-slate-800 border-gray-100 dark:border-none'>
         <SearchBar />
       </div>
 

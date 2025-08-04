@@ -18,10 +18,10 @@ const HamburgerMenuItemContainer = ({ name, link, icon }: Props) => {
         <Link
             href={link}
             className={`w-full h-16 flex flex-row items-center gap-4 justify-start pr-4 hover:scale-120 hover:shadow-2xl transition-all duration-200
-                ${isActive ? 'bg-blue-400 dark:bg-purple-500 text-white' : 'bg-white dark:bg-slate-600'}
+                ${isActive ? 'bg-blue-400 dark:bg-blue-500 text-white' : 'bg-white dark:bg-slate-600'}
             `}
         >
-            <div className={`text-2xl ${isActive ? 'text-white' : 'text-blue-500 dark:text-purple-300'}`}>
+            <div className={`text-2xl ${isActive ? 'text-white' : 'text-blue-500'}`}>
                 {icon}
             </div>
 
