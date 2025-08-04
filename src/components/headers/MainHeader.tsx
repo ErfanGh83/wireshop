@@ -3,6 +3,7 @@ import SearchBar from './main-header-components/SearchBar'
 import HamburgerMenuSection from './main-header-components/HamburgerMenuSection'
 import SignupOrLoginButton from '../buttons/SignupOrLoginButton'
 import ShoppingCartButton from '../buttons/ShoppingCartButton'
+import Image from 'next/image'
 
 const MainHeader = () => {
   return (
@@ -19,15 +20,28 @@ const MainHeader = () => {
           <SearchBar />
         </div>
 
-        <div className='sm:hidden size-fit flex flex-row-reverse items-center gap-4'>
-          <HamburgerMenuSection />
+        <div
+          className='w-fit sm:w-1/3 flex flex-row items-center justify-end'
+        >
+          <div className='sm:hidden size-fit flex flex-row-reverse items-center'>
+            <HamburgerMenuSection />
+          </div>
+
+          <div className='relative h-full sm:flex sm:items-center sm:justify-start w-full'>
+            <Image
+              src="/images/logo.png"
+              alt="logo"
+              width={200}
+              height={200}
+              className="object-contain"
+            />
+          </div>
         </div>
 
-        <div className='hidden sm:flex sm:w-1/6 md:w-1/5 lg:w-1/4 xl:w-1/3'></div>
       </div>
 
       {/* Additional Search Bar - Only shown on very small screens */}
-      <div className='sm:hidden w-full px-4 py-2 border-b dark:bg-slate-600 border-gray-100 dark:border-none'>
+      <div className='sm:hidden w-full flex items-center justify-center px-4 py-2 border-b dark:bg-slate-600 border-gray-100 dark:border-none'>
         <SearchBar />
       </div>
 
