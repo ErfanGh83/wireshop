@@ -10,6 +10,7 @@ export default function Home() {
   return (
     <MainLayout>
       <div
+        dir="ltr"
         className="size-full flex flex-col bg-white dark:bg-slate-900 text-black dark:text-white overflow-y-auto"
       >
         <BannersContainer banners={banners} />
