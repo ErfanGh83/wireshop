@@ -1,9 +1,17 @@
+import { Dispatch, SetStateAction } from 'react';
 import { CgShoppingCart } from 'react-icons/cg';
 
-const ShoppingCartButton = ({ itemCount = 2 }) => {
+type Props = {
+  itemCount: number
+  setModuleIsOpen: Dispatch<SetStateAction<boolean>>
+}
+
+const ShoppingCartButton = ({ itemCount = 2, setModuleIsOpen }:Props) => {
+  
   return (
     <div className="relative">
       <button
+        onClick={() => setModuleIsOpen(true)}
         className='h-8 md:size-10 p-2 border-b-1 border-black dark:border-white text-lg md:text-2xl border-[1px] rounded-sm cursor-pointer bg-transparent text-black dark:text-gray-100 hover:text-blue-400 transition-colors'
       >
         <CgShoppingCart />

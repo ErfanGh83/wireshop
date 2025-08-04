@@ -33,6 +33,10 @@ export default function Home() {
           <NormalProductsContainer />
         </section>
 
+        <footer>
+          
+        </footer>
+
       </div>
     </MainLayout>
   );
