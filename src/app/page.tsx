@@ -4,6 +4,7 @@ import { banners } from "../../public/api/examples";
 import CircularProductsContainer from "@/components/products/CircularProductsContainer";
 import NormalProductsContainer from "@/components/products/NormalProductsContainer";
 import BigProductsContainer from "@/components/products/BigProductsContainer";
+import MainFooter from "@/components/footers/MainFooter";
 
 export default function Home() {
 
@@ -33,9 +34,9 @@ export default function Home() {
           <NormalProductsContainer />
         </section>
 
-        <footer>
-          
-        </footer>
+        <section>
+          <MainFooter />
+        </section>
 
       </div>
     </MainLayout>
