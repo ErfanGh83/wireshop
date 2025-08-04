@@ -17,12 +17,14 @@ import { useState } from "react";
 import AddressModule from "@/components/dashboard/AddressModule";
 import { AnimatePresence, motion } from "framer-motion";
 import OrdersModule from "@/components/dashboard/OrdersModule";
+import BigShoppingCartModule from "@/components/headers/main-header-components/BigShoppingCartModule";
 
 export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading } = useAuthUser();
     const router = useRouter()
     const [addressesModuleIsOpen, setAddressesModuleIsOpen] = useState(false)
     const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false)
+    const [cartModuleIsOpen, setCartModuleIsOpen] = useState(false)
 
     const handleLogout = () => {
         logout()
@@ -33,7 +35,7 @@ export default function DashboardPage() {
     if (loading) {
         return (
             <MainLayout>
-                <div className="flex justify-center items-center h-screen text-lg">
+                <div className="flex justify-center items-center h-screen text-lg bg-white dark:bg-slate-900">
                     در حال بارگذاری...
                 </div>
             </MainLayout>
@@ -93,7 +95,32 @@ export default function DashboardPage() {
                     )
                 }
 
-                <div className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-800 text-black dark:text-white overflow-y-scroll">
+                {
+                    cartModuleIsOpen && (
+                        <AnimatePresence>
+                            <motion.div
+                                key="address-modal-backdrop"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="w-screen h-screen fixed sm:absolute top-0 left-0 z-50 bg-black/20 flex items-center justify-center"
+                            >
+                                <motion.div
+                                    key="address-modal-content"
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                                >
+                                    <BigShoppingCartModule setModuleIsOpen={setCartModuleIsOpen} />
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
+                    )
+                }
+
+                <div className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-900 text-black dark:text-white overflow-y-scroll">
                     {!isLoggedIn ? (
                         <Link
                             href={"/auth"}
@@ -183,10 +210,10 @@ export default function DashboardPage() {
 
                             {/* User Lists - Now comes after user card in mobile view */}
                             <div className="w-screen h-fit sm:h-full sm:w-full lg:w-[250px] bg-white dark:bg-slate-600 border border-gray-300 dark:border-transparent rounded-md flex flex-row sm:flex-col fixed z-10 sm:static bottom-0 left-0 order-1 lg:order-2 overflow-hidden">
-                                <UserRelatedLists
+                                <UserShipmentContainer
                                     title={'سبد خرید'}
-                                    link="/dashboard/cart"
                                     icon={<CgShoppingCart />}
+                                    onClick={() => { setCartModuleIsOpen(true) }}
                                     className={"text-black bg-white dark:bg-slate-600 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"}
                                 />
                                 <UserShipmentContainer

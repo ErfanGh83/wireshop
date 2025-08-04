@@ -21,7 +21,7 @@ const SignupOrLoginButton = () => {
 
     return (
         <div
-            className={`flex flex-row-reverse items-center p-1 rounded-sm bg-transparent text-black dark:text-gray-100 border-[1px] ${isLoggedIn ? 'w-fit px-2 gap-2' : 'w-32 md:w-40 xl:w-44 h-8 md:h-10'}`}
+            className={`flex flex-row-reverse items-center p-1 rounded-sm bg-transparent text-black dark:text-gray-100 border-[1px] ${isLoggedIn ? 'hidden w-fit px-2 gap-2' : 'w-32 md:w-40 xl:w-44 h-8 md:h-10'}`}
         >
             <div
                 className='hidden xl:block md:size-fit p-1 m-auto text-blue-400'

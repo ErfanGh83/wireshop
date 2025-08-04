@@ -1,8 +1,9 @@
 import { BiHome } from "react-icons/bi"
 import { BsInfo, BsInstagram, BsTelegram } from "react-icons/bs"
 import { CiSettings } from "react-icons/ci"
+import { FaHome, FaUser } from "react-icons/fa"
 import { HiOutlineViewGrid } from "react-icons/hi"
-import { MdCable, MdDashboard, MdDiscount } from "react-icons/md"
+import { MdCable, MdDiscount } from "react-icons/md"
 
 export const HamburgerItems = [
     {
@@ -41,7 +42,7 @@ export const subHeaderItems = [
     {
         title: "خانه",
         link: '/',
-        icon: <BiHome />
+        icon: <FaHome />
     },
     {
         title: "محصولات",
@@ -50,7 +51,7 @@ export const subHeaderItems = [
     },
     {
         title: "داشبورد",
-        icon: <MdDashboard />,
+        icon: <FaUser />,
         link: '/dashboard'
     },
     {

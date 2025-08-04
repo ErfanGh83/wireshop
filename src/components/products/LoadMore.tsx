@@ -104,18 +104,18 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
         <div className="size-full flex flex-col pt-16 items-center justify-center gap-4">
           {error === "محصولی با مشخصات داده شده یافت نشد" ? (
             <>
-              <div className="size-fit text-8xl mt-24">
-                <FaShoppingCart color="gray" />
+              <div className="size-fit text-8xl text-gray-600 dark:text-gray-400 mt-24">
+                <FaShoppingCart />
               </div>
-              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-black">محصولی با مشخصات داده شده یافت نشد</p>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">محصولی با مشخصات داده شده یافت نشد</p>
             </>
 
           ) : (
             <>
-              <div className="size-fit text-8xl">
-                <LuCable color="gray" />
+              <div className="size-fit text-8xl text-gray-600 dark:text-gray-400">
+                <LuCable />
               </div>
-              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-black">خطای اتصال به شبکه رخ داده است</p>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">خطای اتصال به شبکه رخ داده است</p>
             </>
           )}
         </div>
