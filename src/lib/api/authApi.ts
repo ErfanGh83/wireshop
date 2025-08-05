@@ -44,5 +44,5 @@ export async function getProfile():Promise<FullUserInfo> {
 }
 
 export async function addNewAddress(address: Address) {
-  
+  return post(API_ENDPOINTS.ADD_ADDRESS, {address})
 }
