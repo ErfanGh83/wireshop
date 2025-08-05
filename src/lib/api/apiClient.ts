@@ -1,3 +1,4 @@
+import { PostAddress } from '@/types/address';
 import { BASE_URL } from './constants';
 
 /** Generic JSON types for request/response */
@@ -34,7 +35,7 @@ const safeJsonParse = async (res: Response): Promise<unknown> => {
 /** POST method with strict typing */
 export async function post<TResponse>(
   endpoint: string,
-  data: Json,
+  data: Json | PostAddress,
   options: Omit<RequestInit, 'method' | 'body'> = {}
 ): Promise<TResponse> {
   const response = await fetch(`${BASE_URL}${endpoint}`, {

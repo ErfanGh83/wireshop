@@ -64,7 +64,7 @@ export default function DashboardPage() {
                                     exit={{ scale: 0.9, opacity: 0 }}
                                     transition={{ type: "spring", damping: 20, stiffness: 300 }}
                                 >
-                                    <AddressModule addresses={fullUserInfo?.addresses} setModuleIsOpen={setAddressesModuleIsOpen} />
+                                    <AddressModule fetchedAddresses={fullUserInfo?.addresses} setModuleIsOpen={setAddressesModuleIsOpen} />
                                 </motion.div>
                             </motion.div>
                         </AnimatePresence>
