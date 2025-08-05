@@ -1,31 +1,22 @@
-'use client'
+"use client";
 
 import CartItem from "./CartItem";
 import { TiShoppingCart } from "react-icons/ti";
-import { RiEBike2Line } from "react-icons/ri";
-
-interface CartProduct {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-}
+import { RiEBike2Line, RiTruckLine } from "react-icons/ri";
+import { Cart } from "@/types/cart";
+import { getAllCart } from "@/lib/api/cartApi";
+import { useEffect, useState } from "react";
 
 export default function CartContainer() {
-  const items: CartProduct[] = [
-    { id: "1", name: "کابل ۲ متری", price: 120000, quantity: 2 },
-    { id: "2", name: "ترمینال برق", price: 30000, quantity: 3 },
-  ];
+  const [cart, setCart] = useState<Cart | undefined>();
+  const [isChanged, setIsChanged] = useState<boolean>(true)
 
-  const total = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  useEffect(() => {
+    if(!isChanged) return
 
-  const handleRemove = (id: string) => {
-    console.log("remove", id);
-    // setItems((prev) => prev.filter((item) => item.id !== id));
-  };
+    getAllCart().then((result) => setCart(result));
+    setIsChanged(false)
+  }, [isChanged]);
 
   return (
     <div className="max-w-3xl mx-auto p-1 md:p-3 lg:p-6 rounded-2xl space-y-4">
@@ -34,21 +25,34 @@ export default function CartContainer() {
         سبد خرید شما
       </h2>
 
-      {items.length === 0 ? (
+      {!cart ? (
         <p className="text-center text-gray-600 dark:text-gray-300">
           سبد خرید شما خالی است.
         </p>
       ) : (
         <>
           <div className="divide-y divide-gray-200 dark:divide-gray-600">
-            {items.map((item) => (
-              <CartItem key={item.id} {...item} onRemove={handleRemove} />
+            {cart.items.map((item) => (
+              <CartItem
+                key={item.id}
+                itemId={item.id}
+                productId={item.product.id}
+                name={item.product.name}
+                price={item.product.price}
+                quantity={item.quantity}
+                productWeightKg={item.product.weightKg}
+                weightKg={item.weightKg}
+                onChange={() => setIsChanged(true)}
+              />
             ))}
           </div>
 
           <div className="text-right mt-4">
             <span className="font-bold text-xl text-gray-900 dark:text-white">
-              مجموع: {total.toLocaleString()} تومان
+              مجموع هزینه: {cart.cost} تومان
+            </span>
+            <span className="font-bold text-xl text-gray-900 dark:text-white">
+              مجموع وزن: {cart.WeightKg} کیلوگرم
             </span>
           </div>
 
@@ -57,8 +61,19 @@ export default function CartContainer() {
               روش ارسال:
             </span>
             <span className="font-bold text-xl pr-1 text-green-500">
-              <RiEBike2Line className="inline-block mx-1 text-xl" />
-              موتور
+              {cart.vehicleType == "motorcycle" ? (
+                <>
+                  <RiEBike2Line className="inline-block mx-1 text-xl" />
+                  موتور
+                </>
+              ) : cart.vehicleType == "pickup_truck" ? (
+                <>
+                  <RiTruckLine className="inline-block mx-1 text-xl" />
+                  پیک آپ
+                </>
+              ) : (
+                <>{cart.vehicleType}</>
+              )}
             </span>
           </div>
 
