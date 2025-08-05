@@ -8,5 +8,6 @@ export const API_ENDPOINTS = {
   LOGOUT: "/api/auth/logout", //method: POST, 200: Logged out successfully.
   WHO_AM_I: "/api/auth/whoami", //method: GET, 200: Current user info, 401: Unauthorized.
   GET_PROFILE: "/api/user/my-profile",
+  ADD_ADDRESS: "/api/user/address",
   PRODUCTS: "/product",
 };

@@ -2,6 +2,7 @@ import { API_ENDPOINTS } from "./constants";
 import { post, get } from './apiClient';
 import { normalizeIranianPhone, toEnglishDigits } from "../utils";
 import { FullUserInfo, UserInfo } from "@/components/auth/useAuthUser";
+import { Address } from "@/types/address";
 
 export async function requestOtp(phone: string) {
   const fixedPhone = normalizeIranianPhone(phone)
@@ -40,4 +41,8 @@ export async function whoAmI():Promise<UserInfo> {
 
 export async function getProfile():Promise<FullUserInfo> {
   return get(API_ENDPOINTS.GET_PROFILE);
+}
+
+export async function addNewAddress(address: Address) {
+  
 }
