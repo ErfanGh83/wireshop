@@ -52,7 +52,7 @@ export default function CartContainer() {
             </span>
           </div>
 
-          <div className="text-right mt-4 p-2 bg-gray-100 dark:bg-gray-800/70 max-w-sm rounded shadow">
+          <div className="text-right mt-4 p-2 bg-slate-200 dark:bg-gray-800/70 max-w-sm rounded shadow">
             <span className="font-semibold text-xl text-gray-700 dark:text-white">
               روش ارسال:
             </span>
