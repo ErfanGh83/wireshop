@@ -53,18 +53,15 @@ const MainFooter = () => {
                     <p className="text-sm leading-relaxed text-justify">
                         ارائه بهترین کیفیت سیم و کابل صنعتی و ساختمانی با گارانتی اصالت و کیفیت کالا
                     </p>
-                    <p className="text-sm leading-relaxed text-justify">
-                        Providing the best quality industrial and building wires and cables with authenticity and quality guarantee
-                    </p>
                 </motion.div>
 
                 {/* Contact Info */}
                 <motion.div variants={itemVariants} className="space-y-4">
-                    <h3 className="text-xl font-bold border-b-2 border-white pb-2">ارتباط با ما / Contact Us</h3>
+                    <h3 className="w-full text-center text-xl font-bold border-b-2 border-white pb-2">ارتباط با ما</h3>
                     <div className="space-y-3">
                         <div className="flex items-start">
                             <FaMapMarkerAlt className="mt-1 mr-2 flex-shrink-0" />
-                            <span>تهران، خیابان جمهوری، پلاک ۱۲۳<br />Tehran, Enghelab St, No. 123</span>
+                            <span>تهران، خیابان جمهوری، پلاک ۱۲۳</span>
                         </div>
                         <div className="flex items-center">
                             <FaPhone className="mr-2" />
@@ -76,14 +73,14 @@ const MainFooter = () => {
                         </div>
                         <div className="flex items-center">
                             <FaClock className="mr-2" />
-                            <span>شنبه تا پنجشنبه ۸-۱۶ / Sat-Thu 8AM-4PM</span>
+                            <span>شنبه تا پنجشنبه ۸-۱۶</span>
                         </div>
                     </div>
                 </motion.div>
 
                 {/* Social Media */}
                 <motion.div variants={itemVariants} className="space-y-4">
-                    <h3 className="text-xl font-bold border-b-2 border-white pb-2">شبکه های اجتماعی / Social Media</h3>
+                    <h3 className="w-full text-center text-xl font-bold border-b-2 border-white pb-2">شبکه های اجتماعی </h3>
                     <div className="flex flex-row gap-x-2">
                         <motion.a
                             href="#"

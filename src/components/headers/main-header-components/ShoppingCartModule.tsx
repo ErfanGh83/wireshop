@@ -34,7 +34,7 @@ const ShoppingCartModule = ({ setModuleIsOpen }: Props) => {
                 </div>
 
                 <div
-                    className='size-full flex flex-col gap-1 overflow-y-auto p-2 bg-gray-100 dark:bg-slate-800'
+                    className='size-full flex flex-col gap-2 overflow-y-auto p-2 bg-gray-100 dark:bg-slate-800'
                 >
                     {
                         cartItems.map((item, index) => (

@@ -1,17 +1,13 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
-import { exampleAddresses } from './exampleAddresses'
 import { AnimatePresence, motion } from 'framer-motion'
 import AddressFormModule from '../forms/AddressFormModule'
-
-interface Address {
-    id: string
-    title: string
-    fullAddress: string
-}
+import { Address } from '@/types/address'
+import { IoLocation } from 'react-icons/io5'
 
 type Props = {
-    setModuleIsOpen: Dispatch<SetStateAction<boolean>>
+  addresses?: Address[]
+  setModuleIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const MAX_TITLE_LENGTH = 30;
@@ -19,7 +15,7 @@ const MAX_ADDRESS_LENGTH = 100;
 
 const AddressModule = ({ setModuleIsOpen }: Props) => {
   const [showForm, setShowForm] = useState(false);
-  const [addresses, setAddresses] = useState<Address[]>(exampleAddresses);
+  const [addresses, setAddresses] = useState<Address[] | null>(null);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
   const handleCloseModule = () => {
@@ -30,6 +26,10 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
     const savedAddress = localStorage.getItem('selectedAddress');
     if (savedAddress) {
       setSelectedAddress(JSON.parse(savedAddress));
+    }
+
+    if (addresses?.length) {
+      setAddresses(addresses)
     }
   }, []);
 
@@ -43,11 +43,6 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
     setSelectedAddress(address);
   };
 
-  const addNewAddress = (newAddress: Address) => {
-    setAddresses(prev => [...prev, newAddress]);
-    setSelectedAddress(newAddress);
-  };
-
   const truncateText = (text: string, maxLength: number) => {
     return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   };
@@ -56,7 +51,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
     <div className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative">
       <AnimatePresence mode="wait">
         {showForm ? (
-          <AddressFormModule setShowForm={setShowForm} addNewAddress={addNewAddress} />
+          <AddressFormModule setShowForm={setShowForm} />
         ) : (
           <motion.div
             key="address-list"
@@ -74,7 +69,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
 
             <h2 className="py-4 text-center text-lg font-semibold">انتخاب آدرس ها</h2>
             <div className="size-full flex flex-col py-4 gap-4 overflow-y-auto px-4">
-              {addresses.length ? (
+              {addresses?.length ? (
                 addresses.map((address) => (
                   <div
                     key={address.id}
@@ -92,25 +87,30 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
                     <label htmlFor={`address-${address.id}`} className="flex-1 cursor-pointer">
                       <div className="flex flex-col">
                         <p className="text-sm md:text-base font-semibold">
-                          {truncateText(address.title, MAX_TITLE_LENGTH)}
+                          {truncateText(address.province + address.city, MAX_TITLE_LENGTH)}
                         </p>
                         <p className="text-xs md:text-sm text-gray-600">
-                          {truncateText(address.fullAddress, MAX_ADDRESS_LENGTH)}
+                          {truncateText(address.description, MAX_ADDRESS_LENGTH)}
                         </p>
                       </div>
                     </label>
                   </div>
                 ))
               ) : (
-                <p className="size-fit m-auto text-xl md:text-2xl font-medium text-gray-500">
-                  آدرسی یافت نشد
-                </p>
+                <div
+                  className='size-full flex flex-col items-center justify-center gap-2'
+                >
+                  <IoLocation className='text-7xl text-gray-500' />
+                  <p className="size-fit text-xl md:text-2xl font-medium text-gray-600">
+                    آدرسی یافت نشد
+                  </p>
+                </div>
               )}
             </div>
 
             <button
               onClick={() => setShowForm(true)}
-              className="w-full h-fit p-3 md:p-4 cursor-pointer text-sm md:text-base text-white bg-blue-500 hover:bg-blue-600 transition-colors border-t"
+              className="w-full h-fit p-3 md:p-4 cursor-pointer text-sm md:text-base text-white bg-blue-600 hover:bg-blue-700 transition-colors border-t"
             >
               افزودن آدرس جدید
             </button>

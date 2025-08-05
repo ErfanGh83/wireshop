@@ -20,12 +20,13 @@ import OrdersModule from "@/components/dashboard/OrdersModule";
 import BigShoppingCartModule from "@/components/headers/main-header-components/BigShoppingCartModule";
 
 export default function DashboardPage() {
-    const { userInfo, isLoggedIn, loading } = useAuthUser();
+    const { userInfo, isLoggedIn, loading, fullUserInfo } = useAuthUser();
     const router = useRouter()
     const [addressesModuleIsOpen, setAddressesModuleIsOpen] = useState(false)
     const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false)
     const [cartModuleIsOpen, setCartModuleIsOpen] = useState(false)
 
+    console.log(fullUserInfo)
     const handleLogout = () => {
         logout()
         toast.warn('از حساب خارج شدید')
@@ -63,7 +64,7 @@ export default function DashboardPage() {
                                     exit={{ scale: 0.9, opacity: 0 }}
                                     transition={{ type: "spring", damping: 20, stiffness: 300 }}
                                 >
-                                    <AddressModule setModuleIsOpen={setAddressesModuleIsOpen} />
+                                    <AddressModule addresses={fullUserInfo?.addresses} setModuleIsOpen={setAddressesModuleIsOpen} />
                                 </motion.div>
                             </motion.div>
                         </AnimatePresence>

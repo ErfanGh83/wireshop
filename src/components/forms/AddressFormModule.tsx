@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Address } from '@/types/address';
 import { BiArrowBack } from 'react-icons/bi';
 
 interface AddressFormProps {
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-  addNewAddress: (address: Address) => void;
 }
 
-const AddressFormModule = ({ setShowForm, addNewAddress }: AddressFormProps) => {
+const AddressFormModule = ({ setShowForm }: AddressFormProps) => {
   const [formData, setFormData] = useState({
     province: '',
     city: '',
-    postalAddress: '',
+    description: '',
     plaque: '',
-    unit: '',
     postalCode: ''
   });
 
   const [errors, setErrors] = useState({
     province: false,
     city: false,
-    postalAddress: false,
+    description: false,
     plaque: false,
     postalCode: false
   });
@@ -45,7 +42,7 @@ const AddressFormModule = ({ setShowForm, addNewAddress }: AddressFormProps) => 
     const newErrors = {
       province: !formData.province,
       city: !formData.city,
-      postalAddress: !formData.postalAddress,
+      description: !formData.description,
       plaque: !formData.plaque,
       postalCode: !formData.postalCode || !/^\d{10}$/.test(formData.postalCode)
     };
@@ -56,12 +53,6 @@ const AddressFormModule = ({ setShowForm, addNewAddress }: AddressFormProps) => 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      const newAddress: Address = {
-        id: Date.now().toString(),
-        title: `${formData.province} - ${formData.city}`,
-        fullAddress: `${formData.postalAddress}, پلاک ${formData.plaque}, واحد ${formData.unit}, کدپستی ${formData.postalCode}`
-      };
-      addNewAddress(newAddress);
       setShowForm(false);
     }
   };
@@ -79,7 +70,7 @@ const AddressFormModule = ({ setShowForm, addNewAddress }: AddressFormProps) => 
           onClick={() => setShowForm(false)}
           className="absolute left-4 top-4 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
         >
-          <BiArrowBack size={20}/>
+          <BiArrowBack size={20} />
         </button>
         <h2 className="text-center text-lg font-semibold py-2">افزودن آدرس جدید</h2>
       </div>
@@ -113,12 +104,12 @@ const AddressFormModule = ({ setShowForm, addNewAddress }: AddressFormProps) => 
           <label className="block text-sm font-medium text-gray-700 mb-1">آدرس پستی *</label>
           <input
             type="text"
-            name="postalAddress"
-            value={formData.postalAddress}
+            name="description"
+            value={formData.description}
             onChange={handleChange}
-            className={`w-full p-2 border rounded-md ${errors.postalAddress ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full p-2 border rounded-md ${errors.description ? 'border-red-500' : 'border-gray-300'}`}
           />
-          {errors.postalAddress && <p className="text-red-500 text-xs mt-1">لطفا آدرس پستی را وارد کنید</p>}
+          {errors.description && <p className="text-red-500 text-xs mt-1">لطفا آدرس پستی را وارد کنید</p>}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
@@ -132,17 +123,6 @@ const AddressFormModule = ({ setShowForm, addNewAddress }: AddressFormProps) => 
               className={`w-full p-2 border rounded-md ${errors.plaque ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors.plaque && <p className="text-red-500 text-xs mt-1">لطفا پلاک را وارد کنید</p>}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">واحد</label>
-            <input
-              type="text"
-              name="unit"
-              value={formData.unit}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
           </div>
         </div>
 

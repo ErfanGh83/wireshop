@@ -1,7 +1,8 @@
-interface Address {
-    id: string
-    title: string
-    fullAddress: string
+export interface Address {
+  id: string;
+  province: string;
+  city: string;
+  postalCode: string;
+  description: string;
+  plaque: string;
 }
-
-export type {Address}

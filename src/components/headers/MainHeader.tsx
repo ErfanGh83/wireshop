@@ -28,13 +28,13 @@ const MainHeader = () => {
             <HamburgerMenuSection />
           </div>
 
-          <div className='relative h-full sm:flex sm:items-center sm:justify-start w-full'>
+          <div className='relative h-full sm:flex sm:items-center sm:justify-start w-full mx-2 sm:mx-0'>
             <Image
               src="/images/logo.png"
               alt="logo"
               width={200}
-              height={200}
-              className="object-contain dark:invert dark:hue-rotate-180"
+              height={120}
+              className="object-contain dark:invert dark:hue-rotate-180 -mr-8"
             />
           </div>
         </div>

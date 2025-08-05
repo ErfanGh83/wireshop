@@ -1,14 +1,14 @@
 // hooks/useAuthUser.ts
 "use client";
 
-import { whoAmI } from "@/lib/api/authApi";
+import { whoAmI, getProfile } from "@/lib/api/authApi"; // ✅ Make sure getProfile is imported
 import { isUserLoggedIn } from "@/lib/auth-utils/server";
 import { useEffect, useState } from "react";
 
 export interface User {
   id: string;
   phone: string;
-  birthdate: Date; // API returns a string, we'll convert to Date
+  birthdate: Date;
   role: string;
 }
 
@@ -16,11 +16,30 @@ export interface UserInfo {
   user: User;
 }
 
-// Tell TS that whoAmI returns a Promise<UserInfo>
+export interface Address {
+  id: string;
+  province: string;
+  city: string;
+  postalCode: string;
+  description: string;
+  plaque: string;
+}
+
+export interface FullUserInfo {
+  id: string;
+  firstname: string;
+  lastname: string;
+  phone: string;
+  birthdate: string; // ISO format
+  role: string;
+  addresses: Address[];
+}
+
 export function useAuthUser() {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [fullUserInfo, setFullUserInfo] = useState<FullUserInfo | null>(null); // ✅ initialized to null
 
   useEffect(() => {
     (async () => {
@@ -30,17 +49,23 @@ export function useAuthUser() {
 
         if (loggedIn) {
           const info: UserInfo = await whoAmI();
-          // Convert birthdate to Date
           info.user.birthdate = new Date(info.user.birthdate);
           setUserInfo(info);
+
+          // ✅ Fetch full user info
+          const fullInfo: FullUserInfo = await getProfile();
+          setFullUserInfo(fullInfo);
         }
-      } catch {
+      } catch (err) {
+        console.log(err)
         setIsLoggedIn(false);
+        setUserInfo(null);
+        setFullUserInfo(null);
       } finally {
         setLoading(false);
       }
     })();
   }, []);
 
-  return { userInfo, isLoggedIn, loading };
+  return { userInfo, fullUserInfo, isLoggedIn, loading };
 }
