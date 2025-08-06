@@ -52,7 +52,7 @@ export async function post<TResponse>(
 
   if (!response.ok) {
     const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
-      ? String((parsed as Record<string, unknown>).message)
+        ? String((parsed as Record<string, unknown>).message)
       : 'Request failed';
     throw new ApiError(message, response.status, parsed);
   }
@@ -93,7 +93,7 @@ export async function get<TResponse>(
 
       if (!response.ok) {
         const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
-          ? String((parsed as Record<string, unknown>).message)
+            ? String((parsed as Record<string, unknown>).message)
           : 'Request failed';
         throw new ApiError(message, response.status, parsed);
       }
@@ -120,5 +120,37 @@ export async function get<TResponse>(
   }
 
   // This should never be reached
-  throw new Error('Unexpected error in get()');
+  throw new Error("Unexpected error in get()");
+}
+
+export async function del<TResponse>(
+  endpoint: string,
+  data?: Json,
+  options: Omit<RequestInit, "method" | "body"> = {}
+): Promise<TResponse> {
+  const url = `${BASE_URL}${endpoint}`;
+  console.log("DELETE request sent to " + url);
+
+  const response = await fetch(url, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+    body: data ? JSON.stringify(data) : undefined,
+    ...options,
+  });
+
+  const parsed = await safeJsonParse(response);
+
+  if (!response.ok) {
+    const message =
+      typeof parsed === "object" && parsed !== null && "message" in parsed
+        ? String((parsed as Record<string, unknown>).message)
+        : "Request failed";
+    throw new ApiError(message, response.status, parsed);
+  }
+
+  return parsed as TResponse;
 }

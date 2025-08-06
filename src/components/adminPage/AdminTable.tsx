@@ -1,0 +1,155 @@
+"use client";
+
+import { JSX, ReactNode, useEffect, useState } from "react";
+import AdminModal from "./AdminModal";
+
+interface Props {
+  tableHead: string[];
+  tableStyle?: {
+    head?: string;
+    body?: string;
+  };
+  url: string;
+}
+
+const data: Record<string, (string | JSX.Element)[][]> = {
+  edit_item: [
+    [
+      <img
+        src="https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg"
+        alt="product"
+        className="rounded"
+        width={50}
+      />,
+      "محصول تستی شماره ۱",
+    ],
+    [
+      <img
+        src="https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg"
+        alt="product"
+        className="rounded"
+        width={50}
+      />,
+      "محصول تستی شماره ۲",
+    ],
+  ],
+
+  order_list: [
+    ["علیرضا محمدی", "1403/05/01", "۳۲۰,۰۰۰ تومان"],
+    ["سارا کریمی", "1403/05/03", "۱,۱۰۰,۰۰۰ تومان"],
+  ],
+
+  change_access: [
+    ["زهرا میرزایی", "کاربر معمولی"],
+    ["مهدی جهانگیری", "ادمین"],
+  ],
+};
+
+export default function AdminTable({ tableHead, url, tableStyle }: Props) {
+  const [currentUrl, setUrl] = useState(url);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<
+    (string | JSX.Element)[] | null
+  >(null);
+
+  useEffect(() => console.log(currentUrl), [currentUrl]);
+
+  return (
+    <div className="overflow-x-auto rounded-xl shadow-md">
+      <table className="min-w-full text-sm text-left text-gray-800 dark:text-gray-100 bg-white/50 dark:bg-slate-800/30 backdrop-blur-md">
+        <thead className="border-b border-gray-300/30 dark:border-gray-600/20">
+          <tr>
+            {tableHead.map((item, index) => (
+              <th
+                key={index}
+                className={`px-4 py-3 text-start font-medium ${
+                  tableStyle?.head || ""
+                }`}
+              >
+                {item}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data[currentUrl].map((row, rowIndex) => (
+            <tr
+              key={rowIndex}
+              className="border-b border-gray-200/20 dark:border-gray-600/10 hover:bg-gray-100/30 dark:hover:bg-slate-700/30 transition-colors"
+            >
+              {row.map((col, colIndex) => (
+                <td
+                  key={colIndex}
+                  className={`px-4 py-3 text-start ${tableStyle?.body || ""}`}
+                >
+                  {col}
+                </td>
+              ))}
+              <td className="px-4 py-3 text-start">
+                <button
+                  onClick={() => {
+                    setSelectedRow(row);
+                    setModalOpen(true);
+                  }}
+                  className="bg-blue-400 p-2 rounded cursor-pointer hover:bg-blue-300 active:bg-blue-200 transition-all text-slate-200"
+                >
+                  مشاهده
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <AdminModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="جزئیات ردیف"
+      >
+        {selectedRow && (
+          <>
+            {url === "edit_item" && (
+              <div className="space-y-2 text-sm">
+                <div>
+                  <strong>نام محصول:</strong> {selectedRow[1]}
+                </div>
+                <div>{selectedRow[0]}</div>
+                <div className="text-blue-600 dark:text-blue-300">
+                  این محصول قابل ویرایش است.
+                </div>
+              </div>
+            )}
+
+            {url === "order_list" && (
+              <div className="space-y-2 text-sm">
+                <div>
+                  <strong>نام مشتری:</strong> {selectedRow[0]}
+                </div>
+                <div>
+                  <strong>تاریخ سفارش:</strong> {selectedRow[1]}
+                </div>
+                <div>
+                  <strong>مبلغ:</strong> {selectedRow[2]}
+                </div>
+              </div>
+            )}
+
+            {url === "change_access" && (
+              <div className="space-y-2 text-sm">
+                <div>
+                  <strong>نام کاربر:</strong> {selectedRow[0]}
+                </div>
+                <div>
+                  <strong>سطح دسترسی فعلی:</strong> {selectedRow[1]}
+                </div>
+                <button className="mt-3 bg-purple-500 text-white px-4 py-1 rounded hover:bg-purple-400 transition">
+                  تغییر دسترسی
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </AdminModal>
+    </div>
+  );
+}

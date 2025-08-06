@@ -19,6 +19,7 @@
     "react-multi-date-picker": "^4.5.2",
     "react-redux": "^9.2.0",
     "react-toastify": "^11.0.5",
+    "socket.io-client": "^4.8.1",
     "swiper": "^11.2.10",
     "zod": "^4.0.10"
   },
