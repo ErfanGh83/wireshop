@@ -10,10 +10,11 @@ import ProfileFormFields from './ProfileFormFields';
 import { changeUserInfoSchema } from '@/zod/schemas';
 
 type Props = {
+    refetch: () => void
     setModuleIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const ProfileFormWrapper = ({ setModuleIsOpen }: Props) => {
+const ProfileFormWrapper = ({ setModuleIsOpen, refetch }: Props) => {
 
     const [formData, setFormData] = useState<Record<string, string | null>>({
         firstname: '',
@@ -60,6 +61,7 @@ const ProfileFormWrapper = ({ setModuleIsOpen }: Props) => {
                 );
                 console.log(response)
                 toast.success("تغییرات مشخصات کاربری با موفقیت انجام شد");
+                refetch()
                 setModuleIsOpen(false);
             }
             else {

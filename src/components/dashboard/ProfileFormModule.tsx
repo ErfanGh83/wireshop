@@ -1,16 +1,15 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { Address } from '@/types/address'
 import ProfileFormWrapper from '../auth/ProfileFormWrapper'
 import { FaXmark } from 'react-icons/fa6'
 
 
 type Props = {
-    fetchedAddresses?: Address[]
+    refetch: () => void
     setModuleIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 
-const AddressModule = ({ setModuleIsOpen }: Props) => {
+const AddressModule = ({ setModuleIsOpen, refetch }: Props) => {
 
     const handleCloseModule = () => {
         setModuleIsOpen(false)
@@ -25,7 +24,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
                 <FaXmark size={20} />
             </button>
 
-            <ProfileFormWrapper setModuleIsOpen={setModuleIsOpen} />
+            <ProfileFormWrapper refetch={refetch} setModuleIsOpen={setModuleIsOpen} />
         </div>
     );
 };

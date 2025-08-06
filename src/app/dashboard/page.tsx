@@ -21,7 +21,7 @@ import BigShoppingCartModule from "@/components/headers/main-header-components/B
 import ProfileFormModule from "@/components/dashboard/ProfileFormModule";
 
 export default function DashboardPage() {
-    const { userInfo, isLoggedIn, loading, fullUserInfo } = useAuthUser();
+    const { userInfo, isLoggedIn, loading, fullUserInfo, refetch } = useAuthUser();
     const router = useRouter()
     const [addressesModuleIsOpen, setAddressesModuleIsOpen] = useState(false)
     const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false)
@@ -90,7 +90,7 @@ export default function DashboardPage() {
                                     exit={{ scale: 0.9, opacity: 0 }}
                                     transition={{ type: "spring", damping: 20, stiffness: 300 }}
                                 >
-                                    <ProfileFormModule setModuleIsOpen={setProfileFormIsOpen} />
+                                    <ProfileFormModule refetch={refetch} setModuleIsOpen={setProfileFormIsOpen} />
                                 </motion.div>
                             </motion.div>
                         </AnimatePresence>
@@ -169,14 +169,14 @@ export default function DashboardPage() {
                             لطفا ابتدا وارد حساب کاربری خود شوید
                         </Link>
                     ) : (
-                        <div className="h-fit max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 flex flex-col-reverse lg:flex-row-reverse items-center justify-center gap-4">
+                        <div className="min-h-[600px] sm:min-h-0 h-fit max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 sm:pb-0 flex flex-col-reverse lg:flex-row-reverse items-center justify-end sm:justify-center gap-4">
                             {/* Main User Card - Now comes first in mobile view */}
                             <div className="w-full lg:w-4/5 h-auto flex flex-col px-2 sm:px-4 md:px-8 order-2 lg:order-1">
                                 <div className="size-full flex flex-col p-2 sm:p-4 border-[1px] gap-2 border-gray-300 dark:border-none bg-blue-100/60 dark:bg-slate-700 rounded-md">
                                     {/* User Header Section */}
                                     <div className="w-full h-fit flex flex-col sm:flex-row items-center justify-between gap-4">
                                         <div className="w-full h-fit flex flex-col-reverse sm:flex-row-reverse items-center sm:items-start sm:justify-end gap-2 sm:gap-4">
-                                            <button onClick={() => setProfileFormIsOpen(true)} className="sm:mx-2 mt-1 cursor-pointer">
+                                            <button onClick={() => setProfileFormIsOpen(true)} className="cursor-pointer">
                                                 <BiEdit className="text-2xl sm:text-3xl text-blue-500 hover:text-blue-400 transition-colors" />
                                             </button>
 
@@ -185,6 +185,11 @@ export default function DashboardPage() {
                                                     <div className="w-fit h-fit flex flex-row">
                                                         <p className="text-base sm:text-xl font-medium">نام کاربری:</p>
                                                         <p className="text-base sm:text-xl font-semibold">{userInfo ? 'user_' + userInfo.user.id.split('-')[0] : ''}</p>
+                                                    </div>
+
+                                                    <div className="w-fit h-fit flex flex-row gap-1 text-gray-600 font-light">
+                                                        <p>{fullUserInfo?.firstname}</p>
+                                                        <p>{fullUserInfo?.lastname}</p>
                                                     </div>
 
                                                     <div className="w-fit h-fit flex flex-row items-center">
