@@ -1,5 +1,5 @@
 import { API_ENDPOINTS } from "./constants";
-import { post, get } from './apiClient';
+import { post, get, put } from './apiClient';
 import { normalizeIranianPhone, toEnglishDigits } from "../utils";
 import { FullUserInfo, UserInfo } from "@/components/auth/useAuthUser";
 import { PostAddress } from "@/types/address";
@@ -31,13 +31,13 @@ export async function fpVerifyOtp(phone: string, code: string) {
 
 export async function changePassword(phone: string, password: string) {
   const fixedPhone = normalizeIranianPhone(phone)
-  return post(API_ENDPOINTS.FP_CHANGE_PASS, { phone:fixedPhone, password });
+  return post(API_ENDPOINTS.FP_CHANGE_PASS, { phone: fixedPhone, password });
 }
 
 export async function createUser(phone: string, password: string, birthdate: string) {
   const fixedBirthdate = toEnglishDigits(birthdate);
   const fixedPhone = normalizeIranianPhone(phone)
-  return post(API_ENDPOINTS.CREATE_USER, { phone:fixedPhone, password, birthdate:fixedBirthdate });
+  return post(API_ENDPOINTS.CREATE_USER, { phone: fixedPhone, password, birthdate: fixedBirthdate });
   // Handles 201 (JWT returned), 400
 }
 
@@ -52,12 +52,12 @@ export async function logout() {
   // Handles 200
 }
 
-export async function whoAmI():Promise<UserInfo> {
+export async function whoAmI(): Promise<UserInfo> {
   return get(API_ENDPOINTS.WHO_AM_I);
   // Handles 200, 401
 }
 
-export async function getProfile():Promise<FullUserInfo> {
+export async function getProfile(): Promise<FullUserInfo> {
   return get(API_ENDPOINTS.GET_PROFILE);
 }
 
@@ -65,3 +65,18 @@ export async function addNewAddress(address: PostAddress) {
   return post(API_ENDPOINTS.ADD_ADDRESS, address)
 }
 
+export async function changeUserInfo(
+  firstname?: string,
+  lastname?: string,
+  password?: string,
+  birthdate?: string,
+) {
+
+  const fixedBirthdate = birthdate? toEnglishDigits(birthdate) : undefined;
+  return put(API_ENDPOINTS.CHANGE_PROFILE, {
+    firstname: firstname || undefined,
+    lastname: lastname || undefined,
+    password: password || undefined,
+    birthdate: fixedBirthdate || undefined,
+  });
+}

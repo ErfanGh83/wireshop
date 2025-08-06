@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
   FP_REQUEST_OTP: "/api/auth/forgot-password/send-code", //method: POST, request body: phone number
   FP_VERIFY_OTP: "/api/auth/forgot-password/verify", //method: POST, request body: phone number + verification code
   FP_CHANGE_PASS: "/api/auth/forgot-password/change-password", //method: POST, request body: phone number + new password
+  CHANGE_PROFILE: "/api/user/profile", //method: PUT
   ADD_ADDRESS: "/api/user/address",
   PRODUCTS: "/product",
 };

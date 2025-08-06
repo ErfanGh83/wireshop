@@ -29,3 +29,10 @@ export interface User {
   birthdate: string;
   role: string;
 }
+
+export interface PutProfile {
+  firstname?: string,
+  lastname?: string,
+  password?: string,
+  birthdate?: string
+}

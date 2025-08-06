@@ -9,7 +9,7 @@ export type FormField = {
   type?: string;
   placeholder?: string;
   error?: string;
-  value?: string;
+  value?: string | null;
   onChange?: (value: string) => void;
   customRender?: React.ReactNode; // ✅ New
 };

@@ -18,6 +18,7 @@ import AddressModule from "@/components/dashboard/AddressModule";
 import { AnimatePresence, motion } from "framer-motion";
 import OrdersModule from "@/components/dashboard/OrdersModule";
 import BigShoppingCartModule from "@/components/headers/main-header-components/BigShoppingCartModule";
+import ProfileFormModule from "@/components/dashboard/ProfileFormModule";
 
 export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading, fullUserInfo } = useAuthUser();
@@ -25,8 +26,8 @@ export default function DashboardPage() {
     const [addressesModuleIsOpen, setAddressesModuleIsOpen] = useState(false)
     const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false)
     const [cartModuleIsOpen, setCartModuleIsOpen] = useState(false)
+    const [profileFormIsOpen, setProfileFormIsOpen] = useState(false)
 
-    console.log(fullUserInfo)
     const handleLogout = () => {
         logout()
         toast.warn('از حساب خارج شدید')
@@ -65,6 +66,31 @@ export default function DashboardPage() {
                                     transition={{ type: "spring", damping: 20, stiffness: 300 }}
                                 >
                                     <AddressModule fetchedAddresses={fullUserInfo?.addresses} setModuleIsOpen={setAddressesModuleIsOpen} />
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
+                    )
+                }
+
+                {
+                    profileFormIsOpen && (
+                        <AnimatePresence>
+                            <motion.div
+                                key="address-modal-backdrop"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="w-screen h-screen fixed top-0 left-0 z-50 bg-black/20 flex items-center justify-center"
+                            >
+                                <motion.div
+                                    key="address-modal-content"
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                                >
+                                    <ProfileFormModule setModuleIsOpen={setProfileFormIsOpen} />
                                 </motion.div>
                             </motion.div>
                         </AnimatePresence>
@@ -150,9 +176,9 @@ export default function DashboardPage() {
                                     {/* User Header Section */}
                                     <div className="w-full h-fit flex flex-col sm:flex-row items-center justify-between gap-4">
                                         <div className="w-full h-fit flex flex-col-reverse sm:flex-row-reverse items-center sm:items-start sm:justify-end gap-2 sm:gap-4">
-                                            <Link href={'/edit-user'} className="sm:mx-2 mt-1">
-                                                <BiEdit className="text-2xl sm:text-3xl text-blue-500" />
-                                            </Link>
+                                            <button onClick={() => setProfileFormIsOpen(true)} className="sm:mx-2 mt-1 cursor-pointer">
+                                                <BiEdit className="text-2xl sm:text-3xl text-blue-500 hover:text-blue-400 transition-colors" />
+                                            </button>
 
                                             <div className="size-fit flex flex-col-reverse sm:flex-row-reverse items-center gap-2 sm:gap-4">
                                                 <div className="flex flex-col items-center sm:items-start">

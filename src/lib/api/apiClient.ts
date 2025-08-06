@@ -1,5 +1,6 @@
 import { PostAddress } from '@/types/address';
 import { BASE_URL } from './constants';
+import { PutProfile } from '@/types/auth';
 
 /** Generic JSON types for request/response */
 export type Json =
@@ -124,4 +125,34 @@ export async function get<TResponse>(
   }
 
   throw new Error('Unexpected error in get()');
+}
+
+/** PUT method with strict typing */
+export async function put<TResponse>(
+  endpoint: string,
+  data: Json | PutProfile,
+  options: Omit<RequestInit, 'method' | 'body'> = {}
+): Promise<TResponse> {
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+    body: JSON.stringify(data),
+    credentials: 'include',
+    ...options,
+  });
+
+  const parsed = await safeJsonParse(response);
+
+  if (!response.ok) {
+    const message =
+      typeof parsed === 'object' && parsed !== null && 'message' in parsed
+        ? String((parsed as Record<string, unknown>).message)
+        : 'Request failed';
+    throw new ApiError(message, response.status, parsed);
+  }
+
+  return parsed as TResponse;
 }
