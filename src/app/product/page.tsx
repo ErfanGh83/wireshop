@@ -8,8 +8,9 @@ import ProductCommentContainer from "@/components/productPage/comment/ProductCom
 import { get } from "@/lib/api/apiClient";
 import { API_ENDPOINTS, BASE_URL } from "@/lib/api/constants";
 import { ProductDetail } from "@/types/product_detail";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { addCartItem } from "@/lib/api/cartApi";
 
 export default function ProductPage() {
   const searchParams = useSearchParams();
@@ -17,6 +18,7 @@ export default function ProductPage() {
 
   const [product, setProduct] = useState<ProductDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -28,6 +30,13 @@ export default function ProductPage() {
         setError("خطا در دریافت محصول.");
       });
   }, [id]);
+
+  const handleSubmit = () => {
+    const quantity = Number(inputRef.current?.value);
+    if (product && quantity > 0) {
+      addCartItem(product.id, quantity);
+    }
+  };
 
   if (!id) {
     return (
@@ -70,7 +79,10 @@ export default function ProductPage() {
             <div className="border-r-6 rounded-md p-2 flex flex-col justify-start space-y-4 col-span-3 border-blue-100">
               <h1 className="text-3xl font-bold">{product.name}</h1>
               <p className="text-xl font-semibold">
-                قیمت: {product.price} تومان به ازای هر متر
+                هر واحد {product.weightKg} کیلوگرم
+              </p>
+              <p className="text-xl font-semibold">
+                قیمت: {product.price} تومان به ازای هر واحد
               </p>
               <p className="text-sm text-gray-700 dark:text-gray-200">
                 {product.description}
@@ -80,17 +92,20 @@ export default function ProductPage() {
               <div className="flex items-center space-x-2">
                 <input
                   type="number"
+                  ref={inputRef}
                   min={1}
-                  placeholder="طول (متر)"
+                  placeholder="واحد (کیلوگرم)"
                   className="px-3 py-2 w-40 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600"
                 />
-                <button className="bg-blue-100 hover:scale-105 ease-out transition-all cursor-pointer hover:bg-blue-200 hover:text-blue-900 text-black px-4 py-2 rounded-lg dark:bg-slate-500 hover:dark:text-black dark:text-gray-100">
+                <button
+                  onClick={handleSubmit}
+                  className="bg-blue-100 hover:scale-105 ease-out transition-all cursor-pointer hover:bg-blue-200 hover:text-blue-900 text-black px-4 py-2 rounded-lg dark:bg-slate-500 hover:dark:text-black dark:text-gray-100"
+                >
                   افزودن به سبد خرید
                 </button>
               </div>
             </div>
 
-            {/* item Sepcs */}
             <div className="mt-6">
               <h2 className="text-lg font-semibold mb-4">مشخصات کابل</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
