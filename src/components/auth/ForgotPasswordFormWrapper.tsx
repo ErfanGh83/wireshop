@@ -16,10 +16,10 @@ type Props = {
   setMode: Dispatch<SetStateAction<'login' | 'signup' | 'forgotpass'>>
 }
 
-const ForgotPasswordFormWrapper = ({ setMode }:Props) => {
+const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
 
   const [step, setStep] = useState<'enter-pnumber' | 'enter-code' | 'enter-password'>('enter-pnumber')
-  const [cooldown, setCooldown] = useState(0)
+  const [cooldown, setCooldown] = useState(60);
   const [verificationError, setVerificationError] = useState('');
 
   const [formData, setFormData] = useState<Record<string, string>>({
@@ -38,6 +38,16 @@ const ForgotPasswordFormWrapper = ({ setMode }:Props) => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (step === 'enter-code' && cooldown > 0) {
+      timer = setInterval(() => {
+        setCooldown((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [step, cooldown]);
 
   const handleChange = (name: string, value: string) => {
     const updated = { ...formData, [name]: value };
@@ -129,8 +139,8 @@ const ForgotPasswordFormWrapper = ({ setMode }:Props) => {
 
     } catch (err) {
       if (err instanceof ApiError) {
-        if (err.status === 401) {
-          toast.error('رمز عبور اشتباه است');
+        if (err.status === 400) {
+          toast.error('رمز وارد شده اشتباه است');
         } else if (err.status === 404) {
           toast.error('کاربری با این شماره یافت نشد');
         } else {
