@@ -1,4 +1,4 @@
-import { BASE_URL } from './constants';
+import { BASE_URL } from "./constants";
 
 /** Generic JSON types for request/response */
 export type Json =
@@ -16,7 +16,7 @@ export class ApiError extends Error {
 
   constructor(message: string, status: number, response: unknown) {
     super(message);
-    this.name = 'ApiError';
+    this.name = "ApiError";
     this.status = status;
     this.response = response;
   }
@@ -35,25 +35,26 @@ const safeJsonParse = async (res: Response): Promise<unknown> => {
 export async function post<TResponse>(
   endpoint: string,
   data: Json,
-  options: Omit<RequestInit, 'method' | 'body'> = {}
+  options: Omit<RequestInit, "method" | "body"> = {}
 ): Promise<TResponse> {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       ...options.headers,
     },
     body: JSON.stringify(data),
-    credentials: 'include',
+    credentials: "include",
     ...options,
   });
 
   const parsed = await safeJsonParse(response);
 
   if (!response.ok) {
-    const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
+    const message =
+      typeof parsed === "object" && parsed !== null && "message" in parsed
         ? String((parsed as Record<string, unknown>).message)
-      : 'Request failed';
+        : "Request failed";
     throw new ApiError(message, response.status, parsed);
   }
 
@@ -69,20 +70,20 @@ function delay(ms: number) {
 
 export async function get<TResponse>(
   endpoint: string,
-  params: string = '',
-  options: Omit<RequestInit, 'method'> = {}
+  params: string = "",
+  options: Omit<RequestInit, "method"> = {}
 ): Promise<TResponse> {
   const url = `${BASE_URL}${endpoint}?${params}`;
-  console.log('get request sent to ' + url);
+  console.log("get request sent to " + url);
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 8000); // Optional: timeout after 8s
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
 
       const response = await fetch(url, {
-        method: 'GET',
-        credentials: 'include',
+        method: "GET",
+        credentials: "include",
         signal: controller.signal,
         ...options,
       });
@@ -90,31 +91,37 @@ export async function get<TResponse>(
       clearTimeout(timeoutId);
 
       const parsed = await safeJsonParse(response);
+      console.log(parsed);
 
       if (!response.ok) {
-        const message = typeof parsed === 'object' && parsed !== null && 'message' in parsed
+        const status = response.status;
+        const message =
+          typeof parsed === "object" && parsed !== null && "message" in parsed
             ? String((parsed as Record<string, unknown>).message)
-          : 'Request failed';
-        throw new ApiError(message, response.status, parsed);
+            : `Request failed with status ${status}`;
+
+        // Throw with proper status so LoadMore can check it
+        throw new ApiError(message, status, parsed);
       }
 
       return parsed as TResponse;
-
     } catch (error) {
       const isLastAttempt = attempt === MAX_RETRIES;
 
-      // Handle AbortError separately
-      if (error === 'ABORT_ERR') {
-        console.warn(`Request timed out on attempt ${attempt}`);
-      } else {
-        console.warn(`Fetch attempt ${attempt} failed:`, error);
+      // If error is ApiError and it's not retryable → break immediately
+      if (
+        error instanceof ApiError &&
+        [400, 401, 403, 404, 422].includes(error.status)
+      ) {
+        throw error; // don't retry for these codes
       }
 
       if (isLastAttempt) {
         throw error; // rethrow after max attempts
       }
 
-      // Retry after delay
+      console.warn(`Fetch attempt ${attempt} failed:`, error);
+
       await delay(RETRY_DELAY_MS);
     }
   }

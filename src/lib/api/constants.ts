@@ -11,5 +11,7 @@ export const API_ENDPOINTS = {
   PRODUCTS: "/products",
   MY_CONVERSATION: "/api/chat/my-conversation",
   ALL_CONVERSATIONS: "/api/chat",
-  ALL_CART: "/api/cart"
+  ALL_CART: "/api/cart",
+  GET_PROFILE: "/api/user/my-profile",
+  ADD_ADDRESS: "/api/user/address",
 };

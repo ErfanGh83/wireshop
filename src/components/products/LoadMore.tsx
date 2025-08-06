@@ -1,11 +1,32 @@
 "use client";
 
 import { fetchProducts } from "@/lib/api/action";
-import { ProductsResponse, IProduct, Filters } from "@/types/products";
+import { Filters } from "@/types/products";
 import React, { useEffect, useState } from "react";
 import { VscLoading } from "react-icons/vsc";
 import { useInView } from "react-intersection-observer";
 import NormalProductContainer from "./NormalProductContainer";
+import { LuCable } from "react-icons/lu";
+import { FaShoppingCart } from "react-icons/fa";
+
+interface BackendProduct {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  weightKg: number;
+  stock: number;
+  images: string[];
+  category: { id: string; name: string };
+  attributes: { id: string; name: string; value: string }[];
+}
+
+interface BackendResponse {
+  data: BackendProduct[];
+  page: number;
+  limit: number;
+  total: number;
+}
 
 interface LoadMoreProps {
   filters?: Filters | null;
@@ -17,41 +38,51 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
   const { ref, inView } = useInView();
 
   const [page, setPage] = useState(1);
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<BackendProduct[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<null | string>(null);
 
-  const [error, setError] = useState(false);
-  console.log(error)
   const loadProducts = async (pageNum: number, reset = false) => {
     setLoading(true);
-    setError(false); // reset on new load
+    setError(null);
+
     try {
       const res = (await fetchProducts({
         page: pageNum,
         filters,
         search,
         order,
-      })) as ProductsResponse;
+      })) as BackendResponse;
+
+      const newProducts = res.data ?? [];
 
       if (reset) {
-        setProducts(res.products);
+        setProducts(newProducts);
         setPage(2);
-        setHasMore(res.products.length >= 12);
+        setHasMore(newProducts.length >= res.limit);
       } else {
-        setProducts((prev) => [...prev, ...res.products]);
+        setProducts((prev) => [...prev, ...newProducts]);
         setPage((prev) => prev + 1);
-        setHasMore(res.products.length > 0);
+        setHasMore(newProducts.length > 0);
       }
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      setError(true);
+    } catch (err) {
+      const stringError = String(err);
+
+      if (stringError.includes("fetch failed")) {
+        setError("خطای شبکه یا سرور");
+      } else if (stringError.includes("status 404")) {
+        setError("محصولی با مشخصات داده شده یافت نشد");
+      } else if (stringError.includes("status 500")) {
+        setError("خطای شبکه یا سرور");
+      } else {
+        setError("خطا در بارگذاری محصولات");
+      }
     }
+
     setLoading(false);
   };
 
-
-  // Reload when filters/search/order change
   useEffect(() => {
     setPage(1);
     setHasMore(true);
@@ -59,38 +90,60 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     loadProducts(1, true);
   }, [filters, search, order]);
 
-  // Infinite scroll trigger
   useEffect(() => {
-    if (inView && hasMore && !loading) {
+    if (inView && hasMore && !loading && !error) {
       loadProducts(page);
     }
-  }, [inView, hasMore, loading, page]);
+  }, [inView, hasMore, loading, page, error]);
 
-  if (!products) return <p>Failed to load products. Please try again.</p>;
+  console.log(products)
 
   return (
     <>
-      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 ">
-        {products.map((product) => (
-          <NormalProductContainer
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            imageUrl={product.thumbnail}
-            price={product.price}
-            isSpecial={product.rating > 4}
-            discount={product.discountPercentage}
-            description={product.description}
-          />
-        ))}
-      </div>
+      {error && products.length === 0 ? (
+        <div className="size-full flex flex-col pt-16 items-center justify-center gap-4">
+          {error === "محصولی با مشخصات داده شده یافت نشد" ? (
+            <>
+              <div className="size-fit text-8xl text-gray-600 dark:text-gray-400 mt-24">
+                <FaShoppingCart />
+              </div>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">محصولی با مشخصات داده شده یافت نشد</p>
+            </>
 
-      {hasMore && (
-        <section className="w-full h-fit py-12 flex items-center justify-center">
-          <div ref={ref} className="size-fit">
-            {loading && <VscLoading className="animate-spin text-4xl" />}
+          ) : (
+            <>
+              <div className="size-fit text-8xl text-gray-600 dark:text-gray-400">
+                <LuCable />
+              </div>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">خطای اتصال به شبکه رخ داده است</p>
+            </>
+          )}
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
+            {products.map((product) => (
+              <NormalProductContainer
+                key={product.id}
+                id={product.id}
+                title={product.name}
+                imageUrl={product.images?.[0] || "/placeholder.png"}
+                price={product.price}
+                isSpecial={product.stock > 0}
+                discount={0}
+                description={product.description}
+              />
+            ))}
           </div>
-        </section>
+
+          {hasMore && (
+            <section className="w-full h-fit py-12 flex items-center justify-center">
+              <div ref={ref} className="size-fit">
+                {loading && <VscLoading className="animate-spin text-4xl" />}
+              </div>
+            </section>
+          )}
+        </>
       )}
     </>
   );

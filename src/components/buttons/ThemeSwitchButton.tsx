@@ -18,7 +18,7 @@ const ThemeSwitchButton = () => {
   }
 
   return (
-    <div className='w-16 h-8 md:w-20 md:h-10 flex flex-row items-center justify-between rounded-full px-1 py-[2px] md:px-1 md:py-1 shadow-inner bg-blue-300 dark:bg-purple-300 m-auto'>
+    <div className='w-16 h-8 md:w-20 md:h-10 flex flex-row items-center justify-between rounded-full px-1 py-[2px] md:px-1 md:py-1 shadow-inner bg-blue-300 dark:bg-slate-600 m-auto'>
       <DarkButton 
         currentTheme={currentTheme} 
         onSwitch={handleThemeSwitch} 
