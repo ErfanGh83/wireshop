@@ -23,7 +23,7 @@ export default function ProductPage() {
   useEffect(() => {
     if (!id) return;
 
-    get<ProductDetail>(`${BASE_URL}${API_ENDPOINTS.PRODUCT_DETAIL}/${id}`)
+    get<ProductDetail>(`${API_ENDPOINTS.PRODUCT_DETAIL}/${id}`)
       .then(setProduct)
       .catch((err) => {
         console.error(err);
