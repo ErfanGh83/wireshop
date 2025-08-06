@@ -10,10 +10,28 @@ export async function requestOtp(phone: string) {
   // Handles 200, 409, 500 errors
 }
 
+export async function fpRequestOtp(phone: string) {
+  const fixedPhone = normalizeIranianPhone(phone)
+  console.log('sending POST request to ' + API_ENDPOINTS.FP_REQUEST_OTP + ' payload: ' + fixedPhone)
+  return post(API_ENDPOINTS.FP_REQUEST_OTP, { phone: fixedPhone });
+  // Handles 200, 409, 500 errors
+}
+
 export async function verifyOtp(phone: string, code: string) {
   const fixedPhone = normalizeIranianPhone(phone)
   return post(API_ENDPOINTS.VERIFY_OTP, { phone: fixedPhone, code });
   // Handles 200, 400, 500 errors
+}
+
+export async function fpVerifyOtp(phone: string, code: string) {
+  const fixedPhone = normalizeIranianPhone(phone)
+  return post(API_ENDPOINTS.FP_VERIFY_OTP, { phone: fixedPhone, code });
+  // Handles 200, 400, 500 errors
+}
+
+export async function changePassword(phone: string, password: string) {
+  const fixedPhone = normalizeIranianPhone(phone)
+  return post(API_ENDPOINTS.FP_CHANGE_PASS, { phone:fixedPhone, password });
 }
 
 export async function createUser(phone: string, password: string, birthdate: string) {
@@ -46,3 +64,4 @@ export async function getProfile():Promise<FullUserInfo> {
 export async function addNewAddress(address: PostAddress) {
   return post(API_ENDPOINTS.ADD_ADDRESS, address)
 }
+

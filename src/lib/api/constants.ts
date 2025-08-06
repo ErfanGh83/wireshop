@@ -8,6 +8,9 @@ export const API_ENDPOINTS = {
   LOGOUT: "/api/auth/logout", //method: POST, 200: Logged out successfully.
   WHO_AM_I: "/api/auth/whoami", //method: GET, 200: Current user info, 401: Unauthorized.
   GET_PROFILE: "/api/user/my-profile",
+  FP_REQUEST_OTP: "/api/auth/forgot-password/send-code", //method: POST, request body: phone number
+  FP_VERIFY_OTP: "/api/auth/forgot-password/verify", //method: POST, request body: phone number + verification code
+  FP_CHANGE_PASS: "/api/auth/forgot-password/change-password", //method: POST, request body: phone number + new password
   ADD_ADDRESS: "/api/user/address",
   PRODUCTS: "/product",
 };
