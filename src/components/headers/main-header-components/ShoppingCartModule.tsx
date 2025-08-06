@@ -15,7 +15,7 @@ const ShoppingCartModule = ({ setModuleIsOpen }: Props) => {
 
     return (
         <div
-            className="h-screen sm:h-[330px] md:h-[380px] xl:h-[450px] w-screen sm:w-[300px] md:w-[330px] xl:w-[380px] border-[1px] rounded-r-md rounded-b-md overflow-hidden border-gray-300 dark:border-slate-500 shadow-md bg-white dark:bg-slate-800 dark:text-white relative"
+            className="h-screen sm:h-[330px] md:h-[380px] xl:h-[450px] w-screen sm:w-[300px] md:w-[330px] xl:w-[380px] border-[1px] rounded-r-md rounded-b-md overflow-hidden border-gray-400 shadow-2xl dark:border-slate-500 bg-white dark:bg-slate-800 dark:text-white relative"
         >
             <button
                 onClick={handleCloseModule}

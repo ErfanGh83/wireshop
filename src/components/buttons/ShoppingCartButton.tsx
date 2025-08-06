@@ -9,10 +9,10 @@ type Props = {
 const ShoppingCartButton = ({ itemCount = 2, setModuleIsOpen }:Props) => {
   
   return (
-    <div className="relative">
+    <div className="size-8 sm:size-10 relative">
       <button
         onClick={() => setModuleIsOpen(true)}
-        className='h-8 md:size-10 p-2 border-b-1 border-black dark:border-white text-lg md:text-2xl border-[1px] rounded-sm cursor-pointer bg-transparent text-black dark:text-gray-100 hover:text-blue-400 transition-colors'
+        className='size-full flex items-center justify-center cursor-pointer text-xl border-[1px] text-black dark:text-white border-gray-300 shadow-md hover:text-blue-500 rounded-sm dark:hover:text-blue-400 hover:shadow-blue-500 hover:border-blue-300 transition-all'
       >
         <CgShoppingCart />
       </button>
