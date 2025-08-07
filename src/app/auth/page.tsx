@@ -26,7 +26,7 @@ const Page = () => {
       <Background backgroundImage={bg} />
 
       {/* Form Container */}
-      <div className='size-full md:w-3/5 md:h-5/6 xl:w-2/5 lg:h-3/4 flex justify-center items-center bg-white dark:bg-slate-700 text-black dark:text-white border-l-[2px] dark:border-none border-gray-100 relative shadow-2xl overflow-hidden'>
+      <div className='size-full md:w-3/5 md:h-5/6 xl:w-2/5 lg:h-3/4 flex justify-center items-center bg-white dark:bg-slate-800 text-black dark:text-white border-l-[2px] dark:border-none border-gray-100 relative shadow-2xl overflow-hidden'>
 
         <div className='absolute z-10 top-4 right-0'>
           <TopBar mode={mode} setMode={setMode} />

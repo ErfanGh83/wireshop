@@ -94,14 +94,14 @@ const GenericForm: React.FC<GenericFormProps> = ({
                   value={field.value ?? formData[field.name] ?? ''}
                   onChange={handleChange}
                   dir='rtl'
-                  className='w-full h-12 flex px-4 pl-10 focus:outline-none focus:border-blue-500 focus:ring-blue-200 text-gray-800 focus:text-gray-700 placeholder:text-gray-400 focus:placeholder:text-blue-400 border-[2px] border-gray-200 rounded-lg'
+                  className='w-full h-12 flex px-4 pl-10 focus:outline-none focus:border-blue-500 focus:ring-blue-200 text-gray-800 dark:text-white dark:focus:text-white focus:text-gray-700 placeholder:text-gray-400 focus:placeholder:text-blue-400 border-[2px] border-gray-200 rounded-lg'
                 />
 
                 {field.type === 'password' && (
                   <button
                     type='button'
                     onClick={() => togglePasswordVisibility(field.name)}
-                    className='absolute left-3 top-1/2 -translate-y-1/2 text-sm text-blue-500'
+                    className='absolute left-3 top-1/2 -translate-y-1/2 text-sm text-blue-500 dark:text-white'
                   >
                     {visiblePasswords[field.name] ? <FaEyeSlash className='cursor-pointer text-xl'/> : <FaEye className='cursor-pointer text-xl'/>}
                   </button>

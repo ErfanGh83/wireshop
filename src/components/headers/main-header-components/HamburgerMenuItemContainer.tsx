@@ -21,7 +21,7 @@ const HamburgerMenuItemContainer = ({ name, link, icon }: Props) => {
                 ${isActive ? 'bg-blue-400 dark:bg-blue-500 text-white' : 'bg-white dark:bg-slate-600'}
             `}
         >
-            <div className={`text-2xl ${isActive ? 'text-white' : 'text-blue-500'}`}>
+            <div className={`size-fit rounded-full p-2 text-2xl ${isActive ? 'text-white' : 'text-blue-500 dark:text-blue-400'}`}>
                 {icon}
             </div>
 

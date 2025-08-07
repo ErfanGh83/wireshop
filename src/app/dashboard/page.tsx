@@ -157,13 +157,16 @@ export default function DashboardPage() {
                         md:px-8 md:py-4 md:text-2xl
                         lg:text-3xl xl:text-4xl
                         font-semibold border-2
-                        bg-blue-100 dark:bg-slate-600
-                        hover:border-blue-400 hover:text-blue-400
-                        dark:hover:text-purple-400 dark:hover:border-purple-400
-                        transition-colors rounded-lg
+                        text-black dark:text-white
+                        border-gray-300 shadow-md
+                        hover:text-blue-400
+                        dark:hover:text-blue-400 
+                        hover:shadow-blue-500 
+                        hover:border-blue-300
+                        transition-all rounded-lg
                         text-center
                         m-auto
-                        pb-24
+                        mt-48
                         "
                         >
                             لطفا ابتدا وارد حساب کاربری خود شوید
