@@ -1,5 +1,6 @@
 'use client'
 
+import { patchProduct } from "@/lib/api/adminApi";
 import { ProductFormValues, productSchema } from "@/zod/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -21,9 +22,7 @@ export default function AdminEditProductModal({ id }: { id: string }) {
   });
 
   const onSubmit = (data: ProductFormValues) => {
-    console.log("ارسال:", data);
-    console.log(id);
-    // ...
+    patchProduct(id, data)
   };
 
   return (
