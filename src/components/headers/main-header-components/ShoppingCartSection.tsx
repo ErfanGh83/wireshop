@@ -29,7 +29,7 @@ const ShoppingCartSection = () => {
                                 exit={{ scale: 0.9, opacity: 0 }}
                                 transition={{ type: "spring", damping: 20, stiffness: 300 }}
                             >
-                                <ShoppingCartModule setModuleIsOpen={setCartModuleIsOpen} />
+                                <ShoppingCartModule setModuleIsOpen={setCartModuleIsOpen} moduleIsOpen={cartModuleIsOpen} />
                             </motion.div>
                         </motion.div>
                     </AnimatePresence>
