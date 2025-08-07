@@ -1,11 +1,22 @@
-'use client'
+"use client";
 
-import { patchProduct } from "@/lib/api/adminApi";
+import { getProductById, patchProduct } from "@/lib/api/adminApi";
+import { Product, ProductListResponse } from "@/types/product";
 import { ProductFormValues, productSchema } from "@/zod/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Spinner from "../spinner/Spinner";
 
 export default function AdminEditProductModal({ id }: { id: string }) {
+  const [defaultValue, setDefaultValue] = useState<Product | null>();
+
+  useEffect(() => {
+    getProductById(id).then((res) => setDefaultValue(res));
+  }, []);
+
+  if (!defaultValue) return <Spinner />;
+
   const {
     register,
     handleSubmit,
@@ -13,16 +24,16 @@ export default function AdminEditProductModal({ id }: { id: string }) {
   } = useForm<ProductFormValues>({
     resolver: zodResolver(productSchema),
     defaultValues: {
-      name: "",
-      description: "",
-      price: 0,
-      weightKg: 0,
-      stock: 0,
+      name: defaultValue.name,
+      description: defaultValue.description,
+      price: defaultValue.price,
+      weightKg: defaultValue.weightKg,
+      stock: defaultValue.stock,
     },
   });
 
   const onSubmit = (data: ProductFormValues) => {
-    patchProduct(id, data)
+    patchProduct(id, data);
   };
 
   return (
