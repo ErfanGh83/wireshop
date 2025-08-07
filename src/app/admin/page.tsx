@@ -1,3 +1,4 @@
+import AdminEditProduct from "@/components/adminPage/AdminEditProduct";
 import AdminTable from "@/components/adminPage/AdminTable";
 import AdminTabsContainer from "@/components/adminPage/AdminTabsContainer";
 import MainLayout from "@/components/layouts/MainLayout";
@@ -5,43 +6,34 @@ import MainLayout from "@/components/layouts/MainLayout";
 const adminTabs = [
   {
     title: "ویرایش محصولات",
-    component: (
-      <AdminTable
-        url="edit_item"
-        tableHead={["عکس محصول", "نام محصول", "تغییر"]}
-        tableStyle={{
-          head: "text-blue-700 text-right",
-          body: "text-blue-900",
-        }}
-      />
-    ),
+    component: <AdminEditProduct />,
   },
-  {
-    title: "لیست سفارشات",
-    component: (
-      <AdminTable
-        url="order_list"
-        tableHead={["نام مشتری", "تاریخ", "مبلغ", "جزئیات"]}
-        tableStyle={{
-          head: "text-green-700 uppercase",
-          body: "text-green-900 font-light",
-        }}
-      />
-    ),
-  },
-  {
-    title: "تغییر دسترسی",
-    component: (
-      <AdminTable
-        url="change_access"
-        tableHead={["نام کاربر", "دسترسی", "تغییر"]}
-        tableStyle={{
-          head: "text-purple-700",
-          body: "text-purple-400",
-        }}
-      />
-    ),
-  },
+  // {
+  //   title: "لیست سفارشات",
+  //   component: (
+  //     <AdminTable
+  //       url="order_list"
+  //       tableHead={["نام مشتری", "تاریخ", "مبلغ", "جزئیات"]}
+  //       tableStyle={{
+  //         head: "text-green-700 uppercase",
+  //         body: "text-green-900 font-light",
+  //       }}
+  //     />
+  //   ),
+  // },
+  // {
+  //   title: "تغییر دسترسی",
+  //   component: (
+  //     <AdminTable
+  //       url="change_access"
+  //       tableHead={["نام کاربر", "دسترسی", "تغییر"]}
+  //       tableStyle={{
+  //         head: "text-purple-700",
+  //         body: "text-purple-400",
+  //       }}
+  //     />
+  //   ),
+  // },
 ];
 
 

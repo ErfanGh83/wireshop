@@ -37,3 +37,12 @@ export const LoginSchema = z.object({
   password: z.string().min(6, 'رمز عبور الزامی است و باید حداقل ۶ کاراکتر باشد'),
 })
 export type LoginInput = z.infer<typeof LoginSchema>
+
+export const productSchema = z.object({
+  name: z.string().min(1, "نام الزامی است"),
+  description: z.string().min(1, "توضیح الزامی است"),
+  price: z.number().min(0, "قیمت نمی‌تواند منفی باشد"),
+  weightKg: z.number().min(0, "وزن باید صفر یا بیشتر باشد"),
+  stock: z.number().int().min(0, "موجودی نمی‌تواند منفی باشد"),
+});
+export type ProductFormValues = z.infer<typeof productSchema>;

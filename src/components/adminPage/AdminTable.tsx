@@ -9,50 +9,21 @@ interface Props {
     head?: string;
     body?: string;
   };
-  url: string;
+  tableData: ReactNode[][];
+  tableModal: ReactNode[];
 }
 
-const data: Record<string, (string | JSX.Element)[][]> = {
-  edit_item: [
-    [
-      <img
-        src="https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg"
-        alt="product"
-        className="rounded"
-        width={50}
-      />,
-      "محصول تستی شماره ۱",
-    ],
-    [
-      <img
-        src="https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg"
-        alt="product"
-        className="rounded"
-        width={50}
-      />,
-      "محصول تستی شماره ۲",
-    ],
-  ],
-
-  order_list: [
-    ["علیرضا محمدی", "1403/05/01", "۳۲۰,۰۰۰ تومان"],
-    ["سارا کریمی", "1403/05/03", "۱,۱۰۰,۰۰۰ تومان"],
-  ],
-
-  change_access: [
-    ["زهرا میرزایی", "کاربر معمولی"],
-    ["مهدی جهانگیری", "ادمین"],
-  ],
-};
-
-export default function AdminTable({ tableHead, url, tableStyle }: Props) {
-  const [currentUrl, setUrl] = useState(url);
+export default function AdminTable({
+  tableHead,
+  tableStyle,
+  tableData,
+  tableModal,
+}: Props) {
+  // const [currentUrl, setUrl] = useState(url);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedRow, setSelectedRow] = useState<
-    (string | JSX.Element)[] | null
-  >(null);
+  const [selectedRow, setSelectedRow] = useState<number>(0);
 
-  useEffect(() => console.log(currentUrl), [currentUrl]);
+  // useEffect(() => console.log(currentUrl), [currentUrl]);
 
   return (
     <div className="overflow-x-auto rounded-xl shadow-md">
@@ -72,7 +43,7 @@ export default function AdminTable({ tableHead, url, tableStyle }: Props) {
           </tr>
         </thead>
         <tbody>
-          {data[currentUrl].map((row, rowIndex) => (
+          {tableData.map((row, rowIndex) => (
             <tr
               key={rowIndex}
               className="border-b border-gray-200/20 dark:border-gray-600/10 hover:bg-gray-100/30 dark:hover:bg-slate-700/30 transition-colors"
@@ -88,7 +59,7 @@ export default function AdminTable({ tableHead, url, tableStyle }: Props) {
               <td className="px-4 py-3 text-start">
                 <button
                   onClick={() => {
-                    setSelectedRow(row);
+                    setSelectedRow(rowIndex);
                     setModalOpen(true);
                   }}
                   className="bg-blue-400 p-2 rounded cursor-pointer hover:bg-blue-300 active:bg-blue-200 transition-all text-slate-200"
@@ -108,19 +79,9 @@ export default function AdminTable({ tableHead, url, tableStyle }: Props) {
       >
         {selectedRow && (
           <>
-            {url === "edit_item" && (
-              <div className="space-y-2 text-sm">
-                <div>
-                  <strong>نام محصول:</strong> {selectedRow[1]}
-                </div>
-                <div>{selectedRow[0]}</div>
-                <div className="text-blue-600 dark:text-blue-300">
-                  این محصول قابل ویرایش است.
-                </div>
-              </div>
-            )}
+            {tableModal[selectedRow]}
 
-            {url === "order_list" && (
+            {/* {url === "order_list" && (
               <div className="space-y-2 text-sm">
                 <div>
                   <strong>نام مشتری:</strong> {selectedRow[0]}
@@ -146,7 +107,7 @@ export default function AdminTable({ tableHead, url, tableStyle }: Props) {
                   تغییر دسترسی
                 </button>
               </div>
-            )}
+            )} */}
           </>
         )}
       </AdminModal>
