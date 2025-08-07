@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export type FormField = {
   name: string;
@@ -26,6 +27,15 @@ const GenericForm: React.FC<GenericFormProps> = ({
   submitLabel = 'ارسال',
 }) => {
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const [visiblePasswords, setVisiblePasswords] = useState<Record<string, boolean>>({});
+
+  const togglePasswordVisibility = (name: string) => {
+    setVisiblePasswords((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -71,16 +81,33 @@ const GenericForm: React.FC<GenericFormProps> = ({
             {field.customRender ? (
               field.customRender
             ) : (
-              <input
-                id={field.name}
-                name={field.name}
-                type={field.type || 'text'}
-                placeholder={field.placeholder}
-                value={field.value ?? formData[field.name] ?? ''}
-                onChange={handleChange}
-                dir='rtl'
-                className='w-full h-12 flex px-4 focus:outline-none focus:border-blue-500 focus:ring-blue-200 text-gray-800 focus:text-gray-700 placeholder:text-gray-400 focus:placeholder:text-blue-400 border-[2px] border-gray-200 rounded-lg'
-              />
+              <div className='relative w-full'>
+                <input
+                  id={field.name}
+                  name={field.name}
+                  type={
+                    field.type === 'password' && visiblePasswords[field.name]
+                      ? 'text'
+                      : field.type || 'text'
+                  }
+                  placeholder={field.placeholder}
+                  value={field.value ?? formData[field.name] ?? ''}
+                  onChange={handleChange}
+                  dir='rtl'
+                  className='w-full h-12 flex px-4 pl-10 focus:outline-none focus:border-blue-500 focus:ring-blue-200 text-gray-800 focus:text-gray-700 placeholder:text-gray-400 focus:placeholder:text-blue-400 border-[2px] border-gray-200 rounded-lg'
+                />
+
+                {field.type === 'password' && (
+                  <button
+                    type='button'
+                    onClick={() => togglePasswordVisibility(field.name)}
+                    className='absolute left-3 top-1/2 -translate-y-1/2 text-sm text-blue-500'
+                  >
+                    {visiblePasswords[field.name] ? <FaEyeSlash className='cursor-pointer text-xl'/> : <FaEye className='cursor-pointer text-xl'/>}
+                  </button>
+                )}
+              </div>
+
             )}
 
             {field.error && (
