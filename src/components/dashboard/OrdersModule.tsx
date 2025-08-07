@@ -49,7 +49,7 @@ const OrdersModule = ({ tab, setModuleIsOpen }: Props) => {
     return (
         <div
             dir="rtl"
-            className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative p-4 bg-white dark:bg-gray-900 text-black dark:text-white rounded-lg shadow-lg flex flex-col"
+            className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative p-4 bg-white dark:bg-slate-800 text-black dark:text-white rounded-lg shadow-lg flex flex-col"
         >
             {/* Header */}
             <div className="flex justify-between items-center mb-4 shrink-0">
@@ -69,7 +69,7 @@ const OrdersModule = ({ tab, setModuleIsOpen }: Props) => {
                         key={status}
                         className={`px-3 py-1 cursor-pointer rounded text-sm ${currentTab === status
                                 ? "bg-blue-500 text-white"
-                                : "bg-gray-200 dark:bg-gray-700"
+                                : "bg-gray-200 dark:bg-gray-600"
                             }`}
                         onClick={() => setCurrentTab(status)}
                     >
@@ -83,7 +83,7 @@ const OrdersModule = ({ tab, setModuleIsOpen }: Props) => {
                 {orders === null ? (
                     <p className="text-gray-500 dark:text-gray-300">در حال بارگذاری سفارش‌ها...</p>
                 ) : orders.length === 0 ? (
-                    <div className="h-full py-16 flex flex-col items-center justify-center text-8xl text-gray-600">
+                    <div className="h-full py-16 flex flex-col items-center justify-center text-8xl text-gray-600 dark:text-gray-400">
                         <IoReceipt />
                         <p className="text-xl">سفارشی یافت نشد</p>
                     </div>

@@ -16,7 +16,7 @@ const AddressModule = ({ setModuleIsOpen, refetch }: Props) => {
     }
 
     return (
-        <div className="w-screen h-screen sm:h-[700px] sm:w-[500px] md:w-[600px] xl:w-[700px] bg-white rounded-md flex items-center justify-center relative">
+        <div className="w-screen h-screen sm:h-[700px] sm:w-[500px] md:w-[600px] xl:w-[700px] bg-white dark:bg-slate-800  text-black dark:text-white rounded-md flex items-center justify-center relative">
             <button
                 onClick={handleCloseModule}
                 className="size-fit absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"

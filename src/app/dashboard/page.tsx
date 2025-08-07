@@ -190,7 +190,7 @@ export default function DashboardPage() {
                                                         <p className="text-base sm:text-xl font-semibold">{userInfo ? 'user_' + userInfo.user.id.split('-')[0] : ''}</p>
                                                     </div>
 
-                                                    <div className="w-fit h-fit flex flex-row gap-1 text-gray-600 font-light">
+                                                    <div className="w-fit h-fit flex flex-row gap-1 text-gray-600 dark:text-gray-300 font-light">
                                                         <p>{fullUserInfo?.firstname}</p>
                                                         <p>{fullUserInfo?.lastname}</p>
                                                     </div>
