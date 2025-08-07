@@ -1,0 +1,33 @@
+import { Dispatch, SetStateAction } from 'react';
+import { BiBell } from 'react-icons/bi';
+
+type Props = {
+  itemCount: number
+  setModuleIsOpen: Dispatch<SetStateAction<boolean>>
+}
+
+const NotificationButton = ({ itemCount = 2, setModuleIsOpen }:Props) => {
+  
+  return (
+    <div className="size-8 sm:size-10 relative">
+      <button
+        onClick={() => setModuleIsOpen(true)}
+        className='size-full flex items-center justify-center cursor-pointer text-xl border-[1px] text-black dark:text-white border-gray-300 shadow-md hover:text-blue-500 rounded-sm dark:hover:text-blue-400 hover:shadow-blue-500 hover:border-blue-300 transition-all'
+      >
+        <BiBell />
+      </button>
+ 
+      {itemCount > 0 && (
+        <div className="absolute -top-1 -right-1">
+          <div className="size-4 md:size-5 flex items-center justify-center bg-red-500 rounded-full">
+            <span className="text-xs text-white font-bold">
+              {itemCount > 9 ? '9+' : itemCount}
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default NotificationButton

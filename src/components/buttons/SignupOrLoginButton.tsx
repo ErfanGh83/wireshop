@@ -3,6 +3,7 @@
 import { isUserLoggedIn } from '@/lib/auth-utils/server'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import NotificationButton from './NotificationButton'
 
 const SignupOrLoginButton = () => {
 
@@ -20,7 +21,7 @@ const SignupOrLoginButton = () => {
 
     return (
         <div
-            className={`flex flex-row-reverse items-center rounded-sm bg-transparent text-black dark:text-gray-100 ${isLoggedIn ? 'hidden w-fit px-2 gap-2' : 'w-32 md:w-40 xl:w-44 h-8 md:h-10'}`}
+            className={`flex flex-row-reverse items-center rounded-sm bg-transparent text-black dark:text-gray-100 ${isLoggedIn ? 'size-fit' : 'w-32 md:w-40 xl:w-44 h-8 md:h-10'}`}
         >
 
             <div
@@ -45,12 +46,10 @@ const SignupOrLoginButton = () => {
                             </Link>
                         </>
                         :
-                        <Link
-                            href={'/dashboard'}
-                            className='size-fit items-center justify-center hover:text-blue-400 dark:hover:text-purple-400 transition-colors'
-                        >
-                            داشبورد
-                        </Link>
+                        <NotificationButton itemCount={1} setModuleIsOpen={function (value: React.SetStateAction<boolean>): void {
+                            console.log(value)
+                            throw new Error('Function not implemented.')
+                        } } />
                 }
             </div>
         </div >

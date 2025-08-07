@@ -29,7 +29,7 @@ const SearchHistoryContainer = ({ onSelect }: Props) => {
       {history.map((item, index) => (
         <button
           key={index}
-          className="w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-600 transition"
+          className="w-full flex items-start text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-600 transition"
           onClick={() => onSelect?.(item)}
         >
           {item}
