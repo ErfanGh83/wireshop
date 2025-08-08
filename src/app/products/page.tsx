@@ -37,8 +37,8 @@ const ProductsPage = () => {
                 </div>
 
                 {/* Main Content Area */}
-                <div className=" overflow-y-auto flex-1">
-                    <div className='w-full flex flex-row-reverse gap-2 px-4 pt-2 sticky top-0 z-20 justify-end bg-transparent'>
+                <div dir="ltr" className=" overflow-y-auto flex-1">
+                    <div dir="rtl" className='w-full flex flex-row-reverse gap-2 px-4 pt-2 sticky top-0 z-20 justify-end bg-transparent'>
 
                         {
                             !filtersModuleIsOpen &&
@@ -72,7 +72,7 @@ const ProductsPage = () => {
                     </div>
 
 
-                    <div className="p-4 max-w-[2000px] mx-auto">
+                    <div dir="rtl" className="p-4 max-w-[2000px] mx-auto">
                         <LoadMore
                             filters={filters}
                             search={searchedString || ''}
