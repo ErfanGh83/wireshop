@@ -83,6 +83,10 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     setLoading(false);
   };
 
+  const handleRetry = () => {
+    loadProducts(1, true);
+  };
+
   useEffect(() => {
     setPage(1);
     setHasMore(true);
@@ -96,8 +100,6 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     }
   }, [inView, hasMore, loading, page, error]);
 
-  console.log(products)
-
   return (
     <>
       {error && products.length === 0 ? (
@@ -107,15 +109,28 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
               <div className="size-fit text-8xl text-gray-600 dark:text-gray-400 mt-24">
                 <FaShoppingCart />
               </div>
-              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">محصولی با مشخصات داده شده یافت نشد</p>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">
+                محصولی با مشخصات داده شده یافت نشد
+              </p>
             </>
-
           ) : (
             <>
               <div className="size-fit text-8xl text-gray-600 dark:text-gray-400">
                 <LuCable />
               </div>
-              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">خطای اتصال به شبکه رخ داده است</p>
+              <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">
+                خطای اتصال به شبکه رخ داده است
+              </p>
+              <button
+                onClick={handleRetry}
+                disabled={loading}
+                className="mt-4 text-2xl cursor-pointer text-gray-700 dark:text-gray-400"
+              >
+                {loading ? (
+                  <VscLoading className="animate-spin mr-2" />
+                ) : null}
+                تلاش مجدد
+              </button>
             </>
           )}
         </div>
