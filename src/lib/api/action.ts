@@ -20,7 +20,7 @@ export const fetchProducts = async ({ page, search, order, filters }: Props) => 
     }
 
     if (page !== undefined) {
-        params.append('page', String(page - 1));
+        params.append('page', String(page));
         params.append('limit', String(limit));
     }
 
@@ -40,7 +40,7 @@ export const fetchProducts = async ({ page, search, order, filters }: Props) => 
             params.append('inStock', 'true');
         }
         if (filters.category) {
-            params.append('category', filters.category);
+            params.append('categoryId', filters.category);
         }
     }
 
