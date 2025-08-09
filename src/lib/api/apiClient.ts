@@ -158,7 +158,7 @@ export async function del<TResponse>(
 
 export async function patch<TResponse>(
   endpoint: string,
-  data: Json,
+  data?: Json,
   options: Omit<RequestInit, "method" | "body"> = {}
 ): Promise<TResponse> {
   const url = `${BASE_URL}${endpoint}`;

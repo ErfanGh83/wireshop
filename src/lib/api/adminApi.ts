@@ -23,10 +23,14 @@ export async function getAllOrders() {
   return get<OrdersResponse>(API_ENDPOINTS.ALL_ORDERS);
 }
 
-export async function getOrderById(id:string) {
+export async function getOrderById(id: string) {
   return get<Order>(`${API_ENDPOINTS.ORDER_BY_ID}/${id}`);
 }
 
 export async function createNewUser(data: Json) {
   return post(API_ENDPOINTS.ADD_USER_BY_ADMIN, data);
+}
+
+export async function completeOrder(id: string) {
+  return patch(`${API_ENDPOINTS.COMPLETE_ORDER}/${id}`);
 }

@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
-import { getOrderById } from "@/lib/api/adminApi";
+import { completeOrder, getOrderById } from "@/lib/api/adminApi";
 import { Order } from "@/types/cart";
 import { toast } from "react-toastify";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
 
 export default function AdminOrderModal({ id }: { id: string }) {
   const [order, setOrder] = useState<Order | null>();
@@ -13,13 +14,25 @@ export default function AdminOrderModal({ id }: { id: string }) {
     getOrderById(id)
       .then((res) => setOrder(res))
       .catch((err) =>
-        toast.error(err.response?.message || err.message || "خطایی رخ داد")
+        toast.error(err.response?.message || err.message || "خطایی رخ داد.")
       );
   }, []);
 
   if (!order) return <Spinner />;
 
-  const handleSubmit = () => {}
+  const handleSubmit = () => {
+    completeOrder(id)
+      .then(() => toast.success("وضعیت سفارش با موفقیت تغییر یافت"))
+      .catch((err) =>
+        toast.error(
+          ERROR_MESSAGES.admin[
+            err.status as keyof typeof ERROR_MESSAGES.admin
+          ] ||
+            err.response.error ||
+            "خطایی رخ داده است."
+        )
+      );
+  };
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-lg max-w-lg w-full p-6 relative shadow-lg">
@@ -78,7 +91,10 @@ export default function AdminOrderModal({ id }: { id: string }) {
         )}
       </div>
 
-      <button className="px-4 py-3 bg-blue-500 text-white dark:bg-purple-600 hover:bg-blue-600 dark:hover:bg-purple-700 transition-all" onClick={handleSubmit}>
+      <button
+        className="px-4 py-3 bg-blue-500 text-white dark:bg-purple-600 hover:bg-blue-600 dark:hover:bg-purple-700 transition-all"
+        onClick={handleSubmit}
+      >
         نهائی کردن سفارش
       </button>
     </div>

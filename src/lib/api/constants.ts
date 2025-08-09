@@ -15,6 +15,7 @@ export const API_ENDPOINTS = {
   ALL_ORDERS: "/api/cart/list",
   ORDER_BY_ID: "/api/cart",
   ADD_USER_BY_ADMIN: "/api/user/new",
+  COMPLETE_ORDER: "/api/cart/complete"
 };
 export const ERROR_MESSAGES = {
   admin: {
