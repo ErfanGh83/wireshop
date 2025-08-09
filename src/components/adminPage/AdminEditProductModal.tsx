@@ -1,7 +1,7 @@
 "use client";
 
 import { getProductById, patchProduct } from "@/lib/api/adminApi";
-import { Product, ProductListResponse } from "@/types/product";
+import { Product } from "@/types/product";
 import { ProductFormValues, productSchema } from "@/zod/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";

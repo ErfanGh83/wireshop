@@ -23,7 +23,7 @@ export default function Tab({ contains }: { contains: TabProps[] }) {
   const animationId = useId();
 
   return (
-    <div className="my-5 overflow-x-hidden h-[80%]">
+    <div className="my-5 overflow-x-hidden h-full">
       <div className="space-y-2 overflow-hidden">
         {/* menu items */}
         <div className="text-md md:text-lg flex w-full items-center justify-center gap-1 md:gap-4 lg:gap-8 space-x-4 overflow-x-auto border-b-2 pb-4 dark:border-purple-500 border-blue-300">
@@ -48,7 +48,7 @@ export default function Tab({ contains }: { contains: TabProps[] }) {
             </button>
           ))}
         </div>
-        <div className="px-1 md:px-4 py-5">
+        <div className="px-1 md:px-4 py-5 overflow-auto">
           {contains.map((item, idx) => (
             <AnimatePresence key={idx} mode="popLayout">
               {item.title === tab && (

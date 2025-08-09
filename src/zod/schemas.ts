@@ -46,3 +46,22 @@ export const productSchema = z.object({
   stock: z.number().int().min(0, "موجودی نمی‌تواند منفی باشد"),
 });
 export type ProductFormValues = z.infer<typeof productSchema>;
+
+export const createProductSchema = z.object({
+  name: z.string().min(1, "نام الزامی است"),
+  description: z.string().optional(),
+  price: z.coerce.number().min(1, "قیمت باید بزرگتر از صفر باشد"),
+  weightKg: z.coerce.number().min(0.01, "وزن باید بزرگتر از صفر باشد"),
+  stock: z.coerce.number().int().min(0, "موجودی منفی نیست"),
+  categoryId: z.string().min(1, "شناسه دسته‌بندی الزامی است"),
+  attributes: z.array(
+    z.object({
+      key: z.string().min(1, "کلید الزامی است"),
+      value: z.string().min(1, "مقدار الزامی است"),
+    })
+  ),
+  images: z
+    .array(z.string().url("لینک تصویر معتبر نیست"))
+});
+
+export type createProductFormValues = z.infer<typeof createProductSchema>;
