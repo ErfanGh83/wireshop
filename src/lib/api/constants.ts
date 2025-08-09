@@ -16,3 +16,11 @@ export const API_ENDPOINTS = {
   GET_PROFILE: "/api/user/my-profile",
   ADD_ADDRESS: "/api/user/address",
 };
+export const ERROR_MESSAGES = {
+  cart: {
+    400: "مقدار نا معتبر یا موجودی نا کافی.",
+    401: "دوباره وارد شوید.",
+    404: "کاربر یا محصول یافت نشد",
+    500: "خطایی درون سرور رخ داد"
+  }
+};
