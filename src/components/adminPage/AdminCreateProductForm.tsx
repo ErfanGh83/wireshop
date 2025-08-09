@@ -4,6 +4,8 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createProductFormValues, createProductSchema } from "@/zod/schemas";
 import { FiTrash2, FiPlus } from "react-icons/fi";
+import { postProduct } from "@/lib/api/adminApi";
+import { toast } from "react-toastify";
 
 export default function AdminCreateProductForm() {
   const {
@@ -38,7 +40,11 @@ export default function AdminCreateProductForm() {
   } = useFieldArray({ control, name: "images" as any });
 
   const onSubmit = (data: createProductFormValues) => {
-    console.log(data);
+    const att: Record<string, string> = {};
+    data.attributes.forEach((item) => {
+      att[item.key] = item.value;
+    });
+    postProduct({ ...data, attributes: att }).then(response => console.log(response));
   };
 
   const labelClass = "block mb-1 font-medium text-gray-700 dark:text-gray-300";
