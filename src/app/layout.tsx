@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`font-yekan antialiased bg-gray-800 text-right text-black dark:text-white scrollbar-modern`}
+        className={`font-yekan antialiased bg-gray-800 text-right text-black dark:text-white scrollbar-modern overflow-hidden`}
       >
         {children}
         <ToastContainer position="top-center" autoClose={4000} />

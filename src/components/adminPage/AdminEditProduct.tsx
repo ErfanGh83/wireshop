@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { getAllProduct } from "@/lib/api/adminApi";
 import AdminTable from "./AdminTable";
@@ -6,11 +6,16 @@ import { ProductListResponse } from "@/types/product";
 import Image from "next/image";
 import AdminEditProductModal from "./AdminEditProductModal";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function AdminEditProduct() {
   const [rowData, setRowData] = useState<ProductListResponse | null>();
   useEffect(() => {
-    getAllProduct().then((res) => setRowData(res));
+    getAllProduct()
+      .then((res) => setRowData(res))
+      .catch((err) =>
+        toast.error(err.response?.message || err.message || "خطایی رخ داد")
+      );
   }, []);
 
   if (!rowData) {

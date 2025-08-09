@@ -7,12 +7,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Spinner from "../spinner/Spinner";
+import { toast } from "react-toastify";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
 
 export default function AdminEditProductModal({ id }: { id: string }) {
   const [defaultValue, setDefaultValue] = useState<Product | null>();
 
   useEffect(() => {
-    getProductById(id).then((res) => setDefaultValue(res));
+    getProductById(id)
+      .then((res) => setDefaultValue(res))
+      .catch((err) =>
+        toast.error(err.response?.message || err.message || "خطایی رخ داد")
+      );
   }, []);
 
   if (!defaultValue) return <Spinner />;
@@ -33,7 +39,13 @@ export default function AdminEditProductModal({ id }: { id: string }) {
   });
 
   const onSubmit = (data: ProductFormValues) => {
-    patchProduct(id, data);
+    patchProduct(id, data).catch((err) =>
+      toast.error(
+        ERROR_MESSAGES.admin[err.status as keyof typeof ERROR_MESSAGES.admin] ||
+          err.response.error ||
+          "خطایی رخ داده است"
+      )
+    );
   };
 
   return (

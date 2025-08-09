@@ -6,6 +6,7 @@ import { createProductFormValues, createProductSchema } from "@/zod/schemas";
 import { FiTrash2, FiPlus } from "react-icons/fi";
 import { postProduct } from "@/lib/api/adminApi";
 import { toast } from "react-toastify";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
 
 export default function AdminCreateProductForm() {
   const {
@@ -44,7 +45,17 @@ export default function AdminCreateProductForm() {
     data.attributes.forEach((item) => {
       att[item.key] = item.value;
     });
-    postProduct({ ...data, attributes: att }).then(response => console.log(response));
+    postProduct({ ...data, attributes: att })
+      .then((response) => console.log(response))
+      .catch((err) =>
+        toast.error(
+          ERROR_MESSAGES.admin[
+            err.status as keyof typeof ERROR_MESSAGES.admin
+          ] ||
+            err.response.error ||
+            "خطایی رخ داده است"
+        )
+      );;
   };
 
   const labelClass = "block mb-1 font-medium text-gray-700 dark:text-gray-300";

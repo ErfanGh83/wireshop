@@ -5,12 +5,17 @@ import { OrdersResponse } from "@/types/cart";
 import { ReactNode, useEffect, useState } from "react";
 import AdminTable from "./AdminTable";
 import AdminOrderModal from "./AdminOrderModal";
+import { toast } from "react-toastify";
 
 function AdminOrdersList() {
   const [rowData, setRowData] = useState<OrdersResponse | null>();
 
   useEffect(() => {
-    getAllOrders().then((res) => setRowData(res));
+    getAllOrders()
+      .then((res) => setRowData(res))
+      .catch((err) =>
+        toast.error(err.response?.message || err.message || "خطایی رخ داد")
+      );
   }, []);
 
   if (!rowData) {

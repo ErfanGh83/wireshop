@@ -11,7 +11,7 @@ const adminTabs = [
     component: <AdminEditProduct />,
   },
   {
-    title: "لیست سفارشات",
+    title: "سفارشات در جریان",
     component: <AdminOrdersList />,
   },
   {

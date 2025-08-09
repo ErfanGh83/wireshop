@@ -4,15 +4,22 @@ import React, { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
 import { getOrderById } from "@/lib/api/adminApi";
 import { Order } from "@/types/cart";
+import { toast } from "react-toastify";
 
 export default function AdminOrderModal({ id }: { id: string }) {
   const [order, setOrder] = useState<Order | null>();
 
   useEffect(() => {
-    getOrderById(id).then((res) => setOrder(res));
+    getOrderById(id)
+      .then((res) => setOrder(res))
+      .catch((err) =>
+        toast.error(err.response?.message || err.message || "خطایی رخ داد")
+      );
   }, []);
 
   if (!order) return <Spinner />;
+
+  const handleSubmit = () => {}
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-lg max-w-lg w-full p-6 relative shadow-lg">
@@ -70,6 +77,10 @@ export default function AdminOrderModal({ id }: { id: string }) {
           </ul>
         )}
       </div>
+
+      <button className="px-4 py-3 bg-blue-500 text-white dark:bg-purple-600 hover:bg-blue-600 dark:hover:bg-purple-700 transition-all" onClick={handleSubmit}>
+        نهائی کردن سفارش
+      </button>
     </div>
   );
 }
