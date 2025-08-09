@@ -14,4 +14,14 @@ export const API_ENDPOINTS = {
   ALL_PRODUCT: "/api/product",
   ALL_ORDERS: "/api/cart/list",
   ORDER_BY_ID: "/api/cart",
+  ADD_USER_BY_ADMIN: "/api/user/new",
+};
+export const ERROR_MESSAGES = {
+  admin: {
+    400: "شماره تلفن قبلا ثبت شده.",
+    401: "ابتدا وارد شوید.",
+    403: "دوباره با دسترسی ادمین وارد شوید.",
+    404: "محصول یافت نشد.",
+    500: "خطایی از سمت سرور رخ داد.",
+  },
 };
