@@ -19,3 +19,38 @@ export interface Cart {
   cost: number;
   items: CartItem[];
 }
+
+export interface Address {
+  province: string;
+  city: string;
+  postalCode: string;
+  description: string;
+  plaque: string;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  weightKg: number;
+}
+
+export interface Item {
+  id: string;
+  quantity: number;
+  available: boolean;
+  product: Product;
+}
+
+export interface Order {
+  id: string;
+  userId: string;
+  status: "sending" | "paid" | "completed";
+  vehicleType: "motorcycle" | "pickup_truck";
+  WeightKg: number;
+  cost: number;
+  address: Address;
+  items: Item[];
+}
+
+export type OrdersResponse = Order[];

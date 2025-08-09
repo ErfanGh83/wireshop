@@ -1,3 +1,4 @@
+import { Order, OrdersResponse } from "@/types/cart";
 import { get, Json, patch, post } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
 import { Product, ProductListResponse } from "@/types/product";
@@ -16,5 +17,13 @@ export async function getProductById(id: string) {
 
 export async function postProduct(data: Json) {
   return post(API_ENDPOINTS.ALL_PRODUCT, data);
+}
+
+export async function getAllOrders() {
+  return get<OrdersResponse>(API_ENDPOINTS.ALL_ORDERS);
+}
+
+export async function getOrderById(id:string) {
+  return get<Order>(`${API_ENDPOINTS.ORDER_BY_ID}/${id}`);
 }
 

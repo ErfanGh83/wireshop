@@ -12,4 +12,6 @@ export const API_ENDPOINTS = {
   ALL_CONVERSATIONS: "/api/chat",
   ALL_CART: "/api/cart",
   ALL_PRODUCT: "/api/product",
+  ALL_ORDERS: "/api/cart/list",
+  ORDER_BY_ID: "/api/cart",
 };

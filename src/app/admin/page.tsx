@@ -1,5 +1,6 @@
 import AdminCreateProductForm from "@/components/adminPage/AdminCreateProductForm";
 import AdminEditProduct from "@/components/adminPage/AdminEditProduct";
+import AdminOrdersList from "@/components/adminPage/AdminOrdersList";
 import AdminTabsContainer from "@/components/adminPage/AdminTabsContainer";
 import MainLayout from "@/components/layouts/MainLayout";
 
@@ -7,6 +8,10 @@ const adminTabs = [
   {
     title: "ویرایش محصولات",
     component: <AdminEditProduct />,
+  },
+  {
+    title: "لیست سفارشات",
+    component: <AdminOrdersList />,
   },
   {
     title: "افزودن محصول",
