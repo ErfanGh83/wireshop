@@ -19,6 +19,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import OrdersModule from "@/components/dashboard/OrdersModule";
 import BigShoppingCartModule from "@/components/headers/main-header-components/BigShoppingCartModule";
 import ProfileFormModule from "@/components/dashboard/ProfileFormModule";
+import ConfirmModule from "@/components/dashboard/ConfirmModule";
 
 export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading, fullUserInfo, refetch } = useAuthUser();
@@ -27,6 +28,7 @@ export default function DashboardPage() {
     const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false)
     const [cartModuleIsOpen, setCartModuleIsOpen] = useState(false)
     const [profileFormIsOpen, setProfileFormIsOpen] = useState(false)
+    const [confirmModuleIsOpen, setConfirmModuleIsOpen] = useState(false)
 
     const handleLogout = () => {
         logout()
@@ -147,6 +149,38 @@ export default function DashboardPage() {
                     )
                 }
 
+
+                {
+                    confirmModuleIsOpen && (
+                        <AnimatePresence>
+                            <motion.div
+                                key="confirm-modal-backdrop"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="w-screen h-screen fixed top-0 left-0 z-50 bg-black/20 flex items-center justify-center"
+                            >
+                                <motion.div
+                                    key="confirm-modal-content"
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.9, opacity: 0 }}
+                                    transition={{ type: "spring", damping: 20, stiffness: 300 }}
+                                >
+                                    <ConfirmModule
+                                        onConfirm={handleLogout}
+                                        onCancel={() => setConfirmModuleIsOpen(false)}
+                                        title="خروج از حساب کاربری"
+                                        description="آیا مطمئن هستید که می‌خواهید از حساب خود خارج شوید؟"
+                                    />
+
+                                </motion.div>
+                            </motion.div>
+                        </AnimatePresence>
+                    )
+                }
+
                 <div className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-900 text-black dark:text-white overflow-y-scroll">
                     {!isLoggedIn ? (
                         <Link
@@ -208,7 +242,7 @@ export default function DashboardPage() {
                                         </div>
 
                                         <button
-                                            onClick={handleLogout}
+                                            onClick={() => setConfirmModuleIsOpen(true)}
                                             className="w-48 py-1 px-2 mx-auto sm:mx-0 rounded-md border-[1px] border-gray-800 hover:border-transparent bg-white text-gray-900 dark:text-white dark:bg-slate-600 hover:bg-red-500 cursor-pointer hover:text-white transition-colors text-sm sm:text-base"
                                         >
                                             خروج از حساب کاربری

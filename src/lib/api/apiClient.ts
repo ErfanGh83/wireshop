@@ -26,7 +26,6 @@ api.interceptors.response.use(
   (err: AxiosError) => {
     if (err.response) {
       throw new ApiError(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (err.response.data as any)?.message || 'Request failed',
         err.response.status,
         err.response.data
