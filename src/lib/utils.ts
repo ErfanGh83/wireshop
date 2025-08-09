@@ -50,6 +50,6 @@ export function normalizeIranianPhone(phone: string): string {
     return phone;
   }
 
-  throw new Error('Invalid Iranian phone number');
+  return ''
 }
 

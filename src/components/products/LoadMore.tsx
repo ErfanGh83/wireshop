@@ -1,5 +1,3 @@
-"use client";
-
 import { fetchProducts } from "@/lib/api/action";
 import { Filters } from "@/types/products";
 import React, { useEffect, useState } from "react";
@@ -28,15 +26,27 @@ interface BackendResponse {
   total: number;
 }
 
+interface Error {
+  status: number
+  message: string
+}
+
+interface BackendErrorResponse {
+  error: Error
+}
+
 interface LoadMoreProps {
   filters?: Filters | null;
   search?: string | null;
   order?: string | null;
 }
 
+const isBackendErrorResponse = (res: BackendResponse | BackendErrorResponse): res is BackendErrorResponse => {
+  return res && typeof res === "object" && "error" in res;
+};
+
 const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
   const { ref, inView } = useInView();
-
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<BackendProduct[]>([]);
   const [hasMore, setHasMore] = useState(true);
@@ -47,16 +57,27 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     setLoading(true);
     setError(null);
 
-    try {
-      const res = (await fetchProducts({
-        page: pageNum,
-        filters,
-        search,
-        order,
-      })) as BackendResponse;
+    const res = (await fetchProducts({
+      page: pageNum,
+      filters,
+      search,
+      order,
+    })) as BackendResponse | BackendErrorResponse;
 
+    if (isBackendErrorResponse(res)) {
+      switch (res.error.status) {
+        case 0:
+        case 500:
+          setError("خطای شبکه یا سرور");
+          break;
+        case 404:
+          setError("محصولی با مشخصات داده شده یافت نشد");
+          break;
+        default:
+          setError("خطا در بارگذاری محصولات");
+      }
+    } else {
       const newProducts = res.data ?? [];
-
       if (reset) {
         setProducts(newProducts);
         setPage(2);
@@ -66,26 +87,11 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
         setPage((prev) => prev + 1);
         setHasMore(newProducts.length > 0);
       }
-    } catch (err) {
-      const stringError = String(err);
-
-      if (stringError.includes("fetch failed")) {
-        setError("خطای شبکه یا سرور");
-      } else if (stringError.includes("status 404")) {
-        setError("محصولی با مشخصات داده شده یافت نشد");
-      } else if (stringError.includes("status 500")) {
-        setError("خطای شبکه یا سرور");
-      } else {
-        setError("خطا در بارگذاری محصولات");
-      }
     }
-
     setLoading(false);
   };
 
-  const handleRetry = () => {
-    loadProducts(1, true);
-  };
+  const handleRetry = () => loadProducts(1, true);
 
   useEffect(() => {
     setPage(1);
@@ -110,7 +116,7 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 <FaShoppingCart />
               </div>
               <p className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-700 dark:text-gray-400">
-                محصولی با مشخصات داده شده یافت نشد
+                {error}
               </p>
             </>
           ) : (
@@ -126,9 +132,7 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 disabled={loading}
                 className="mt-4 text-2xl cursor-pointer text-gray-700 dark:text-gray-400"
               >
-                {loading ? (
-                  <VscLoading className="animate-spin mr-2" />
-                ) : null}
+                {loading && <VscLoading className="animate-spin mr-2" />}
                 تلاش مجدد
               </button>
             </>
