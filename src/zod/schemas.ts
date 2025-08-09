@@ -63,5 +63,15 @@ export const createProductSchema = z.object({
   images: z
     .array(z.string().url("لینک تصویر معتبر نیست"))
 });
-
 export type createProductFormValues = z.infer<typeof createProductSchema>;
+
+export const createMemberSchema = z.object({
+  phone: z
+    .string()
+    .regex(/^09\d{9}$/, "شماره تلفن معتبر نیست (مثال: 09123456789)"),
+  password: z.string().min(8, "رمز عبور باید حداقل 8 کاراکتر باشد"),
+  role: z
+    .enum(["user", "admin", "support"])
+    .refine((val) => !!val, { message: "انتخاب نقش الزامی است" }),
+});
+export type CreateMemberFormValues = z.infer<typeof createMemberSchema>;

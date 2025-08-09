@@ -1,3 +1,4 @@
+import AdminAddUser from "@/components/adminPage/AdminAddUser";
 import AdminCreateProductForm from "@/components/adminPage/AdminCreateProductForm";
 import AdminEditProduct from "@/components/adminPage/AdminEditProduct";
 import AdminOrdersList from "@/components/adminPage/AdminOrdersList";
@@ -17,32 +18,10 @@ const adminTabs = [
     title: "افزودن محصول",
     component: <AdminCreateProductForm />,
   },
-  // {
-  //   title: "لیست سفارشات",
-  //   component: (
-  //     <AdminTable
-  //       url="order_list"
-  //       tableHead={["نام مشتری", "تاریخ", "مبلغ", "جزئیات"]}
-  //       tableStyle={{
-  //         head: "text-green-700 uppercase",
-  //         body: "text-green-900 font-light",
-  //       }}
-  //     />
-  //   ),
-  // },
-  // {
-  //   title: "تغییر دسترسی",
-  //   component: (
-  //     <AdminTable
-  //       url="change_access"
-  //       tableHead={["نام کاربر", "دسترسی", "تغییر"]}
-  //       tableStyle={{
-  //         head: "text-purple-700",
-  //         body: "text-purple-400",
-  //       }}
-  //     />
-  //   ),
-  // },
+  {
+    title: "افزودن عضو",
+    component: <AdminAddUser />,
+  }
 ];
 
 export default function Home() {
@@ -56,54 +35,3 @@ export default function Home() {
     </MainLayout>
   );
 }
-
-// tableBody: [
-//       [
-//         {
-//           content: (
-//             <Image
-//               src="https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg"
-//               width={50}
-//               height={50}
-//               alt="cable picture"
-//             />
-//           ),
-//         },
-//         { content: "کابل مخصوص" },
-//         {
-//           content: "تغییر",
-//           className: "text-green-600 dark:text-green-400",
-//         },
-//       ],
-//     ]
-
-// const adminTabs = [
-//   {
-//     title: "ویرایش محصولات",
-//     component: () => (
-//       <AdminTable
-//         url="edit_item"
-//         tableHead={["عکس محصول", "نام محصول", "تغییر"]}
-//       />
-//     ),
-//   },
-//   {
-//     title: "لیست سفارشات",
-//     component: () => (
-//       <AdminTable
-//         url="order_list"
-//         tableHead={["نام مشتری", "تاریخ", "مبلغ", "جزئیات"]}
-//       />
-//     ),
-//   },
-//   {
-//     title: "تغییر دسترسی",
-//     component: () => (
-//       <AdminTable
-//         tableHead={["نام کاربر", "دسترسی", "تغییر"]}
-//         url="change_access"
-//       />
-//     ),
-//     // modalStyle
-//   },
-// ];

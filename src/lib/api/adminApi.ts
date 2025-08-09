@@ -27,3 +27,6 @@ export async function getOrderById(id:string) {
   return get<Order>(`${API_ENDPOINTS.ORDER_BY_ID}/${id}`);
 }
 
+export async function createNewUser(data: Json) {
+  return post(API_ENDPOINTS.ADD_USER_BY_ADMIN, data);
+}
