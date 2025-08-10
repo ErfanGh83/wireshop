@@ -7,6 +7,7 @@ import { FiTrash2, FiPlus } from "react-icons/fi";
 import { postProduct } from "@/lib/api/adminApi";
 import { toast } from "react-toastify";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
+import { Fragment } from "react";
 
 const CATEGORIES = [
   { id: "5268ac1c-3f9c-4b27-a92d-b2dfeccd9251", name: "network cable" },
@@ -45,7 +46,7 @@ export default function AdminCreateProductForm() {
       stock: 0,
       categoryId: CATEGORIES[0].id as any,
       attributes: [{ key: ATTRIBUTE_KEYS[0].id as any, value: "" }],
-      images: [""],
+      images: [],
     },
   });
 
@@ -61,14 +62,20 @@ export default function AdminCreateProductForm() {
     remove: removeImg,
   } = useFieldArray({ control, name: "images" as any });
 
-  console.log("errors.attributes", errors.attributes);
 
   const onSubmit = (data: createProductFormValues) => {
-    const att: Record<string, string> = {};
-    data.attributes.forEach((item) => {
-      att[item.key] = item.value;
+    let attribute: Record<string, string> = {};
+    data.attributes.map((item) => {
+      attribute[item.key] = item.value;
     });
-    postProduct({ ...data, attributes: att })
+
+    postProduct({
+      ...data,
+      attributes: attribute,
+      price: data.price.toString(),
+      weightKg: data.weightKg.toString(),
+      stock: data.stock.toString(),
+    })
       .then(() => toast.success("محصول با موفقیت ایجاد شد"))
       .catch((err) =>
         toast.error(
@@ -215,8 +222,8 @@ export default function AdminCreateProductForm() {
           ویژگی‌ها
         </label>
         {attrFields.map((field, i) => (
-          <>
-            <div key={field.id} className="flex gap-2 mb-2">
+          <Fragment key={field.id}>
+            <div className="flex gap-2 mb-2">
               <select
                 {...register(`attributes.${i}.key`)}
                 className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700 ${errors.attributes?.[i]?.value}`}
@@ -251,7 +258,7 @@ export default function AdminCreateProductForm() {
                 {errors.attributes[i]?.value?.message}
               </p>
             )}
-          </>
+          </Fragment>
         ))}
         {errors.attributes?.root && (
           <p className="text-red-500 text-sm">
