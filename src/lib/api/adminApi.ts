@@ -1,5 +1,5 @@
 import { Order, OrdersResponse } from "@/types/cart";
-import { get, Json, patch, post } from "./apiClient";
+import { get, Json, patch, post, postForm } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
 import { Product, ProductListResponse } from "@/types/product";
 
@@ -15,8 +15,8 @@ export async function getProductById(id: string) {
   return get<Product>(`${API_ENDPOINTS.ALL_PRODUCT}/${id}`);
 }
 
-export async function postProduct(data: Json) {
-  return post(API_ENDPOINTS.ALL_PRODUCT, data);
+export async function postProduct(data: FormData) {
+  return postForm(API_ENDPOINTS.ALL_PRODUCT, data);
 }
 
 export async function getAllOrders() {

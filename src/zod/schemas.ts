@@ -1,4 +1,4 @@
-import { ATTRIBUTE_KEYS, CATEGORY_IDS } from "@/lib/api/constants";
+import { CATEGORY_IDS } from "@/lib/api/constants";
 import { z } from "zod";
 
 // Helper schema for Iranian phone numbers (09xxxxxxxxx)
@@ -81,7 +81,18 @@ export const createProductSchema = z.object({
         keys.add(attr.key);
       });
     }),
-  images: z.array(z.string().url("لینک تصویر معتبر نیست")),
+  images: z
+    .custom<FileList>()
+    .transform((files) => Array.from(files))
+    .pipe(
+      z
+        .array(
+          z.instanceof(File).refine((file) => file.size > 0, {
+            message: "فایل خالی معتبر نیست",
+          })
+        )
+        .min(0, "حداقل یک تصویر الزامی است")
+    ),
 });
 export type createProductFormValues = z.infer<typeof createProductSchema>;
 
