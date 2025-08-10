@@ -17,6 +17,7 @@ export const API_ENDPOINTS = {
   ADD_USER_BY_ADMIN: "/api/user/new",
   COMPLETE_ORDER: "/api/cart/complete"
 };
+
 export const ERROR_MESSAGES = {
   admin: {
     400: "شماره تلفن قبلا ثبت شده.",
@@ -27,3 +28,21 @@ export const ERROR_MESSAGES = {
     500: "خطایی از سمت سرور رخ داد.",
   },
 };
+
+export const CATEGORY_IDS = [
+  "5268ac1c-3f9c-4b27-a92d-b2dfeccd9251", // network cable
+  "247b24a4-887d-416f-82c2-460aecbcb9b6", // wire & power cable
+  "b1a56f01-1b41-4321-a29a-50bb2b5311fd", // coaxial cable
+  "d0167d24-263c-4793-a468-9740f7d5eb2f", // fiber optic cable
+  "8f1de3da-f360-48d9-a07f-50347811d225", // telecommunication cable
+  "8768365a-741a-4a95-9daa-69dfe9beeaf4", // equipment
+  "f1489dcd-54af-472e-8d2a-7b249ca747a1", // miscellaneous
+] as const;
+
+export const ATTRIBUTE_KEYS = [
+  "f64f85d9-684f-4186-9fc4-b6be0e432ee5", // shielding
+  "2fa1992c-269c-4892-9547-1065af1ce48b", // jacket
+  "8144706b-7830-4916-a3c6-658e830ce3bd", // core material
+  "05f1aa3f-b26f-4819-b1ba-5b0628244e3e", // test
+  "775cd291-48af-417a-af58-c8aff0111cdf", // type
+] as const;
