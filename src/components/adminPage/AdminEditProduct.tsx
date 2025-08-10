@@ -26,13 +26,16 @@ function AdminEditProduct() {
     );
   }
 
+  console.log("rowData", rowData.data)
+
   const tableData = rowData.data.map((item) => [
-    <Image
+    item.images[0] ? <Image
       src={item.images[0]}
       alt={item.name}
       className="rounded"
       width={50}
-    />,
+      height={50}
+    /> : null,
     item.name,
   ]);
 
