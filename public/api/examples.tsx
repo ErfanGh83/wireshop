@@ -1,10 +1,9 @@
 import { BiHome } from "react-icons/bi"
-import { BsInstagram, BsTelegram } from "react-icons/bs"
+import { BsInfo, BsInstagram, BsTelegram } from "react-icons/bs"
 import { CiSettings } from "react-icons/ci"
+import { FaHome, FaUser } from "react-icons/fa"
 import { HiOutlineViewGrid } from "react-icons/hi"
-import { MdDiscount } from "react-icons/md"
-import { BsThreeDots } from "react-icons/bs";
-import { FiCpu, FiDatabase, FiGrid, FiHome, FiShield, FiTruck, FiWifi, FiZap } from "react-icons/fi";
+import { MdCable, MdDiscount } from "react-icons/md"
 
 export const HamburgerItems = [
     {
@@ -41,50 +40,25 @@ export const HamburgerItems = [
 
 export const subHeaderItems = [
     {
-        title: "سیم برق",
-        icon: <FiZap />,
-        children: <div></div>
+        title: "خانه",
+        link: '/',
+        icon: <FaHome />
     },
     {
-        title: "کابل شبکه",
-        icon: <FiWifi />,
-        children: <div></div>
+        title: "محصولات",
+        icon: <MdCable />,
+        link: '/products'
     },
     {
-        title: "سیم مفتولی",
-        icon: <FiGrid />,
-        children: <div></div>
+        title: "داشبورد",
+        icon: <FaUser />,
+        link: '/dashboard'
     },
     {
-        title: "کابل کواکسیال",
-        icon: <FiCpu />,
-        children: <div></div>
-    },
-    {
-        title: "سیم ساختمانی",
-        icon: <FiHome />,
-        children: <div></div>
-    },
-    {
-        title: "کابل خودرو",
-        icon: <FiTruck />,
-        children: <div></div>
-    },
-    {
-        title: "کابل فیبر نوری",
-        icon: <FiDatabase />,
-        children: <div></div>
-    },
-    {
-        title: "سیم ارت",
-        icon: <FiShield />,
-        children: <div></div>
-    },
-    {
-        title: "موارد دیگر",
-        icon: <BsThreeDots />,
-        children: <div></div>
-    },
+        title: "درباره ما",
+        icon: <BsInfo />,
+        link: '/about-us'
+    }
 ];
 
 export const banners = [
@@ -339,50 +313,50 @@ export const bigProducts = [
 
 
 export const productComments: {
-  id: number;
-  userName: string;
-  text: string;
+    id: number;
+    userName: string;
+    text: string;
 }[] = [
-  {
-    id: 1,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 2,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 3,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 4,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-  {
-    id: 5,
-    userName: "Ali",
-    text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
-  },
-];
+        {
+            id: 1,
+            userName: "Ali",
+            text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+        },
+        {
+            id: 2,
+            userName: "Ali",
+            text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+        },
+        {
+            id: 3,
+            userName: "Ali",
+            text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+        },
+        {
+            id: 4,
+            userName: "Ali",
+            text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+        },
+        {
+            id: 5,
+            userName: "Ali",
+            text: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز",
+        },
+    ];
 export const productImageList = [
-  "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg",
-  "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg",
-  "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg",
-  "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg",
+    "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg",
+    "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg",
+    "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg",
+    "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg",
 ];
 export const productSpecs: {
-  label: string;
-  value: string;
+    label: string;
+    value: string;
 }[] = [
-  { label: "جنس هادی", value: "مس خالص" },
-  { label: "تعداد رشته", value: "7 رشته" },
-  { label: "مقاومت کششی", value: "50 نیوتن/میلی‌متر مربع" },
-  { label: "روکش", value: "PVC مقاوم" },
-  { label: "سطح مقطع", value: "2.5 میلی‌متر مربع" },
-  { label: "کلاس انعطاف‌پذیری", value: "کلاس 5" },
-];
+        { label: "جنس هادی", value: "مس خالص" },
+        { label: "تعداد رشته", value: "7 رشته" },
+        { label: "مقاومت کششی", value: "50 نیوتن/میلی‌متر مربع" },
+        { label: "روکش", value: "PVC مقاوم" },
+        { label: "سطح مقطع", value: "2.5 میلی‌متر مربع" },
+        { label: "کلاس انعطاف‌پذیری", value: "کلاس 5" },
+    ];

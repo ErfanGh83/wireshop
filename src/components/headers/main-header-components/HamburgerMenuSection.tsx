@@ -15,7 +15,7 @@ const HamburgerMenuSection = () => {
     }
 
     return (
-        <div className="min-w-[20%] flex-1 h-full bg-transparent flex items-center justify-center">
+        <div className="w-fit flex-1 h-full bg-transparent flex items-center justify-start">
             <HamburgerMenuButton
                 hamMenuIsOpen={hamMenuIsOpen}
                 setHamMenuIsOpen={setHamMenuIsOpen}

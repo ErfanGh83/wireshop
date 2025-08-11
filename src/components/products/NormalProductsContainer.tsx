@@ -29,7 +29,7 @@ const NormalProductsContainer = () => {
       <div className="mt-10 text-center">
         <Link
           href={`/products`}
-          className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-purple-700 dark:bg-purple-600 text-white px-6 py-2 rounded-md cursor-pointer transition-colors"
+          className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-700 dark:bg-blue-600 text-white px-6 py-2 rounded-md cursor-pointer transition-colors"
         >
           مشاهده محصولات بیشتر
         </Link>

@@ -15,7 +15,7 @@ export interface Cart {
   userId: string;
   status: string;
   vehicleType: string;
-  WeightKg: number;
+  weightKg: number;
   cost: number;
   items: CartItem[];
 }

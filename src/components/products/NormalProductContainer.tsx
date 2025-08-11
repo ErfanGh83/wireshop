@@ -28,7 +28,7 @@ const NormalProductContainer = ({
     return (
         <Link
             href={`/products/${id}`}
-            className={`group relative bg-white dark:bg-gray-600 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-slate-700 hover:shadow-xl dark:hover:border-purple-400 ${className}`} dir="rtl">
+            className={`group relative bg-white dark:bg-gray-700 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-slate-800 hover:shadow-xl dark:hover:border-blue-500 ${className}`} dir="rtl">
             {discount > 0 && (
                 <div className="absolute top-0 left-0 bg-red-500 text-white text-xs sm:text-sm md:text-md xl:text-lg font-bold px-2 py-1 z-10">
                     %{discount} تخفیف
@@ -53,7 +53,7 @@ const NormalProductContainer = ({
                 />
             </div>
 
-            <div className="h-40 p-4 flex flex-col justify-between bg-white dark:bg-slate-700">
+            <div className="h-40 p-4 flex flex-col justify-between bg-white dark:bg-slate-800">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1 line-clamp-2">
                     {title}
                 </h3>

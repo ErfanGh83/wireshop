@@ -79,7 +79,7 @@ export async function get<TResponse>(
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 8000); // Optional: timeout after 8s
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
 
       const response = await fetch(url, {
         method: "GET",
@@ -91,31 +91,37 @@ export async function get<TResponse>(
       clearTimeout(timeoutId);
 
       const parsed = await safeJsonParse(response);
+      console.log(parsed);
 
       if (!response.ok) {
+        const status = response.status;
         const message =
           typeof parsed === "object" && parsed !== null && "message" in parsed
             ? String((parsed as Record<string, unknown>).message)
-            : "Request failed";
-        throw new ApiError(message, response.status, parsed);
+            : `Request failed with status ${status}`;
+
+        // Throw with proper status so LoadMore can check it
+        throw new ApiError(message, status, parsed);
       }
 
       return parsed as TResponse;
     } catch (error) {
       const isLastAttempt = attempt === MAX_RETRIES;
 
-      // Handle AbortError separately
-      if (error === "ABORT_ERR") {
-        console.warn(`Request timed out on attempt ${attempt}`);
-      } else {
-        console.warn(`Fetch attempt ${attempt} failed:`, error);
+      // If error is ApiError and it's not retryable → break immediately
+      if (
+        error instanceof ApiError &&
+        [400, 401, 403, 404, 422].includes(error.status)
+      ) {
+        throw error; // don't retry for these codes
       }
 
       if (isLastAttempt) {
         throw error; // rethrow after max attempts
       }
 
-      // Retry after delay
+      console.warn(`Fetch attempt ${attempt} failed:`, error);
+
       await delay(RETRY_DELAY_MS);
     }
   }

@@ -25,7 +25,7 @@ export default function CartContainer() {
         سبد خرید شما
       </h2>
 
-      {!cart ? (
+      {!cart?.items || cart.items.length === 0 ? (
         <p className="text-center text-gray-600 dark:text-gray-300">
           سبد خرید شما خالی است.
         </p>
@@ -48,12 +48,12 @@ export default function CartContainer() {
           </div>
 
           <div className="text-right mt-4">
-            <span className="font-bold text-xl text-gray-900 dark:text-white">
+            <h4 className="font-bold text-xl text-gray-900 dark:text-white">
               مجموع هزینه: {cart.cost} تومان
-            </span>
-            <span className="font-bold text-xl text-gray-900 dark:text-white">
-              مجموع وزن: {cart.WeightKg} کیلوگرم
-            </span>
+            </h4>
+            <h4 className="font-bold text-xl text-gray-900 dark:text-white">
+              مجموع وزن: {cart.weightKg || 0} کیلوگرم
+            </h4>
           </div>
 
           <div className="text-right mt-4 p-2 bg-slate-200 dark:bg-gray-800/70 max-w-sm rounded shadow">

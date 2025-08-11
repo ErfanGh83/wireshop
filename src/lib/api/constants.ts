@@ -7,6 +7,7 @@ export const API_ENDPOINTS = {
   LOGIN: "/api/auth/login", //method: POST, request body: phone number + password, 200: Login successful (gives a JWT token), 401: Invalid password, 404: User not found.
   LOGOUT: "/api/auth/logout", //method: POST, 200: Logged out successfully.
   WHO_AM_I: "/api/auth/whoami", //method: GET, 200: Current user info, 401: Unauthorized.
+  PRODUCT_DETAIL: "/api/product",
   PRODUCTS: "/products",
   MY_CONVERSATION: "/api/chat/my-conversation",
   ALL_CONVERSATIONS: "/api/chat",
@@ -15,7 +16,11 @@ export const API_ENDPOINTS = {
   ALL_ORDERS: "/api/cart/list",
   ORDER_BY_ID: "/api/cart",
   ADD_USER_BY_ADMIN: "/api/user/new",
-  COMPLETE_ORDER: "/api/cart/complete"
+  COMPLETE_ORDER: "/api/cart/complete",
+  ACTIVE_CART: "/api/cart/my",
+  MODIFY_CART: "/api/cart/item",
+  GET_PROFILE: "/api/user/my-profile",
+  ADD_ADDRESS: "/api/user/address",
 };
 
 export const ERROR_MESSAGES = {
@@ -34,6 +39,12 @@ export const ERROR_MESSAGES = {
     404: " یافت نشد.",
     409: "محصول وجود دارد.",
     500: "خطایی از سمت سرور رخ داد.",
+  },
+  cart: {
+    400: "مقدار نا معتبر یا موجودی نا کافی.",
+    401: "دوباره وارد شوید.",
+    404: "کاربر یا محصول یافت نشد",
+    500: "خطایی درون سرور رخ داد",
   },
 };
 

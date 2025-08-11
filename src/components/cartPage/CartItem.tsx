@@ -1,5 +1,7 @@
 import { addCartItem, removeCartItem } from "@/lib/api/cartApi";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
 import { FaChevronUp, FaChevronDown, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 interface CartItemProps {
   itemId: string;
@@ -23,15 +25,32 @@ export default function CartItem({
   onChange,
 }: CartItemProps) {
   const handleChangeNumber = async (amount: number) => {
-    try {
-      if (amount > 0) await addCartItem(productId, amount);
-      else if (amount < 0) await removeCartItem(itemId, -amount);
+    if (amount > 0)
+      await addCartItem(productId, amount)
+        .then(() => toast.success("با موفقیت اضافه شد"))
+        .catch((err) =>
+          toast.error(
+            ERROR_MESSAGES.cart[
+              err.status as keyof typeof ERROR_MESSAGES.cart
+            ] ||
+              err.response.error ||
+              "خطایی رخ داده است"
+          )
+        );
+    else if (amount < 0)
+      await removeCartItem(itemId, -amount)
+        .then(() => toast.success("با موفقیت کم شد"))
+        .catch((err) =>
+          toast.error(
+            ERROR_MESSAGES.cart[
+              err.status as keyof typeof ERROR_MESSAGES.cart
+            ] ||
+              err.response.error ||
+              "خطایی رخ داده است"
+          )
+        );
 
-      onChange();
-    } catch (err) {
-      console.error("خطا در تغییر تعداد:", err);
-      // toast.error("خطا در بروزرسانی سبد خرید");
-    }
+    onChange();
   };
 
   return (
@@ -44,7 +63,7 @@ export default function CartItem({
           وزن هر واحد: {productWeightKg} کیلوگرم
         </p>
         <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300">
-          وزن کل: {weightKg.toFixed(2)} کیلوگرم
+          وزن کل: {quantity} کیلوگرم
         </p>
       </div>
 
