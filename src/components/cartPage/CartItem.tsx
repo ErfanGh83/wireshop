@@ -27,7 +27,7 @@ export default function CartItem({
   const handleChangeNumber = async (amount: number) => {
     if (amount > 0)
       await addCartItem(productId, amount)
-        .then(() => toast.success("با موفقیت تغییر کرد"))
+        .then(() => toast.success("با موفقیت اضافه شد"))
         .catch((err) =>
           toast.error(
             ERROR_MESSAGES.cart[
@@ -39,7 +39,7 @@ export default function CartItem({
         );
     else if (amount < 0)
       await removeCartItem(itemId, -amount)
-        .then(() => toast.success("با موفقیت تغییر کرد"))
+        .then(() => toast.success("با موفقیت کم شد"))
         .catch((err) =>
           toast.error(
             ERROR_MESSAGES.cart[
@@ -63,7 +63,7 @@ export default function CartItem({
           وزن هر واحد: {productWeightKg} کیلوگرم
         </p>
         <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300">
-          وزن کل: {weightKg.toFixed(2)} کیلوگرم
+          وزن کل: {quantity} کیلوگرم
         </p>
       </div>
 

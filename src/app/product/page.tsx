@@ -11,6 +11,7 @@ import { ProductDetail } from "@/types/product_detail";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { addCartItem } from "@/lib/api/cartApi";
+import { toast } from "react-toastify";
 
 export default function ProductPage() {
   const searchParams = useSearchParams();
@@ -34,7 +35,11 @@ export default function ProductPage() {
   const handleSubmit = () => {
     const quantity = Number(inputRef.current?.value);
     if (product && quantity > 0) {
-      addCartItem(product.id, quantity);
+      addCartItem(product.id, quantity)
+        .then(() => toast.success("محصول با موفقیت به سبد خرید اضافه شد"))
+        .catch((err) =>
+          toast.error(err.response?.message || err.message || "خطایی رخ داد")
+        );
     }
   };
 
