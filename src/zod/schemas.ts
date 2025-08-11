@@ -45,7 +45,7 @@ export type LoginInput = z.infer<typeof LoginSchema>;
 
 export const productSchema = z.object({
   name: z.string().min(1, "نام الزامی است"),
-  description: z.string().min(1, "توضیح الزامی است"),
+  description: z.string().nullable().optional(),
   price: z.number().min(0, "قیمت نمی‌تواند منفی باشد"),
   weightKg: z.number().min(0, "وزن باید صفر یا بیشتر باشد"),
   stock: z.number().int().min(0, "موجودی نمی‌تواند منفی باشد"),

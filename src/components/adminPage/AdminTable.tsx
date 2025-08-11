@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import AdminModal from "./AdminModal";
 
 interface Props {
@@ -77,38 +77,8 @@ export default function AdminTable({
         onClose={() => setModalOpen(false)}
         title="جزئیات ردیف"
       >
-        {selectedRow && (
-          <>
-            {tableModal[selectedRow]}
-
-            {/* {url === "order_list" && (
-              <div className="space-y-2 text-sm">
-                <div>
-                  <strong>نام مشتری:</strong> {selectedRow[0]}
-                </div>
-                <div>
-                  <strong>تاریخ سفارش:</strong> {selectedRow[1]}
-                </div>
-                <div>
-                  <strong>مبلغ:</strong> {selectedRow[2]}
-                </div>
-              </div>
-            )}
-
-            {url === "change_access" && (
-              <div className="space-y-2 text-sm">
-                <div>
-                  <strong>نام کاربر:</strong> {selectedRow[0]}
-                </div>
-                <div>
-                  <strong>سطح دسترسی فعلی:</strong> {selectedRow[1]}
-                </div>
-                <button className="mt-3 bg-purple-500 text-white px-4 py-1 rounded hover:bg-purple-400 transition">
-                  تغییر دسترسی
-                </button>
-              </div>
-            )} */}
-          </>
+        {selectedRow !== null && selectedRow !== undefined && (
+          <>{tableModal[selectedRow]}</>
         )}
       </AdminModal>
     </div>

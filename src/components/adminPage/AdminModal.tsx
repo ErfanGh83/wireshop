@@ -29,14 +29,14 @@ export default function AdminModal({
           />
 
           <motion.div
-            className="fixed inset-0 z-110 flex items-center px-4 justify-center"
+            className="fixed inset-0 z-110 flex items-center justify-center px-4 py-8"
             initial={{ scale: 0.9, opacity: 0, y: 30 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 30 }}
             onClick={onClose}
           >
             <div
-              className="bg-white dark:bg-slate-800 w-full max-w-lg mx-auto rounded-xl shadow-xl p-4 md:p-6 relative"
+              className="bg-white dark:bg-slate-800 w-full max-w-lg max-h-full rounded-xl shadow-xl p-4 md:p-6 relative overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
