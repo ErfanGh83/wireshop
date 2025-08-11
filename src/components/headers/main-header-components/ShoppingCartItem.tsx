@@ -1,5 +1,6 @@
 import { addCartItem, removeCartItem } from "@/lib/api/cartApi";
 import React from "react";
+import { toast } from "react-toastify";
 
 type Props = {
   title: string;
@@ -9,6 +10,7 @@ type Props = {
   total: number;
   itemId: string;
   productId: string;
+  setIsCartChanged?: () => void;
 };
 
 const ShoppingCartItem = ({
@@ -19,15 +21,22 @@ const ShoppingCartItem = ({
   total,
   itemId,
   productId,
+  setIsCartChanged = () => {},
 }: Props) => {
-
   const handleChangeNumber = async (amount: number) => {
-    try {
-      if (amount > 0) await addCartItem(productId, amount);
-      else if (amount < 0) await removeCartItem(itemId, -amount);
-    } catch (err) {
-      console.error("خطا در تغییر تعداد:", err);
-    }
+    if (amount > 0)
+      await addCartItem(productId, amount)
+        .then(() => toast.success("محصول با موفقیت اضافه شد"))
+        .catch((err) =>
+          toast.error(err.response?.message || err.message || "خطایی رخ داد")
+        );
+    else if (amount < 0)
+      await removeCartItem(itemId, -amount)
+        .then(() => toast.success("محصول با موفقیت کم شد"))
+        .catch((err) =>
+          toast.error(err.response?.message || err.message || "خطایی رخ داد")
+      );
+    setIsCartChanged()
   };
 
   return (

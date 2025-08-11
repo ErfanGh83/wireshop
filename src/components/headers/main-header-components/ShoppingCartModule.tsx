@@ -6,6 +6,7 @@ import ShoppingCartItem from "./ShoppingCartItem";
 import { getAllCart } from "@/lib/api/cartApi";
 import { Cart } from "@/types/cart";
 import Spinner from "@/components/spinner/Spinner";
+import { useRouter } from "next/navigation";
 
 type Props = {
   setModuleIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -15,14 +16,17 @@ type Props = {
 const ShoppingCartModule = ({ setModuleIsOpen, moduleIsOpen }: Props) => {
   const [cartItems, setCartItems] = useState<Cart | undefined>();
   const [err, setErr] = useState<string>("");
+  const [isCartChanged, setIsCartChanged] = useState<boolean>(true);
+  const router = useRouter();
 
   useEffect(() => {
-    if (!moduleIsOpen) return;
+    if (!moduleIsOpen || !isCartChanged) return;
 
     getAllCart()
       .then((res) => setCartItems(res))
       .catch((error) => setErr(error.message));
-  }, [moduleIsOpen]);
+    setIsCartChanged(false);
+  }, [moduleIsOpen, isCartChanged]);
 
   const handleCloseModule = () => {
     setModuleIsOpen(false);
@@ -55,12 +59,16 @@ const ShoppingCartModule = ({ setModuleIsOpen, moduleIsOpen }: Props) => {
                     total={item.quantity * item.product.price}
                     itemId={item.id}
                     productId={item.product.id}
+                    setIsCartChanged={() => setIsCartChanged(true)}
                   />
                 ))}
             </div>
 
             <div className="w-full h-12 flex items-center justify-center">
-              <button className="size-full bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
+              <button
+                onClick={() => router.push("/cart")}
+                className="size-full bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors"
+              >
                 تسویه حساب
               </button>
             </div>
