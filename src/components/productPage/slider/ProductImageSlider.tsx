@@ -5,6 +5,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { BASE_URL } from "@/lib/api/constants";
+import Image from "next/image";
 
 interface ProductImageSliderProps {
   images: string[];
@@ -42,7 +44,15 @@ export default function ProductImageSlider({
       >
         {images.map((src, index) => (
           <SwiperSlide key={index} className="flex justify-center items-center">
-            <img src={src} alt={`product-${index}`} className="h-full w-full" />
+            <Image
+              crossOrigin="anonymous"
+              src={BASE_URL + src}
+              alt={`product-${index}`}
+              priority
+              width={200}
+              height={200}
+              className="h-full w-full"
+            />
           </SwiperSlide>
         ))}
       </Swiper>

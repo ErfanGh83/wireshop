@@ -32,10 +32,12 @@ function AdminEditProduct() {
   const tableData = rowData.data.map((item) => [
     item.images[0] ? <Image
       src={BASE_URL + item.images[0]}
+      crossOrigin="anonymous"
       alt={item.name}
       className="rounded"
       width={50}
       height={50}
+      priority
     /> : null,
     item.name,
   ]);
