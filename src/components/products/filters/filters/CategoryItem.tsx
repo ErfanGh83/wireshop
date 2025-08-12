@@ -29,6 +29,7 @@ const CategoryItem = ({
   return (
     <div>
       <div
+      dir="rtl"
         className="flex flex-row-reverse justify-between items-center gap-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-600 p-2 rounded"
         onClick={handleClick}
       >

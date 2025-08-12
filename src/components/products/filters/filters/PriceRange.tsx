@@ -10,11 +10,11 @@ type Props = {
   max?: number
 }
 
-const PriceRange = ({ 
-  priceRange: parentRange, 
-  setPriceRange, 
-  min = 0, 
-  max = 1000 
+const PriceRange = ({
+  priceRange: parentRange,
+  setPriceRange,
+  min = 0,
+  max = 1000
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [localRange, setLocalRange] = useState<[number, number]>(parentRange)
@@ -31,7 +31,7 @@ const PriceRange = ({
   const handleChange = (index: 0 | 1) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value)
     const newRange = [...localRange] as [number, number]
-    
+
     // Validate min/max constraints
     if (index === 0) {
       newRange[0] = Math.min(value, localRange[1] - 1)
@@ -45,8 +45,9 @@ const PriceRange = ({
   }
 
   return (
-    <div className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${isOpen ? 'h-fit' : 'h-16'}`}>
-      <div 
+    <div className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${isOpen ? "min-h-fit" : "h-16"
+      }`}>
+      <div
         className='w-full h-16 px-4 py-4 flex flex-row items-center justify-between cursor-pointer'
         onClick={handleToggle}
       >
@@ -55,13 +56,13 @@ const PriceRange = ({
       </div>
 
       {isOpen && (
-        <div className='w-full h-[400px] overflow-y-auto bg-gray-100 dark:bg-slate-500 p-4 space-y-4'>
+        <div className='w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-4 overflow-y-auto'>
           <div className='flex justify-between items-center'>
             <span className='text-lg'>{localRange[0].toLocaleString()}</span>
             <span className='text-lg'>تا</span>
             <span className='text-lg'>{localRange[1].toLocaleString()}</span>
           </div>
-          
+
           <div className='space-y-4'>
             <div>
               <label className='block text-sm mb-1'>حداقل قیمت:</label>
@@ -74,7 +75,7 @@ const PriceRange = ({
                 className='w-full h-2 bg-blue-200 dark:bg-blue-500 rounded-lg appearance-none cursor-pointer'
               />
             </div>
-            
+
             <div>
               <label className='block text-sm mb-1'>حداکثر قیمت:</label>
               <input
