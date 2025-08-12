@@ -28,7 +28,7 @@ const NormalProductContainer = ({
     return (
         <Link
             href={`/product?id=${id}`}
-            className={`group relative flex flex-col bg-white dark:bg-gray-700 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-slate-800 hover:shadow-xl dark:hover:border-blue-500 h-full ${className}`} 
+            className={`h-32 sm:h-full group relative flex flex-row sm:flex-col bg-white dark:bg-gray-700 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-slate-800 hover:shadow-xl dark:hover:border-blue-500 ${className}`} 
             dir="rtl"
         >
             {discount > 0 && (
@@ -44,7 +44,7 @@ const NormalProductContainer = ({
                 </div>
             )}
 
-            <div className="relative aspect-square w-full overflow-hidden">
+            <div className="relative aspect-square size-36 sm:w-full sm:h-full bg-blue-400 overflow-hidden">
                 <Image
                     src={imageUrl}
                     alt={title}
@@ -54,7 +54,7 @@ const NormalProductContainer = ({
                 />
             </div>
 
-            <div className="flex flex-col justify-between p-3 sm:p-4 bg-white dark:bg-slate-800 flex-grow">
+            <div className="w-11/12 flex flex-col justify-between p-3 sm:p-4 bg-white dark:bg-slate-800 flex-grow">
                 <div>
                     <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1 line-clamp-2 min-h-[2.8em]">
                         {title}
