@@ -45,7 +45,7 @@ const PriceRange = ({
   }
 
   return (
-    <div className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${isOpen ? "min-h-fit" : "h-16"
+    <div dir='rtl' className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${isOpen ? "min-h-fit" : "h-16"
       }`}>
       <div
         className='w-full h-16 px-4 py-4 flex flex-row items-center justify-between cursor-pointer'

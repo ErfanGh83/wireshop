@@ -19,6 +19,7 @@ const Categories = ({ category, setCategory }: Props) => {
     }`}>
       {/* Top bar */}
       <div
+        dir="rtl"
         className="w-full h-16 px-4 py-4 flex flex-row items-center justify-between cursor-pointer"
         onClick={() => setIsOpen((prev) => !prev)}
       >

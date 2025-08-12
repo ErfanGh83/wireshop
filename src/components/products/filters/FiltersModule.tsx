@@ -86,7 +86,7 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
                         />
 
                         {/* In Stock Filter */}
-                        <div className='w-full flex items-center justify-between p-4 bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg'>
+                        <div dir='rtl' className='w-full flex items-center justify-between p-4 bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg'>
                             <label htmlFor='inStock' className='text-lg cursor-pointer'>
                                 فقط کالاهای موجود
                             </label>
