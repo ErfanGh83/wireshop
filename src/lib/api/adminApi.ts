@@ -34,3 +34,7 @@ export async function createNewUser(data: Json) {
 export async function completeOrder(id: string) {
   return patch(`${API_ENDPOINTS.COMPLETE_ORDER}/${id}`);
 }
+
+export async function checkAdmin() {
+  return get(API_ENDPOINTS.CHECK_ADMIN)
+}

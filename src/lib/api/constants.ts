@@ -21,6 +21,7 @@ export const API_ENDPOINTS = {
   MODIFY_CART: "/api/cart/item",
   GET_PROFILE: "/api/user/my-profile",
   ADD_ADDRESS: "/api/user/address",
+  CHECK_ADMIN: "/api/auth/admin-check"
 };
 
 export const ERROR_MESSAGES = {
