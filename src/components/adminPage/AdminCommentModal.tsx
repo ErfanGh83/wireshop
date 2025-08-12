@@ -1,5 +1,6 @@
 import { approveComment, rejectComment } from "@/lib/api/adminApi";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
+import { formatRelativeTime } from "@/lib/date_formatter";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -11,27 +12,6 @@ interface Props {
   id: string;
 }
 
-const formatTimeAgo = (dateString: string) => {
-  const now = new Date();
-  const past = new Date(dateString);
-  const diffMs = now.getTime() - past.getTime();
-
-  const seconds = Math.floor(diffMs / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const weeks = Math.floor(days / 7);
-  const months = Math.floor(days / 30);
-  const years = Math.floor(days / 365);
-
-  if (seconds < 60) return `${seconds} ثانیه پیش`;
-  if (minutes < 60) return `${minutes} دقیقه پیش`;
-  if (hours < 24) return `${hours} ساعت پیش`;
-  if (days < 7) return `${days} روز پیش`;
-  if (weeks < 4) return `${weeks} هفته پیش`;
-  if (months < 12) return `${months} ماه پیش`;
-  return `${years} سال پیش`;
-};
 
 function AdminCommentModal({
   content,
@@ -76,9 +56,9 @@ function AdminCommentModal({
   return (
     <div className=" p-4 mb-3">
       <div className="font-bold mb-1">کاربر: {fullName}</div>
-      <div>تلفن: {"0" + phone.slice(3)}</div>
+      <div>تلفن: {"0" + phone.slice(3, 5) + "****" + phone.slice(9)}</div>
       <div className="text-sm text-gray-500 mb-2">
-        {formatTimeAgo(createdAt)}
+        {formatRelativeTime(createdAt)}
       </div>
       <div className="mb-3">{content}</div>
       <div className="flex gap-2">

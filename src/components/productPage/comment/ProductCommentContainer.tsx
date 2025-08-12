@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductCommentItem from "./ProductCommentItem";
 import { getProductComment } from "@/lib/api/productApi";
-import { ProductCommentResponse } from "@/types/product_detail";
 import { toast } from "react-toastify";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
 import Spinner from "@/components/spinner/Spinner";
+import { CommentResponse } from "@/types/comment";
 
 function ProductCommentContainer({ id }: { id: string }) {
-  const [comments, setComments] = useState<ProductCommentResponse | null>(null);
+  const [comments, setComments] = useState<CommentResponse | null>(null);
 
   useEffect(() => {
     getProductComment(id)
@@ -23,7 +23,7 @@ function ProductCommentContainer({ id }: { id: string }) {
 
   if (comments === null) return <Spinner />;
 
-  console.log(comments);
+  console.log("comments", comments);
 
   return (
     <>
@@ -40,7 +40,10 @@ function ProductCommentContainer({ id }: { id: string }) {
             <ProductCommentItem
               key={item.content + item.user}
               text={item.content}
-              userName={item.user}
+              firstname={item.user.firstname || ""}
+              createdAt={item.createdAt}
+              phone={item.user.phone}
+              lastname={item.user.lastname || ""}
             />
           ))}
         </ul>
