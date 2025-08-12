@@ -21,7 +21,8 @@ export const API_ENDPOINTS = {
   MODIFY_CART: "/api/cart/item",
   GET_PROFILE: "/api/user/my-profile",
   ADD_ADDRESS: "/api/user/address",
-  CHECK_ADMIN: "/api/auth/admin-check"
+  CHECK_ADMIN: "/api/auth/admin-check",
+  PRODUCT_COMMENT: "/api/comment",
 };
 
 export const ERROR_MESSAGES = {
@@ -46,6 +47,10 @@ export const ERROR_MESSAGES = {
     401: "دوباره وارد شوید.",
     404: "کاربر یا محصول یافت نشد",
     500: "خطایی درون سرور رخ داد",
+  },
+  comment: {
+    400: "متن نا معتبر یا محصول یافت نشد.",
+    401: "ابتدا وارد شوید.",
   },
 };
 

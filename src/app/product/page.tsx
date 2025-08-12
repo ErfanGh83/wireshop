@@ -5,13 +5,12 @@ import ProductImageSlider from "@/components/productPage/slider/ProductImageSlid
 import ProductDetailSpec from "@/components/productPage/spec/ProductDetailSpec";
 import ProductCommentForm from "@/components/productPage/comment/ProductCommentForm";
 import ProductCommentContainer from "@/components/productPage/comment/ProductCommentContainer";
-import { get } from "@/lib/api/apiClient";
-import { API_ENDPOINTS, BASE_URL } from "@/lib/api/constants";
 import { ProductDetail } from "@/types/product_detail";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { addCartItem } from "@/lib/api/cartApi";
 import { toast } from "react-toastify";
+import { getProductDetail } from "@/lib/api/productApi";
 
 export default function ProductPage() {
   const searchParams = useSearchParams();
@@ -24,7 +23,7 @@ export default function ProductPage() {
   useEffect(() => {
     if (!id) return;
 
-    get<ProductDetail>(`${API_ENDPOINTS.PRODUCT_DETAIL}/${id}`)
+    getProductDetail(id)
       .then(setProduct)
       .catch((err) => {
         console.error(err);
@@ -124,9 +123,9 @@ export default function ProductPage() {
               </div>
             </div>
 
-            <ProductCommentForm />
+            <ProductCommentForm id={product.id} />
 
-            <ProductCommentContainer />
+            <ProductCommentContainer id={product.id} />
           </div>
         </div>
       </div>

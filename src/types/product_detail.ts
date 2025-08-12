@@ -20,3 +20,10 @@ export interface ProductDetail {
   category: Category;
   attributes: Attribute[];
 }
+
+export interface ProductComment {
+  user: string;
+  content: string;
+}
+
+export type ProductCommentResponse = ProductComment[];

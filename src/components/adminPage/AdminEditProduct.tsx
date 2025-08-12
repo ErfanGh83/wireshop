@@ -7,6 +7,7 @@ import Image from "next/image";
 import AdminEditProductModal from "./AdminEditProductModal";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { BASE_URL } from "@/lib/api/constants";
 
 function AdminEditProduct() {
   const [rowData, setRowData] = useState<ProductListResponse | null>();
@@ -30,7 +31,7 @@ function AdminEditProduct() {
 
   const tableData = rowData.data.map((item) => [
     item.images[0] ? <Image
-      src={item.images[0]}
+      src={BASE_URL + item.images[0]}
       alt={item.name}
       className="rounded"
       width={50}
