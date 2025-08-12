@@ -43,3 +43,11 @@ export async function checkAdmin() {
 export async function getAllComment() {
   return get<CommentResponse>(API_ENDPOINTS.PENDING_COMMENT);
 }
+
+export async function approveComment(id: string) {
+  return patch(API_ENDPOINTS.APPROVE_COMMENT + "/" + id);
+}
+
+export async function rejectComment(id: string) {
+  return patch(API_ENDPOINTS.REJECT_COMMENT + "/" + id);
+}

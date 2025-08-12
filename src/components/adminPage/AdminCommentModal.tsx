@@ -1,3 +1,7 @@
+import { approveComment, rejectComment } from "@/lib/api/adminApi";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
+import { toast } from "react-toastify";
+
 interface Props {
   firstname?: string;
   lastname?: string;
@@ -42,33 +46,51 @@ function AdminCommentModal({
       ? `${firstname ?? ""} ${lastname ?? ""}`.trim()
       : "بی نام";
 
-  const onApprove = (x: string) => {};
-  const onReject = (x: string) => {};
+  const onApprove = () => {
+    approveComment(id)
+      .then(() => toast.success("کامنت با موفقیت قبول شد"))
+      .catch((err) =>
+        toast.error(
+          ERROR_MESSAGES.manage_comment[
+            err.status as keyof typeof ERROR_MESSAGES.manage_comment
+          ] ||
+            err.response.error ||
+            "خطایی رخ داده است"
+        )
+      );
+  };
+  const onReject = () => {
+    rejectComment(id)
+      .then(() => toast.success("کامنت با موفقیت رد شد"))
+      .catch((err) =>
+        toast.error(
+          ERROR_MESSAGES.manage_comment[
+            err.status as keyof typeof ERROR_MESSAGES.manage_comment
+          ] ||
+            err.response.error ||
+            "خطایی رخ داده است"
+        )
+      );
+  };
 
   return (
     <div className=" p-4 mb-3">
-      <div className="font-bold mb-1">
-        کاربر: {" "}
-        {fullName}
-      </div>
-      <div>
-        تلفن: {" "}
-        {"0" + phone.slice(3)}
-      </div>
+      <div className="font-bold mb-1">کاربر: {fullName}</div>
+      <div>تلفن: {"0" + phone.slice(3)}</div>
       <div className="text-sm text-gray-500 mb-2">
         {formatTimeAgo(createdAt)}
       </div>
       <div className="mb-3">{content}</div>
       <div className="flex gap-2">
         <button
-          onClick={() => onApprove(id)}
-          className="bg-green-600 hover:bg-green-700 text-white rounded px-3 py-1 transition-colors"
+          onClick={() => onApprove()}
+          className="bg-green-400 hover:bg-green-500 cursor-pointer text-white rounded-xl px-4 py-1 transition-colors"
         >
           قبول
         </button>
         <button
-          onClick={() => onReject(id)}
-          className="bg-red-500 hover:bg-red-600 text-white rounded px-3 py-1 transition-colors"
+          onClick={() => onReject()}
+          className="bg-red-400 hover:bg-red-500 cursor-pointer text-white rounded-xl px-4 py-1 transition-colors"
         >
           رد
         </button>

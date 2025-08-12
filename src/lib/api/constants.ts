@@ -23,7 +23,9 @@ export const API_ENDPOINTS = {
   ADD_ADDRESS: "/api/user/address",
   CHECK_ADMIN: "/api/auth/admin-check",
   PRODUCT_COMMENT: "/api/comment",
-  PENDING_COMMENT: "/api/comment/pending"
+  PENDING_COMMENT: "/api/comment/pending",
+  APPROVE_COMMENT: "/api/comment/approve",
+  REJECT_COMMENT: "/api/comment/reject",
 };
 
 export const ERROR_MESSAGES = {
@@ -53,6 +55,12 @@ export const ERROR_MESSAGES = {
     400: "متن نا معتبر یا محصول یافت نشد.",
     401: "ابتدا وارد شوید.",
   },
+  manage_comment: {
+    400: "کامنت در وضعیت بررسی قرار ندارد.",
+    401: "ابتدا وارد شوید.",
+    403: "با دسترسی ادمین وارد شوید.",
+    404: "کامنت یافت نشد.",
+  }
 };
 
 export const CATEGORY_IDS = [
