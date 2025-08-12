@@ -28,7 +28,7 @@ const NormalProductContainer = ({
     return (
         <Link
             href={`/product?id=${id}`}
-            className={`h-32 sm:h-full group relative flex flex-row sm:flex-col bg-white dark:bg-gray-700 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-slate-800 hover:shadow-xl dark:hover:border-blue-500 ${className}`} 
+            className={`group relative flex flex-row sm:flex-col bg-white dark:bg-gray-700 shadow-md overflow-hidden transition-all duration-300 border-[2px] border-gray-200 dark:border-slate-800 hover:shadow-xl dark:hover:border-blue-500 ${className}`} 
             dir="rtl"
         >
             {discount > 0 && (
@@ -39,22 +39,25 @@ const NormalProductContainer = ({
 
             {isSpecial && (
                 <div className={`absolute left-0 bg-purple-500 text-white text-xs sm:text-sm font-bold px-2 py-1 z-10 
-                ${!discount? 'top-0' : 'top-7'}`}>
+                ${!discount ? 'top-0' : 'top-7'}`}>
                     ویژه
                 </div>
             )}
 
-            <div className="relative aspect-square size-36 sm:w-full sm:h-full bg-blue-400 overflow-hidden">
+            {/* Image Container - Fixed aspect ratio */}
+            <div className="relative w-32 h-32 sm:w-full sm:h-48 md:h-56 lg:h-64 bg-gray-100 dark:bg-gray-600 overflow-hidden flex-shrink-0">
                 <Image
                     src={imageUrl}
                     alt={title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 256px"
+                    priority={false}
                 />
             </div>
 
-            <div className="w-11/12 flex flex-col justify-between p-3 sm:p-4 bg-white dark:bg-slate-800 flex-grow">
+            {/* Content Container */}
+            <div className="flex flex-col justify-between p-3 sm:p-4 bg-white dark:bg-slate-800 flex-grow">
                 <div>
                     <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1 line-clamp-2 min-h-[2.8em]">
                         {title}

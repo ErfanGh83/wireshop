@@ -32,7 +32,7 @@ const Categories = ({ category, setCategory }: Props) => {
 
       {/* Dropdown body */}
       {isOpen && (
-        <div className="w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto max-h-[calc(100vh-200px)]">
+        <div className="w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto">
           {categories.map((cat) => (
             <CategoryItem
               key={cat.id || cat.en}
