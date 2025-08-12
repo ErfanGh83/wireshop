@@ -23,6 +23,7 @@ export const API_ENDPOINTS = {
   ADD_ADDRESS: "/api/user/address",
   CHECK_ADMIN: "/api/auth/admin-check",
   PRODUCT_COMMENT: "/api/comment",
+  PENDING_COMMENT: "/api/comment/pending"
 };
 
 export const ERROR_MESSAGES = {
