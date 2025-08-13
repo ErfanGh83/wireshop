@@ -26,6 +26,7 @@ export interface Address {
   postalCode: string;
   description: string;
   plaque: string;
+  id?: string;
 }
 
 export interface Product {

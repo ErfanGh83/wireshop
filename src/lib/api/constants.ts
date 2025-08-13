@@ -31,6 +31,7 @@ export const API_ENDPOINTS = {
   APPROVE_COMMENT: "/api/comment/approve",
   REJECT_COMMENT: "/api/comment/reject",
   CHECKOUT: "/api/purchase/url",
+  SET_ACTIVE_ADDRESS: "/api/cart/address",
 };
 
 export const ERROR_MESSAGES = {
@@ -65,6 +66,11 @@ export const ERROR_MESSAGES = {
     401: "ابتدا وارد شوید.",
     403: "با دسترسی ادمین وارد شوید.",
     404: "کامنت یافت نشد.",
+  },
+  my_cart: {
+    401: "لطفا وارد شوید",
+    404: "سبد خرید فعالی ندارید",
+    500: "بعدا دوباره امتحان کنید"
   }
 };
 

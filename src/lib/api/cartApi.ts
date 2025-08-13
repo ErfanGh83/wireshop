@@ -15,5 +15,9 @@ export async function removeCartItem(id: string, quantity: number) {
 }
 
 export async function getCheckoutLink() {
-  return get(API_ENDPOINTS.CHECKOUT);
+  return get<string>(API_ENDPOINTS.CHECKOUT);
+}
+
+export async function postActiveAddress(data: any) {
+  return post(API_ENDPOINTS.SET_ACTIVE_ADDRESS, data);
 }
