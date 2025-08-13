@@ -71,95 +71,52 @@ export async function put<T = any>(url: string, data?: any, config = {}) {
       };
     }
   }
-
-  // This should never be reached
-  throw new Error("Unexpected error in get()");
 }
 
-export async function del<TResponse>(
-  endpoint: string,
-  data?: Json,
-  options: Omit<RequestInit, "method" | "body"> = {}
-): Promise<TResponse> {
-  const url = `${BASE_URL}${endpoint}`;
-  console.log("DELETE request sent to " + url);
-
-  const response = await fetch(url, {
-    method: "DELETE",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-    body: data ? JSON.stringify(data) : undefined,
-    ...options,
-  });
-
-  const parsed = await safeJsonParse(response);
-
-  if (!response.ok) {
-    const message =
-      typeof parsed === "object" && parsed !== null && "message" in parsed
-        ? String((parsed as Record<string, unknown>).message)
-        : "Request failed";
-    throw new ApiError(message, response.status, parsed);
+export async function patch<T>(url: string, data?: any, config = {}): Promise<T> {
+  try {
+    const response = await api.patch<T>(url, data, config);
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw {
+        status: error.response.status,
+        message: error.response.data?.message || "Server error",
+      };
+    } else if (error.request) {
+      throw {
+        status: 0,
+        message: "Network error",
+      };
+    } else {
+      throw {
+        status: -1,
+        message: error.message,
+      };
+    }
   }
-
-  return parsed as TResponse;
 }
 
-export async function patch<TResponse>(
-  endpoint: string,
-  data?: Json,
-  options: Omit<RequestInit, "method" | "body"> = {}
-): Promise<TResponse> {
-  const url = `${BASE_URL}${endpoint}`;
-  console.log("PATCH request sent to " + url);
-
-  const response = await fetch(url, {
-    method: "PATCH",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-    body: JSON.stringify(data),
-    ...options,
-  });
-
-  const parsed = await safeJsonParse(response);
-
-  if (!response.ok) {
-    const message =
-      typeof parsed === "object" && parsed !== null && "message" in parsed
-        ? String((parsed as Record<string, unknown>).message)
-        : "Request failed";
-    throw new ApiError(message, response.status, parsed);
+export async function del<T>(url: string, config = {}): Promise<T> {
+  try {
+    const response = await api.delete<T>(url, config);
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw {
+        status: error.response.status,
+        message: error.response.data?.message || "Server error",
+      };
+    } else if (error.request) {
+      throw {
+        status: 0,
+        message: "Network error",
+      };
+    } else {
+      throw {
+        status: -1,
+        message: error.message,
+      };
+    }
   }
-
-  return parsed as TResponse;
-}
-
-export async function postForm<TResponse>(
-  endpoint: string,
-  data: FormData,
-  options: Omit<RequestInit, "method" | "body"> = {}
-): Promise<TResponse> {
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
-    method: "POST",
-    body: data,
-    credentials: "include",
-    ...options,
-  });
-
-  const parsed = await safeJsonParse(response);
-  if (!response.ok) {
-    const message =
-      typeof parsed === "object" && parsed !== null && "message" in parsed
-        ? String((parsed as Record<string, unknown>).message)
-        : "Request failed";
-    throw new ApiError(message, response.status, parsed);
-  }
-
-  return parsed as TResponse;
 }
