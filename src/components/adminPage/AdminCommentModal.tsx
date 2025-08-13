@@ -12,7 +12,6 @@ interface Props {
   id: string;
 }
 
-
 function AdminCommentModal({
   content,
   createdAt,
@@ -32,9 +31,9 @@ function AdminCommentModal({
       .catch((err) =>
         toast.error(
           ERROR_MESSAGES.manage_comment[
-            err.status as keyof typeof ERROR_MESSAGES.manage_comment
+            (err?.status as keyof typeof ERROR_MESSAGES.manage_comment) || 400
           ] ||
-            err.response.error ||
+            err?.response.error ||
             "خطایی رخ داده است"
         )
       );
@@ -42,21 +41,26 @@ function AdminCommentModal({
   const onReject = () => {
     rejectComment(id)
       .then(() => toast.success("کامنت با موفقیت رد شد"))
-      .catch((err) =>
+      .catch((err) => {
         toast.error(
           ERROR_MESSAGES.manage_comment[
-            err.status as keyof typeof ERROR_MESSAGES.manage_comment
+            (err?.status as keyof typeof ERROR_MESSAGES.manage_comment) || 400
           ] ||
-            err.response.error ||
+            err?.response.error ||
             "خطایی رخ داده است"
-        )
-      );
+        );
+      });
   };
 
   return (
     <div className=" p-4 mb-3">
       <div className="font-bold mb-1">کاربر: {fullName}</div>
-      <div>تلفن: {"0" + phone.slice(3, 5) + "****" + phone.slice(9)}</div>
+      <div>
+        تلفن:{" "}
+        <span dir="ltr">
+          {"0" + phone.slice(3, 5) + "****" + phone.slice(9)}
+        </span>
+      </div>
       <div className="text-sm text-gray-500 mb-2">
         {formatRelativeTime(createdAt)}
       </div>

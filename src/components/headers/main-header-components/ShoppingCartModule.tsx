@@ -7,6 +7,7 @@ import { getAllCart } from "@/lib/api/cartApi";
 import { Cart } from "@/types/cart";
 import Spinner from "@/components/spinner/Spinner";
 import { useRouter } from "next/navigation";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
 
 type Props = {
   setModuleIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -24,7 +25,16 @@ const ShoppingCartModule = ({ setModuleIsOpen, moduleIsOpen }: Props) => {
 
     getAllCart()
       .then((res) => setCartItems(res))
-      .catch((error) => setErr(error.message));
+      .catch((error) =>
+        setErr(
+          ERROR_MESSAGES.my_cart[
+            error.status as keyof typeof ERROR_MESSAGES.my_cart
+          ] ||
+            error.response?.message ||
+            error.message ||
+            "خطایی رخ داد"
+        )
+      );
     setIsCartChanged(false);
   }, [moduleIsOpen, isCartChanged]);
 
@@ -73,13 +83,13 @@ const ShoppingCartModule = ({ setModuleIsOpen, moduleIsOpen }: Props) => {
               </button>
             </div>
           </>
+        ) : err ? (
+          <div className="text-red-500 mx-auto my-auto">{err}</div>
         ) : (
           <div className="mb-[70%] text-center">
             <Spinner size={30} />
           </div>
         )}
-
-        {err && <div className="text-red-500 mx-auto my-auto">{err}</div>}
       </div>
     </div>
   );

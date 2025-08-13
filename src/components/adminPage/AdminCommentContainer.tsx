@@ -28,7 +28,10 @@ function AdminCommentContainer() {
   const tableData = rowData.map((comment) => [
     comment.user.firstname && comment.user.lastname
       ? `${comment.user.firstname ?? ""} ${comment.user.lastname ?? ""}`.trim()
-      : "0" + comment.user.phone.slice(3),
+      : comment.user.phone.slice(9) +
+        "****" +
+        "0" +
+        comment.user.phone.slice(3, 5) ,
     comment.content,
   ]);
 
@@ -47,7 +50,7 @@ function AdminCommentContainer() {
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["کاربر", "پیام"]}
+      tableHead={["کاربر", "پیام", "جزئیات"]}
       tableStyle={{
         head: "text-blue-700 text-right",
         body: "text-blue-900 truncate",
