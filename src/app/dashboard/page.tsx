@@ -208,7 +208,7 @@ export default function DashboardPage() {
                     ) : (
                         <div dir="rtl" className="min-h-[600px] md:min-h-0 h-fit max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 sm:pb-0 flex flex-col-reverse lg:flex-row items-center justify-end sm:justify-center gap-4">
                             {/* Main User Card - Now comes first in mobile view */}
-                            <div className="w-full lg:w-11/12 h-auto flex flex-col px-2 sm:px-4 md:px-8 order-2 lg:order-1">
+                            <div className="w-full xl:w-11/12 h-auto flex flex-col px-2 sm:px-4 md:px-8 order-2 lg:order-1">
                                 <div className="size-full flex flex-col p-2 sm:p-4 border-[1px] gap-2 border-gray-300 dark:border-none bg-blue-100/60 dark:bg-slate-700 rounded-md">
                                     {/* User Header Section */}
                                     <div className="w-full h-fit flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -277,7 +277,7 @@ export default function DashboardPage() {
                                 </div>
                             </div>
 
-                            <div className="w-full h-fit sm:h-full sm:w-11/12 lg:w-[250px] bg-white dark:bg-slate-600 border border-gray-300 dark:border-transparent rounded-md flex flex-row sm:flex-col bottom-0 left-0 overflow-hidden">
+                            <div className="w-full h-fit min-h-fit sm:h-full sm:w-11/12 lg:w-[250px] xl:w-[250px] bg-white dark:bg-slate-600 border border-gray-300 dark:border-transparent rounded-md flex flex-row sm:flex-col bottom-0 left-0 overflow-hidden">
                                 <UserShipmentContainer
                                     title={'سبد خرید'}
                                     icon={<CgShoppingCart />}
