@@ -21,7 +21,7 @@ const MainLayout = ({children}:Props) => {
             </header>
 
             <main
-                className='h-full overflow-hidden pb-20'
+                className='h-full overflow-hidden pb-20 sm:pb-0'
             >
                 {children}
             </main>

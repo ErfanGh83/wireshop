@@ -7,7 +7,7 @@ import ThemeSwitchButton from '../buttons/ThemeSwitchButton'
 
 const MainHeader = () => {
   return (
-    <div className='w-screen relative shadow-md border-b-[1px] border-gray-200'>
+    <div className='w-screen relative shadow-md border-b-[1px] border-gray-200 dark:border-gray-600'>
       <div className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 bg-white dark:bg-slate-800'>
         <div className='h-fit w-fit sm:w-1/3 flex flex-row-reverse items-center gap-x-4'>
           <SignupOrLoginButton />
