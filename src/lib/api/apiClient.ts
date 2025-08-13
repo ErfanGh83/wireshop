@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError } from "axios";
 import { BASE_URL } from "./constants";
 
 export class ApiError extends Error {
@@ -18,7 +18,7 @@ const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
   timeout: 8000,
-  headers: { 'Content-Type': 'application/json' },
+  headers: { "Content-Type": "application/json" },
 });
 
 api.interceptors.response.use(
@@ -26,13 +26,13 @@ api.interceptors.response.use(
   (err: AxiosError) => {
     if (err.response) {
       throw new ApiError(
-        (err.response.data as any)?.message || 'Request failed',
+        (err.response.data as any)?.message || "Request failed",
         err.response.status,
         err.response.data
       );
     }
     if (err.request) {
-      throw new ApiError('No response from server', 0, null);
+      throw new ApiError("No response from server", 0, null);
     }
     throw new ApiError(err.message, 0, null);
   }
@@ -48,6 +48,35 @@ export async function post<T>(url: string, data: any): Promise<T> {
   return res.data;
 }
 
+export async function postForm<TResponse>(
+  endpoint: string,
+  data: FormData,
+  options: Omit<RequestInit, "method" | "body"> = {}
+): Promise<TResponse> {
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    method: "POST",
+    body: data,
+    credentials: "include",
+    ...options,
+  });
+
+  let parsed: any = null;
+  try {
+    parsed = await response.json();
+  } catch {
+    parsed = null;
+  }
+
+  if (!response.ok) {
+    const message =
+      parsed && typeof parsed === "object" && "message" in parsed
+        ? String(parsed.message)
+        : "Request failed";
+    throw new Error(message);
+  }
+
+  return parsed as TResponse;
+}
 
 export async function put<T = any>(url: string, data?: any, config = {}) {
   try {
@@ -73,7 +102,11 @@ export async function put<T = any>(url: string, data?: any, config = {}) {
   }
 }
 
-export async function patch<T>(url: string, data?: any, config = {}): Promise<T> {
+export async function patch<T>(
+  url: string,
+  data?: any,
+  config = {}
+): Promise<T> {
   try {
     const response = await api.patch<T>(url, data, config);
     return response.data;

@@ -14,6 +14,7 @@ export default function AdminCreateProductForm() {
     register,
     handleSubmit,
     control,
+    setValue,
     watch,
     formState: { errors },
   } = useForm<createProductFormValues>({
@@ -72,9 +73,12 @@ export default function AdminCreateProductForm() {
     });
     formData.append("attributes", JSON.stringify(attributesObj));
 
-    data.images.forEach((file) => {
-      formData.append("images", file);
-    });
+    data.images
+      .filter((file): file is File => file instanceof File)
+      .forEach((file) => {
+        console.log("form data file: ", file);
+        formData.append("images", file);
+      });
 
     postProduct(formData)
       .then(() => toast.success("محصول با موفقیت ایجاد شد"))
@@ -88,6 +92,8 @@ export default function AdminCreateProductForm() {
         )
       );
   };
+
+  console.log("validation error: ", errors);
 
   return (
     <form
@@ -213,7 +219,7 @@ export default function AdminCreateProductForm() {
           if (!attribute) return null;
 
           return (
-            <div className="mb-4" key={field.id} >
+            <div className="mb-4" key={field.id}>
               <div className="flex flex-row justify-between items-center">
                 <label className="mb-1 font-semibold text-gray-700 dark:text-gray-300">
                   {attribute.name}
@@ -262,9 +268,16 @@ export default function AdminCreateProductForm() {
           <div key={field.id} className="flex items-center gap-2 mb-2">
             <input
               type="file"
-              {...register(`images.${index}` as const)}
-              className="border rounded-lg p-2 w-full"
               accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setValue(`images.${index}`, file, {
+                    shouldValidate: true,
+                  });
+                }
+              }}
+              className="border rounded-lg p-2 w-full"
             />
             <button
               type="button"
@@ -278,7 +291,7 @@ export default function AdminCreateProductForm() {
         ))}
         <button
           type="button"
-          onClick={() => appendImg(null)}
+          onClick={() => appendImg(undefined)}
           className="flex items-center gap-1 px-3 py-1 rounded-md border border-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
         >
           <FiPlus />

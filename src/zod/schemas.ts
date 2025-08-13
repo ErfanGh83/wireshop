@@ -41,7 +41,7 @@ export const LoginSchema = z.object({
     .string()
     .min(6, "رمز عبور الزامی است و باید حداقل ۶ کاراکتر باشد"),
 });
-export type LoginInput = z.infer<typeof LoginSchema>
+export type LoginInput = z.infer<typeof LoginSchema>;
 
 const persianNameRegex = /^[\u0600-\u06FF\s]{3,}$/;
 
@@ -50,32 +50,32 @@ const persianDateRegex = /^[۰-۹]{4}-[۰-۹]{2}-[۰-۹]{2}$/;
 export const changeUserInfoSchema = z.object({
   firstname: z
     .string()
-    .regex(persianNameRegex, 'نام باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد')
+    .regex(persianNameRegex, "نام باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد")
     .optional()
-    .or(z.literal('').transform(() => undefined)),
+    .or(z.literal("").transform(() => undefined)),
 
   lastname: z
     .string()
-    .regex(persianNameRegex, 'نام خانوادگی باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد')
+    .regex(
+      persianNameRegex,
+      "نام خانوادگی باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد"
+    )
     .optional()
-    .or(z.literal('').transform(() => undefined)),
+    .or(z.literal("").transform(() => undefined)),
 
   password: z
     .string()
-    .min(6, 'رمز عبور باید حداقل ۶ کاراکتر باشد')
+    .min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد")
     .optional()
-    .or(z.literal('').transform(() => undefined)),
+    .or(z.literal("").transform(() => undefined)),
 
   birthdate: z
     .string()
-    .regex(persianDateRegex, 'تاریخ تولد باید در فرمت ۱۳۷۰-۰۵-۲۳ باشد')
+    .regex(persianDateRegex, "تاریخ تولد باید در فرمت ۱۳۷۰-۰۵-۲۳ باشد")
     .optional()
-    .or(z.literal('').transform(() => undefined))
+    .or(z.literal("").transform(() => undefined))
     .nullable(),
-
 });
-
-;
 
 export const productSchema = z.object({
   name: z.string().min(1, "نام الزامی است"),
@@ -115,18 +115,7 @@ export const createProductSchema = z.object({
         keys.add(attr.key);
       });
     }),
-  images: z
-    .custom<FileList>()
-    .transform((files) => Array.from(files))
-    .pipe(
-      z
-        .array(
-          z.instanceof(File).refine((file) => file.size > 0, {
-            message: "فایل خالی معتبر نیست",
-          })
-        )
-        .min(0, "حداقل یک تصویر الزامی است")
-    ),
+  images: z.array(z.union([z.instanceof(File), z.null()])),
 });
 export type createProductFormValues = z.infer<typeof createProductSchema>;
 
