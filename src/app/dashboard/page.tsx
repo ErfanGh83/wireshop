@@ -181,7 +181,7 @@ export default function DashboardPage() {
                     )
                 }
 
-                <div dir="ltr" className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-900 text-black dark:text-white overflow-y-scroll pb-36">
+                <div dir="ltr" className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-900 text-black dark:text-white overflow-y-scroll pb-16">
                     {!isLoggedIn ? (
                         <Link
                             href={"/auth"}
