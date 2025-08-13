@@ -148,8 +148,8 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 title={product.name}
                 imageUrl={product.images?.[0] || "/placeholder.png"}
                 price={product.price}
-                isSpecial={product.stock > 0}
-                discount={0}
+                available={product.stock > 0}
+                // discount={0}
                 description={product.description}
               />
             ))}
