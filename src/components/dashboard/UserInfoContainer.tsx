@@ -3,7 +3,7 @@ import React, { Dispatch, ReactElement, SetStateAction } from 'react'
 
 type Props = {
     title: string;
-    link: string;
+    link?: string;
     description: string;
     icon: ReactElement;
     className?: string;
@@ -17,7 +17,7 @@ const UserInfoContainer = ({ title, link, icon, description, className, setModul
             className={`w-full h-20 lg:h-36 relative flex flex-row-reverse items-center justify-around px-6 gap-4 transition-all border-[1px] border-gray-300 shadow-md rounded-md ${className}`}
         >
             {
-                setModuleIsOpen ?
+                setModuleIsOpen && !link ?
                     <button
                         onClick={() => setModuleIsOpen(true)}
                         className='size-6 flex items-center justify-center pb-[3px] cursor-pointer text-lg  dark:border-gray-200 text-gray-500 dark:text-gray-200 hover:border-blue-600 hover:text-blue-600 border-[1px] dark:hover:text-blue-300 dark:hover:border-blue-400 border-gray-500 rounded-full font-semibold absolute top-[7%] left-[2%] z-10 transition-colors'
@@ -25,7 +25,7 @@ const UserInfoContainer = ({ title, link, icon, description, className, setModul
                         +
                     </button>
                     :
-                    <Link href={link} className='size-6 flex items-center justify-center pb-[3px] cursor-pointer text-lg  dark:border-gray-200 text-gray-500 dark:text-gray-200 hover:border-blue-600 hover:text-blue-600 border-[1px] dark:hover:text-blue-300 dark:hover:border-blue-400 border-gray-500 rounded-full font-semibold absolute top-[7%] left-[2%] z-10 transition-colors'>
+                    <Link href={link? link : ''} className='size-6 flex items-center justify-center pb-[3px] cursor-pointer text-lg  dark:border-gray-200 text-gray-500 dark:text-gray-200 hover:border-blue-600 hover:text-blue-600 border-[1px] dark:hover:text-blue-300 dark:hover:border-blue-400 border-gray-500 rounded-full font-semibold absolute top-[7%] left-[2%] z-10 transition-colors'>
                         +
                     </Link>
             }
