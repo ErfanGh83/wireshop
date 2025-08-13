@@ -42,7 +42,7 @@ function AdminOrdersList() {
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["وضعیت سفارش", "هزینه", "آدرس"]}
+      tableHead={["وضعیت سفارش", "هزینه", "آدرس", "تغییر به ارسال"]}
       tableStyle={{
         head: "text-blue-700 text-right",
         body: "text-blue-900",

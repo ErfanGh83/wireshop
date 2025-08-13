@@ -12,7 +12,10 @@ export default function AdminOrderModal({ id }: { id: string }) {
 
   useEffect(() => {
     getOrderById(id)
-      .then((res) => setOrder(res))
+      .then((res) => {
+        setOrder(res);
+        toast.success("سفارش با موفقیت تغییر کرد: \nدر حال ارسال.");
+      })
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد.")
       );
@@ -22,11 +25,11 @@ export default function AdminOrderModal({ id }: { id: string }) {
 
   const handleSubmit = () => {
     completeOrder(id)
-      .then(() => toast.success("وضعیت سفارش با موفقیت تغییر یافت"))
+      .then(() => toast.success("سفارش با موفقیت کامل شد."))
       .catch((err) =>
         toast.error(
-          ERROR_MESSAGES.admin[
-            err.status as keyof typeof ERROR_MESSAGES.admin
+          ERROR_MESSAGES.complete_cart[
+            err.status as keyof typeof ERROR_MESSAGES.complete_cart
           ] ||
             err.response.error ||
             "خطایی رخ داده است."
@@ -35,55 +38,92 @@ export default function AdminOrderModal({ id }: { id: string }) {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-lg max-w-lg w-full p-6 relative shadow-lg">
-      <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+    <div className="bg-white dark:bg-slate-800 w-full">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-3">
         جزییات سبد خرید
       </h2>
 
-      <div className="mb-4">
-        <p>
-          <strong>وضعیت:</strong>{" "}
-          {order.status == "paid" ? "پرداخت شده" : "در حال ارسال"}
+      <div className="my-1 text-sm">
+        <p className="m-2">
+          <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
+            وضعیت:
+          </span>
+          <span
+            className={`px-2 py-1 rounded text-white text-xs ${
+              order.status !== "paid" ? "bg-green-500" : "bg-yellow-500"
+            }`}
+          >
+            {order.status === "paid" ? "پرداخت شده" : "در حال ارسال"}
+          </span>
         </p>
-        <p>
-          <strong>نوع وسیله نقلیه:</strong>{" "}
-          {order.vehicleType == "motorcycle" ? "موتور" : "پیک آپ"}
+        <p className="m-2">
+          <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
+            نوع وسیله نقلیه:
+          </span>
+          {order.vehicleType === "motorcycle" ? "موتور" : "پیک آپ"}
         </p>
-        <p>
-          <strong>وزن کل (کیلوگرم):</strong> {order.WeightKg}
+        <p className="m-2">
+          <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
+            وزن کل (کیلوگرم):
+          </span>
+          {order.weightKg}
         </p>
-        <p>
-          <strong>هزینه کل:</strong> {order.cost} تومان
+        <p className="m-2">
+          <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
+            هزینه کل:
+          </span>
+          {order.cost.toLocaleString()} تومان
         </p>
       </div>
 
-      <div className="mb-4">
-        <h3 className="font-semibold mb-2">آدرس ارسال</h3>
-        <p>
-          {order.address.province}، {order.address.city}
-        </p>
-        <p>کد پستی: {order.address.postalCode}</p>
-        <p>توضیحات: {order.address.description}</p>
-        <p>پلاک: {order.address.plaque}</p>
+      <div className="mt-3">
+        <h3 className="font-semibold mb-2 text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-1">
+          آدرس ارسال
+        </h3>
+        <div className="my-1 text-sm text-gray-600 dark:text-gray-300">
+          <p>
+            {order.address.province}، {order.address.city}
+          </p>
+          <p>کد پستی: {order.address.postalCode}</p>
+          <p>توضیحات: {order.address.description}</p>
+          <p>پلاک: {order.address.plaque}</p>
+        </div>
       </div>
 
-      <div>
-        <h3 className="font-semibold mb-2">آیتم‌ها</h3>
+      <div className="mt-3">
+        <h3 className="font-semibold mb-2 text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-1">
+          آیتم‌ها
+        </h3>
         {order.items.length === 0 ? (
-          <p>هیچ آیتمی موجود نیست.</p>
+          <p className="text-sm text-gray-500">هیچ آیتمی موجود نیست.</p>
         ) : (
-          <ul className="space-y-2 max-h-48 overflow-y-auto">
+          <ul className="my-3 max-h-48 overflow-y-auto pr-1">
             {order.items.map((item) => (
               <li
                 key={item.id}
-                className="border rounded p-2 flex justify-between items-center"
+                className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-gray-50 dark:bg-slate-900/50"
               >
-                <div>
-                  <p className="font-semibold">{item.product.name}</p>
-                  <p>تعداد: {item.quantity}</p>
-                  <p>قیمت واحد: {item.product.price} تومان</p>
-                  <p>وزن واحد: {item.product.weightKg} کیلوگرم</p>
-                  <p>وضعیت موجودی: {item.available ? "موجود" : "ناموجود"}</p>
+                <div className="flex justify-between items-center">
+                  <div className="text-sm my-1">
+                    <p className="font-semibold text-gray-800 dark:text-gray-100">
+                      {item.product.name}
+                    </p>
+                    <p>تعداد: {item.quantity}</p>
+                    <p>
+                      قیمت واحد: {item.product.price.toLocaleString()} تومان
+                    </p>
+                    <p>وزن واحد: {item.product.weightKg} کیلوگرم</p>
+                    <p>
+                      وضعیت موجودی:{" "}
+                      <span
+                        className={`px-2 py-0.5 rounded text-white text-xs ${
+                          item.available ? "bg-green-500" : "bg-red-500"
+                        }`}
+                      >
+                        {item.available ? "موجود" : "ناموجود"}
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </li>
             ))}
@@ -92,7 +132,7 @@ export default function AdminOrderModal({ id }: { id: string }) {
       </div>
 
       <button
-        className="px-4 py-3 bg-blue-500 text-white dark:bg-purple-600 hover:bg-blue-600 dark:hover:bg-purple-700 transition-all"
+        className="w-full mt-3 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-purple-600 dark:hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors"
         onClick={handleSubmit}
       >
         نهائی کردن سفارش

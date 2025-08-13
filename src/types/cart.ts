@@ -48,7 +48,7 @@ export interface Order {
   userId: string;
   status: "sending" | "paid" | "completed";
   vehicleType: "motorcycle" | "pickup_truck";
-  WeightKg: number;
+  weightKg: number;
   cost: number;
   address: Address;
   items: Item[];
