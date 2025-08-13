@@ -181,7 +181,7 @@ export default function DashboardPage() {
                     )
                 }
 
-                <div className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-900 text-black dark:text-white overflow-y-scroll">
+                <div dir="ltr" className="w-screen flex flex-col h-full py-6 items-center justify-start sm:pt-12 bg-white dark:bg-slate-900 text-black dark:text-white overflow-y-scroll pb-36">
                     {!isLoggedIn ? (
                         <Link
                             href={"/auth"}
@@ -206,7 +206,7 @@ export default function DashboardPage() {
                             لطفا ابتدا وارد حساب کاربری خود شوید
                         </Link>
                     ) : (
-                        <div className="min-h-[600px] md:min-h-0 h-fit max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 sm:pb-0 flex flex-col-reverse lg:flex-row-reverse items-center justify-end sm:justify-center gap-4">
+                        <div dir="rtl" className="min-h-[600px] md:min-h-0 h-fit max-w-[2000px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 sm:pb-0 flex flex-col-reverse lg:flex-row items-center justify-end sm:justify-center gap-4">
                             {/* Main User Card - Now comes first in mobile view */}
                             <div className="w-full lg:w-11/12 h-auto flex flex-col px-2 sm:px-4 md:px-8 order-2 lg:order-1">
                                 <div className="size-full flex flex-col p-2 sm:p-4 border-[1px] gap-2 border-gray-300 dark:border-none bg-blue-100/60 dark:bg-slate-700 rounded-md">
@@ -277,8 +277,7 @@ export default function DashboardPage() {
                                 </div>
                             </div>
 
-                            {/* User Lists - Now comes after user card in mobile view */}
-                            <div className="w-screen h-fit sm:h-full sm:w-11/12 lg:w-[250px] bg-white dark:bg-slate-600 border border-gray-300 dark:border-transparent rounded-md flex flex-row sm:flex-col fixed z-10 sm:static bottom-0 left-0 order-1 lg:order-2 overflow-hidden">
+                            <div className="w-full h-fit sm:h-full sm:w-11/12 lg:w-[250px] bg-white dark:bg-slate-600 border border-gray-300 dark:border-transparent rounded-md flex flex-row sm:flex-col bottom-0 left-0 overflow-hidden">
                                 <UserShipmentContainer
                                     title={'سبد خرید'}
                                     icon={<CgShoppingCart />}

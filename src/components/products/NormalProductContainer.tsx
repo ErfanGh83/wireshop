@@ -10,7 +10,7 @@ type Props = {
     available: boolean
     description?: string
     className?: string
-    maxDescriptionLength?: number // Add this new prop
+    maxDescriptionLength?: number
 }
 
 const NormalProductContainer = ({
