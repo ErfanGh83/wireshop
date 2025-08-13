@@ -1,5 +1,5 @@
 import { ProductDetail } from "@/types/product_detail";
-import { get, Json, post } from "./apiClient";
+import { get, post } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
 import { CommentResponse } from "@/types/comment";
 
@@ -11,6 +11,6 @@ export async function getProductComment(id: string) {
   return get<CommentResponse>(`${API_ENDPOINTS.PRODUCT_COMMENT}/${id}`);
 }
 
-export async function postProductComment(id: string, data:Json) {
+export async function postProductComment(id: string, data:any) {
   return post(`${API_ENDPOINTS.PRODUCT_COMMENT}/${id}`, data);
 }

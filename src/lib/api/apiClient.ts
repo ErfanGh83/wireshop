@@ -97,9 +97,12 @@ export async function patch<T>(url: string, data?: any, config = {}): Promise<T>
   }
 }
 
-export async function del<T>(url: string, config = {}): Promise<T> {
+export async function del<T>(url: string, config = {}, data?: any): Promise<T> {
   try {
-    const response = await api.delete<T>(url, config);
+    const response = await api.delete<T>(url, {
+      ...config,
+      data,
+    });
     return response.data;
   } catch (error: any) {
     if (error.response) {
