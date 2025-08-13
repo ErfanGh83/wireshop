@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 import AddressFormModule from '../forms/AddressFormModule'
 import { Address } from '@/types/address'
 import { IoLocation } from 'react-icons/io5'
+import { useAuthUser } from '../auth/useAuthUser'
+import { VscLoading } from 'react-icons/vsc'
 
 type Props = {
-  addresses?: Address[]
+  fetchedAddresses?: Address[]
   setModuleIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
@@ -18,20 +20,24 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
   const [addresses, setAddresses] = useState<Address[] | null>(null);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
+
+  const { fullUserInfo, loading, refetch } = useAuthUser()
+
   const handleCloseModule = () => {
     setModuleIsOpen(false);
   };
 
   useEffect(() => {
-    const savedAddress = localStorage.getItem('selectedAddress');
-    if (savedAddress) {
-      setSelectedAddress(JSON.parse(savedAddress));
-    }
+    setAddresses(fullUserInfo?.addresses || null)
 
-    if (addresses?.length) {
-      setAddresses(addresses)
+    const storedAddress = localStorage.getItem('selectedAddress');
+
+    if (storedAddress) {
+      const parsedAddress = JSON.parse(storedAddress);
+
+      setSelectedAddress(parsedAddress);
     }
-  }, []);
+  }, [fullUserInfo]);
 
   useEffect(() => {
     if (selectedAddress) {
@@ -51,7 +57,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
     <div className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative">
       <AnimatePresence mode="wait">
         {showForm ? (
-          <AddressFormModule setShowForm={setShowForm} />
+          <AddressFormModule refetch={refetch} setShowForm={setShowForm} />
         ) : (
           <motion.div
             key="address-list"
@@ -87,7 +93,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
                     <label htmlFor={`address-${address.id}`} className="flex-1 cursor-pointer">
                       <div className="flex flex-col">
                         <p className="text-sm md:text-base font-semibold">
-                          {truncateText(address.province + address.city, MAX_TITLE_LENGTH)}
+                          {truncateText(address.province + ' - ' + address.city, MAX_TITLE_LENGTH)}
                         </p>
                         <p className="text-xs md:text-sm text-gray-600">
                           {truncateText(address.description, MAX_ADDRESS_LENGTH)}
@@ -96,16 +102,28 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
                     </label>
                   </div>
                 ))
-              ) : (
-                <div
-                  className='size-full flex flex-col items-center justify-center gap-2'
-                >
-                  <IoLocation className='text-7xl text-gray-500' />
-                  <p className="size-fit text-xl md:text-2xl font-medium text-gray-600">
-                    آدرسی یافت نشد
-                  </p>
-                </div>
-              )}
+              ) :
+                loading ?
+                  <div
+                    className='size-full flex flex-col items-center justify-center gap-2'
+                  >
+                    <VscLoading className='text-7xl text-gray-500 animate-spin' />
+                    <p className="size-fit text-xl md:text-2xl font-medium text-gray-600">
+                      درحال بارگذاری
+                    </p>
+                  </div>
+                  :
+                  (
+                    <div
+                      className='size-full flex flex-col items-center justify-center gap-2'
+                    >
+                      <IoLocation className='text-7xl text-gray-500' />
+                      <p className="size-fit text-xl md:text-2xl font-medium text-gray-600">
+                        آدرسی یافت نشد
+                      </p>
+                    </div>
+                  )
+              }
             </div>
 
             <button

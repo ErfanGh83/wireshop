@@ -1,29 +1,25 @@
 "use client";
 
 import React, { Dispatch, SetStateAction, useState } from "react";
-import {
-  MdArrowDropDown,
-} from "react-icons/md";
+import { MdArrowDropDown } from "react-icons/md";
 import { categories } from "./filtersList";
 import CategoryItem from "./CategoryItem";
 
 type Props = {
-  category: string | null; // now stores the category ID
+  category: string | null;
   setCategory: Dispatch<SetStateAction<string | null>>;
 };
-
 
 const Categories = ({ category, setCategory }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${
-        isOpen ? "h-fit" : "h-16"
-      }`}
-    >
+    <div className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${
+      isOpen ? "min-h-16" : "h-16"
+    }`}>
       {/* Top bar */}
       <div
+        dir="rtl"
         className="w-full h-16 px-4 py-4 flex flex-row items-center justify-between cursor-pointer"
         onClick={() => setIsOpen((prev) => !prev)}
       >
@@ -37,7 +33,7 @@ const Categories = ({ category, setCategory }: Props) => {
 
       {/* Dropdown body */}
       {isOpen && (
-        <div className="w-full h-[400px] bg-gray-100 dark:bg-slate-500 p-4 space-y-3 max-h-72 overflow-y-auto">
+        <div className="w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto">
           {categories.map((cat) => (
             <CategoryItem
               key={cat.id || cat.en}

@@ -31,7 +31,7 @@ const DarkButton = ({ currentTheme, onSwitch }: DarkButtonProps) => {
 
   return (
     <motion.button
-      className='size-6 md:size-8 flex items-center justify-center rounded-full bg-black shadow-xl hover:cursor-pointer transition-all'
+      className='size-6 md:size-8 flex items-center justify-center rounded-full bg-slate-800 shadow-2xl hover:cursor-pointer transition-all'
       onClick={onSwitch}
       initial={{ opacity: 0, x: initialX }}
       animate={{ opacity: 1, x: 0 }}

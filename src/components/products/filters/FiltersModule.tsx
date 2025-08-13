@@ -59,7 +59,7 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
     }
 
     return (
-        <div className='relative h-full flex flex-col pt-12 pb-6 sm:pb-10 sm:h-[88vh] w-full overflow-y-auto sm:pt-12 justify-between border-l-2 px-2 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-700'>
+        <div className='relative h-full flex flex-col pt-12 pb-6 sm:pb-10 sm:h-[92vh] w-full border-l-2 px-2 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-700'>
             <button
                 onClick={handleCloseWithoutApplying}
                 className='absolute top-2 right-2 size-fit hover:cursor-pointer'
@@ -67,64 +67,61 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
                 <FaXmark className='m-auto dark:text-white' size={24} />
             </button>
 
-            <div className='w-full h-full flex flex-col items-center justify-between'>
+            <div className='w-full h-full flex flex-col'>
+                {/* Scrollable filters area */}
+                <div className='flex-1 overflow-y-auto py-2'>
+                    <div className='space-y-4'>
+                        {/* Brands Filter */}
+                        <Brands
+                            brands={brands}
+                            setBrands={setBrands}
+                        />
 
-                <div
-                    className='h-full w-full flex flex-col items-center space-y-4'
-                >
-                    {/* Brands Filter */}
-                    <Brands
-                        brands={brands}
-                        setBrands={setBrands}
-                    />
+                        {/* Price Range Filter */}
+                        <PriceRange
+                            priceRange={priceRange}
+                            setPriceRange={setPriceRange}
+                            min={0}
+                            max={10000}
+                        />
 
-                    {/* Price Range Filter */}
-                    <PriceRange
-                        priceRange={priceRange}
-                        setPriceRange={setPriceRange}
-                        min={0}
-                        max={10000}
-                    />
+                        {/* In Stock Filter */}
+                        <div dir='rtl' className='w-full flex items-center justify-between p-4 bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg'>
+                            <label htmlFor='inStock' className='text-lg cursor-pointer'>
+                                فقط کالاهای موجود
+                            </label>
+                            <input
+                                id='inStock'
+                                type='checkbox'
+                                checked={onlyInStock}
+                                onChange={(e) => setOnlyInStock(e.target.checked)}
+                                className='w-5 h-5 cursor-pointer'
+                            />
+                        </div>
 
-                    {/* In Stock Filter */}
-                    <div className='w-full flex items-center justify-between p-4 bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg'>
-                        <label htmlFor='inStock' className='text-lg cursor-pointer'>
-                            فقط کالاهای موجود
-                        </label>
-                        <input
-                            id='inStock'
-                            type='checkbox'
-                            checked={onlyInStock}
-                            onChange={(e) => setOnlyInStock(e.target.checked)}
-                            className='w-5 h-5 cursor-pointer'
+                        {/* Category Filter */}
+                        <Categories
+                            category={category}
+                            setCategory={setCategory}
                         />
                     </div>
-
-                    {/* Category Filter */}
-                    <Categories
-                        category={category}
-                        setCategory={setCategory}
-                    />
-
                 </div>
 
-                {/* Action Buttons */}
-
-            </div>
-
-            <div className='w-full h-fit flex flex-row gap-4 px-4 pt-4'>
-                <button
-                    onClick={resetFilters}
-                    className='w-full h-16 text-2xl sm:text-lg sm:h-10 px-4 py-2 cursor-pointer bg-gray-200 rounded-lg hover:bg-gray-300'
-                >
-                    حذف فیلترها
-                </button>
-                <button
-                    onClick={handleClose}
-                    className=' w-full h-16 text-2xl sm:text-lg sm:h-10 px-4 py-2 cursor-pointer bg-blue-500 text-white rounded-lg hover:bg-blue-600'
-                >
-                    اعمال فیلترها
-                </button>
+                {/* Fixed action buttons at bottom */}
+                <div className='w-full h-fit flex flex-row gap-4 px-4 sm:pb-2 pt-4'>
+                    <button
+                        onClick={resetFilters}
+                        className='w-full h-16 text-2xl sm:text-lg px-4 py-2 cursor-pointer bg-gray-200 rounded-lg hover:bg-gray-300'
+                    >
+                        حذف فیلترها
+                    </button>
+                    <button
+                        onClick={handleClose}
+                        className='w-full h-16 text-2xl sm:text-lg px-4 py-2 cursor-pointer bg-blue-500 text-white rounded-lg hover:bg-blue-600'
+                    >
+                        اعمال فیلترها
+                    </button>
+                </div>
             </div>
         </div>
     )

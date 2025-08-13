@@ -8,7 +8,7 @@ import ShoppingCartSection from './main-header-components/ShoppingCartSection'
 const MainHeader = () => {
   return (
     <>
-      <div className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 border-b-1 bg-white dark:bg-slate-800 border-gray-100 dark:border-transparent'>
+      <div className='w-screen h-12 md:h-14 xl:h-16 flex flex-row-reverse items-center justify-between px-4 bg-white dark:bg-slate-800'>
         <div className='h-fit w-fit sm:w-1/3 flex flex-row-reverse items-center gap-x-4'>
           <SignupOrLoginButton />
 

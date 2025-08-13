@@ -18,7 +18,7 @@ const Brands = ({ brands, setBrands }: Props) => {
     }
 
     const handleBrandSelect = (brandEn: string) => {
-        setSelectedBrands(prev => 
+        setSelectedBrands(prev =>
             prev.includes(brandEn)
                 ? prev.filter(b => b !== brandEn) // Remove if already selected
                 : [...prev, brandEn] // Add if not selected
@@ -31,8 +31,9 @@ const Brands = ({ brands, setBrands }: Props) => {
     }, [selectedBrands, setBrands])
 
     return (
-        <div className={`w-full min-h-16 flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${isOpen ? 'h-fit' : 'h-16'}`}>
-            <div 
+        <div dir='rtl' className={`w-full min-h-16 flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${isOpen ? "min-h-16" : "h-16"
+            }`}>
+            <div
                 className='w-full h-16 flex flex-row items-center justify-between px-4 py-4 cursor-pointer'
                 onClick={handleToggle}
             >
@@ -41,9 +42,9 @@ const Brands = ({ brands, setBrands }: Props) => {
             </div>
 
             {isOpen && (
-                <div className='w-full h-[400px] bg-gray-100 dark:bg-slate-500 p-4 space-y-3 max-h-64 overflow-y-auto'>
+                <div className='w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto h-fit'>
                     {brandNames.map((brand) => (
-                        <div 
+                        <div
                             key={brand.en}
                             className="flex items-center gap-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-slate-600 p-2 rounded transition-colors"
                             onClick={() => handleBrandSelect(brand.en)}

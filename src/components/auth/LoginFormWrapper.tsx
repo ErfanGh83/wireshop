@@ -72,7 +72,11 @@ const LoginFormWrapper = () => {
       if (err instanceof ApiError) {
         if (err.status === 401) {
           toast.error('رمز عبور اشتباه است');
-        } else if (err.status === 404) {
+        }
+        else if (err.status === 400) {
+          toast.error('شماره تلفن یا رمز وارد شده نامعتبر');
+        }
+        else if (err.status === 404) {
           toast.error('کاربری با این شماره یافت نشد');
         } else {
           toast.error('خطایی در ورود رخ داد');

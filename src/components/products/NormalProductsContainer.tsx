@@ -11,7 +11,7 @@ const NormalProductsContainer = () => {
         <p className="text-gray-600 dark:text-gray-400 mt-2">راهکارهای الکتریکی با کیفیت برای تمام نیازهای شما</p>
       </div>
 
-      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
         {wireAndCableProducts.map((product) => (
           <NormalProductContainer
             key={product.id}

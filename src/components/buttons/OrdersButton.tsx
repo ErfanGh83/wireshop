@@ -20,7 +20,7 @@ const OrdersButton = ({ setOrdersModuleIsOpen, ordersModuleIsOpen }: Props) => {
     return (
         <button
             onClick={handleClick}
-            className='size-fit p-1 flex items-center justify-center gap-1 rounded-md border-[1px] border-black text-sm sm:text-xl cursor-pointer hover:text-blue-400 text-black bg-white dark:text-white dark:bg-slate-600 transition-colors'
+            className='size-fit p-1 flex items-center justify-center gap-1 border-[1px] text-black dark:text-white border-gray-300 shadow-md hover:text-blue-500 rounded-sm dark:hover:text-blue-400 hover:shadow-blue-500 hover:border-blue-300 transition-all text-sm sm:text-xl cursor-pointer bg-white dark:bg-slate-600'
         >
             {ordersModuleIsOpen ? <p className='text-md'>بستن منو</p> : <p className='text-md'>مرتب سازی</p>}
             <BiSort />

@@ -20,6 +20,10 @@ export const API_ENDPOINTS = {
   ACTIVE_CART: "/api/cart/my",
   MODIFY_CART: "/api/cart/item",
   GET_PROFILE: "/api/user/my-profile",
+  FP_REQUEST_OTP: "/api/auth/forgot-password/send-code", //method: POST, request body: phone number
+  FP_VERIFY_OTP: "/api/auth/forgot-password/verify", //method: POST, request body: phone number + verification code
+  FP_CHANGE_PASS: "/api/auth/forgot-password/change-password", //method: POST, request body: phone number + new password
+  CHANGE_PROFILE: "/api/user/profile", //method: PUT
   ADD_ADDRESS: "/api/user/address",
   CHECK_ADMIN: "/api/auth/admin-check",
   PRODUCT_COMMENT: "/api/comment",
@@ -207,3 +211,6 @@ export const CATEGORIES = [
     attributes: [],
   },
 ];
+
+  PRODUCTS: "/api/product",
+};

@@ -31,7 +31,7 @@ const HamburgerMenu = () => {
 
     return (
         <motion.div
-            className='w-56 h-full bg-white dark:bg-slate-600 flex flex-col pt-3'
+            className='w-56 h-full bg-white dark:bg-slate-700 flex flex-col pt-3'
             initial="hidden"
             animate="visible"
             variants={containerVariants}
