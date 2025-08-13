@@ -66,7 +66,7 @@ const AddressFormModal = ({ setShowForm, refetch }: AddressFormProps) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: 'spring', damping: 20, stiffness: 500 }}
-      className="w-screen h-screen sm:h-[600px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] bg-white rounded-md overflow-x-hidden overflow-y-auto shadow-lg"
+      className="w-screen h-screen sm:h-[600px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] bg-white dark:bg-slate-800 text-black dark:text-white rounded-md overflow-x-hidden overflow-y-auto shadow-lg"
     >
       <div className="p-4 relative">
         <button
@@ -81,7 +81,7 @@ const AddressFormModal = ({ setShowForm, refetch }: AddressFormProps) => {
       <form onSubmit={handleSubmit} className="w-full h-fit p-6 space-y-4 px-24 flex flex-col justify-between">
         {/* Province Input */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">استان *</label>
+          <label className="block text-sm font-medium mb-1">استان *</label>
           <input
             type="text"
             name="province"
@@ -98,7 +98,7 @@ const AddressFormModal = ({ setShowForm, refetch }: AddressFormProps) => {
 
         {/* City Input */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">شهر *</label>
+          <label className="block text-sm font-medium mb-1">شهر *</label>
           <input
             type="text"
             name="city"
@@ -115,7 +115,7 @@ const AddressFormModal = ({ setShowForm, refetch }: AddressFormProps) => {
 
         {/* Postal Address Input */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">آدرس پستی *</label>
+          <label className="block text-sm font-medium mb-1">آدرس پستی *</label>
           <input
             type="text"
             name="description"
@@ -132,7 +132,7 @@ const AddressFormModal = ({ setShowForm, refetch }: AddressFormProps) => {
 
         {/* Plaque Input */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">پلاک *</label>
+          <label className="block text-sm font-medium mb-1">پلاک *</label>
           <input
             type="text"
             name="plaque"
@@ -149,7 +149,7 @@ const AddressFormModal = ({ setShowForm, refetch }: AddressFormProps) => {
 
         {/* Postal Code Input */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">کد پستی *</label>
+          <label className="block text-sm font-medium mb-1">کد پستی *</label>
           <input
             type="text"
             name="postalCode"

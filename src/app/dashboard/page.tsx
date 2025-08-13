@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import AddressModal from "@/components/dashboard/AddressModal"
 import OrdersModal from "@/components/dashboard/OrdersModal"
-import BigShoppingCartModal from "@/components/headers/main-header-components/BigShoppingCartModal"
 import ProfileFormModal from "@/components/dashboard/ProfileFormModal"
 import ConfirmModal from "@/components/dashboard/ConfirmModal"
 import UserInfoContainer from "@/components/dashboard/UserInfoContainer";
@@ -25,7 +24,6 @@ export default function DashboardPage() {
 
     const [addressesModalIsOpen, setAddressesModalIsOpen] = useState(false);
     const [ordersModalIsOpen, setOrdersModalIsOpen] = useState(false);
-    const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
     const [profileFormIsOpen, setProfileFormIsOpen] = useState(false);
     const [confirmModalIsOpen, setConfirmModalIsOpen] = useState(false);
 
@@ -59,10 +57,6 @@ export default function DashboardPage() {
 
                 <ModalWrapper isOpen={ordersModalIsOpen} onClose={() => setOrdersModalIsOpen(false)}>
                     <OrdersModal setModalIsOpen={setOrdersModalIsOpen} tab="in_progress" />
-                </ModalWrapper>
-
-                <ModalWrapper isOpen={cartModalIsOpen} onClose={() => setCartModalIsOpen(false)}>
-                    <BigShoppingCartModal setModalIsOpen={setCartModalIsOpen} />
                 </ModalWrapper>
 
                 <ModalWrapper isOpen={confirmModalIsOpen} onClose={() => setConfirmModalIsOpen(false)}>
@@ -152,7 +146,7 @@ export default function DashboardPage() {
                                 <UserShipmentContainer
                                     title="سبد خرید"
                                     icon={<CgShoppingCart />}
-                                    onClick={() => setCartModalIsOpen(true)}
+                                    onClick={() => router.push('/cart')}
                                     className="bg-white dark:bg-slate-800 rounded-xl shadow hover:shadow-lg transition p-4"
                                 />
                                 <UserShipmentContainer

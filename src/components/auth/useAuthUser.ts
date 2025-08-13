@@ -40,6 +40,7 @@ export function useAuthUser() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [fullUserInfo, setFullUserInfo] = useState<FullUserInfo | null>(null);
+  const [error, setError] = useState<unknown | null>(null)
 
   const refetch = useCallback(async () => {
     setLoading(true);
@@ -59,7 +60,7 @@ export function useAuthUser() {
         setFullUserInfo(null);
       }
     } catch (err) {
-      console.error("Failed to fetch auth user:", err);
+      setError(err)
       setIsLoggedIn(false);
       setUserInfo(null);
       setFullUserInfo(null);
@@ -72,5 +73,5 @@ export function useAuthUser() {
     refetch(); // initial fetch on mount
   }, [refetch]);
 
-  return { userInfo, fullUserInfo, isLoggedIn, loading, refetch };
+  return { userInfo, fullUserInfo, isLoggedIn, loading, error, refetch };
 }

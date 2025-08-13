@@ -23,7 +23,7 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
 
-  const { fullUserInfo, loading, refetch } = useAuthUser()
+  const { fullUserInfo, loading, refetch, error } = useAuthUser()
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
@@ -38,6 +38,10 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
       const parsedAddress = JSON.parse(storedAddress);
 
       setSelectedAddress(parsedAddress);
+    }
+
+    if(error){
+      console.log(error)
     }
   }, [fullUserInfo]);
 
@@ -73,7 +77,7 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="w-full h-full flex flex-col relative rounded-md overflow-hidden bg-white shadow-lg"
+            className="w-full h-full flex flex-col relative rounded-md overflow-hidden bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg"
           >
             <button
               onClick={handleCloseModal}
@@ -88,7 +92,7 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
                 addresses.map((address) => (
                   <div
                     key={address.id}
-                    className="w-full flex items-start gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-start gap-3 p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                   >
                     <input
                       type="radio"
@@ -104,7 +108,7 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
                         <p className="text-sm md:text-base font-semibold">
                           {truncateText(address.province + ' - ' + address.city, MAX_TITLE_LENGTH)}
                         </p>
-                        <p className="text-xs md:text-sm text-gray-600">
+                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
                           {truncateText(address.description, MAX_ADDRESS_LENGTH)}
                         </p>
                       </div>
