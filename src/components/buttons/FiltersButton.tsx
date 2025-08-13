@@ -2,18 +2,18 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { FiFilter } from 'react-icons/fi'
 
 type Props = {
-    setFiltersModuleOpen: Dispatch<SetStateAction<boolean>>
-    filtersModuleIsOpen: boolean
+    setFiltersModalOpen: Dispatch<SetStateAction<boolean>>
+    filtersModalIsOpen: boolean
 }
 
-const FiltersButton = ({ setFiltersModuleOpen, filtersModuleIsOpen }: Props) => {
+const FiltersButton = ({ setFiltersModalOpen, filtersModalIsOpen }: Props) => {
     
     const handleClick = () => {
-        if(filtersModuleIsOpen){
-            setFiltersModuleOpen(false)
+        if(filtersModalIsOpen){
+            setFiltersModalOpen(false)
         }
         else {
-            setFiltersModuleOpen(true)
+            setFiltersModalOpen(true)
         }
     }
 
@@ -22,7 +22,7 @@ const FiltersButton = ({ setFiltersModuleOpen, filtersModuleIsOpen }: Props) => 
             onClick={handleClick}
             className='size-fit p-1 flex items-center justify-center gap-1 border-[1px] text-black dark:text-white border-gray-300 shadow-md hover:text-blue-500 rounded-sm dark:hover:text-blue-400 hover:shadow-blue-500 hover:border-blue-300 transition-all text-sm sm:text-xl cursor-pointer bg-white dark:bg-slate-600'
         >
-            {filtersModuleIsOpen ? <p className='text-md'>بستن فیلتر ها</p> : <p className='text-md'>فیلترها</p>}
+            {filtersModalIsOpen ? <p className='text-md'>بستن فیلتر ها</p> : <p className='text-md'>فیلترها</p>}
             <FiFilter/>
         </button>
     )

@@ -3,16 +3,16 @@
 import ShoppingCartButton from '@/components/buttons/ShoppingCartButton'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
-import ShoppingCartModule from './ShoppingCartModule'
+import ShoppingCartModal from './ShoppingCartModal'
 
 const ShoppingCartSection = () => {
-    const [cartModuleIsOpen, setCartModuleIsOpen] = useState(false)
+    const [cartModalIsOpen, setCartModalIsOpen] = useState(false)
 
     return (
         <div className='relative size-fit'>
-            <ShoppingCartButton setModuleIsOpen={setCartModuleIsOpen} itemCount={0}/>
+            <ShoppingCartButton setModalIsOpen={setCartModalIsOpen} itemCount={0}/>
             {
-                cartModuleIsOpen && (
+                cartModalIsOpen && (
                     <AnimatePresence>
                         <motion.div
                             key="address-modal-backdrop"
@@ -29,7 +29,7 @@ const ShoppingCartSection = () => {
                                 exit={{ scale: 0.9, opacity: 0 }}
                                 transition={{ type: "spring", damping: 20, stiffness: 300 }}
                             >
-                                <ShoppingCartModule setModuleIsOpen={setCartModuleIsOpen} moduleIsOpen={cartModuleIsOpen} />
+                                <ShoppingCartModal setModalIsOpen={setCartModalIsOpen} ModalIsOpen={cartModalIsOpen} />
                             </motion.div>
                         </motion.div>
                     </AnimatePresence>

@@ -9,7 +9,7 @@ type Props = {
     setOrder: Dispatch<SetStateAction<string | null>>
 }
 
-const OrdersModule = ({ order, setOrder }: Props) => {
+const OrdersModal = ({ order, setOrder }: Props) => {
 
 
     return (
@@ -30,4 +30,4 @@ const OrdersModule = ({ order, setOrder }: Props) => {
     )
 }
 
-export default OrdersModule
+export default OrdersModal

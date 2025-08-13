@@ -9,7 +9,7 @@ import Link from "next/link";
 
 type Props = {
     tab: "in_progress" | "completed" | "cancelled";
-    setModuleIsOpen: Dispatch<SetStateAction<boolean>>;
+    setModalIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const statusLabels: Record<"in_progress" | "completed" | "cancelled", string> = {
@@ -18,14 +18,14 @@ const statusLabels: Record<"in_progress" | "completed" | "cancelled", string> = 
     cancelled: "مرجوع شده",
 };
 
-const OrdersModule = ({ tab, setModuleIsOpen }: Props) => {
+const OrdersModal = ({ tab, setModalIsOpen }: Props) => {
     const [orders, setOrders] = useState<Order[] | null>(null);
     const [currentTab, setCurrentTab] = useState<
         "in_progress" | "completed" | "cancelled"
     >(tab);
 
-    const handleCloseModule = () => {
-        setModuleIsOpen(false);
+    const handleCloseModal = () => {
+        setModalIsOpen(false);
     };
 
     // Sync tab from parent
@@ -55,7 +55,7 @@ const OrdersModule = ({ tab, setModuleIsOpen }: Props) => {
             <div className="flex justify-between items-center mb-4 shrink-0">
                 <h2 className="text-xl font-semibold mx-auto dark:text-white">سفارش‌های من</h2>
                 <button
-                    onClick={handleCloseModule}
+                    onClick={handleCloseModal}
                     className="absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500"
                 >
                     <FaXmark size={20} />
@@ -141,4 +141,4 @@ const OrdersModule = ({ tab, setModuleIsOpen }: Props) => {
 
 };
 
-export default OrdersModule;
+export default OrdersModal;

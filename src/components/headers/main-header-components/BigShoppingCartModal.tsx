@@ -4,13 +4,13 @@ import { cartItems } from './exampleCartItems'
 import ShoppingCartItem from './ShoppingCartItem'
 
 type Props = {
-    setModuleIsOpen: Dispatch<SetStateAction<boolean>>
+    setModalIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const BigShoppingCartModule = ({ setModuleIsOpen }: Props) => {
+const BigShoppingCartModal = ({ setModalIsOpen }: Props) => {
 
-    const handleCloseModule = () => {
-        setModuleIsOpen(false)
+    const handleCloseModal = () => {
+        setModalIsOpen(false)
     }
 
     return (
@@ -18,7 +18,7 @@ const BigShoppingCartModule = ({ setModuleIsOpen }: Props) => {
             className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] border-[1px] rounded-r-md rounded-b-md overflow-hidden border-gray-300 dark:border-slate-500 shadow-md bg-white dark:bg-slate-800 dark:text-white relative"
         >
             <button
-                onClick={handleCloseModule}
+                onClick={handleCloseModal}
                 className="size-fit absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
             >
                 <FaXmark size={20} />
@@ -38,7 +38,7 @@ const BigShoppingCartModule = ({ setModuleIsOpen }: Props) => {
                 >
                     {
                         cartItems.map((item, index) => (
-                            <ShoppingCartItem key={index} title={item.title} image={item.image} quantity={item.quantity} price={item.price} discount={item.discount} total={item.total} onIncrease={() => {}} onDecrease={() => {}} />
+                            <ShoppingCartItem key={index} title={item.title} quantity={item.quantity} price={item.price} discount={item.discount} total={item.total} itemId={''} productId={''}/>
                         ))
                     }
                 </div>
@@ -54,4 +54,4 @@ const BigShoppingCartModule = ({ setModuleIsOpen }: Props) => {
     )
 }
 
-export default BigShoppingCartModule
+export default BigShoppingCartModal

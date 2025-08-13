@@ -10,11 +10,11 @@ import { logout } from "@/lib/api/authApi";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import AddressModule from "@/components/dashboard/AddressModule";
-import OrdersModule from "@/components/dashboard/OrdersModule";
-import BigShoppingCartModule from "@/components/headers/main-header-components/BigShoppingCartModule";
-import ProfileFormModule from "@/components/dashboard/ProfileFormModule";
-import ConfirmModule from "@/components/dashboard/ConfirmModule";
+import AddressModal from "@/components/dashboard/AddressModal"
+import OrdersModal from "@/components/dashboard/OrdersModal"
+import BigShoppingCartModal from "@/components/headers/main-header-components/BigShoppingCartModal"
+import ProfileFormModal from "@/components/dashboard/ProfileFormModal"
+import ConfirmModal from "@/components/dashboard/ConfirmModal"
 import UserInfoContainer from "@/components/dashboard/UserInfoContainer";
 import { FaMap } from "react-icons/fa";
 import ModalWrapper from "@/components/ModalWrapper";
@@ -23,11 +23,11 @@ export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading, fullUserInfo, refetch } = useAuthUser();
     const router = useRouter();
 
-    const [addressesModuleIsOpen, setAddressesModuleIsOpen] = useState(false);
-    const [ordersModuleIsOpen, setOrdersModuleIsOpen] = useState(false);
-    const [cartModuleIsOpen, setCartModuleIsOpen] = useState(false);
+    const [addressesModalIsOpen, setAddressesModalIsOpen] = useState(false);
+    const [ordersModalIsOpen, setOrdersModalIsOpen] = useState(false);
+    const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
     const [profileFormIsOpen, setProfileFormIsOpen] = useState(false);
-    const [confirmModuleIsOpen, setConfirmModuleIsOpen] = useState(false);
+    const [confirmModalIsOpen, setConfirmModalIsOpen] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -49,26 +49,26 @@ export default function DashboardPage() {
         <MainLayout>
             <>
                 {/* Modals */}
-                <ModalWrapper isOpen={addressesModuleIsOpen} onClose={() => setAddressesModuleIsOpen(false)}>
-                    <AddressModule fetchedAddresses={fullUserInfo?.addresses} setModuleIsOpen={setAddressesModuleIsOpen} />
+                <ModalWrapper isOpen={addressesModalIsOpen} onClose={() => setAddressesModalIsOpen(false)}>
+                    <AddressModal fetchedAddresses={fullUserInfo?.addresses} setModalIsOpen={setAddressesModalIsOpen} />
                 </ModalWrapper>
 
                 <ModalWrapper isOpen={profileFormIsOpen} onClose={() => setProfileFormIsOpen(false)}>
-                    <ProfileFormModule refetch={refetch} setModuleIsOpen={setProfileFormIsOpen} />
+                    <ProfileFormModal refetch={refetch} setModalIsOpen={setProfileFormIsOpen} />
                 </ModalWrapper>
 
-                <ModalWrapper isOpen={ordersModuleIsOpen} onClose={() => setOrdersModuleIsOpen(false)}>
-                    <OrdersModule setModuleIsOpen={setOrdersModuleIsOpen} tab="in_progress" />
+                <ModalWrapper isOpen={ordersModalIsOpen} onClose={() => setOrdersModalIsOpen(false)}>
+                    <OrdersModal setModalIsOpen={setOrdersModalIsOpen} tab="in_progress" />
                 </ModalWrapper>
 
-                <ModalWrapper isOpen={cartModuleIsOpen} onClose={() => setCartModuleIsOpen(false)}>
-                    <BigShoppingCartModule setModuleIsOpen={setCartModuleIsOpen} />
+                <ModalWrapper isOpen={cartModalIsOpen} onClose={() => setCartModalIsOpen(false)}>
+                    <BigShoppingCartModal setModalIsOpen={setCartModalIsOpen} />
                 </ModalWrapper>
 
-                <ModalWrapper isOpen={confirmModuleIsOpen} onClose={() => setConfirmModuleIsOpen(false)}>
-                    <ConfirmModule
+                <ModalWrapper isOpen={confirmModalIsOpen} onClose={() => setConfirmModalIsOpen(false)}>
+                    <ConfirmModal
                         onConfirm={handleLogout}
-                        onCancel={() => setConfirmModuleIsOpen(false)}
+                        onCancel={() => setConfirmModalIsOpen(false)}
                         title="خروج از حساب کاربری"
                         description="آیا مطمئن هستید که می‌خواهید از حساب خود خارج شوید؟"
                     />
@@ -126,7 +126,7 @@ export default function DashboardPage() {
                                                 <BiEdit /> ویرایش
                                             </button>
                                             <button
-                                                onClick={() => setConfirmModuleIsOpen(true)}
+                                                onClick={() => setConfirmModalIsOpen(true)}
                                                 className="px-4 py-2 rounded-lg border border-gray-300 dark:border-slate-600 hover:bg-red-500 hover:text-white transition"
                                             >
                                                 خروج
@@ -141,7 +141,7 @@ export default function DashboardPage() {
                                             description="آدرس فعلی: تهران، میدان رسالت ..."
                                             icon={<FaMap />}
                                             className="bg-gray-50 dark:bg-slate-700 hover:shadow-md transition"
-                                            setModuleIsOpen={setAddressesModuleIsOpen}
+                                            setModalIsOpen={setAddressesModalIsOpen}
                                         />
                                     </div>
                                 </div>
@@ -152,13 +152,13 @@ export default function DashboardPage() {
                                 <UserShipmentContainer
                                     title="سبد خرید"
                                     icon={<CgShoppingCart />}
-                                    onClick={() => setCartModuleIsOpen(true)}
+                                    onClick={() => setCartModalIsOpen(true)}
                                     className="bg-white dark:bg-slate-800 rounded-xl shadow hover:shadow-lg transition p-4"
                                 />
                                 <UserShipmentContainer
                                     title="لیست سفارشات"
                                     icon={<CgShoppingBag />}
-                                    onClick={() => setOrdersModuleIsOpen(true)}
+                                    onClick={() => setOrdersModalIsOpen(true)}
                                     className="bg-white dark:bg-slate-800 rounded-xl shadow hover:shadow-lg transition p-4"
                                 />
                             </div>

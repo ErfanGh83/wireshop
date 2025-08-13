@@ -8,7 +8,7 @@ interface AddressFormProps {
   refetch: () => void
 }
 
-const AddressFormModule = ({ setShowForm, refetch }: AddressFormProps) => {
+const AddressFormModal = ({ setShowForm, refetch }: AddressFormProps) => {
   const [formData, setFormData] = useState({
     province: '',
     city: '',
@@ -180,4 +180,4 @@ const AddressFormModule = ({ setShowForm, refetch }: AddressFormProps) => {
   );
 };
 
-export default AddressFormModule
+export default AddressFormModal

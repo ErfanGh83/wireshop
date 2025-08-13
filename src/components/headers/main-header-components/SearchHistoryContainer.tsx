@@ -25,7 +25,7 @@ const SearchHistoryContainer = ({ onSelect }: Props) => {
   if (history.length === 0) return null; // Don't render if no history
 
   return (
-    <div className="absolute top-full left-0 w-full bg-white dark:bg-slate-700 shadow-lg rounded-sm overflow-hidden z-30 border border-gray-200 dark:border-slate-600">
+    <div className="absolute top-full left-0 w-full bg-white dark:bg-slate-700 shadow-lg rounded-sm overflow-hidden z-41 border border-gray-200 dark:border-slate-600">
       {history.map((item, index) => (
         <button
           key={index}

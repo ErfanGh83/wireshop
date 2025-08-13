@@ -10,11 +10,11 @@ import Categories from './filters/Categories'
 type Props = {
     filters: Filters | null
     setFilters: Dispatch<SetStateAction<Filters | null>>
-    setFiltersModuleOpen: Dispatch<SetStateAction<boolean>>
-    filtersModuleIsOpen: boolean
+    setFiltersModalOpen: Dispatch<SetStateAction<boolean>>
+    filtersModalIsOpen: boolean
 }
 
-const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => {
+const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     // Initialize all filter states with defaults or values from props
     const [brands, setBrands] = useState<string[]>(filters?.brands || [])
     const [priceRange, setPriceRange] = useState<[number, number]>(filters?.priceRange || [0, 1000])
@@ -51,11 +51,11 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
     // Close modal and apply filters
     const handleClose = () => {
         applyFilters()
-        setFiltersModuleOpen(false)
+        setFiltersModalOpen(false)
     }
 
     const handleCloseWithoutApplying = () => {
-        setFiltersModuleOpen(false)
+        setFiltersModalOpen(false)
     }
 
     return (
@@ -127,4 +127,4 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
     )
 }
 
-export default FiltersModule
+export default FiltersModal
