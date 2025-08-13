@@ -34,7 +34,7 @@ export default function ProductPage() {
   const handleSubmit = () => {
     const quantity = Number(inputRef.current?.value);
     if (product && quantity > 0) {
-      addCartItem(product.id, quantity)
+      addCartItem({ productId: product.id, quantity })
         .then(() => toast.success("محصول با موفقیت به سبد خرید اضافه شد"))
         .catch((err) =>
           toast.error(err.response?.message || err.message || "خطایی رخ داد")

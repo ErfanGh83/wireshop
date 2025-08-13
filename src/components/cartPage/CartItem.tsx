@@ -26,7 +26,7 @@ export default function CartItem({
 }: CartItemProps) {
   const handleChangeNumber = async (amount: number) => {
     if (amount > 0)
-      await addCartItem(productId, amount)
+      await addCartItem({ productId: productId, quantity: amount })
         .then(() => toast.success("با موفقیت اضافه شد"))
         .catch((err) =>
           toast.error(

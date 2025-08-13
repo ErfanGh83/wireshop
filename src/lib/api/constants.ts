@@ -26,6 +26,7 @@ export const API_ENDPOINTS = {
   PENDING_COMMENT: "/api/comment/pending",
   APPROVE_COMMENT: "/api/comment/approve",
   REJECT_COMMENT: "/api/comment/reject",
+  CHECKOUT: "/api/purchase/url",
 };
 
 export const ERROR_MESSAGES = {
