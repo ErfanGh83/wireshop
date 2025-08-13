@@ -59,7 +59,7 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
     }
 
     return (
-        <div className='relative h-full flex flex-col pt-12 pb-6 sm:pb-10 sm:h-[88vh] w-full border-l-2 px-2 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-700'>
+        <div className='relative h-full flex flex-col pt-12 pb-6 sm:pb-10 sm:h-[92vh] w-full border-l-2 px-2 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-700'>
             <button
                 onClick={handleCloseWithoutApplying}
                 className='absolute top-2 right-2 size-fit hover:cursor-pointer'
@@ -108,16 +108,16 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
                 </div>
 
                 {/* Fixed action buttons at bottom */}
-                <div className='w-full h-fit flex flex-row gap-4 px-4 pt-4 pb-2'>
+                <div className='w-full h-fit flex flex-row gap-4 px-4 sm:pb-2 pt-4'>
                     <button
                         onClick={resetFilters}
-                        className='w-full h-16 text-2xl sm:text-lg sm:h-10 px-4 py-2 cursor-pointer bg-gray-200 rounded-lg hover:bg-gray-300'
+                        className='w-full h-16 text-2xl sm:text-lg px-4 py-2 cursor-pointer bg-gray-200 rounded-lg hover:bg-gray-300'
                     >
                         حذف فیلترها
                     </button>
                     <button
                         onClick={handleClose}
-                        className='w-full h-16 text-2xl sm:text-lg sm:h-10 px-4 py-2 cursor-pointer bg-blue-500 text-white rounded-lg hover:bg-blue-600'
+                        className='w-full h-16 text-2xl sm:text-lg px-4 py-2 cursor-pointer bg-blue-500 text-white rounded-lg hover:bg-blue-600'
                     >
                         اعمال فیلترها
                     </button>
