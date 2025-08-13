@@ -6,6 +6,8 @@ import { Address } from '@/types/address'
 import { IoLocation } from 'react-icons/io5'
 import { useAuthUser } from '../auth/useAuthUser'
 import { VscLoading } from 'react-icons/vsc'
+import { addSelectedAddress } from '@/lib/api/cartApi'
+import { toast } from 'react-toastify'
 
 type Props = {
   fetchedAddresses?: Address[]
@@ -42,6 +44,13 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
   useEffect(() => {
     if (selectedAddress) {
       localStorage.setItem('selectedAddress', JSON.stringify(selectedAddress));
+      try {
+        addSelectedAddress({addressId: selectedAddress.id})
+      }
+      catch(err){
+        console.log(err)
+        toast.error('خطایی در انتخاب آدرس پیش آمد')
+      }
     }
   }, [selectedAddress]);
 
