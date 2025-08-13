@@ -1,6 +1,7 @@
 import { Cart } from "@/types/cart";
 import { del, get, post } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
+import { Address } from "@/types/address";
 
 export async function getAllCart(): Promise<Cart> {
   return get<Cart>(API_ENDPOINTS.ACTIVE_CART);
@@ -20,4 +21,9 @@ export async function getCheckoutLink() {
 
 export async function postActiveAddress(data: any) {
   return post(API_ENDPOINTS.SET_ACTIVE_ADDRESS, data);
+}
+
+
+export async function addSelectedAddress(data: {addressId: string}) {
+  return post(API_ENDPOINTS.SELECTED_ADDRESS, data);
 }
