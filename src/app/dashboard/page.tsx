@@ -39,7 +39,7 @@ export default function DashboardPage() {
     if (loading) {
         return (
             <MainLayout>
-                <div className="flex justify-center items-center h-screen text-lg bg-white dark:bg-slate-900">
+                <div className="flex justify-center items-center h-screen text-lg bg-white dark:bg-slate-900 text-black dark:text-white">
                     در حال بارگذاری...
                 </div>
             </MainLayout>

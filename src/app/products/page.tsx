@@ -25,7 +25,7 @@ const ProductsPage = () => {
                 <div className={`fixed sm:sticky top-0 h-screen overflow-y-auto transition-all duration-300 ease-in-out 
                                ${filtersModuleIsOpen ? 'w-full sm:w-80 3xl:w-100 @min-4xl:w-1/2' : 'w-0'} bg-white dark:bg-slate-800 z-50 sm:z-20`}>
                     {filtersModuleIsOpen && (
-                        <div dir='ltr' className="h-full overflow-hidden">
+                        <div dir='ltr' className="h-full overflow-hidden ">
                             <FiltersModule
                                 setFilters={setFilters}
                                 filters={filters}
@@ -38,7 +38,7 @@ const ProductsPage = () => {
 
                 {/* Main Content Area */}
                 <div dir="ltr" className=" overflow-y-auto flex-1">
-                    <div dir="rtl" className='w-full flex flex-row-reverse gap-2 px-4 py-2 sticky top-0 z-20 justify-end border-b-2 border-b-gray-100 shadow-md bg-white'>
+                    <div dir="rtl" className={`w-full flex flex-row-reverse gap-2 px-4 py-2 sticky top-0 z-20 justify-end border-b-2 border-b-gray-100 dark:border-t-2 dark:border-b-gray-700 dark:border-t-slate-700 shadow-md bg-white dark:bg-slate-800 ${filtersModuleIsOpen ? 'h-0 hidden' : 'h-fit'}`}>
 
                         {
                             !filtersModuleIsOpen &&

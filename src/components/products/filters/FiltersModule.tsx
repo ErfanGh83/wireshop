@@ -59,7 +59,7 @@ const FiltersModule = ({ filters, setFilters, setFiltersModuleOpen }: Props) => 
     }
 
     return (
-        <div className='relative h-full flex flex-col pt-12 pb-6 sm:pb-10 sm:h-[92vh] w-full border-l-2 px-2 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-700'>
+        <div className='relative h-full flex flex-col pt-12 pb-6 sm:pb-10 sm:h-[92vh] w-full border-l-2 px-2 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-800'>
             <button
                 onClick={handleCloseWithoutApplying}
                 className='absolute top-2 right-2 size-fit hover:cursor-pointer'

@@ -33,7 +33,7 @@ export const fetchProducts = async ({ page, search, order, filters }: Props) => 
     if (filters.category) params.categoryId = filters.category;
   }
 
-    try {
+  try {
     return await get(API_ENDPOINTS.PRODUCTS, params);
   } catch (err) {
     if (err instanceof ApiError) {
