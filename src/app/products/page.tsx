@@ -38,7 +38,7 @@ const ProductsPage = () => {
 
                 {/* Main Content Area */}
                 <div dir="ltr" className=" overflow-y-auto flex-1">
-                    <div dir="rtl" className={`w-full flex flex-row-reverse gap-2 px-4 py-2 sticky top-0 z-20 justify-end border-b-2 border-b-gray-100 dark:border-t-2 dark:border-b-gray-700 dark:border-t-slate-700 shadow-md bg-white dark:bg-slate-800 ${filtersModuleIsOpen ? 'h-0 hidden' : 'h-fit'}`}>
+                    <div dir="rtl" className={`w-full flex flex-row-reverse gap-2 px-4 py-2 sticky top-0 z-10 justify-end border-b-2 border-b-gray-100 dark:border-t-2 dark:border-b-gray-700 dark:border-t-slate-700 shadow-md bg-white dark:bg-slate-800 ${filtersModuleIsOpen ? 'h-0 hidden' : 'h-fit'}`}>
 
                         {
                             !filtersModuleIsOpen &&
