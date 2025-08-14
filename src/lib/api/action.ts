@@ -1,6 +1,3 @@
-// lib/api/action.ts
-"use server";
-
 import { API_ENDPOINTS } from "@/lib/api/constants";
 import { ApiError, get } from "./apiClient";
 import { Filters } from "@/types/products";
