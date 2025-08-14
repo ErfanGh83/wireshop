@@ -43,6 +43,7 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
     if(error){
       console.log(error)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullUserInfo]);
 
   useEffect(() => {
