@@ -4,7 +4,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import Link from "next/link";
 import { useAuthUser } from "@/components/auth/useAuthUser";
 import UserShipmentContainer from "@/components/dashboard/UserShipmentsContainer";
-import { BiEdit, BiUser } from "react-icons/bi";
+import { BiEdit, BiSupport, BiUser } from "react-icons/bi";
 import { CgShoppingBag, CgShoppingCart } from "react-icons/cg";
 import { logout } from "@/lib/api/authApi";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,7 @@ import ConfirmModal from "@/components/dashboard/ConfirmModal"
 import UserInfoContainer from "@/components/dashboard/UserInfoContainer";
 import { FaMap } from "react-icons/fa";
 import ModalWrapper from "@/components/ModalWrapper";
+import { RiAdminLine } from "react-icons/ri";
 
 export default function DashboardPage() {
     const { userInfo, isLoggedIn, loading, fullUserInfo, refetch } = useAuthUser();
@@ -155,6 +156,25 @@ export default function DashboardPage() {
                                     onClick={() => setOrdersModalIsOpen(true)}
                                     className="bg-white dark:bg-slate-800 rounded-xl shadow hover:shadow-lg transition p-4"
                                 />
+                                {
+                                    userInfo?.user.role === 'admin' &&
+                                    <UserShipmentContainer
+                                        title="ورود به داشبورد ادمین"
+                                        icon={<RiAdminLine />}
+                                        onClick={() => router.push('/admin')}
+                                        className="bg-white dark:bg-slate-800 rounded-xl shadow hover:shadow-lg transition p-4"
+                                    />
+                                }
+
+                                {
+                                    userInfo?.user.role === 'support' &&
+                                    <UserShipmentContainer
+                                        title="ورود به داشبورد ساپورت"
+                                        icon={<BiSupport />}
+                                        onClick={() => router.push('/support')}
+                                        className="bg-white dark:bg-slate-800 rounded-xl shadow hover:shadow-lg transition p-4"
+                                    />
+                                }
                             </div>
                         </div>
                     )}

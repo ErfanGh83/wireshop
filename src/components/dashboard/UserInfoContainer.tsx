@@ -14,7 +14,7 @@ const UserInfoContainer = ({ title, link, icon, description, className, setModal
 
     return (
         <div
-            className={`w-full h-20 lg:h-36 relative flex flex-row-reverse items-center justify-around px-6 gap-4 transition-all border-[1px] border-gray-300 shadow-md rounded-md ${className}`}
+            className={`w-full h-24 relative flex flex-row-reverse items-center justify-around px-6 gap-4 transition-all border-[1px] border-gray-300 shadow-md rounded-md ${className}`}
         >
             {
                 setModalIsOpen && !link ?
