@@ -13,6 +13,7 @@ export default function AdminCreateMemberForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<CreateMemberFormValues>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(createMemberSchema) as any,
     defaultValues: {
       phone: "",

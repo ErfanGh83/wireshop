@@ -27,6 +27,7 @@ export const sendMessage = (content: string) => {
   socket?.emit("sendMessage", { content });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const onReceiveMessage = (callback: (msg: any) => void) => {
   socket?.on("receiveMessage", callback);
 };

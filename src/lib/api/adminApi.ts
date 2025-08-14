@@ -1,5 +1,4 @@
 import { Order, OrdersResponse } from "@/types/cart";
-// import { get, Json, patch, post, postForm } from "./apiClient";
 import { get, patch, post, postForm } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
 import { Product, ProductListResponse } from "@/types/product";
@@ -9,6 +8,7 @@ export async function getAllProduct() {
   return get<ProductListResponse>(API_ENDPOINTS.ALL_PRODUCT);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function patchProduct(id: string, data: any) {
   return patch(`${API_ENDPOINTS.ALL_PRODUCT}/${id}`, data);
 }
@@ -29,6 +29,7 @@ export async function getOrderById(id: string) {
   return get<Order>(`${API_ENDPOINTS.ORDER_BY_ID}/${id}`);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createNewUser(data: any) {
   return post(API_ENDPOINTS.ADD_USER_BY_ADMIN, data);
 }

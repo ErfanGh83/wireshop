@@ -3,7 +3,6 @@
 import React, { JSX, useEffect, useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { checkAdmin } from "@/lib/api/adminApi";
-import { boolean } from "zod";
 import Spinner from "../spinner/Spinner";
 
 interface TabProps {

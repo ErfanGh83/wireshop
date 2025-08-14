@@ -43,7 +43,7 @@ function AdminEditProduct() {
   ]);
 
   const tableModal = rowData.data.map((item) => (
-    <AdminEditProductModal id={item.id} />
+    <AdminEditProductModal key={item.id} id={item.id} />
   ));
 
   return (

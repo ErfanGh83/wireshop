@@ -36,7 +36,7 @@ function AdminOrdersList() {
     `${item.address.province}, ${item.address.city}, ${item.address.description}, ${item.address.plaque}, ${item.address.postalCode}`,
   ]);
 
-  const tableModal = rowData.map((item) => <AdminOrderModal id={item.id} />);
+  const tableModal = rowData.map((item) => <AdminOrderModal key={item.id} id={item.id} />);
 
   return (
     <AdminTable

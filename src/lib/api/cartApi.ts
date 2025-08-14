@@ -1,12 +1,12 @@
 import { Cart } from "@/types/cart";
 import { del, get, post } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
-import { Address } from "@/types/address";
 
 export async function getAllCart(): Promise<Cart> {
   return get<Cart>(API_ENDPOINTS.ACTIVE_CART);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function addCartItem(data: any) {
   return post(API_ENDPOINTS.MODIFY_CART, data);
 }
@@ -19,6 +19,7 @@ export async function getCheckoutLink() {
   return get<string>(API_ENDPOINTS.CHECKOUT);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function postActiveAddress(data: any) {
   return post(API_ENDPOINTS.SET_ACTIVE_ADDRESS, data);
 }

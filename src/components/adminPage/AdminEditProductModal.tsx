@@ -19,7 +19,7 @@ export default function AdminEditProductModal({ id }: { id: string }) {
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد")
       );
-  }, []);
+  }, [id]);
 
   const {
     register,

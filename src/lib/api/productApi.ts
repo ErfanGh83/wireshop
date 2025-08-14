@@ -11,6 +11,7 @@ export async function getProductComment(id: string) {
   return get<CommentResponse>(`${API_ENDPOINTS.PRODUCT_COMMENT}/${id}`);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function postProductComment(id: string, data:any) {
   return post(`${API_ENDPOINTS.PRODUCT_COMMENT}/${id}`, data);
 }

@@ -64,8 +64,11 @@ export default function CartContainer() {
             toast.error(err.response?.message || err.message || "خطایی رخ داد")
           );
       })
-      .finally(() => setIsChanged(false));
-  }, [isCompleting]);
+      .finally(() => {
+        setIsChanged(false);
+        setIsCompleting(false);
+      });
+  }, [isCompleting, activeAddress]);
 
   useEffect(() => {
     try {
@@ -73,7 +76,7 @@ export default function CartContainer() {
       if (storedAddress) setActiveAddress(JSON.parse(storedAddress));
       else
         setActiveAddress("آدرس یافت نشد.\nبرای ایجاد آدرس به داشبورد بروید.");
-    } catch (error) {
+    } catch {
       setActiveAddress("خطایی در یافتن آدرس رخ داد.");
     }
   }, []);

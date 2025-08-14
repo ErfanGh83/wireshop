@@ -19,7 +19,6 @@ export default function CartItem({
   productId,
   name,
   price,
-  weightKg,
   quantity,
   productWeightKg,
   onChange,

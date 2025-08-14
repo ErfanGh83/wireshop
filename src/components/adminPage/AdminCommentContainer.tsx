@@ -37,6 +37,7 @@ function AdminCommentContainer() {
 
   const tableModal = rowData.map((comment) => (
     <AdminCommentModal
+      key={comment.id}
       id={comment.id}
       content={comment.content}
       createdAt={comment.createdAt}

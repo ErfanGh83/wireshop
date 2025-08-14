@@ -19,7 +19,7 @@ function ProductCommentContainer({ id }: { id: string }) {
           ]
         )
       );
-  }, []);
+  }, [id]);
 
   if (comments === null) return <Spinner />;
 

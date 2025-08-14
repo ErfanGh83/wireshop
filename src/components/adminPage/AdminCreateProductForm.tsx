@@ -18,6 +18,7 @@ export default function AdminCreateProductForm() {
     watch,
     formState: { errors },
   } = useForm<createProductFormValues>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(createProductSchema) as any,
     defaultValues: {
       name: "",
@@ -25,6 +26,7 @@ export default function AdminCreateProductForm() {
       price: 0,
       weightKg: 0,
       stock: 0,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       categoryId: CATEGORIES[0].id as any,
       attributes: [],
       images: [],
@@ -42,6 +44,7 @@ export default function AdminCreateProductForm() {
     fields: imgFields,
     append: appendImg,
     remove: removeImg,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } = useFieldArray({ control, name: "images" as any });
 
   useEffect(() => {
