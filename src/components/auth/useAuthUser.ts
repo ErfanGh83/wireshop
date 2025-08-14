@@ -60,6 +60,7 @@ export function useAuthUser() {
         setFullUserInfo(null);
       }
     } catch (err) {
+      console.log('nigggggggggg')
       setError(err)
       setIsLoggedIn(false);
       setUserInfo(null);

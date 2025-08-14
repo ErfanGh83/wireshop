@@ -11,7 +11,8 @@ const SignupOrLoginButton = () => {
     useEffect(() => {
         (async () => {
             try {
-                setIsLoggedIn(await isUserLoggedIn());
+                const hasToken = await isUserLoggedIn()
+                setIsLoggedIn(hasToken);
             } catch {
                 setIsLoggedIn(false);
             }

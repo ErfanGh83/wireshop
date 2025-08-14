@@ -116,7 +116,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
             <div className="w-full absolute inset-0 flex items-end justify-center px-6 pr-8 pb-6 gap-6 z-10 pointer-events-none">
                 <button
                     onClick={goPrev}
-                    className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-black/50 dark:bg-white/30 hover:bg-white/50 backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                    className="pointer-events-auto size-6 sm:size-10 flex items-center justify-center rounded-full cursor-pointer bg-black/50 dark:bg-white/30 hover:bg-white/50 backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
                     aria-label="Previous slide"
                 >
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
                 
                 <button
                     onClick={goNext}
-                    className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-black/50 dark:bg-white/30 hover:bg-white/50 backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                    className="pointer-events-auto size-6 sm:size-10 flex items-center justify-center rounded-full cursor-pointer bg-black/50 dark:bg-white/30 hover:bg-white/50 backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
                     aria-label="Next slide"
                 >
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
