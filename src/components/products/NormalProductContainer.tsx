@@ -48,8 +48,8 @@ const NormalProductContainer = ({
             {/* Image Container - Fixed aspect ratio */}
             <div className="relative w-32 h-32 sm:w-full sm:h-48 md:h-56 lg:h-64 bg-gray-100 dark:bg-gray-600 overflow-hidden flex-shrink-0">
                 <Image
-                    crossOrigin="anonymous"
-                    src={imageUrl == "/placeholder.png" ? imageUrl : BASE_URL + imageUrl}
+                    crossOrigin={imageUrl.startsWith("/uploads") ? "anonymous" : undefined}
+                    src={imageUrl.startsWith("/uploads") ? BASE_URL + imageUrl : imageUrl}
                     alt={title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
