@@ -2,27 +2,27 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { BiSort } from 'react-icons/bi'
 
 type Props = {
-    setOrdersModuleIsOpen: Dispatch<SetStateAction<boolean>>
-    ordersModuleIsOpen: boolean
+    setOrdersModalIsOpen: Dispatch<SetStateAction<boolean>>
+    ordersModalIsOpen: boolean
 }
 
-const OrdersButton = ({ setOrdersModuleIsOpen, ordersModuleIsOpen }: Props) => {
+const OrdersButton = ({ setOrdersModalIsOpen, ordersModalIsOpen }: Props) => {
     
     const handleClick = () => {
-        if(ordersModuleIsOpen){
-            setOrdersModuleIsOpen(false)
+        if(ordersModalIsOpen){
+            setOrdersModalIsOpen(false)
         }
         else {
-            setOrdersModuleIsOpen(true)
+            setOrdersModalIsOpen(true)
         }
     }
 
     return (
         <button
             onClick={handleClick}
-            className='size-fit p-1 flex items-center justify-center gap-1 border-[1px] text-black dark:text-white border-gray-300 shadow-md hover:text-blue-500 rounded-sm dark:hover:text-blue-400 hover:shadow-blue-500 hover:border-blue-300 transition-all text-sm sm:text-xl cursor-pointer bg-white dark:bg-slate-600'
+            className='size-fit p-1 flex items-center justify-center gap-1 border-[1px] text-black dark:text-white border-gray-300 shadow-md hover:text-blue-500 rounded-sm dark:hover:text-blue-400 hover:shadow-blue-500 hover:border-blue-300 transition-all text-sm sm:text-xl cursor-pointer bg-white dark:bg-slate-800'
         >
-            {ordersModuleIsOpen ? <p className='text-md'>بستن منو</p> : <p className='text-md'>مرتب سازی</p>}
+            {ordersModalIsOpen ? <p className='text-md'>بستن منو</p> : <p className='text-md'>مرتب سازی</p>}
             <BiSort />
         </button>
     )

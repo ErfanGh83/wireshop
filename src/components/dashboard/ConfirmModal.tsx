@@ -5,7 +5,7 @@ type Props = {
     onCancel: () => void;
 };
 
-const ConfirmModule = ({ title, description, onCancel, onConfirm }: Props) => {
+const ConfirmModal = ({ title, description, onCancel, onConfirm }: Props) => {
     return (
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6 space-y-6">
             <div className="space-y-2">
@@ -33,4 +33,4 @@ const ConfirmModule = ({ title, description, onCancel, onConfirm }: Props) => {
     );
 };
 
-export default ConfirmModule;
+export default ConfirmModal;

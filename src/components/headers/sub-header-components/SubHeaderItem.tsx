@@ -37,7 +37,7 @@ const SubHeaderItem = ({
     >
       <Link
         href={link}
-        className="w-fit p-2 flex items-center gap-2"
+        className="w-fit p-2 flex flex-col-reverse sm:flex-row items-center gap-2"
         aria-label={title}
       >
         {content}

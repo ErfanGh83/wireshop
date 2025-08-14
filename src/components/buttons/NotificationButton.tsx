@@ -3,15 +3,15 @@ import { BiBell } from 'react-icons/bi';
 
 type Props = {
   itemCount: number
-  setModuleIsOpen: Dispatch<SetStateAction<boolean>>
+  setModalIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const NotificationButton = ({ itemCount = 2, setModuleIsOpen }:Props) => {
+const NotificationButton = ({ itemCount = 2, setModalIsOpen }:Props) => {
   
   return (
     <div className="size-8 sm:size-10 relative">
       <button
-        onClick={() => setModuleIsOpen(true)}
+        onClick={() => setModalIsOpen(true)}
         className='size-full flex items-center justify-center cursor-pointer text-xl border-[1px] text-black dark:text-white border-gray-300 shadow-md hover:text-blue-500 rounded-sm dark:hover:text-blue-400 hover:shadow-blue-500 hover:border-blue-300 transition-all'
       >
         <BiBell />

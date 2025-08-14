@@ -34,28 +34,39 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
     };
 
     const handleMouseEnter = () => {
-        if (swiperRef.current && swiperRef.current.swiper) {
+        if (swiperRef.current) {
             swiperRef.current.swiper.autoplay.stop();
             setIsAutoplayRunning(false);
         }
     };
 
     const handleMouseLeave = () => {
-        if (swiperRef.current && swiperRef.current.swiper) {
+        if (swiperRef.current) {
             swiperRef.current.swiper.autoplay.start();
             setIsAutoplayRunning(true);
         }
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleAutoplayTimeLeft = (swiper: any, timeLeft: number, percentage: number) => {
+    const handleAutoplayTimeLeft = (swiper: unknown, timeLeft: number, percentage: number) => {
         if (isAutoplayRunning) {
             setProgress(100 - percentage * 100);
         }
     };
 
+    const goNext = () => {
+        if (swiperRef.current) {
+            swiperRef.current.swiper.slideNext();
+        }
+    };
+
+    const goPrev = () => {
+        if (swiperRef.current) {
+            swiperRef.current.swiper.slidePrev();
+        }
+    };
+
     useEffect(() => {
-        if (swiperRef.current && swiperRef.current.swiper) {
+        if (swiperRef.current) {
             swiperRef.current.swiper.on('slideChange', () => {
                 setProgress(0);
             });
@@ -64,7 +75,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
 
     return (
         <div
-            className="relative w-full h-[440px]"
+            className="relative w-full h-[440px] group" // Added group for hover effects
             ref={containerRef}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -74,10 +85,6 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
                 modules={[Navigation, Autoplay]}
                 spaceBetween={0}
                 slidesPerView={1}
-                navigation={{
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                }}
                 loop={true}
                 autoplay={{
                     delay: 5000,
@@ -103,11 +110,30 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
                         </motion.div>
                     </SwiperSlide>
                 ))}
-                
-                {/* Custom Navigation Buttons */}
-                <div className="swiper-button-prev hidden sm:block" />
-                <div className="swiper-button-next hidden sm:block" />
             </Swiper>
+
+            {/* Custom Navigation Buttons */}
+            <div className="w-full absolute inset-0 flex items-end justify-center px-6 pr-8 pb-6 gap-6 z-10 pointer-events-none">
+                <button
+                    onClick={goPrev}
+                    className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-black/50 dark:bg-white/30 hover:bg-white/50 backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                    aria-label="Previous slide"
+                >
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                
+                <button
+                    onClick={goNext}
+                    className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-black/50 dark:bg-white/30 hover:bg-white/50 backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                    aria-label="Next slide"
+                >
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
         </div>
     );
 };

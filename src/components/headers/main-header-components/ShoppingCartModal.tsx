@@ -10,18 +10,18 @@ import { useRouter } from "next/navigation";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
 
 type Props = {
-  setModuleIsOpen: Dispatch<SetStateAction<boolean>>;
-  moduleIsOpen: boolean;
+  setModalIsOpen: Dispatch<SetStateAction<boolean>>;
+  ModalIsOpen: boolean;
 };
 
-const ShoppingCartModule = ({ setModuleIsOpen, moduleIsOpen }: Props) => {
+const ShoppingCartModal = ({ setModalIsOpen, ModalIsOpen }: Props) => {
   const [cartItems, setCartItems] = useState<Cart | undefined>();
   const [err, setErr] = useState<string>("");
   const [isCartChanged, setIsCartChanged] = useState<boolean>(true);
   const router = useRouter();
 
   useEffect(() => {
-    if (!moduleIsOpen || !isCartChanged) return;
+    if (!ModalIsOpen || !isCartChanged) return;
 
     getAllCart()
       .then((res) => setCartItems(res))
@@ -36,16 +36,16 @@ const ShoppingCartModule = ({ setModuleIsOpen, moduleIsOpen }: Props) => {
         )
       );
     setIsCartChanged(false);
-  }, [moduleIsOpen, isCartChanged]);
+  }, [ModalIsOpen, isCartChanged]);
 
-  const handleCloseModule = () => {
-    setModuleIsOpen(false);
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
     <div className="h-screen sm:h-[330px] md:h-[380px] xl:h-[450px] w-screen sm:w-[300px] md:w-[330px] xl:w-[380px] border-[1px] rounded-r-md rounded-b-md overflow-hidden border-gray-300 dark:border-slate-500 shadow-md bg-white dark:bg-slate-800 dark:text-white relative">
       <button
-        onClick={handleCloseModule}
+        onClick={handleCloseModal}
         className="size-fit absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
       >
         <FaXmark size={20} />
@@ -95,4 +95,4 @@ const ShoppingCartModule = ({ setModuleIsOpen, moduleIsOpen }: Props) => {
   );
 };
 
-export default ShoppingCartModule;
+export default ShoppingCartModal;

@@ -66,7 +66,7 @@ export default function FloatingChat() {
           isOpen
             ? " bg-blue-400 hover:bg-blue-500 dark:hover:bg-purple-400 dark:bg-purple-600 dark:text-gray-300"
             : " bg-blue-100 hover:bg-blue-200 dark:hover:bg-purple-400 dark:bg-purple-500 dark:text-gray-300"
-        } fixed bottom-8 left-8 z-55 transition-all cursor-pointer text-black p-4 rounded-full shadow-lg dark:text-gray-100`}
+        } fixed bottom-24 sm:bottom-8 left-4 sm:left-8 z-50 transition-all cursor-pointer text-black p-4 rounded-full shadow-lg dark:text-gray-100`}
       >
         <FaCommentDots className="w-6 h-6" />
       </button>
@@ -78,7 +78,7 @@ export default function FloatingChat() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed bottom-0 right-0 left-0 top-0 bg-black/50 dark:bg-black/80 z-45"
+              className="fixed bottom-0 right-0 left-0 top-0 bg-black/50 dark:bg-black/80 z-55"
               onClick={() => setIsOpen(false)}
             />
 
@@ -87,7 +87,7 @@ export default function FloatingChat() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut" }}
-              className="fixed bottom-24 left-2 sm:left-6 mr-2 w-[300px] md:w-[400px] lg:w-[500px] max-w-full h-120 bg-white dark:bg-slate-700 text-black dark:text-gray-100 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+              className="fixed bottom-40 sm:bottom-24 left-2 sm:left-8 mr-2 w-[300px] md:w-[400px] lg:w-[500px] max-w-full h-120 bg-white dark:bg-slate-700 text-black dark:text-gray-100 rounded-2xl shadow-2xl z-56 flex flex-col overflow-hidden"
             >
               {chat ? (
                 <>

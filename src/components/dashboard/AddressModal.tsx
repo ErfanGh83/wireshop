@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
 import { AnimatePresence, motion } from 'framer-motion'
-import AddressFormModule from '../forms/AddressFormModule'
+import AddressFormModal from '../forms/AddressFormModal'
 import { Address } from '@/types/address'
 import { IoLocation } from 'react-icons/io5'
 import { useAuthUser } from '../auth/useAuthUser'
@@ -11,22 +11,22 @@ import { toast } from 'react-toastify'
 
 type Props = {
   fetchedAddresses?: Address[]
-  setModuleIsOpen: Dispatch<SetStateAction<boolean>>
+  setModalIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const MAX_TITLE_LENGTH = 30;
 const MAX_ADDRESS_LENGTH = 100;
 
-const AddressModule = ({ setModuleIsOpen }: Props) => {
+const AddressModal = ({ setModalIsOpen }: Props) => {
   const [showForm, setShowForm] = useState(false);
   const [addresses, setAddresses] = useState<Address[] | null>(null);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
 
-  const { fullUserInfo, loading, refetch } = useAuthUser()
+  const { fullUserInfo, loading, refetch, error } = useAuthUser()
 
-  const handleCloseModule = () => {
-    setModuleIsOpen(false);
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
   };
 
   useEffect(() => {
@@ -38,6 +38,10 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
       const parsedAddress = JSON.parse(storedAddress);
 
       setSelectedAddress(parsedAddress);
+    }
+
+    if(error){
+      console.log(error)
     }
   }, [fullUserInfo]);
 
@@ -66,17 +70,17 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
     <div className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative">
       <AnimatePresence mode="wait">
         {showForm ? (
-          <AddressFormModule refetch={refetch} setShowForm={setShowForm} />
+          <AddressFormModal refetch={refetch} setShowForm={setShowForm} />
         ) : (
           <motion.div
             key="address-list"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="w-full h-full flex flex-col relative rounded-md overflow-hidden bg-white shadow-lg"
+            className="w-full h-full flex flex-col relative rounded-md overflow-hidden bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg"
           >
             <button
-              onClick={handleCloseModule}
+              onClick={handleCloseModal}
               className="size-fit absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
             >
               <FaXmark size={20} />
@@ -88,7 +92,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
                 addresses.map((address) => (
                   <div
                     key={address.id}
-                    className="w-full flex items-start gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-start gap-3 p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                   >
                     <input
                       type="radio"
@@ -104,7 +108,7 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
                         <p className="text-sm md:text-base font-semibold">
                           {truncateText(address.province + ' - ' + address.city, MAX_TITLE_LENGTH)}
                         </p>
-                        <p className="text-xs md:text-sm text-gray-600">
+                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
                           {truncateText(address.description, MAX_ADDRESS_LENGTH)}
                         </p>
                       </div>
@@ -148,4 +152,4 @@ const AddressModule = ({ setModuleIsOpen }: Props) => {
   );
 };
 
-export default AddressModule
+export default AddressModal
