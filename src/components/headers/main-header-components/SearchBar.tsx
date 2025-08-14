@@ -52,7 +52,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="relative w-screen lg:w-fit">
+        <div className="relative w-screen md:w-2/3 lg:w-fit">
             {/* Search bar */}
             <div
                 className={`container group w-full lg:w-[460px] xl:w-[600px] h-8 md:h-10 flex flex-row-reverse border-2 border-transparent bg-blue-100 dark:bg-slate-700 rounded-sm m-auto overflow-hidden  
