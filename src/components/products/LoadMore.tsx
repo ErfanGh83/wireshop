@@ -98,12 +98,14 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
     setHasMore(true);
     setProducts([]);
     loadProducts(1, true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, search, order]);
 
   useEffect(() => {
     if (inView && hasMore && !loading && !error) {
       loadProducts(page);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, hasMore, loading, page, error]);
 
   return (
