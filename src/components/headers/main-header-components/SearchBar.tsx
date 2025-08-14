@@ -52,15 +52,15 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="relative w-fit">
+        <div className="relative w-screen lg:w-fit">
             {/* Search bar */}
             <div
-                className={`container group w-[320px] min-[460px]:w-[260px] sm:w-[360px] md:w-[460px] xl:w-[600px] h-8 md:h-10 flex flex-row-reverse border-2 border-transparent bg-blue-100 dark:bg-slate-700 rounded-sm m-auto overflow-hidden  
+                className={`container group w-full lg:w-[460px] xl:w-[600px] h-8 md:h-10 flex flex-row-reverse border-2 border-transparent bg-blue-100 dark:bg-slate-700 rounded-sm m-auto overflow-hidden  
                     ${isFocused ? 'glow-border' : ''}`}
             >
-                <div>
+                <div className='w-full'>
                     <input
-                        className="w-[280px] min-[460px]:w-[220px] sm:w-[320px] md:w-[420px] xl:w-[560px] h-10 px-1 pb-3 md:pb-2 focus:outline-none text-gray-800 dark:text-gray-100 placeholder:text-blue-400"
+                        className="w-full lg:w-[420px] xl:w-[560px] h-10 px-1 pb-3 md:pb-2 focus:outline-none text-gray-800 dark:text-gray-100 placeholder:text-blue-400"
                         placeholder="جستجو"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
@@ -70,9 +70,9 @@ const SearchBar = () => {
                 </div>
                 <button
                     onClick={() => handleSearch()}
-                    className="size-full flex items-center justify-center text-blue-400 cursor-pointer hover:bg-blue-500 hover:text-white dark:hover:text-purple-200 transition-colors"
+                    className="w-10 h-full lg:size-full text-lg lg:text-2xl flex items-center justify-center text-blue-400 cursor-pointer hover:bg-blue-500 hover:text-white dark:hover:text-purple-200 transition-colors"
                 >
-                    <BiSearch size={24} />
+                    <BiSearch />
                 </button>
             </div>
 
