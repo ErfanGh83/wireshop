@@ -36,7 +36,7 @@ export default function PurchaseReceipt() {
           <span className="font-semibold text-gray-700 dark:text-gray-300">
             وضعیت پرداخت:
           </span>{" "}
-          {success ? (
+          {success == "true" ? (
             <span className="text-green-600 font-bold">موفق</span>
           ) : (
             <span className="text-red-600 font-bold">ناموفق</span>
@@ -47,7 +47,7 @@ export default function PurchaseReceipt() {
         </p>
       </div>
 
-      {success ? (
+      {success == 'true' ? (
         <>
           <p className="text-gray-700 dark:text-gray-300">
             شکیبا باشید تا محصول برایتان ارسال شود.
@@ -62,7 +62,7 @@ export default function PurchaseReceipt() {
         </>
       ) : (
         <p className="text-red-500 font-semibold">
-          پرداخت ناموفق بود. لطفا دوباره تلاش کنید.
+          پرداخت ناموفق بود. لطفا بعدا دوباره تلاش کنید.
         </p>
       )}
     </div>
