@@ -19,7 +19,7 @@ type Props = {
 const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
 
   const [step, setStep] = useState<'enter-pnumber' | 'enter-code' | 'enter-password'>('enter-pnumber')
-  const [cooldown, setCooldown] = useState(60);
+  const [cooldown, setCooldown] = useState(300);
   const [verificationError, setVerificationError] = useState('');
 
   const [formData, setFormData] = useState<Record<string, string>>({

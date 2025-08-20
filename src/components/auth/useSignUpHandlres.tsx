@@ -26,7 +26,7 @@ export const useSignUpHandlers = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [step, setStep] = useState<'signup' | 'verify'>('signup');
     const [code, setCode] = useState('');
-    const [cooldown, setCooldown] = useState(60);
+    const [cooldown, setCooldown] = useState(300);
     const [verificationError, setVerificationError] = useState('');
     const router = useRouter()
 
@@ -132,26 +132,26 @@ export const useSignUpHandlers = () => {
 
         if (!isValid) return;
 
-        const verificationResult = await verifyOtp(formData.phone, code)
-
-        if (verificationResult === 'not ok') {
-            setVerificationError('کد وارد شده نامعتبر است.')
-            return;
-        }
-
         try {
             const verificationResult = await verifyOtp(formData.phone, code)
-            console.log('verification successful:', verificationResult)
+            console.log(verificationResult)
         }
         catch (err) {
-            if (err instanceof ApiError && err.status === 400) {
-                setVerificationError('کد وارد شده نادرست است یا منقضی شده');
+            if (err instanceof ApiError) {
+                console.log(err.status)
+                if (err.status === 400) {
+                    setVerificationError('کد وارد شده اشتباه است');
+                } else if (err.status === 404) {
+                    setVerificationError('کاربری با این شماره یافت نشد');
+                } else {
+                    setVerificationError('خطایی در تایید کد رخ داد');
+                }
             } else {
-                setVerificationError('خطایی در ثبت‌نام نهایی رخ داد');
-                console.error('Final submission error:', err);
+                setVerificationError('مشکل شبکه یا خطای ناشناخته');
+                console.error('Unexpected login error:', err);
             }
+            return
         }
-
 
         try {
             const result = await createUser(
