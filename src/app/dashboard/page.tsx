@@ -167,7 +167,7 @@ export default function DashboardPage() {
                                 }
 
                                 {
-                                    userInfo?.user.role === 'support' &&
+                                    (userInfo?.user.role === 'support' || userInfo?.user.role === 'admin')  &&
                                     <UserShipmentContainer
                                         title="ورود به داشبورد ساپورت"
                                         icon={<BiSupport />}
