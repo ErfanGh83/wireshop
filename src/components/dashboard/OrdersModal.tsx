@@ -49,14 +49,14 @@ const OrdersModal = ({ tab, setModalIsOpen }: Props) => {
     return (
         <div
             dir="rtl"
-            className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative p-4 bg-white dark:bg-slate-800 text-black dark:text-white rounded-lg shadow-lg flex flex-col"
+            className="w-screen h-screen sm:h-[500px] sm:w-[500px] md:w-[600px] xl:w-[700px] xl:h-[600px] relative p-4 pt-12 sm:pt-4 bg-white dark:bg-slate-800 text-black dark:text-white rounded-lg shadow-lg flex flex-col"
         >
             {/* Header */}
             <div className="flex justify-between items-center mb-4 shrink-0">
                 <h2 className="text-xl font-semibold mx-auto dark:text-white">سفارش‌های من</h2>
                 <button
                     onClick={handleCloseModal}
-                    className="absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500"
+                    className="absolute top-[5%] right-[3%] sm:top-0 sm:right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500"
                 >
                     <FaXmark size={20} />
                 </button>

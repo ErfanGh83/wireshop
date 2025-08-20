@@ -86,7 +86,7 @@ const ProfileFormWrapper = ({ setModalIsOpen, refetch }: Props) => {
     };
 
 
-    return <GenericForm fields={fields} onSubmit={handleSubmit} submitLabel="ثبت تغییرات" />;
+    return <GenericForm fields={fields} onSubmit={handleSubmit} submitLabel="ثبت تغییرات" formName='ویرایش پروفایل' />;
 };
 
 export default ProfileFormWrapper;

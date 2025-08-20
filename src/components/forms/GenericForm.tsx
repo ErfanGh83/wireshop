@@ -19,12 +19,14 @@ export type GenericFormProps = {
   fields: FormField[];
   onSubmit: (formData: Record<string, string>) => void;
   submitLabel?: string;
+  formName?: string
 };
 
 const GenericForm: React.FC<GenericFormProps> = ({
   fields,
   onSubmit,
   submitLabel = 'ارسال',
+  formName = submitLabel,
 }) => {
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [visiblePasswords, setVisiblePasswords] = useState<Record<string, boolean>>({});
@@ -62,7 +64,7 @@ const GenericForm: React.FC<GenericFormProps> = ({
   return (
     <form className='w-4/5 sm:w-3/5 h-fit' onSubmit={handleSubmit}>
       <h2 className="w-fit mx-auto mb-16 text-3xl font-bold text-gray-800 dark:text-gray-100">
-        {submitLabel}
+        {formName? formName : submitLabel}
       </h2>
 
       <div className='w-full h-fit flex flex-col gap-4 mb-8'>

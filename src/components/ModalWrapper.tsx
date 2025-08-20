@@ -14,7 +14,7 @@ const ModalWrapper = ({ isOpen, onClose, children }: Props) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="size-full fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          className="size-full fixed inset-0 z-60 sm:z-50 flex items-center justify-center bg-black/40 p-4"
           onClick={onClose}
         >
           <motion.div
