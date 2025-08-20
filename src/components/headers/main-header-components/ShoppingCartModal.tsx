@@ -43,10 +43,10 @@ const ShoppingCartModal = ({ setModalIsOpen, ModalIsOpen }: Props) => {
   };
 
   return (
-    <div className="h-screen sm:h-[330px] md:h-[380px] xl:h-[450px] w-screen sm:w-[300px] md:w-[330px] xl:w-[380px] border-[1px] rounded-r-md rounded-b-md overflow-hidden border-gray-300 dark:border-slate-500 shadow-md bg-white dark:bg-slate-800 dark:text-white relative">
+    <div className="h-screen sm:h-[330px] md:h-[380px] xl:h-[450px] w-screen sm:w-[300px] md:w-[330px] xl:w-[380px] border-[1px] py-8 rounded-r-md rounded-b-md overflow-hidden border-gray-300 dark:border-slate-500 shadow-md bg-white dark:bg-slate-800 dark:text-white relative">
       <button
         onClick={handleCloseModal}
-        className="size-fit absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
+        className="size-fit absolute top-[5%] right-[3%] sm:top-0 sm:right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
       >
         <FaXmark size={20} />
       </button>
