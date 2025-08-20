@@ -81,6 +81,9 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
       }
     } else {
       const newProducts = res.data ?? [];
+      if (!newProducts.length) {
+        setError("محصولی با مشخصات داده شده یافت نشد");
+      }
       if (reset) {
         setProducts(newProducts);
         setPage(2);
@@ -146,9 +149,9 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2">
-            {products.map((product) => (
+            {products.map((product, index) => (
               <NormalProductContainer
-                key={product.id}
+                key={product.id + index}
                 id={product.id}
                 title={product.name}
                 imageUrl={product.images?.[0] || "/placeholder.png"}
