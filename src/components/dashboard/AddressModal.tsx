@@ -78,11 +78,11 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="w-full h-full flex flex-col relative rounded-md overflow-hidden bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg"
+            className="w-full h-full py-8 flex flex-col relative rounded-md overflow-hidden bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg"
           >
             <button
               onClick={handleCloseModal}
-              className="size-fit absolute top-0 right-0 p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
+              className="size-fit absolute top-[5%] right-[3%] p-2 cursor-pointer text-gray-500 hover:text-red-500 transition-colors"
             >
               <FaXmark size={20} />
             </button>
