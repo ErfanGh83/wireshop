@@ -51,9 +51,9 @@ const CategoryItem = ({
 
       {hasChildren && open && (
         <div className="pl-6 border-l border-gray-300">
-          {node.children.map((child: any) => (
+          {node.children.map((child: any, index: number) => (
             <CategoryItem
-              key={child.id || child.en}
+              key={child.id + index}
               node={child}
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}

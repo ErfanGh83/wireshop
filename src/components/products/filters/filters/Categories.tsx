@@ -2,7 +2,7 @@
 
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
-import { categories } from "./filtersList";
+import { backendCategories } from "./filtersList";
 import CategoryItem from "./CategoryItem";
 
 type Props = {
@@ -34,9 +34,9 @@ const Categories = ({ category, setCategory }: Props) => {
       {/* Dropdown body */}
       {isOpen && (
         <div className="w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto">
-          {categories.map((cat) => (
+          {backendCategories.map((cat, index) => (
             <CategoryItem
-              key={cat.id || cat.en}
+              key={cat.en + index}
               node={cat}
               selectedCategory={category}
               setSelectedCategory={setCategory}

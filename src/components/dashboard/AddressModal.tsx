@@ -78,7 +78,7 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="w-full h-full py-8 flex flex-col relative rounded-md overflow-hidden bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg"
+            className="w-full h-full py-8 sm:py-0 flex flex-col relative rounded-md overflow-hidden bg-white dark:bg-slate-800 text-black dark:text-white shadow-lg"
           >
             <button
               onClick={handleCloseModal}

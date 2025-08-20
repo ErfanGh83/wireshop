@@ -53,3 +53,34 @@ export function normalizeIranianPhone(phone: string): string {
   return ''
 }
 
+
+export interface ParsedCategoryId {
+  categoryId: string;
+  attributeId: string;
+  value: string;
+}
+
+export function categoryIdParser(categoryId: string): ParsedCategoryId {
+  const parts = categoryId.split('|');
+  
+  if (parts.length !== 3) {
+    throw new Error(`Invalid category ID format. Expected 3 parts separated by '|', got: ${categoryId}`);
+  }
+  
+  const [categoryIdPart, attributeId, value] = parts;
+  
+  if (!categoryIdPart || !attributeId || !value) {
+    throw new Error(`Invalid category ID format. All parts must be non-empty: ${categoryId}`);
+  }
+  
+  return {
+    categoryId: categoryIdPart,
+    attributeId,
+    value
+  };
+}
+
+export function isValidCategoryIdFormat(categoryId: string): boolean {
+  const parts = categoryId.split('|');
+  return parts.length === 3 && parts.every(part => part.trim().length > 0);
+}

@@ -52,10 +52,13 @@ interface ProductsResponse {
 }
 
 interface Filters {
-  brands: string[];
-  priceRange: [number, number];
-  onlyInStock: boolean;
-  category: string | null;
+  brands?: string[];
+  priceRange?: [number, number];
+  onlyInStock?: boolean;
+  category?: string;
+  attributes?: {
+    [attributeId: string]: string[];
+  };
 }
 
 export type {ProductsResponse, IProduct, Filters}
