@@ -46,7 +46,7 @@ const SignUpFormWrapper = () => {
                 ) : (
                     <motion.div
                         key="verify"
-                        className="w-3/5"
+                        className="w-3/5 h-fit flex mt-20"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -50 }}
