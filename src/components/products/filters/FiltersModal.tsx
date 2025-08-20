@@ -3,7 +3,6 @@
 import { Filters } from '@/types/products'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
-import Brands from './filters/Brands'
 import PriceRange from './filters/PriceRange'
 import Categories from './filters/Categories'
 
@@ -59,10 +58,10 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     }
 
     return (
-        <div className='relative h-full flex flex-col pt-12 pb-6 sm:pb-10 sm:h-[92vh] w-full border-l-2 px-2 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-800'>
+        <div className='relative h-full flex flex-col pt-12 pb-24 sm:pb-10 sm:h-[92vh] w-full border-l-2 px-4 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-800'>
             <button
                 onClick={handleCloseWithoutApplying}
-                className='absolute top-2 right-2 size-fit hover:cursor-pointer'
+                className='absolute top-4 right-4 size-fit hover:cursor-pointer'
             >
                 <FaXmark className='m-auto dark:text-white' size={24} />
             </button>
@@ -71,11 +70,6 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
                 {/* Scrollable filters area */}
                 <div className='flex-1 overflow-y-auto py-2'>
                     <div className='space-y-4'>
-                        {/* Brands Filter */}
-                        <Brands
-                            brands={brands}
-                            setBrands={setBrands}
-                        />
 
                         {/* Price Range Filter */}
                         <PriceRange
