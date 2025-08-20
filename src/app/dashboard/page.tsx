@@ -133,9 +133,9 @@ export default function DashboardPage() {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
                                         <UserInfoContainer
                                             title="آدرس ها"
-                                            description="آدرس فعلی: تهران، میدان رسالت ..."
+                                            description="انتخاب یا افزودن آدرس..."
                                             icon={<FaMap />}
-                                            className="bg-gray-50 dark:bg-slate-700 hover:shadow-md transition"
+                                            className="cursor-pointer bg-gray-50 dark:bg-slate-700 hover:shadow-xl dark:hover:bg-slate-800 transition"
                                             setModalIsOpen={setAddressesModalIsOpen}
                                         />
                                     </div>

@@ -60,7 +60,7 @@ const GenericForm: React.FC<GenericFormProps> = ({
   };
 
   return (
-    <form className='w-3/5 h-fit' onSubmit={handleSubmit}>
+    <form className='w-4/5 sm:w-3/5 h-fit' onSubmit={handleSubmit}>
       <h2 className="w-fit mx-auto mb-16 text-3xl font-bold text-gray-800 dark:text-gray-100">
         {submitLabel}
       </h2>

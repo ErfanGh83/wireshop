@@ -61,7 +61,7 @@ const Page = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -100, opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="absolute w-full h-full flex flex-col items-center justify-center gap-6"
+              className="absolute w-full h-full flex flex-col items-center justify-start pt-28 gap-6"
             >
               <LoginFormWrapper />
               <button
@@ -80,7 +80,7 @@ const Page = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="absolute w-full h-full flex flex-col items-center justify-center gap-6"
+              className="absolute w-full h-full flex flex-col items-center justify-start pt-28 gap-6"
             >
               <SignUpFormWrapper />
             </motion.div>
