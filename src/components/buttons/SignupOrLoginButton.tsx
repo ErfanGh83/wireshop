@@ -30,7 +30,7 @@ const SignupOrLoginButton = () => {
             </Link>
             <Link
                 href="/auth?mode=signup"
-                className="px-4 py-2 text-sm md:text-base rounded-lg bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-sm"
+                className="w-16 sm:w-fit flex items-center justify-center sm:px-4 py-2 text-sm md:text-base rounded-lg bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-sm"
             >
                 ثبت نام
             </Link>

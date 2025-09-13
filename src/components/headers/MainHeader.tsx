@@ -25,7 +25,7 @@ const MainHeader = () => {
           </div>
 
           <div className="flex flex-row items-center justify-end w-fit sm:w-fit">
-            <div className="relative w-36 h-36 md:mr-2">
+            <div className="relative size-24 sm:size-36 md:mr-2">
               <Image
                 src="/images/logo.png"
                 alt="logo"
