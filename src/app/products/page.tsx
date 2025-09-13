@@ -38,7 +38,7 @@ const ProductsPage = () => {
 
   return (
     <MainLayout>
-      <div className="relative flex size-full bg-white dark:bg-slate-900 text-black dark:text-white pb-4 sm:pb-0">
+      <div className="relative flex size-full bg-white dark:bg-slate-900 text-black dark:text-white pb-4 sm:pb-0 pt-12">
         {/* Sticky Filters Column */}
         <div className={`fixed sm:sticky top-0 h-screen overflow-y-auto transition-all duration-300 ease-in-out 
           ${filtersModalIsOpen ? 'w-full sm:w-80 3xl:w-100 @min-4xl:w-1/2' : 'w-0'} 

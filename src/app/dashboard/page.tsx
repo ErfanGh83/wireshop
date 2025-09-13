@@ -72,7 +72,7 @@ export default function DashboardPage() {
                 {/* Main Content */}
                 <div
                     dir="ltr"
-                    className="w-full min-h-screen py-6 sm:pt-12 bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 text-black dark:text-white overflow-y-auto"
+                    className="w-full min-h-screen py-6 sm:pt-12 bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 text-black dark:text-white overflow-y-auto pt-12"
                 >
                     {!isLoggedIn ? (
                         <div className="flex justify-center items-center h-full">
