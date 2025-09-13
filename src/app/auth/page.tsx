@@ -6,9 +6,11 @@ import LoginFormWrapper from '@/components/auth/LoginFormWrapper';
 import SignUpFormWrapper from '@/components/auth/SignUpFromWrapper';
 import { useSearchParams } from 'next/navigation';
 import { getInitialTheme } from '@/lib/utils';
-import TopBar from '@/components/auth/TopBar';
+import TopBar from '@/components/auth/BottomBar';
 import Background from '@/components/auth/Background';
 import ForgotPasswordFormWrapper from '@/components/auth/ForgotPasswordFormWrapper';
+import Link from 'next/link';
+import { FaXmark } from 'react-icons/fa6';
 
 // Isolated component so we can wrap it in Suspense
 function ModeInitializer({
@@ -37,16 +39,17 @@ const Page = () => {
   }, []);
 
   return (
-    <div className='w-screen h-screen flex items-center justify-center bg-transparent'>
+    <div dir='ltr' className='w-screen h-screen flex items-center justify-center bg-transparent overflow-y-auto'>
 
       <Background backgroundImage={bg} />
 
       {/* Form Container */}
-      <div className='size-full md:w-3/5 md:h-5/6 xl:w-2/5 lg:h-3/4 flex justify-center items-center bg-white dark:bg-slate-800 text-black dark:text-white border-l-[2px] dark:border-none border-gray-100 relative shadow-2xl overflow-hidden'>
-
-        <div className='absolute z-10 top-4 right-0'>
+      <div dir='rtl' className='size-full min-h-[700px] md:w-3/5 md:h-5/6 xl:w-2/5 lg:h-3/4 flex justify-center items-center bg-white dark:bg-slate-800 text-black dark:text-white border-l-[2px] dark:border-none border-gray-100 relative shadow-2xl overflow-hidden'>
+        <Link href={'/'} className='size-fit absolute top-0 right-0 text-3xl m-8 cursor-pointer z-20'><FaXmark /></Link>
+        <div className="w-fit absolute z-10 bottom-6 left-1/2 -translate-x-1/2">
           <TopBar mode={mode} setMode={setMode} />
         </div>
+
 
         {/* Wrap useSearchParams inside Suspense */}
         <Suspense fallback={null}>

@@ -1,25 +1,24 @@
-import Link from 'next/link'
+
 import React, { Dispatch, SetStateAction } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 
 type Props = {
     mode: string,
     setMode: Dispatch<SetStateAction<"login" | "signup" | "forgotpass">>
 }
 
-const TopBar = ({ mode, setMode }: Props) => {
+const BottomBar = ({ mode, setMode }: Props) => {
     return (
-        <div className='size-full'>
-            <div className='size-full flex flex-row-reverse items-center justify-end px-4 gap-2'>
+        <div className='w-screen flex items-center justify-center mx-auto'>
+            <div className='size-fit flex flex-row-reverse items-center justify-end gap-1'>
 
                 <button
                     onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
-                    className='size-fit mx-1 my-1 cursor-pointer text-xl text-blue-500'
+                    className='min-w-fit size-fit mx-1 my-1 cursor-pointer text-md sm:text-xl text-blue-500'
                 >
                     {mode === 'login' ? ' ثبت نام کنید' : mode === 'signup' ? ' از اینجا وارد شوید' : 'ورود'}
                 </button>
 
-                <p className='text-xl text-gray-700 dark:text-gray-200'>
+                <p className='min-w-fit text-md sm:text-xl text-gray-700 dark:text-gray-200'>
                     {mode === 'login'
                         ? 'حساب کاربری ندارید؟'
                         : mode === 'signup' ?
@@ -28,11 +27,9 @@ const TopBar = ({ mode, setMode }: Props) => {
                          'بازکشت به صفحه'
                         }
                 </p>
-
-                <Link href={'/'} className='size-fit'><FaXmark /></Link>
             </div>
         </div>
     )
 }
 
-export default TopBar
+export default BottomBar
