@@ -1,17 +1,16 @@
-"use client"
+"use client";
 
-import { isUserLoggedIn } from '@/lib/auth-utils/server'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import { isUserLoggedIn } from "@/lib/auth-utils/server";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 const SignupOrLoginButton = () => {
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         (async () => {
             try {
-                const hasToken = await isUserLoggedIn()
+                const hasToken = await isUserLoggedIn();
                 setIsLoggedIn(hasToken);
             } catch {
                 setIsLoggedIn(false);
@@ -19,36 +18,24 @@ const SignupOrLoginButton = () => {
         })();
     }, []);
 
+    if (isLoggedIn) return null;
+
     return (
-        <div
-            className={`flex flex-row-reverse items-center rounded-sm bg-transparent text-black dark:text-gray-100 ${isLoggedIn ? 'hidden' : 'w-32 md:w-40 xl:w-44 h-8 md:h-10'}`}
-        >
-
-            <div
-                className='size-full flex items-center justify-center gap-2 text-sm md:text-lg font-normal'
+        <div className="flex items-center gap-2">
+            <Link
+                href="/auth?mode=login"
+                className="px-4 py-2 text-sm md:text-base rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
+                ورود
+            </Link>
+            <Link
+                href="/auth?mode=signup"
+                className="px-4 py-2 text-sm md:text-base rounded-lg bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-sm"
+            >
+                ثبت نام
+            </Link>
+        </div>
+    );
+};
 
-                {
-                    !isLoggedIn &&
-                    <>
-                        < Link
-                            href={`/auth?mode=login`}
-                            className='size-full flex items-center justify-center p-2 border-[1px] border-gray-300 shadow-md hover:text-blue-500 rounded-sm hover:shadow-blue-500 dark:hover:text-blue-400 hover:border-blue-300 transition-all'
-                        >
-                            <p>ورود</p>
-                        </Link>
-
-                        <Link
-                            href={`/auth?mode=signup`}
-                            className='size-full flex items-center justify-center p-2 border-[1px] border-gray-300 shadow-md hover:text-blue-500 rounded-sm hover:shadow-blue-500 dark:hover:text-blue-400 hover:border-blue-300 transition-all'
-                        >
-                            <p>ثبت نام</p>
-                        </Link>
-                    </>
-                }
-            </div>
-        </div >
-    )
-}
-
-export default SignupOrLoginButton
+export default SignupOrLoginButton;

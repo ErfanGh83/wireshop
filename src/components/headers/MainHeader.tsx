@@ -24,20 +24,18 @@ const MainHeader = () => {
             <SearchBar />
           </div>
 
-          <div
-            className='w-fit sm:w-fit flex flex-row items-center justify-end'
-          >
-
-            <div className='relative h-full sm:flex sm:items-center sm:justify-start w-full md:mx-2 mx-0'>
+          <div className="flex flex-row items-center justify-end w-fit sm:w-fit">
+            <div className="relative w-36 h-36 md:mr-2">
               <Image
                 src="/images/logo.png"
                 alt="logo"
-                width={200}
-                height={120}
-                className="object-contain dark:invert dark:hue-rotate-180 -mr-8"
+                fill
+                className="object-contain dark:invert dark:hue-rotate-180"
+                priority
               />
             </div>
           </div>
+
         </div>
 
 
