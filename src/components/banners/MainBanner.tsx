@@ -101,7 +101,7 @@ const MainBanner: React.FC<CustomComponentProps> = ({
       {link && (
         <Link href={link} passHref>
           <motion.div
-            className="absolute inset-0 z-20 cursor-pointer"
+            className="absolute inset-0 z-30 cursor-pointer"
             whileHover={{ cursor: 'pointer' }}
           />
         </Link>
