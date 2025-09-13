@@ -1,13 +1,20 @@
-import React, { ReactElement } from 'react'
+"use client"
+
+import React, { ReactElement, useEffect } from 'react'
 import MainHeader from '../headers/MainHeader'
 import FloatingChat from '../chat/FloatingChat'
 import SubHeader from '../headers/SubHeader'
+import { getInitialTheme, saveTheme } from '@/lib/utils'
 
 type Props = {
     children: ReactElement
 }
 
 const MainLayout = ({children}:Props) => {
+
+    useEffect(() => {
+        saveTheme(getInitialTheme())
+    }, [])
 
     return (
         <div

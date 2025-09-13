@@ -54,7 +54,7 @@ const MainFooter = () => {
                 {/* Social Media */}
                 <div className="space-y-4">
                     <h3 className="w-full text-center text-xl font-bold border-b-2 border-white pb-2">شبکه های اجتماعی </h3>
-                    <div className="flex flex-row gap-x-2">
+                    <div className="flex flex-row justify-center gap-x-2">
                         <Link
                             href="#"
                             className="bg-white text-pink-500 p-2 rounded-full hover:scale-105"

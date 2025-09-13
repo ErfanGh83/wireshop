@@ -13,29 +13,33 @@ const MainHeader = () => {
           <SignupOrLoginButton />
 
           <ShoppingCartSection />
-          
+
           <ThemeSwitchButton />
         </div>
 
-        {/* Search Bar - Hidden on very small screens */}
-        <div className='hidden h-fit lg:flex flex-row w-fit px-3'>
-          <SearchBar />
-        </div>
 
-        <div
-          className='w-fit sm:w-1/3 flex flex-row items-center justify-end'
-        >
+        <div className='w-fit flex flex-row-reverse items-center '>
+          {/* Search Bar - Hidden on very small screens */}
+          <div className='hidden h-fit lg:flex flex-row w-fit px-3'>
+            <SearchBar />
+          </div>
 
-          <div className='relative h-full sm:flex sm:items-center sm:justify-start w-full md:mx-2 mx-0'>
-            <Image
-              src="/images/logo.png"
-              alt="logo"
-              width={200}
-              height={120}
-              className="object-contain dark:invert dark:hue-rotate-180 -mr-8"
-            />
+          <div
+            className='w-fit sm:w-fit flex flex-row items-center justify-end'
+          >
+
+            <div className='relative h-full sm:flex sm:items-center sm:justify-start w-full md:mx-2 mx-0'>
+              <Image
+                src="/images/logo.png"
+                alt="logo"
+                width={200}
+                height={120}
+                className="object-contain dark:invert dark:hue-rotate-180 -mr-8"
+              />
+            </div>
           </div>
         </div>
+
 
       </div>
 
