@@ -84,7 +84,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
           clickable: true, // ✅ allow clicking dots
         }}
         onAutoplayTimeLeft={handleAutoplayTimeLeft}
-        className="h-[200px] sm:h-[300px] md:h-[400px] lg:h-[440px]"
+        className="h-[200px] sm:h-[300px] md:h-[400px] lg:h-[440px] bg"
       >
         {banners.map((banner, index) => (
           <SwiperSlide key={index}>
