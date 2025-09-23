@@ -11,6 +11,7 @@ export default function AdminCreateMemberForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CreateMemberFormValues>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,7 +25,10 @@ export default function AdminCreateMemberForm() {
 
   const onSubmit = (data: CreateMemberFormValues) => {
     createNewUser({ ...data, phone: "+98" + data.phone.slice(1) })
-      .then(() => toast.success("عضو با موفقیت ایجاد شد"))
+      .then(() => {
+        toast.success("عضو با موفقیت ایجاد شد");
+        reset();
+      })
       .catch((err) =>
         toast.error(
           ERROR_MESSAGES.admin[

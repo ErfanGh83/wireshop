@@ -6,7 +6,7 @@ import ProductDetailSpec from "@/components/productPage/spec/ProductDetailSpec";
 import ProductCommentForm from "@/components/productPage/comment/ProductCommentForm";
 import ProductCommentContainer from "@/components/productPage/comment/ProductCommentContainer";
 import { ProductDetail } from "@/types/product_detail";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { addCartItem } from "@/lib/api/cartApi";
 import { toast } from "react-toastify";
@@ -18,7 +18,7 @@ export default function ProductPageContainer() {
 
   const [product, setProduct] = useState<ProductDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [quantity, setQuantity] = useState<number>(0);
 
   useEffect(() => {
     if (!id) return;
@@ -32,10 +32,12 @@ export default function ProductPageContainer() {
   }, [id]);
 
   const handleSubmit = () => {
-    const quantity = Number(inputRef.current?.value);
     if (product && quantity > 0) {
       addCartItem({ productId: product.id, quantity })
-        .then(() => toast.success("محصول با موفقیت به سبد خرید اضافه شد"))
+        .then(() => {
+          toast.success("محصول با موفقیت به سبد خرید اضافه شد");
+          setQuantity(0);
+        })
         .catch((err) =>
           toast.error(err.response?.message || err.message || "خطایی رخ داد")
         );
@@ -65,12 +67,19 @@ export default function ProductPageContainer() {
       </MainLayout>
     );
   }
+
   return (
     <MainLayout>
-      <div dir='ltr' className=" overflow-y-auto size-full bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto">
+      <div
+        dir="ltr"
+        className="overflow-y-auto size-full bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto"
+      >
         <div className="bg-white dark:bg-slate-800 shadow-xl overflow-y-auto md:overflow-y-hidden rounded-2xl md:p-6 p-4 w-full h-full grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-6">
           {/* Product Image */}
-          <div dir='rtl' className="flex justify-center items-center md:col-span-2">
+          <div
+            dir="rtl"
+            className="flex justify-center items-center md:col-span-2"
+          >
             <ProductImageSlider
               images={product.images}
               discount={0}
@@ -79,7 +88,10 @@ export default function ProductPageContainer() {
           </div>
 
           {/* Product Details */}
-          <div dir='rtl' className="flex flex-col justify-start space-y-4 md:col-span-3 lg:col-span-4 md:overflow-y-auto pr-1 pt-10">
+          <div
+            dir="rtl"
+            className="flex flex-col justify-start space-y-4 md:col-span-3 lg:col-span-4 md:overflow-y-auto pr-1 pt-10"
+          >
             <div className="border-r-6 rounded-md p-2 flex flex-col justify-start space-y-4 col-span-3 border-blue-100">
               <h1 className="text-3xl font-bold">{product.name}</h1>
               <p className="text-xl font-semibold">
@@ -96,7 +108,8 @@ export default function ProductPageContainer() {
               <div className="flex items-center space-x-2">
                 <input
                   type="number"
-                  ref={inputRef}
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
                   min={1}
                   placeholder="واحد (کیلوگرم)"
                   className="px-3 py-2 w-40 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600"

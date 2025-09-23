@@ -136,7 +136,7 @@ export default function CartContainer() {
               ) : cart.vehicleType == "pickup_truck" ? (
                 <>
                   <RiTruckLine className="inline-block mx-1 text-xl" />
-                  پیک آپ
+                  وانت بار
                 </>
               ) : (
                 <>{cart.vehicleType}</>

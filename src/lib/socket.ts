@@ -6,6 +6,7 @@ let socket: Socket | null = null;
 export const connectSocket = () => {
   if (!socket) {
     socket = io(BASE_SOCKET_URL, {
+      path: "/ws",
       transports: ["websocket"],
     });
 

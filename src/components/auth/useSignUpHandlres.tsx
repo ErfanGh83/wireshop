@@ -77,7 +77,7 @@ export const useSignUpHandlers = () => {
         if (!isValid) return;
 
         try {
-           await requestOtp(formData.phone);  // Send phone number to get verification code
+            await requestOtp(formData.phone); // Send phone number to get verification code
             setStep('verify');
         } catch (err) {
             if (err instanceof ApiError && err.status === 409) {
