@@ -72,7 +72,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
     >
       <Swiper
         ref={swiperRef}
-        modules={[Navigation, Autoplay, Pagination]} // ✅ add Pagination
+        modules={[Navigation, Autoplay, Pagination]}
         spaceBetween={0}
         slidesPerView={1}
         loop={true}
@@ -81,18 +81,20 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
           disableOnInteraction: false,
         }}
         pagination={{
-          clickable: true, // ✅ allow clicking dots
+          clickable: true,
         }}
         onAutoplayTimeLeft={handleAutoplayTimeLeft}
-        className="h-[200px] sm:h-[300px] md:h-[400px] lg:h-[440px] bg"
+        className="h-[200px] sm:h-[300px] md:h-[400px] lg:h-[440px] mx-2 sm:mx-0"
       >
+
         {banners.map((banner, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="px-2 sm:px-0">
             <motion.div
               variants={cardVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
+              className="overflow-hidden rounded-lg sm:rounded-none shadow-md sm:shadow-none"
             >
               <MainBanner
                 backgroundImageUrl={banner.backgroundImageUrl}
