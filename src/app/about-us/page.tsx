@@ -8,7 +8,7 @@ export default function page() {
     "۰۲۱۳۳۹۹۰۵۳۷",
     "۰۲۱۳۳۹۹۰۵۳۸",
   ];
-  const email = "	lk.electroelka@gmail.com";
+  const email = "lk.electroelka@gmail.com";
   const socials = [
     { icon: "instagram.png", url: "https://www.instagram.com/electro.elka" },
     {
@@ -52,7 +52,7 @@ export default function page() {
                 <div className="grid grid-cols-1 gap-4">
                   {phoneMobile.map((num) => (
                     <a
-                      href={`tel:${phoneMobile}`}
+                      href={`tel:${num}`}
                       key={num}
                       className="p-4 border border-gray-500/40 dark:border-gray-300/60 flex justify-around rounded-xl"
                     >
@@ -67,7 +67,7 @@ export default function page() {
 
                   {phoneLandline.map((num) => (
                     <a
-                      href={`tel:${phoneMobile}`}
+                      href={`tel:${num}`}
                       key={num}
                       className="p-4 border border-gray-500/40 dark:border-gray-300/60 flex justify-around rounded-xl"
                     >
