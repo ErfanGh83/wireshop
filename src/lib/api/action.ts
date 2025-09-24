@@ -25,7 +25,7 @@ export const fetchProducts = async ({ page, search, order, filters }: Props) => 
   const attributeValuesMap: Record<string, string[]> = {};
 
   if (filters) {
-    if (filters.brands?.length) params.brands = filters.brands.join(',');
+    if (filters.brand) params.brand = filters.brand;
     if (filters.priceRange) {
       params.minPrice = filters.priceRange[0];
       params.maxPrice = filters.priceRange[1];

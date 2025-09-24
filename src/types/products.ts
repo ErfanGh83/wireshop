@@ -52,7 +52,7 @@ interface ProductsResponse {
 }
 
 interface Filters {
-  brands?: string[];
+  brand: string | null;
   priceRange?: [number, number];
   onlyInStock?: boolean;
   category: string | null;

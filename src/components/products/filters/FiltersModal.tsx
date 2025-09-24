@@ -5,6 +5,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
 import PriceRange from './filters/PriceRange'
 import Categories from './filters/Categories'
+import Brands from './filters/Brands'
 
 type Props = {
     filters: Filters | null
@@ -15,14 +16,14 @@ type Props = {
 
 const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     // Initialize all filter states with defaults or values from props
-    const [brands, setBrands] = useState<string[]>(filters?.brands || [])
+    const [brand, setBrand] = useState<string | null>(filters?.brand || null)
     const [priceRange, setPriceRange] = useState<[number, number]>(filters?.priceRange || [0, 1000])
     const [onlyInStock, setOnlyInStock] = useState<boolean>(filters?.onlyInStock || false)
     const [category, setCategory] = useState<string | null>(filters?.category || '')
 
     // Update local states when filters prop changes (e.g., when reset)
     useEffect(() => {
-        setBrands(filters?.brands || [])
+        setBrand(filters?.brand || null)
         setPriceRange(filters?.priceRange || [0, 1000])
         setOnlyInStock(filters?.onlyInStock || false)
         setCategory(filters?.category || '')
@@ -31,7 +32,7 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     // Apply all filters
     const applyFilters = () => {
         setFilters({
-            brands,
+            brand,
             priceRange,
             onlyInStock,
             category
@@ -40,7 +41,7 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
 
     // Reset all filters to empty/default values
     const resetFilters = () => {
-        setBrands([])
+        setBrand(null)
         setPriceRange([0, 1000])
         setOnlyInStock(false)
         setCategory('')
@@ -70,6 +71,9 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
                 {/* Scrollable filters area */}
                 <div className='flex-1 overflow-y-auto py-2'>
                     <div className='space-y-4'>
+
+                        {/* Brand Filter */}
+                        <Brands brand={brand} setBrand={setBrand} />
 
                         {/* Price Range Filter */}
                         <PriceRange
