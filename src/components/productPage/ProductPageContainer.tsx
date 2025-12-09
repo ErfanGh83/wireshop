@@ -24,11 +24,7 @@ export default function ProductPageContainer() {
     if (!id) return;
 
     getProductDetail(id)
-      .then((data) => {
-        setProduct(data)
-        console.log(data)
-      })
-      // .then(setProduct)
+      .then(setProduct)
       .catch((err) => {
         console.error(err);
         setError("خطا در دریافت محصول.");
@@ -36,6 +32,11 @@ export default function ProductPageContainer() {
   }, [id]);
 
   const handleSubmit = () => {
+    if (product?.stock && quantity > product.stock) {
+      toast.error(`حداکثر موجودی کالا ${product.stock} واحد است.`);
+      return;
+    }
+
     if (product && quantity > 0) {
       addCartItem({ productId: product.id, quantity })
         .then(() => {
@@ -84,11 +85,15 @@ export default function ProductPageContainer() {
             dir="rtl"
             className="flex justify-center items-center md:col-span-2 bg-gray-100 dark:bg-slate-700 rounded-lg"
           >
-            {product.images && product.images.length > 0 ? <ProductImageSlider
-              images={product.images}
-              discount={0}
-              isFeatured={false}
-            /> : <p>تصویری برای نمایش موجود نیست.</p>}
+            {product.images && product.images.length > 0 ? (
+              <ProductImageSlider
+                images={product.images}
+                discount={0}
+                isFeatured={false}
+              />
+            ) : (
+              <p>تصویری برای نمایش موجود نیست.</p>
+            )}
           </div>
 
           {/* Product Details */}
@@ -98,9 +103,6 @@ export default function ProductPageContainer() {
           >
             <div className="border-r-6 rounded-md p-2 flex flex-col justify-start space-y-4 col-span-3 border-blue-100">
               <h1 className="text-3xl font-bold">{product.name}</h1>
-              <p className="text-xl font-semibold">
-                هر واحد {product.weightKg} کیلوگرم
-              </p>
               {product.price ? (
                 <p className="text-xl font-semibold">
                   قیمت: {product.price} تومان به ازای هر واحد
@@ -121,8 +123,7 @@ export default function ProductPageContainer() {
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
                   min={1}
-                  placeholder="واحد (کیلوگرم)"
-                  className="px-3 py-2 w-40 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600"
+                  className="px-3 py-2 w-20 md:w-40 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-700 dark:border-gray-600"
                 />
                 <button
                   onClick={handleSubmit}
@@ -131,19 +132,25 @@ export default function ProductPageContainer() {
                   افزودن به سبد خرید
                 </button>
               </div>
+              <p className="text-md">هر واحد یک {product.unit}</p>
+              <p className="text-md">حداکثر موجودی {product.stock} واحد</p>
             </div>
 
             <div className="mt-6">
               <h2 className="text-lg font-semibold mb-4">مشخصات کابل</h2>
-              {product.attributes && product.attributes.length > 0 ?<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
-                {product.attributes.map((item) => (
-                  <ProductDetailSpec
-                    label={item.name}
-                    value={item.value}
-                    key={item.id}
-                  />
-                ))}
-              </div> : <p className="text-sm">مشخصاتی برای این کالا تعریف نشده.</p>}
+              {product.attributes && product.attributes.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
+                  {product.attributes.map((item) => (
+                    <ProductDetailSpec
+                      label={item.name}
+                      value={item.value}
+                      key={item.id}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm">مشخصاتی برای این کالا تعریف نشده.</p>
+              )}
             </div>
 
             <ProductCommentForm id={product.id} />
