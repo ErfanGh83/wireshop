@@ -1,4 +1,5 @@
 import MainLayout from "@/components/layouts/MainLayout";
+import Image from "next/image";
 
 export default function page() {
   const phoneMobile = ["۰۹۱۲۶۳۴۶۵۷۵", "۰۹۰۲۱۹۹۱۳۹۵"];
@@ -8,7 +9,7 @@ export default function page() {
     "۰۲۱۳۳۹۹۰۵۳۷",
     "۰۲۱۳۳۹۹۰۵۳۸",
   ];
-  const email = "lk.electroelka@gmail.com";
+  const email = " lk.electroelka@gmail.com";
   const socials = [
     { icon: "instagram.png", url: "https://www.instagram.com/electro.elka" },
     {
@@ -91,22 +92,6 @@ export default function page() {
                       {email}
                     </div>
                   </a>
-
-                  {/* <div className="p-4 border rounded-lg">
-                    <div className="mt-2 flex flex-wrap gap-2">
-                    {socials.map((s) => (
-                      <a
-                      key={s.name}
-                      href={s.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-3 py-1 rounded-full border text-sm hover:bg-gray-50"
-                      >
-                      {s.name}
-                      </a>
-                      ))}
-                      </div>
-                      </div> */}
                 </div>
                 <div className="text-lg text-black mt-6 dark:text-gray-200 mb-2">
                   شبکه‌های اجتماعی
@@ -114,7 +99,7 @@ export default function page() {
                 <div className="flex flex-row">
                   {socials.map((item) => (
                     <a key={item.url} href={item.url} className="mx-1">
-                      <img
+                      <Image
                         width={50}
                         height={50}
                         className="rounded-full"
@@ -142,7 +127,7 @@ export default function page() {
                       href={item.link}
                       target="_blank"
                     >
-                      <img
+                      <Image
                         className="rounded"
                         src={"/images/about-us/" + item.icon}
                         alt={item.icon}

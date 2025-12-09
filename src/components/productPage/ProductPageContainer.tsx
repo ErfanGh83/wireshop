@@ -24,7 +24,11 @@ export default function ProductPageContainer() {
     if (!id) return;
 
     getProductDetail(id)
-      .then(setProduct)
+      .then((data) => {
+        setProduct(data)
+        console.log(data)
+      })
+      // .then(setProduct)
       .catch((err) => {
         console.error(err);
         setError("خطا در دریافت محصول.");
@@ -78,13 +82,13 @@ export default function ProductPageContainer() {
           {/* Product Image */}
           <div
             dir="rtl"
-            className="flex justify-center items-center md:col-span-2"
+            className="flex justify-center items-center md:col-span-2 bg-gray-100 dark:bg-slate-700 rounded-lg"
           >
-            <ProductImageSlider
+            {product.images && product.images.length > 0 ? <ProductImageSlider
               images={product.images}
               discount={0}
               isFeatured={false}
-            />
+            /> : <p>تصویری برای نمایش موجود نیست.</p>}
           </div>
 
           {/* Product Details */}
@@ -97,9 +101,15 @@ export default function ProductPageContainer() {
               <p className="text-xl font-semibold">
                 هر واحد {product.weightKg} کیلوگرم
               </p>
-              <p className="text-xl font-semibold">
-                قیمت: {product.price} تومان به ازای هر واحد
-              </p>
+              {product.price ? (
+                <p className="text-xl font-semibold">
+                  قیمت: {product.price} تومان به ازای هر واحد
+                </p>
+              ) : (
+                <p className="text-lg">
+                  به علت نوسانات بازار برای اطلاع از قیمت تماس بگیرید.
+                </p>
+              )}
               <p className="text-sm text-gray-700 dark:text-gray-200">
                 {product.description}
               </p>
@@ -125,7 +135,7 @@ export default function ProductPageContainer() {
 
             <div className="mt-6">
               <h2 className="text-lg font-semibold mb-4">مشخصات کابل</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
+              {product.attributes && product.attributes.length > 0 ?<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
                 {product.attributes.map((item) => (
                   <ProductDetailSpec
                     label={item.name}
@@ -133,7 +143,7 @@ export default function ProductPageContainer() {
                     key={item.id}
                   />
                 ))}
-              </div>
+              </div> : <p className="text-sm">مشخصاتی برای این کالا تعریف نشده.</p>}
             </div>
 
             <ProductCommentForm id={product.id} />
