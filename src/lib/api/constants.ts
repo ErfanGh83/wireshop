@@ -33,6 +33,7 @@ export const API_ENDPOINTS = {
   REJECT_COMMENT: "/api/comment/reject",
   CHECKOUT: "/api/purchase/url",
   SET_ACTIVE_ADDRESS: "/api/cart/address",
+  GET_CATEGORIES: "/api/category",
 };
 
 export const ERROR_MESSAGES = {
