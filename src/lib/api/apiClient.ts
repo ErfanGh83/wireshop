@@ -78,6 +78,37 @@ export async function postForm<TResponse>(
   return parsed as TResponse;
 }
 
+export async function patchForm<TResponse>(
+  endpoint: string,
+  data: FormData,
+  options: Omit<RequestInit, "method" | "body"> = {}
+): Promise<TResponse> {
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    method: "PATCH",
+    body: data,
+    credentials: "include",
+    ...options,
+  });
+
+  let parsed: any = null;
+  try {
+    parsed = await response.json();
+  } catch {
+    parsed = null;
+  }
+
+  if (!response.ok) {
+    const message =
+      parsed && typeof parsed === "object" && "message" in parsed
+        ? String(parsed.message)
+        : "Request failed";
+    throw new Error(message);
+  }
+
+  return parsed as TResponse;
+}
+
+
 export async function put<T = any>(url: string, data?: any, config = {}) {
   try {
     const response = await api.put<T>(url, data, config);
