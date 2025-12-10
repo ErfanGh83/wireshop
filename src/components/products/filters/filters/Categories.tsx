@@ -2,7 +2,7 @@
 
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
-import { backendCategories } from "./filtersList";
+import { newCategories } from "./filtersList";
 import CategoryItem from "./CategoryItem";
 
 type Props = {
@@ -14,10 +14,11 @@ const Categories = ({ category, setCategory }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${
-      isOpen ? "min-h-16" : "h-16"
-    }`}>
-      {/* Top bar */}
+    <div
+      className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${
+        isOpen ? "min-h-16" : "h-16"
+      }`}
+    >
       <div
         dir="rtl"
         className="w-full h-16 px-4 py-4 flex flex-row items-center justify-between cursor-pointer"
@@ -31,12 +32,11 @@ const Categories = ({ category, setCategory }: Props) => {
         />
       </div>
 
-      {/* Dropdown body */}
       {isOpen && (
-        <div className="w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto">
-          {backendCategories.map((cat, index) => (
+        <div className="w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto max-h-[60vh]">
+          {newCategories.map((cat) => (
             <CategoryItem
-              key={cat.en + index}
+              key={cat.id}
               node={cat}
               selectedCategory={category}
               setSelectedCategory={setCategory}

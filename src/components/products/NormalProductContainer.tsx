@@ -11,6 +11,7 @@ type Props = {
     available: boolean
     description?: string
     className?: string
+    unit: string;
     maxDescriptionLength?: number
 }
 
@@ -18,11 +19,12 @@ const NormalProductContainer = ({
     id,
     title,
     imageUrl,
-    price,
+    // price,
     available = false,
     description = '',
     className = '',
-    maxDescriptionLength = 50 // Default value
+    maxDescriptionLength = 50,
+    // unit
 }: Props) => {
     // Function to trim description if it's too long
     const trimDescription = (desc: string) => {
@@ -75,11 +77,11 @@ const NormalProductContainer = ({
                 </div>
 
                 <div className="mt-2 sm:mt-4">
-                    <div className="flex flex-col-reverse gap-0.5">
+                    {/* <div className="flex flex-col-reverse gap-0.5">
                         <span className="text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white">
-                            سانت / {price} تومان
+                            {unit}/ {price} 
                         </span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </Link>
