@@ -1,4 +1,3 @@
-import { CATEGORY_IDS } from "@/lib/api/constants";
 import { z } from "zod";
 
 // Helper schema for Iranian phone numbers (09xxxxxxxxx)
@@ -90,29 +89,28 @@ export const createProductSchema = z.object({
   name: z.string().min(1, "نام الزامی است"),
   description: z.string().optional(),
   price: z.coerce.number().min(1, "قیمت باید بزرگتر از صفر باشد"),
-  weightKg: z.coerce.number().min(0.01, "وزن باید بزرگتر از صفر باشد"),
+  unit: z.coerce.string().min(1, "معیار هر واحد باید انتخاب شود."),
   stock: z.coerce.number().int().min(0, "موجودی منفی نیست"),
-  categoryId: z.enum(CATEGORY_IDS).refine((val) => CATEGORY_IDS.includes(val), {
-    message: "دسته‌بندی نامعتبر است",
-  }),
+  categoryId: z.string().min(1, "دسته بندی باید انتخاب شود."),
   attributes: z
     .array(
       z.object({
-        key: z.string().min(1, "کلید الزامی است"),
+        name: z.string().min(1, "نام الزامی است"),
+        id: z.string().min(1, "کلید الزامی است"),
         value: z.string().min(1, "مقدار الزامی است"),
       })
     )
     .superRefine((attrs, ctx) => {
       const keys = new Set();
       attrs.forEach((attr, i) => {
-        if (keys.has(attr.key)) {
+        if (keys.has(attr.name)) {
           ctx.addIssue({
             path: [i, "key"],
             code: z.ZodIssueCode.custom,
             message: "این ویژگی قبلاً انتخاب شده است",
           });
         }
-        keys.add(attr.key);
+        keys.add(attr.name);
       });
     }),
   images: z.array(z.union([z.instanceof(File), z.null()])),

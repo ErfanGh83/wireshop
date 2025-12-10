@@ -4,12 +4,15 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createProductFormValues, createProductSchema } from "@/zod/schemas";
 import { FiTrash2, FiPlus } from "react-icons/fi";
-import { postProduct } from "@/lib/api/adminApi";
+import { getCategories, postProduct } from "@/lib/api/adminApi";
 import { toast } from "react-toastify";
-import { CATEGORIES, ERROR_MESSAGES } from "@/lib/api/constants";
-import { useEffect } from "react";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
+import { useEffect, useState } from "react";
+import { Cable } from "@/types/categories";
+import Spinner from "../spinner/Spinner";
 
 export default function AdminCreateProductForm() {
+  const [categories, setCategories] = useState<Cable[] | null>();
   const {
     register,
     handleSubmit,
@@ -24,10 +27,10 @@ export default function AdminCreateProductForm() {
       name: "",
       description: "",
       price: 0,
-      weightKg: 0,
+      unit: "",
       stock: 0,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      categoryId: CATEGORIES[0].id as any,
+      categoryId: categories?.[0].id as any,
       attributes: [],
       images: [],
     },
@@ -46,33 +49,41 @@ export default function AdminCreateProductForm() {
     remove: removeImg,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } = useFieldArray({ control, name: "images" as any });
-
+  
   useEffect(() => {
-    const category = CATEGORIES.find((cat) => cat.id === categoryId);
+    const category = categories?.find((cat) => cat.id === categoryId);
     if (category) {
       const newAttrs = category.attributes.map((attr) => ({
-        key: attr.id,
+        name: attr.name,
+        id: attr.id,
         value: "",
       }));
+      // console.log("newAttr:", newAttrs)
       replaceAttrs(newAttrs);
     } else {
       replaceAttrs([]);
     }
   }, [categoryId, replaceAttrs]);
 
+  useEffect(() => {
+    if(!categories) getCategories().then(setCategories);
+  }, [categories]);
+
+  if(!categories) return <Spinner size={48} />
+
   const onSubmit = (data: createProductFormValues) => {
     const formData = new FormData();
-
+    
     formData.append("name", data.name);
     if (data.description) formData.append("description", data.description);
     formData.append("price", data.price.toString());
-    formData.append("weightKg", data.weightKg.toString());
+    formData.append("unit", data.unit.toString());
     formData.append("stock", data.stock.toString());
     formData.append("categoryId", data.categoryId);
 
     const attributesObj: Record<string, string> = {};
     data.attributes.forEach((attr) => {
-      attributesObj[attr.key] = attr.value;
+      attributesObj[attr.id] = attr.value;
     });
     formData.append("attributes", JSON.stringify(attributesObj));
 
@@ -97,6 +108,7 @@ export default function AdminCreateProductForm() {
   };
 
   console.log("validation error: ", errors);
+  // console.log("categ: ", categories);
 
   return (
     <form
@@ -155,19 +167,18 @@ export default function AdminCreateProductForm() {
 
       <div>
         <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-          وزن (کیلوگرم)
+        واحد
         </label>
         <input
-          type="number"
-          step="0.1"
-          {...register("weightKg")}
-          placeholder="وزن"
+          type="string"
+          {...register("unit")}
+          placeholder="واحد"
           className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700 ${
-            errors.weightKg ? "border-red-500" : "border-gray-300"
+            errors.unit ? "border-red-500" : "border-gray-300"
           }`}
         />
-        {errors.weightKg && (
-          <p className="text-red-500 text-sm mt-1">{errors.weightKg.message}</p>
+        {errors.unit && (
+          <p className="text-red-500 text-sm mt-1">{errors.unit.message}</p>
         )}
       </div>
 
@@ -196,7 +207,7 @@ export default function AdminCreateProductForm() {
           {...register("categoryId")}
           className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700"
         >
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}
             </option>
@@ -214,28 +225,33 @@ export default function AdminCreateProductForm() {
         )}
 
         {attrFields.map((field, index) => {
-          const category = CATEGORIES.find((cat) => cat.id === categoryId);
-          if (!category) return null;
-          const attribute = category.attributes.find(
-            (attr) => attr.id === field.key
-          );
-          if (!attribute) return null;
+          // console.log("field", field)
+          // const category = categories.find((cat) => cat.id === categoryId);
+          // if (!category) return null;
+          // const attribute = category.attributes.find(
+            // (attr) => attr.id === field.id
+          // );
+          // console.log("attr field id: ", field.id)
+          // if (!attribute) return null;
 
           return (
             <div className="mb-4" key={field.id}>
               <div className="flex flex-row justify-between items-center">
                 <label className="mb-1 font-semibold text-gray-700 dark:text-gray-300">
-                  {attribute.name}
+                  {field.name}
                 </label>
 
-                <select
+                <input
                   {...register(`attributes.${index}.value` as const)}
                   defaultValue={field.value || ""}
-                  className={`border rounded-lg p-2 w-48 sm:w-64 lg:w-96 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700 ${
-                    errors.attributes?.[index]?.value
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  }`}
+                    className={`border rounded-lg p-2 w-48 sm:w-64 lg:w-96 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700 ${
+                      errors.attributes?.[index]?.value
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    }`}
+                />
+                
+                {/* <select
                 >
                   <option value="" disabled>
                     انتخاب کنید
@@ -245,12 +261,12 @@ export default function AdminCreateProductForm() {
                       {option}
                     </option>
                   ))}
-                </select>
+                </select> */}
 
                 <input
                   type="hidden"
-                  {...register(`attributes.${index}.key` as const)}
-                  value={field.key}
+                  {...register(`attributes.${index}.name` as const)}
+                  value={field.name}
                 />
               </div>
               {errors.attributes?.[index]?.value && (
