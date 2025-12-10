@@ -9,7 +9,6 @@ export async function getAllProduct() {
   return get<ProductListResponse>(API_ENDPOINTS.ALL_PRODUCT);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function patchProduct(id: string, data: FormData) {
   return patchForm(`${API_ENDPOINTS.ALL_PRODUCT}/${id}`, data);
 }

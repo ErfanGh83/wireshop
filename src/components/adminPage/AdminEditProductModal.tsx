@@ -160,7 +160,7 @@ export default function AdminEditProductModal({ id }: { id: string }) {
 
         <div>
           <label className="block font-medium mb-1 text-gray-700 dark:text-gray-200">
-            قیمت (تومان)
+            قیمت (ریال)
           </label>
           <input
             type="number"

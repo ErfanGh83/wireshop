@@ -72,7 +72,7 @@ export default function AdminOrderModal({ id }: { id: string }) {
           <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
             هزینه کل:
           </span>
-          {order.cost.toLocaleString()} تومان
+          {order.cost.toLocaleString()} ریال
         </p>
       </div>
 
@@ -109,9 +109,7 @@ export default function AdminOrderModal({ id }: { id: string }) {
                       {item.product.name}
                     </p>
                     <p>تعداد: {item.quantity}</p>
-                    <p>
-                      قیمت واحد: {item.product.price.toLocaleString()} تومان
-                    </p>
+                    <p>قیمت واحد: {item.product.price.toLocaleString()} ریال</p>
                     <p>وزن واحد: {item.product.weightKg} کیلوگرم</p>
                     <p>
                       وضعیت موجودی:{" "}

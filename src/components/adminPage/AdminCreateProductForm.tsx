@@ -49,7 +49,7 @@ export default function AdminCreateProductForm() {
     remove: removeImg,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } = useFieldArray({ control, name: "images" as any });
-  
+
   useEffect(() => {
     const category = categories?.find((cat) => cat.id === categoryId);
     if (category) {
@@ -63,17 +63,17 @@ export default function AdminCreateProductForm() {
     } else {
       replaceAttrs([]);
     }
-  }, [categoryId, replaceAttrs]);
+  }, [categoryId, replaceAttrs, categories]);
 
   useEffect(() => {
-    if(!categories) getCategories().then(setCategories);
+    if (!categories) getCategories().then(setCategories);
   }, [categories]);
 
-  if(!categories) return <Spinner size={48} />
+  if (!categories) return <Spinner size={48} />;
 
   const onSubmit = (data: createProductFormValues) => {
     const formData = new FormData();
-    
+
     formData.append("name", data.name);
     if (data.description) formData.append("description", data.description);
     formData.append("price", data.price.toString());
@@ -150,7 +150,7 @@ export default function AdminCreateProductForm() {
 
       <div>
         <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-          قیمت (تومان)
+          قیمت (ریال)
         </label>
         <input
           type="number"
@@ -167,7 +167,7 @@ export default function AdminCreateProductForm() {
 
       <div>
         <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
-        واحد
+          واحد
         </label>
         <input
           type="string"
@@ -229,7 +229,7 @@ export default function AdminCreateProductForm() {
           // const category = categories.find((cat) => cat.id === categoryId);
           // if (!category) return null;
           // const attribute = category.attributes.find(
-            // (attr) => attr.id === field.id
+          // (attr) => attr.id === field.id
           // );
           // console.log("attr field id: ", field.id)
           // if (!attribute) return null;
@@ -244,13 +244,13 @@ export default function AdminCreateProductForm() {
                 <input
                   {...register(`attributes.${index}.value` as const)}
                   defaultValue={field.value || ""}
-                    className={`border rounded-lg p-2 w-48 sm:w-64 lg:w-96 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700 ${
-                      errors.attributes?.[index]?.value
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
+                  className={`border rounded-lg p-2 w-48 sm:w-64 lg:w-96 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700 ${
+                    errors.attributes?.[index]?.value
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
-                
+
                 {/* <select
                 >
                   <option value="" disabled>

@@ -2,7 +2,6 @@
 
 import CartItem from "./CartItem";
 import { TiShoppingCart } from "react-icons/ti";
-import { RiEBike2Line, RiTruckLine } from "react-icons/ri";
 import { Address, Cart } from "@/types/cart";
 import {
   getAllCart,
@@ -25,7 +24,10 @@ export default function CartContainer() {
   useEffect(() => {
     if (!isChanged) return;
     getAllCart()
-      .then((result) => setCart(result))
+      .then((result) => {
+        setCart(result);
+        console.log("res:", result);
+      })
       .catch((err) =>
         toast.error(
           ERROR_MESSAGES.my_cart[
@@ -108,7 +110,7 @@ export default function CartContainer() {
                 price={item.product.price}
                 quantity={item.quantity}
                 productWeightKg={item.product.weightKg}
-                weightKg={item.weightKg}
+                // weightKg={item.weightKg}
                 onChange={() => setIsChanged(true)}
               />
             ))}
@@ -116,14 +118,14 @@ export default function CartContainer() {
 
           <div className="text-right mt-4">
             <h4 className="font-bold text-xl text-gray-900 dark:text-white">
-              مجموع هزینه: {cart.cost.toFixed(0)} تومان
+              مجموع هزینه: {cart.cost.toFixed(0)} ریال
             </h4>
-            <h4 className="font-bold text-xl text-gray-900 dark:text-white">
+            {/* <h4 className="font-bold text-xl text-gray-900 dark:text-white">
               مجموع وزن: {cart.weightKg.toFixed(2) || 0} کیلوگرم
-            </h4>
+            </h4> */}
           </div>
 
-          <div className="text-right mt-4 p-2 bg-slate-200 dark:bg-gray-800/70 max-w-sm rounded shadow">
+          {/* <div className="text-right mt-4 p-2 bg-slate-200 dark:bg-gray-800/70 max-w-sm rounded shadow">
             <span className="font-semibold text-xl text-gray-700 dark:text-white">
               روش ارسال:
             </span>
@@ -142,7 +144,7 @@ export default function CartContainer() {
                 <>{cart.vehicleType}</>
               )}
             </span>
-          </div>
+          </div> */}
 
           {activeAddress && (
             <div className="p-2 mt-4 bg-gray-100 dark:bg-gray-800 rounded shadow">

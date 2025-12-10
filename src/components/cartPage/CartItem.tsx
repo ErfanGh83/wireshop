@@ -8,7 +8,7 @@ interface CartItemProps {
   productId: string;
   name: string;
   price: number;
-  weightKg: number;
+  // weightKg: number;
   quantity: number;
   productWeightKg: number;
   onChange: () => void;
@@ -86,7 +86,7 @@ export default function CartItem({
         </div>
 
         <div className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white whitespace-nowrap">
-          {(price * quantity).toLocaleString()} تومان
+          {(price * quantity).toLocaleString()} ریال
         </div>
 
         <FaTrash

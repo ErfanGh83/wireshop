@@ -18,7 +18,6 @@ import "swiper/css/pagination";
 import { BASE_URL } from "@/lib/api/constants";
 import Image from "next/image";
 
-
 export default function ProductPageContainer() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -131,7 +130,7 @@ export default function ProductPageContainer() {
               <h1 className="text-3xl font-bold">{product.name}</h1>
               {product.price ? (
                 <p className="text-xl font-semibold">
-                  قیمت: {product.price} تومان به ازای هر واحد
+                  قیمت: {product.price} ریال به ازای هر واحد
                 </p>
               ) : (
                 <p className="text-lg">
