@@ -10,7 +10,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  weightKg: number;
+  unit: string;
   stock: number;
   images: string[];
   category: Category;

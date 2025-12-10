@@ -80,8 +80,29 @@ export const productSchema = z.object({
   name: z.string().min(1, "نام الزامی است"),
   description: z.string().nullable().optional(),
   price: z.number().min(0, "قیمت نمی‌تواند منفی باشد"),
-  weightKg: z.number().min(0, "وزن باید صفر یا بیشتر باشد"),
+  unit: z.string().min(0, "واحد نمیتواند خالی باشد."),
   stock: z.number().int().min(0, "موجودی نمی‌تواند منفی باشد"),
+  attributes: z
+    .array(
+      z.object({
+        name: z.string().min(1, "نام الزامی است"),
+        id: z.string().min(1, "کلید الزامی است"),
+        value: z.string().min(1, "مقدار الزامی است"),
+      })
+    )
+    .superRefine((attrs, ctx) => {
+      const keys = new Set();
+      attrs.forEach((attr, i) => {
+        if (keys.has(attr.name)) {
+          ctx.addIssue({
+            path: [i, "key"],
+            code: z.ZodIssueCode.custom,
+            message: "این ویژگی قبلاً انتخاب شده است",
+          });
+        }
+        keys.add(attr.name);
+      });
+    }),
 });
 export type ProductFormValues = z.infer<typeof productSchema>;
 
