@@ -103,6 +103,11 @@ export const productSchema = z.object({
         keys.add(attr.name);
       });
     }),
+  // images: z.array(z.union([z.instanceof(File), z.null()])) ,
+  images: z.union([
+    z.array(z.union([z.instanceof(File), z.null()])),
+    z.undefined(),
+  ]),
 });
 export type ProductFormValues = z.infer<typeof productSchema>;
 
