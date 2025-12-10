@@ -7,18 +7,24 @@ export interface CartItem {
     weightKg: number;
   };
   quantity: number;
-  weightKg: number;
 }
 
 export interface Cart {
-  id: string;
-  userId: string;
-  status: string;
-  vehicleType: string;
-  weightKg: number;
+  address: Address;
   cost: number;
+  id: string;
   items: CartItem[];
+  userId: string;
 }
+
+// export interface Cart {
+//   id: string;
+//   userId: string;
+//   status: string;
+//   vehicleType: string;
+//   cost: number;
+//   items: CartItem[];
+// }
 
 export interface Address {
   province: string;
