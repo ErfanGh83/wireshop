@@ -1,7 +1,6 @@
 "use client";
 
 import MainLayout from "@/components/layouts/MainLayout";
-import ProductImageSlider from "@/components/productPage/slider/ProductImageSlider";
 import ProductDetailSpec from "@/components/productPage/spec/ProductDetailSpec";
 import ProductCommentForm from "@/components/productPage/comment/ProductCommentForm";
 import ProductCommentContainer from "@/components/productPage/comment/ProductCommentContainer";
@@ -11,6 +10,14 @@ import { useSearchParams } from "next/navigation";
 import { addCartItem } from "@/lib/api/cartApi";
 import { toast } from "react-toastify";
 import { getProductDetail } from "@/lib/api/productApi";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { BASE_URL } from "@/lib/api/constants";
+import Image from "next/image";
+
 
 export default function ProductPageContainer() {
   const searchParams = useSearchParams();
@@ -38,6 +45,7 @@ export default function ProductPageContainer() {
     }
 
     if (product && quantity > 0) {
+      console.log(product);
       addCartItem({ productId: product.id, quantity })
         .then(() => {
           toast.success("محصول با موفقیت به سبد خرید اضافه شد");
@@ -83,14 +91,32 @@ export default function ProductPageContainer() {
           {/* Product Image */}
           <div
             dir="rtl"
-            className="flex justify-center items-center md:col-span-2 bg-gray-100 dark:bg-slate-700 rounded-lg"
+            className="flex justify-center items-center md:col-span-2"
           >
             {product.images && product.images.length > 0 ? (
-              <ProductImageSlider
-                images={product.images}
-                discount={0}
-                isFeatured={false}
-              />
+              <Swiper
+                modules={[Navigation, Pagination]}
+                navigation
+                pagination={{ clickable: true }}
+                className="select-none h-130"
+              >
+                {product.images.map((src, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="flex justify-center items-center"
+                  >
+                    <Image
+                      crossOrigin="anonymous"
+                      src={BASE_URL + src}
+                      alt={`product-${index}`}
+                      priority
+                      width={200}
+                      height={200}
+                      className="h-full w-full object-contain "
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             ) : (
               <p>تصویری برای نمایش موجود نیست.</p>
             )}
