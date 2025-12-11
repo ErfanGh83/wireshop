@@ -45,7 +45,7 @@ const ShoppingCartItem = ({
         <h3 className="text-sm font-medium truncate">{title}</h3>
 
         <div className="flex items-center justify-between mt-2">
-          <div className="text-sm">{(price / 10).toFixed(2)} ریال</div>
+          <div className="text-sm">{price} ریال</div>
 
           <div className="flex items-center gap-3">
             <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
@@ -67,7 +67,7 @@ const ShoppingCartItem = ({
             </div>
 
             <span className="font-bold text-sm min-w-[80px] text-left">
-              {total.toFixed(2)} ریال
+              {total} ریال
             </span>
           </div>
         </div>
@@ -75,7 +75,7 @@ const ShoppingCartItem = ({
         {discount > 0 && (
           <div className="flex items-center gap-2 text-xs mt-2">
             <span className="line-through text-gray-500">
-              {price.toFixed(2)} ریال
+              {price} ریال
             </span>
             <span className="bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full">
               %{discount} تخفیف

@@ -154,6 +154,7 @@ export default function AdminCreateProductForm() {
         </label>
         <input
           type="number"
+          step={10000}
           {...register("price")}
           placeholder="قیمت"
           className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700 ${

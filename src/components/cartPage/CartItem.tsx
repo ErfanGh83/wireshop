@@ -10,7 +10,7 @@ interface CartItemProps {
   price: number;
   // weightKg: number;
   quantity: number;
-  productWeightKg: number;
+  // unit: number;
   onChange: () => void;
 }
 
@@ -20,7 +20,7 @@ export default function CartItem({
   name,
   price,
   quantity,
-  productWeightKg,
+  // unit,
   onChange,
 }: CartItemProps) {
   const handleChangeNumber = async (amount: number) => {
@@ -58,11 +58,11 @@ export default function CartItem({
         <h2 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white truncate">
           {name}
         </h2>
+        {/* <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300">
+           هر واحد: {unit} 
+        </p> */}
         <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300">
-          وزن هر واحد: {productWeightKg} کیلوگرم
-        </p>
-        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300">
-          وزن کل: {quantity} کیلوگرم
+          واحد کل: {quantity}
         </p>
       </div>
 

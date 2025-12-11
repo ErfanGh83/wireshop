@@ -165,6 +165,7 @@ export default function AdminEditProductModal({ id }: { id: string }) {
           </label>
           <input
             type="number"
+            step={10000}
             {...register("price", { valueAsNumber: true })}
             className="w-full px-4 py-2 border rounded-md bg-gray-50 dark:bg-slate-800 dark:border-gray-600 dark:text-white"
           />

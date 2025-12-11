@@ -109,7 +109,7 @@ export default function CartContainer() {
                 name={item.product.name}
                 price={item.product.price}
                 quantity={item.quantity}
-                productWeightKg={item.product.weightKg}
+                // productWeightKg={item.product.weightKg}
                 // weightKg={item.weightKg}
                 onChange={() => setIsChanged(true)}
               />
