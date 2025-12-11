@@ -14,6 +14,7 @@ import Spinner from "../spinner/Spinner";
 import { toast } from "react-toastify";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
 import { FiPlus, FiTrash2 } from "react-icons/fi";
+import AdminRemoveImage from "./AdminRemoveImage";
 
 export default function AdminEditProductModal({ id }: { id: string }) {
   const [defaultValue, setDefaultValue] = useState<Product | null>();
@@ -274,6 +275,14 @@ export default function AdminEditProductModal({ id }: { id: string }) {
             <p className="text-red-500">{errors.images.message}</p>
           )}
         </div>
+
+        <AdminRemoveImage
+          images={defaultValue.images}
+          productId={id}
+          removeImage={(imageId) =>
+            defaultValue.images.filter((image) => image != imageId)
+          }
+        />
 
         <button
           type="submit"

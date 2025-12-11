@@ -58,6 +58,10 @@ export async function getCategories() {
   return get<Cable[]>(API_ENDPOINTS.GET_CATEGORIES);
 }
 
-export async function deleteProduct(id:string) {
-  return del(`${API_ENDPOINTS.ALL_PRODUCT}/${id}`)
+export async function deleteProduct(id: string) {
+  return del(`${API_ENDPOINTS.ALL_PRODUCT}/${id}`);
+}
+
+export async function deleteImage(productId: string, imageId:string) {
+  return del(`${API_ENDPOINTS.ALL_PRODUCT}/${productId}/image/${imageId}`);
 }
