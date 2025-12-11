@@ -20,6 +20,7 @@ export const API_ENDPOINTS = {
   ACTIVE_CART: "/api/cart/my",
   MODIFY_CART: "/api/cart/item",
   SELECTED_ADDRESS: "/api/cart/address",
+  SEARCH: "/api/product/search",
   GET_PROFILE: "/api/user/my-profile",
   FP_REQUEST_OTP: "/api/auth/forgot-password/send-code", //method: POST, request body: phone number
   FP_VERIFY_OTP: "/api/auth/forgot-password/verify", //method: POST, request body: phone number + verification code

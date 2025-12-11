@@ -36,6 +36,7 @@ const AttributeItem = ({
         setSelectedCategory(JSON.stringify({
             categoryId,
             attribute: attribute.name,
+            attributeId: attribute.id,
             value: val
         }));
     };
