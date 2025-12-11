@@ -25,7 +25,7 @@ const NormalProductContainer = ({
   className = "",
   maxDescriptionLength = 50,
 }: // unit
-Props) => {
+  Props) => {
   // Function to trim description if it's too long
   const trimDescription = (desc: string) => {
     if (desc.length <= maxDescriptionLength) return desc;
@@ -57,14 +57,21 @@ Props) => {
       <div className="relative w-32 h-32 sm:w-full sm:h-48 md:h-56 lg:h-64 bg-gray-100 dark:bg-gray-600 overflow-hidden flex-shrink-0">
         <Image
           crossOrigin={
-            imageUrl.startsWith("/uploads") ? "anonymous" : undefined
+            typeof imageUrl === "string" && imageUrl.startsWith("/uploads")
+              ? "anonymous"
+              : undefined
           }
-          src={imageUrl.startsWith("/uploads") ? BASE_URL + imageUrl : imageUrl}
-          alt={title}
+          src={
+            typeof imageUrl === "string"
+              ? imageUrl.startsWith("/uploads")
+                ? BASE_URL + imageUrl
+                : imageUrl
+              : "/fallback.png" // use a real fallback
+          }
+          alt={title || "image"}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 256px"
-          priority={false}
         />
       </div>
 

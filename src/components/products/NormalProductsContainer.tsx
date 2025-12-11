@@ -125,7 +125,9 @@ const NormalProductsContainer = () => {
                   key={product.id}
                   id={product.id}
                   title={product.name}
-                  imageUrl={product.images?.[0] || "/placeholder.png"}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  //@ts-ignore
+                  imageUrl={product.images.length ? product.images?.[0].url || "/placeholder.png" : "/placeholder.png"}
                   price={product.price}
                   available={product.stock > 0}
                   // discount={0}
