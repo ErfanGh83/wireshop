@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import { newCategories } from "./filtersList";
 import CategoryItem from "./CategoryItem";
+import { useTooltip } from "@/hooks/useToolTip";
 
 type Props = {
   category: string | null;
@@ -13,18 +14,38 @@ type Props = {
 const Categories = ({ category, setCategory }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Tooltip hook
+  const {
+    setHoveredText,
+    setTooltipPos,
+    Tooltip,
+  } = useTooltip();
+
   return (
     <div
-      className={`w-full flex flex-col items-center justify-between text-2xl bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden ${
-        isOpen ? "min-h-16" : "h-16"
-      }`}
+      className={`w-full flex flex-col items-center justify-between text-xl 
+      bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden
+      ${isOpen ? "min-h-16" : "h-16"}`}
     >
+      {/* Tooltip */}
+      <Tooltip />
+
       <div
         dir="rtl"
         className="w-full h-16 px-4 py-4 flex flex-row items-center justify-between cursor-pointer"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <p>دسته بندی</p>
+        <p
+          onMouseEnter={(e) => {
+            setHoveredText("دسته بندی");
+            setTooltipPos({ x: e.clientX, y: e.clientY });
+          }}
+          onMouseMove={(e) => setTooltipPos({ x: e.clientX, y: e.clientY })}
+          onMouseLeave={() => setHoveredText(null)}
+        >
+          دسته بندی
+        </p>
+
         <MdArrowDropDown
           className={`transition-transform duration-200 ${
             isOpen ? "" : "-rotate-90"

@@ -480,50 +480,50 @@ export const backendCategories = [
 ]
 
 
-export const brands = [
-  { en: "Legrand", fa: "لگراند" },
-  { en: "Nexans", fa: "نگزنس" },
-  { en: "Belden", fa: "بلدن" },
-  { en: "Afshar Nezhad Khorasan", fa: "افشار نژاد خراسان" },
-  { en: "Simia", fa: "سیمیا" },
-  { en: "Hamedan", fa: "همدان" },
-  { en: "Simpod", fa: "سیمپود" },
-  { en: "Kerman Radin", fa: "کرمان رادین" },
-  { en: "Linko", fa: "لینکو" },
-  { en: "Ivan A1", fa: "ایوان A1" },
-  { en: "Alborz", fa: "البرز" },
-  { en: "Semnan", fa: "سمنان" },
-  { en: "Shirkouh", fa: "شیرکوه" },
-  { en: "Arian Abhar", fa: "آرین ابهر" },
-  { en: "Pezhvak Hamedan", fa: "پژواک همدان" },
-  { en: "Zartaft Kerman", fa: "زرتافت کرمان" },
-  { en: "Masin", fa: "مسین" },
-  { en: "Khavarnou", fa: "خاورنو" },
-  { en: "Saveh", fa: "ساوه" },
-  { en: "Mansourian", fa: "منصوریان" },
-  { en: "Arian", fa: "آرین" },
-  { en: "Shayan", fa: "شایان" },
-  { en: "Kerman", fa: "کرمان" },
-  { en: "Negin Alborz", fa: "نگین البرز" },
-  { en: "Amp", fa: "Amp" },
-  { en: "Knet", fa: "Knet" },
-  { en: "TycoNet", fa: "تایکونت" },
-  { en: "Algonet", fa: "الگونت" },
-  { en: "Danube", fa: "دانوب" },
-  { en: "TP-Link", fa: "tp-link" },
-  { en: "Siemens", fa: "زیمنس" },
-  { en: "PKS", fa: "pks" },
-  { en: "D-Link", fa: "D-link" }
-];
+// export const brands = [
+//   { en: "Legrand", fa: "لگراند" },
+//   { en: "Nexans", fa: "نگزنس" },
+//   { en: "Belden", fa: "بلدن" },
+//   { en: "Afshar Nezhad Khorasan", fa: "افشار نژاد خراسان" },
+//   { en: "Simia", fa: "سیمیا" },
+//   { en: "Hamedan", fa: "همدان" },
+//   { en: "Simpod", fa: "سیمپود" },
+//   { en: "Kerman Radin", fa: "کرمان رادین" },
+//   { en: "Linko", fa: "لینکو" },
+//   { en: "Ivan A1", fa: "ایوان A1" },
+//   { en: "Alborz", fa: "البرز" },
+//   { en: "Semnan", fa: "سمنان" },
+//   { en: "Shirkouh", fa: "شیرکوه" },
+//   { en: "Arian Abhar", fa: "آرین ابهر" },
+//   { en: "Pezhvak Hamedan", fa: "پژواک همدان" },
+//   { en: "Zartaft Kerman", fa: "زرتافت کرمان" },
+//   { en: "Masin", fa: "مسین" },
+//   { en: "Khavarnou", fa: "خاورنو" },
+//   { en: "Saveh", fa: "ساوه" },
+//   { en: "Mansourian", fa: "منصوریان" },
+//   { en: "Arian", fa: "آرین" },
+//   { en: "Shayan", fa: "شایان" },
+//   { en: "Kerman", fa: "کرمان" },
+//   { en: "Negin Alborz", fa: "نگین البرز" },
+//   { en: "Amp", fa: "Amp" },
+//   { en: "Knet", fa: "Knet" },
+//   { en: "TycoNet", fa: "تایکونت" },
+//   { en: "Algonet", fa: "الگونت" },
+//   { en: "Danube", fa: "دانوب" },
+//   { en: "TP-Link", fa: "tp-link" },
+//   { en: "Siemens", fa: "زیمنس" },
+//   { en: "PKS", fa: "pks" },
+//   { en: "D-Link", fa: "D-link" }
+// ];
 
 export const newCategories = [
   {
     "id": "f7a4a542-de4c-4b60-b4c3-b2012ca34506",
-    "name": "coaxial",
+    "name": "کواکسیال",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "RG11 (دوربین/آنتن حرفه‌ای)",
           "RG59 (دوربین)",
@@ -536,7 +536,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "CCTV، تلویزیون محلی",
           "آنتن تلویزیون، ماهواره، سیستم‌های تصویری با کیفیت بالاتر",
@@ -549,7 +549,7 @@ export const newCategories = [
       },
       {
         "id": "c361221c-b08f-471b-9b74-6c487b081ca4",
-        "name": "impedance",
+        "name": "امپدانس",
         "values": [
           "50 Ω (عموماً)",
           "75 Ω",
@@ -558,7 +558,7 @@ export const newCategories = [
       },
       {
         "id": "18a78e95-29d7-42db-86ee-0e501507253b",
-        "name": "center_conductor_str",
+        "name": "رشته مرکزی",
         "values": [
           "AWG 18 (~1.02 mm)",
           "AWG 20 (~0.80 mm)",
@@ -571,7 +571,7 @@ export const newCategories = [
       },
       {
         "id": "b2d5ada8-2265-44e0-9892-af1381851a9e",
-        "name": "dielectric",
+        "name": "دی‌الکتریک",
         "values": [
           "PE فوم یا PE معمولی",
           "PE یا فوم PE با کیفیت بالا",
@@ -584,7 +584,7 @@ export const newCategories = [
       },
       {
         "id": "d1224b6e-09b2-4e39-b705-9a5710c2b74f",
-        "name": "shield",
+        "name": "شیلد",
         "values": [
           "شیلد تصویر مطابق مدل",
           "شیلد چندلایه برای کاهش نویز",
@@ -597,7 +597,7 @@ export const newCategories = [
       },
       {
         "id": "9a867f31-9c7f-4aaa-8eab-1a067c2f5d2c",
-        "name": "outer_jacket",
+        "name": "روکش بیرونی",
         "values": [
           "PVC سفید یا مشکی",
           "PVC (گاهی ضد آب / UV)",
@@ -610,7 +610,7 @@ export const newCategories = [
       },
       {
         "id": "34c065c4-ed1e-4238-95b6-d905795f396b",
-        "name": "recommended_length",
+        "name": "طول پیشنهادی",
         "values": [
           "100–200 متر",
           "بسته به قدرت و فرکانس (متوسط تا زیاد)",
@@ -623,7 +623,7 @@ export const newCategories = [
       },
       {
         "id": "483d1745-480f-4d4e-b18c-33e1accea9ba",
-        "name": "common_connectors",
+        "name": "کانکتورهای رایج",
         "values": [
           "BNC / فیش F",
           "BNC + فیش برق",
@@ -638,11 +638,13 @@ export const newCategories = [
   },
   {
     "id": "8dfc8f5b-fdfa-4746-9f81-fee77a69d642",
-    "name": "equipment_network_cable_tools",
+
+    "name": "ابزار کابل شبکه",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+
+        "name": "نوع",
         "values": [
           "دستی",
           "دیجیتال"
@@ -650,7 +652,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "تست صحت اتصال کابل‌های شبکه",
           "نصب کانکتورهای شبکه"
@@ -660,18 +662,19 @@ export const newCategories = [
   },
   {
     "id": "1635b7ea-5207-4c92-b360-30fff6e9eb65",
-    "name": "equipment_cables_and_wiring_electrical_panel",
+
+    "name": "کابل و سیم‌کشی تابلو برق",
     "attributes": [
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "نگهداری تجهیزات برقی"
         ]
       },
       {
         "id": "d5521c4b-c4d7-47c1-b1cc-7a78741a7948",
-        "name": "length",
+        "name": "طول",
         "values": [
           "1000x1200mm",
           "600x800mm",
@@ -680,7 +683,7 @@ export const newCategories = [
       },
       {
         "id": "ffdde525-b1ec-41ee-80db-2e5ac1b838a3",
-        "name": "material",
+        "name": "جنس",
         "values": [
           "PVC",
           "فولاد گالوانیزه"
@@ -690,11 +693,11 @@ export const newCategories = [
   },
   {
     "id": "f6e6df8f-8697-495e-ac27-792591bb6605",
-    "name": "equipment_coaxial_tools",
+    "name": "ابزار کواکسیال",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "دستی",
           "دیجیتال"
@@ -702,7 +705,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "تست صحت اتصال کابل‌های کواکسیال",
           "نصب کانکتورهای کواکسیال"
@@ -712,11 +715,11 @@ export const newCategories = [
   },
   {
     "id": "d1dc65fd-1183-4b9a-a027-72af0a2e76b8",
-    "name": "equipment_network_rack",
+    "name": "رک شبکه",
     "attributes": [
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "نگهداری تجهیزات شبکه",
           "نگهداری تجهیزات شبکه در فضاهای محدود"
@@ -724,14 +727,14 @@ export const newCategories = [
       },
       {
         "id": "ffdde525-b1ec-41ee-80db-2e5ac1b838a3",
-        "name": "material",
+        "name": "جنس",
         "values": [
           "فلزی"
         ]
       },
       {
         "id": "249283f1-150c-4c8b-a3b9-fdbeeeb3b291",
-        "name": "size",
+        "name": "سایز",
         "values": [
           "12U",
           "15U",
@@ -744,11 +747,11 @@ export const newCategories = [
   },
   {
     "id": "48d0943b-9667-4422-8064-7a489f2d3737",
-    "name": "equipment_telecommunication_tools",
+    "name": "ابزار مخابراتی",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "دستی",
           "دیجیتال"
@@ -756,7 +759,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "تست صحت اتصال کابل‌های تلفن",
           "نصب کانکتورهای IDC"
@@ -766,11 +769,12 @@ export const newCategories = [
   },
   {
     "id": "2cb55b82-645d-487c-a0f0-b9bf32a22b78",
-    "name": "equipment_hand_tool_general",
+    "name": "ابزار دستی عمومی",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+
+        "name": "نوع",
         "values": [
           "PVC",
           "استاندارد",
@@ -781,7 +785,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "اتصال فیش به کابل‌ها",
           "برش دقیق سیم و کابل",
@@ -795,11 +799,11 @@ export const newCategories = [
   },
   {
     "id": "1f9f0a5e-5784-4c0a-bdec-a3964d0c9f92",
-    "name": "equipment_hand_tools_phasemeter",
+    "name": "ابزار دستی فازمتر",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "دستی",
           "دیجیتال"
@@ -807,7 +811,8 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+
+        "name": "کاربرد",
         "values": [
           "تشخیص ولتاژ در مدار"
         ]
@@ -816,11 +821,11 @@ export const newCategories = [
   },
   {
     "id": "e1526fce-c93d-4b92-a06f-9cb092045e6b",
-    "name": "equipment_network_connections",
+    "name": "اتصالات شبکه",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "STP",
           "UTP"
@@ -828,7 +833,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "اتصال کابل‌های شبکه به دستگاه‌ها",
           "اتصال کابل‌های شبکه به دیوار یا پنل"
@@ -836,7 +841,7 @@ export const newCategories = [
       },
       {
         "id": "ffdde525-b1ec-41ee-80db-2e5ac1b838a3",
-        "name": "material",
+        "name": "جنس",
         "values": [
           "پلاستیکی",
           "فلزی"
@@ -846,11 +851,11 @@ export const newCategories = [
   },
   {
     "id": "8bdaac84-41ee-4746-b393-5ac73f949948",
-    "name": "wire & power cable",
+    "name": "سیم و کابل برق",
     "attributes": [
       {
         "id": "44490a08-01fd-4a71-af9f-8cb692f7b1b9",
-        "name": "main_group",
+        "name": "گروه اصلی",
         "values": [
           "سیم برق",
           "کابل برق"
@@ -858,7 +863,8 @@ export const newCategories = [
       },
       {
         "id": "8a64c426-f705-4868-9fef-f14a79f6d91f",
-        "name": "subgroup",
+
+        "name": "زیرگروه",
         "values": [
           "سیم ارت",
           "سیم افشان",
@@ -878,7 +884,7 @@ export const newCategories = [
       },
       {
         "id": "f224454a-807b-4ad6-9ba8-1ac9845cb07c",
-        "name": "brand",
+        "name": "برند",
         "values": [
           "آرین ابهر",
           "افشارنژاد خراسان",
@@ -899,7 +905,7 @@ export const newCategories = [
       },
       {
         "id": "e4d7be18-e799-407f-815e-d3e0d43556eb",
-        "name": "common_size",
+        "name": "سایز رایج",
         "values": [
           "10*1",
           "10*1.5",
@@ -1000,7 +1006,7 @@ export const newCategories = [
       },
       {
         "id": "681f2235-0cb7-4651-9e40-522296693124",
-        "name": "color",
+        "name": "رنگ",
         "values": [
           "آبی",
           "زرد",
@@ -1017,11 +1023,11 @@ export const newCategories = [
   },
   {
     "id": "08d6a200-941b-422a-bc8a-61b72fe8f156",
-    "name": "telecommunication",
+    "name": "مخابرات",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "سیم‌های مخابراتی",
           "کابل زمینی",
@@ -1030,7 +1036,7 @@ export const newCategories = [
       },
       {
         "id": "fbae1234-b83e-4bf7-860e-6790244b05a6",
-        "name": "conductor_material",
+        "name": "جنس رسانا",
         "values": [
           "آلومینیوم",
           "مس"
@@ -1038,7 +1044,7 @@ export const newCategories = [
       },
       {
         "id": "1f1f7da2-bdd8-4853-98bd-731934370202",
-        "name": "insulation_jacket",
+        "name": "روکش عایق",
         "values": [
           "PE",
           "PVC",
@@ -1047,7 +1053,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "استفاده در داخل ساختمان‌ها",
           "نصب بر روی تیرهای برق یا دکل‌ها",
@@ -1058,11 +1064,11 @@ export const newCategories = [
   },
   {
     "id": "6756f798-abb4-4487-9f0e-8bf3d7791ca2",
-    "name": "equipment_cables_and_wiring_connections",
+    "name": "اتصالات کابل و سیم‌کشی",
     "attributes": [
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "تغییر اندازه لوله‌ها",
           "تغییر مسیر کابل‌ها",
@@ -1072,7 +1078,7 @@ export const newCategories = [
       },
       {
         "id": "d5521c4b-c4d7-47c1-b1cc-7a78741a7948",
-        "name": "length",
+        "name": "طول",
         "values": [
           "20mm",
           "25mm",
@@ -1082,7 +1088,7 @@ export const newCategories = [
       },
       {
         "id": "ffdde525-b1ec-41ee-80db-2e5ac1b838a3",
-        "name": "material",
+        "name": "جنس",
         "values": [
           "PVC"
         ]
@@ -1091,11 +1097,12 @@ export const newCategories = [
   },
   {
     "id": "97f69b55-febe-4c0b-9a60-0ee933b8e01d",
-    "name": "equipment_cables_and_wiring_duct",
+    "name": "داکت سیم‌کشی",
+
     "attributes": [
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "مدیریت کابل‌ها در محیط‌های داخلی",
           "مدیریت کابل‌ها در محیط‌های صنعتی"
@@ -1103,7 +1110,7 @@ export const newCategories = [
       },
       {
         "id": "d5521c4b-c4d7-47c1-b1cc-7a78741a7948",
-        "name": "length",
+        "name": "طول",
         "values": [
           "100x100mm",
           "50x50mm",
@@ -1112,7 +1119,7 @@ export const newCategories = [
       },
       {
         "id": "ffdde525-b1ec-41ee-80db-2e5ac1b838a3",
-        "name": "material",
+        "name": "جنس",
         "values": [
           "PVC",
           "فولاد گالوانیزه"
@@ -1122,11 +1129,11 @@ export const newCategories = [
   },
   {
     "id": "373d81c9-e48b-4e32-937c-2222c69dd8e1",
-    "name": "equipment_network_patchpanel",
+    "name": "پچ پنل شبکه",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "STP",
           "UTP"
@@ -1134,14 +1141,14 @@ export const newCategories = [
       },
       {
         "id": "1f1f7da2-bdd8-4853-98bd-731934370202",
-        "name": "insulation_jacket",
+        "name": "روکش عایق",
         "values": [
           "فلزی"
         ]
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "مدیریت و سازماندهی کابل‌های شبکه"
         ]
@@ -1150,11 +1157,12 @@ export const newCategories = [
   },
   {
     "id": "d30d6469-3cb2-400a-a268-a7b4e3975538",
-    "name": "equipment_cables_and_wiring_pipe",
+    "name": "لوله سیم‌کشی",
     "attributes": [
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+
+        "name": "کاربرد",
         "values": [
           "محافظت از کابل‌ها در محیط‌های داخلی",
           "محافظت از کابل‌ها در محیط‌های صنعتی"
@@ -1162,7 +1170,7 @@ export const newCategories = [
       },
       {
         "id": "d5521c4b-c4d7-47c1-b1cc-7a78741a7948",
-        "name": "length",
+        "name": "طول",
         "values": [
           "20mm",
           "25mm",
@@ -1172,7 +1180,7 @@ export const newCategories = [
       },
       {
         "id": "ffdde525-b1ec-41ee-80db-2e5ac1b838a3",
-        "name": "material",
+        "name": "جنس",
         "values": [
           "PVC",
           "فولاد گالوانیزه"
@@ -1182,18 +1190,19 @@ export const newCategories = [
   },
   {
     "id": "81c5fae4-374f-487e-86c6-df4f4b3b47d1",
-    "name": "equipment_telecommunication_connector",
+    "name": "کانکتور مخابراتی",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "فلزی"
         ]
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+
+        "name": "کاربرد",
         "values": [
           "اتصال کابل‌های تلفن به دستگاه‌ها",
           "اتصال کابل‌های مخابراتی به دستگاه‌ها"
@@ -1203,11 +1212,11 @@ export const newCategories = [
   },
   {
     "id": "5f065580-5930-452e-93d7-6f0f6d0bfe01",
-    "name": "fiber optic",
+    "name": "فیبر نوری",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "Multi Mode (چندحالته)",
           "Single Mode (تک‌حالته)"
@@ -1215,7 +1224,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "شبکه‌های بین شهری، دیتا سنترها",
           "شبکه‌های محلی، ارتباطات داخلی"
@@ -1223,7 +1232,7 @@ export const newCategories = [
       },
       {
         "id": "1b60794e-d4c1-43cc-82af-dcfdfa345717",
-        "name": "core_diameter",
+        "name": "قطر هسته",
         "values": [
           "50–100 µm",
           "8–10 µm"
@@ -1231,7 +1240,7 @@ export const newCategories = [
       },
       {
         "id": "779f1c98-1745-4e57-adf1-b3e6cf8c3fac",
-        "name": "light_type",
+        "name": "نوع نور",
         "values": [
           "LED",
           "لیزر (Laser)"
@@ -1239,7 +1248,7 @@ export const newCategories = [
       },
       {
         "id": "b81d4500-3298-4b8b-8362-e51a2c963834",
-        "name": "wave_length_nm",
+        "name": "طول موج",
         "values": [
           "1310/1550 nm",
           "850 nm"
@@ -1247,7 +1256,7 @@ export const newCategories = [
       },
       {
         "id": "f8dfab09-2647-4803-a3ad-2e2708cc80b1",
-        "name": "transmission_distance",
+        "name": "فاصله انتقال",
         "values": [
           "بیش از 10 km",
           "تا 2 km"
@@ -1255,7 +1264,7 @@ export const newCategories = [
       },
       {
         "id": "db16d6dd-b5a3-4cef-9e71-0fc91932dc49",
-        "name": "band_width",
+        "name": "پهنای‌باند",
         "values": [
           "بسیار بالا",
           "کمتر از تک‌حالته"
@@ -1263,7 +1272,7 @@ export const newCategories = [
       },
       {
         "id": "7cf30b72-72ab-4838-a2da-f32d61976944",
-        "name": "sheath_color",
+        "name": "رنگ روکش",
         "values": [
           "زرد",
           "سبز",
@@ -1274,11 +1283,11 @@ export const newCategories = [
   },
   {
     "id": "289e18a1-fc18-4ce7-893e-a352ac52a224",
-    "name": "equipment_network_trunking",
+    "name": "ترانکینگ شبکه",
     "attributes": [
       {
         "id": "681f2235-0cb7-4651-9e40-522296693124",
-        "name": "color",
+        "name": "رنگ",
         "values": [
           "سفید",
           "نقره‌ای"
@@ -1286,7 +1295,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "مدیریت کابل‌ها در محیط‌های داخلی",
           "مدیریت کابل‌ها در محیط‌های صنعتی"
@@ -1294,7 +1303,7 @@ export const newCategories = [
       },
       {
         "id": "249283f1-150c-4c8b-a3b9-fdbeeeb3b291",
-        "name": "size",
+        "name": "سایز",
         "values": [
           "100x100mm",
           "50x50mm",
@@ -1305,11 +1314,11 @@ export const newCategories = [
   },
   {
     "id": "17ace9ac-fe96-4915-b296-b2b016056674",
-    "name": "equipment_network_cable_management",
+    "name": "مدیریت کابل شبکه",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "پلاستیکی",
           "فلزی",
@@ -1318,7 +1327,7 @@ export const newCategories = [
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "شناسایی و نام‌گذاری کابل‌ها",
           "نگهداری و سازماندهی کابل‌ها"
@@ -1328,11 +1337,11 @@ export const newCategories = [
   },
   {
     "id": "f645799c-f73d-48c6-baf5-ab91c31d28c8",
-    "name": "equipment_network_patchcord",
+    "name": "پچ‌کورد شبکه",
     "attributes": [
       {
         "id": "681f2235-0cb7-4651-9e40-522296693124",
-        "name": "color",
+        "name": "رنگ",
         "values": [
           "آبی",
           "سبز",
@@ -1342,14 +1351,14 @@ export const newCategories = [
       },
       {
         "id": "1f1f7da2-bdd8-4853-98bd-731934370202",
-        "name": "insulation_jacket",
+        "name": "روکش عایق",
         "values": [
           "PVC"
         ]
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "اتصال دستگاه‌ها به شبکه",
           "اتصال دستگاه‌ها به شبکه با سرعت بالا",
@@ -1359,7 +1368,7 @@ export const newCategories = [
       },
       {
         "id": "d5521c4b-c4d7-47c1-b1cc-7a78741a7948",
-        "name": "length",
+        "name": "طول",
         "values": [
           "0.5m",
           "10m",
@@ -1374,11 +1383,11 @@ export const newCategories = [
   },
   {
     "id": "d8799351-877d-4374-a9e4-f9ba5bfeb46e",
-    "name": "equipment_cables_and_wiring_cable_tray",
+    "name": "سینی کابل",
     "attributes": [
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "نگهداری کابل‌ها در محیط‌های داخلی",
           "نگهداری کابل‌ها در محیط‌های صنعتی"
@@ -1386,7 +1395,7 @@ export const newCategories = [
       },
       {
         "id": "d5521c4b-c4d7-47c1-b1cc-7a78741a7948",
-        "name": "length",
+        "name": "طول",
         "values": [
           "100x100mm",
           "50x50mm",
@@ -1395,7 +1404,7 @@ export const newCategories = [
       },
       {
         "id": "ffdde525-b1ec-41ee-80db-2e5ac1b838a3",
-        "name": "material",
+        "name": "جنس",
         "values": [
           "PVC",
           "فولاد گالوانیزه"
@@ -1405,11 +1414,12 @@ export const newCategories = [
   },
   {
     "id": "217ed5e7-bd87-45c7-a717-5e7d4d052f80",
-    "name": "equipment_hand_tool_screwdriver",
+
+    "name": "پیچ‌گوشتی",
     "attributes": [
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "باز و بسته کردن پیچ‌های چهارسو",
           "باز و بسته کردن پیچ‌های دوسو",
@@ -1419,7 +1429,7 @@ export const newCategories = [
       },
       {
         "id": "249283f1-150c-4c8b-a3b9-fdbeeeb3b291",
-        "name": "size",
+        "name": "سایز",
         "values": [
           "سایزهای مختلف"
         ]
@@ -1428,18 +1438,18 @@ export const newCategories = [
   },
   {
     "id": "7f5a2738-43aa-4ff0-8476-2d5f1855139d",
-    "name": "equipment_hand_tools_pliers",
+    "name": "انبردست",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "استاندارد"
         ]
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "برش و خم‌کاری سیم‌ها",
           "بریدن سیم‌ها با دقت",
@@ -1451,11 +1461,11 @@ export const newCategories = [
   },
   {
     "id": "6bb3991b-d3d9-4137-93af-bd4a1dad8be8",
-    "name": "network",
+    "name": "شبکه",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "CAT5e",
           "CAT6",
@@ -1465,7 +1475,7 @@ export const newCategories = [
       },
       {
         "id": "f224454a-807b-4ad6-9ba8-1ac9845cb07c",
-        "name": "brand",
+        "name": "برند",
         "values": [
           "Belden",
           "D-Link",
@@ -1475,7 +1485,7 @@ export const newCategories = [
       },
       {
         "id": "1f1f7da2-bdd8-4853-98bd-731934370202",
-        "name": "insulation_jacket",
+        "name": "روکش عایق",
         "values": [
           "LSZH",
           " PE(Outdoor)",
@@ -1486,7 +1496,7 @@ export const newCategories = [
       },
       {
         "id": "d1224b6e-09b2-4e39-b705-9a5710c2b74f",
-        "name": "shield",
+        "name": "شیلد",
         "values": [
           "FTP",
           "SFTP",
@@ -1496,7 +1506,7 @@ export const newCategories = [
       },
       {
         "id": "8d7e8d20-9590-460b-9fc4-bcfc1c329194",
-        "name": "conductor_size_mm",
+        "name": "سایز رسانا",
         "values": [
           "0.40",
           "0.45",
@@ -1508,7 +1518,7 @@ export const newCategories = [
       },
       {
         "id": "0728f4c4-c35e-4097-9a07-2955c956aa33",
-        "name": "core_material",
+        "name": "جنس هسته",
         "values": [
           " CCA",
           "CCA",
@@ -1517,7 +1527,7 @@ export const newCategories = [
       },
       {
         "id": "dff7b803-d69a-4fbe-b7c5-598c089b744a",
-        "name": "test_type",
+        "name": "نوع تست",
         "values": [
           "بدون تست",
           "تست پرمنت",
@@ -1528,18 +1538,18 @@ export const newCategories = [
   },
   {
     "id": "fd066e17-db14-4193-a752-f97c1f171a20",
-    "name": "equipment_coaxial_connector",
+    "name": "کانکتور کواکسیال",
     "attributes": [
       {
         "id": "ee590518-1cab-4139-ae37-80cbd9988592",
-        "name": "type",
+        "name": "نوع",
         "values": [
           "فلزی"
         ]
       },
       {
         "id": "51c5c658-570a-456f-9ae4-8594687a41c7",
-        "name": "application",
+        "name": "کاربرد",
         "values": [
           "اتصال کابل‌های کواکسیال به دستگاه‌ها"
         ]

@@ -3,9 +3,9 @@
 import { Filters } from '@/types/products'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FaXmark } from 'react-icons/fa6'
-import PriceRange from './filters/PriceRange'
+// import PriceRange from './filters/PriceRange'
 import Categories from './filters/Categories'
-import Brands from './filters/Brands'
+// import Brands from './filters/Brands'
 
 type Props = {
     filters: Filters | null
@@ -73,15 +73,15 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
                     <div className='space-y-4'>
 
                         {/* Brand Filter */}
-                        <Brands brand={brand} setBrand={setBrand} />
+                        {/* <Brands brand={brand} setBrand={setBrand} /> */}
 
                         {/* Price Range Filter */}
-                        <PriceRange
+                        {/* <PriceRange
                             priceRange={priceRange}
                             setPriceRange={setPriceRange}
                             min={0}
                             max={10000}
-                        />
+                        /> */}
 
                         {/* In Stock Filter */}
                         <div dir='rtl' className='w-full flex items-center justify-between p-4 bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg'>
