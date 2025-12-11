@@ -5,8 +5,8 @@ import MainLayout from '@/components/layouts/MainLayout'
 import FiltersModal from '@/components/products/filters/FiltersModal'
 import LoadMore from '@/components/products/LoadMore'
 import { Filters } from '@/types/products'
-import React, { Suspense, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import React, { Suspense, useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import OrdersButton from '@/components/buttons/OrdersButton'
 import OrdersModal from '@/components/products/sort/OrdersModal'
 
@@ -35,6 +35,11 @@ const ProductsPage = () => {
   const [filtersModalIsOpen, setFiltersModalOpen] = useState(false)
   const [order, setOrder] = useState<string | null>('most-popular')
   const [ordersModalIsOpen, setOrdersModalIsOpen] = useState(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/products');
+  }, [filters])
 
   return (
     <MainLayout>

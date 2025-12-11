@@ -15,6 +15,7 @@ interface BackendProduct {
   weightKg: number;
   stock: number;
   images: string[];
+  unit: string;
   category: { id: string; name: string };
   attributes: { id: string; name: string; value: string }[];
 }
@@ -154,8 +155,9 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 key={product.id + index}
                 id={product.id}
                 title={product.name}
-                imageUrl={product.images?.[0] || "/placeholder.png"}
+                imageUrl={product.images?.[1] || "/placeholder.png"}
                 price={product.price}
+                unit={product.unit}
                 available={product.stock > 0}
                 // discount={0}
                 description={product.description}
