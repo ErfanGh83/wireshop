@@ -28,12 +28,12 @@ interface BackendResponse {
 }
 
 interface Error {
-  status: number
-  message: string
+  status: number;
+  message: string;
 }
 
 interface BackendErrorResponse {
-  error: Error
+  error: Error;
 }
 
 interface LoadMoreProps {
@@ -42,7 +42,9 @@ interface LoadMoreProps {
   order?: string | null;
 }
 
-const isBackendErrorResponse = (res: BackendResponse | BackendErrorResponse): res is BackendErrorResponse => {
+const isBackendErrorResponse = (
+  res: BackendResponse | BackendErrorResponse
+): res is BackendErrorResponse => {
   return res && typeof res === "object" && "error" in res;
 };
 
@@ -157,7 +159,7 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 title={product.name}
                 imageUrl={product.images?.[1] || "/placeholder.png"}
                 price={product.price}
-                unit={product.unit}
+                // unit={product.unit}
                 available={product.stock > 0}
                 // discount={0}
                 description={product.description}

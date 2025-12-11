@@ -4,28 +4,28 @@ import Link from "next/link";
 import { BASE_URL } from "@/lib/api/constants";
 
 type Props = {
-    id: string
-    title: string
-    imageUrl: string
-    price: number
-    available: boolean
-    description?: string
-    className?: string
-    unit: string;
-    maxDescriptionLength?: number
-}
+  id: string;
+  title: string;
+  imageUrl: string;
+  price: number;
+  available: boolean;
+  description?: string;
+  className?: string;
+  // unit: string;
+  maxDescriptionLength?: number;
+};
 
 const NormalProductContainer = ({
-    id,
-    title,
-    imageUrl,
-    // price,
-    available = false,
-    description = '',
-    className = '',
-    maxDescriptionLength = 50,
-    // unit
-}: Props) => {
+  id,
+  title,
+  imageUrl,
+  // price,
+  available = false,
+  description = "",
+  className = "",
+  maxDescriptionLength = 50,
+}: // unit
+Props) => {
   // Function to trim description if it's too long
   const trimDescription = (desc: string) => {
     if (desc.length <= maxDescriptionLength) return desc;
@@ -82,16 +82,16 @@ const NormalProductContainer = ({
           )}
         </div>
 
-                <div className="mt-2 sm:mt-4">
-                    {/* <div className="flex flex-col-reverse gap-0.5">
+        <div className="mt-2 sm:mt-4">
+          {/* <div className="flex flex-col-reverse gap-0.5">
                         <span className="text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white">
                             {unit}/ {price} 
                         </span>
                     </div> */}
-                </div>
-            </div>
-        </Link>
-    )
-}
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 export default NormalProductContainer;
