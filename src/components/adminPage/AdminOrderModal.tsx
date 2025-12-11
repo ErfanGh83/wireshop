@@ -58,18 +58,6 @@ export default function AdminOrderModal({ id }: { id: string }) {
         </p>
         <p className="m-2">
           <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
-            نوع وسیله نقلیه:
-          </span>
-          {order.vehicleType === "motorcycle" ? "موتور" : "پیک آپ"}
-        </p>
-        <p className="m-2">
-          <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
-            وزن کل (کیلوگرم):
-          </span>
-          {order.weightKg}
-        </p>
-        <p className="m-2">
-          <span className="font-semibold text-gray-700 dark:text-gray-300 m-1">
             هزینه کل:
           </span>
           {order.cost.toLocaleString()} ریال
