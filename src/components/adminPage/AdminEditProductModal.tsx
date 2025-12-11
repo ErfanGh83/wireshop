@@ -281,7 +281,7 @@ export default function AdminEditProductModal({ id }: { id: string }) {
           images={defaultValue.images}
           productId={id}
           removeImage={(imageId) =>
-            defaultValue.images.filter((image) => image != imageId)
+            defaultValue.images.filter((image) => image.id != imageId)
           }
         />
 

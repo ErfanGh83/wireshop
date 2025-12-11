@@ -13,7 +13,10 @@ function AdminEditProduct() {
   const [rowData, setRowData] = useState<ProductListResponse | null>();
   useEffect(() => {
     getAllProduct()
-      .then((res) => setRowData(res))
+      .then((res) => {
+        console.log(res)
+        setRowData(res)
+      })
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد")
       );
@@ -31,7 +34,7 @@ function AdminEditProduct() {
 
   const tableData = rowData.data.map((item) => [
     item.images[0] ? <Image
-      src={BASE_URL + item.images[0]}
+      src={BASE_URL + item.images[0].url}
       crossOrigin="anonymous"
       alt={item.name}
       className="rounded"

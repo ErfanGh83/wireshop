@@ -106,7 +106,7 @@ export default function ProductPageContainer() {
                   >
                     <Image
                       crossOrigin="anonymous"
-                      src={BASE_URL + src}
+                      src={BASE_URL + src.url}
                       alt={`product-${index}`}
                       priority
                       width={200}

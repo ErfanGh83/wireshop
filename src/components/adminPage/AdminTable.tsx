@@ -35,7 +35,7 @@ export default function AdminTable({
                 {tableHead.map((item, index) => (
                   <th
                     key={index}
-                    className={`px-4 py-3 text-start font-medium ${
+                    className={`px-4 py-3 text-start font-medium dark:text-blue-100 ${
                       tableStyle?.head || ""
                     }`}
                   >
@@ -48,7 +48,7 @@ export default function AdminTable({
               {tableData.map((row, rowIndex) => (
                 <tr
                   key={rowIndex}
-                  className="border-b border-gray-200/20 dark:border-gray-600/10 hover:bg-gray-100/30 dark:hover:bg-slate-700/30 transition-colors"
+                  className="border-b border-gray-200/20 dark:border-gray-600/10 dark:text-blue-200 hover:bg-gray-100/30 dark:hover:bg-slate-700/30 transition-colors"
                 >
                   {row.map((col, colIndex) => (
                     <td

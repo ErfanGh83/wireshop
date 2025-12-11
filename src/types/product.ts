@@ -12,10 +12,16 @@ export interface Product {
   price: number;
   unit: string;
   stock: number;
-  images: string[];
+  images: ImageInterface[];
   category: Category;
   attributes: Attribute[];
 }
+
+export interface ImageInterface { 
+  id: string;
+  url: string;
+}
+
 
 export interface Category {
   id: string;

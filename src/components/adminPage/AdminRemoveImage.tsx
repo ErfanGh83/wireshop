@@ -1,22 +1,22 @@
 import { deleteImage } from "@/lib/api/adminApi";
 import { BASE_URL } from "@/lib/api/constants";
+import { ImageInterface } from "@/types/product";
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface Props {
-  images: string[];
+  images: ImageInterface[];
   productId: string;
   removeImage: (image: string) => void;
 }
 
 function AdminRemoveImage({ images, productId, removeImage }: Props) {
-  const handleRemove = (image: string) => {
-    const imageToRemove = image.split("uploads/")[1]
-    deleteImage(productId, imageToRemove)
+  const handleRemove = (imageId: string) => {
+    deleteImage(productId, imageId)
       .then(() => {
         toast.success("عکس با موفقیت حذف شد.");
-        removeImage(image);
+        removeImage(imageId);
       })
       .catch((err) => toast.error(err?.message || "مشکلی پیش آمد."));
   };
@@ -32,7 +32,7 @@ function AdminRemoveImage({ images, productId, removeImage }: Props) {
           >
             {/* Overlay */}
             <div
-              onClick={() => handleRemove(image)}
+              onClick={() => handleRemove(image.id)}
               className="absolute inset-0 z-10 opacity-0 flex justify-center items-center hover:opacity-100 transition-all bg-black/80 cursor-pointer"
             >
               <FaTrash className="text-red-500/70 w-10 h-10" />
@@ -41,7 +41,7 @@ function AdminRemoveImage({ images, productId, removeImage }: Props) {
             {/* Image */}
             <Image
               crossOrigin="anonymous"
-              src={BASE_URL + image}
+              src={BASE_URL + image.url}
               alt={`product-${index}`}
               fill
               className="object-cover"
