@@ -1,18 +1,21 @@
 "use client";
 
-import { getAllOrders } from "@/lib/api/adminApi";
+import { getAllCompletedOrders } from "@/lib/api/adminApi";
 import { OrdersResponse } from "@/types/cart";
 import { ReactNode, useEffect, useState } from "react";
 import AdminTable from "./AdminTable";
-import AdminOrderModal from "./AdminOrderModal";
+import AdminCompletedOrderModal from "./AdminCompletedOrderModal";
 import { toast } from "react-toastify";
 
-function AdminOrdersList() {
+function AdminCompletedOrdersList() {
   const [rowData, setRowData] = useState<OrdersResponse | null>();
 
   useEffect(() => {
-    getAllOrders()
-      .then((res) => setRowData(res))
+    getAllCompletedOrders()
+      .then((res) => {
+        setRowData(res)
+        console.log(res)
+      })
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد")
       );
@@ -27,22 +30,20 @@ function AdminOrdersList() {
   }
 
   const tableData: ReactNode[][] = rowData?.map((item) => [
-    item.status == "paid"
-      ? "پرداخت شده"
-      : item.status == "sending"
-      ? "در حال ارسال"
-      : "کامل شده",
+    "کامل شده",
     item.cost,
     `${item.address.province}, ${item.address.city}, ${item.address.description}, ${item.address.plaque}, ${item.address.postalCode}`,
   ]);
 
-  const tableModal = rowData?.map((item) => <AdminOrderModal key={item.id} id={item.id} />);
+  const tableModal = rowData?.map((item) => (
+    <AdminCompletedOrderModal key={item.id} id={item.id} />
+  ));
 
   return (
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["وضعیت سفارش", "هزینه", "آدرس", "مشاهده سفارش"]}
+      tableHead={["وضعیت سفارش", "هزینه", "آدرس", "جزئیات سفارش"]}
       tableStyle={{
         head: "text-blue-700 text-right",
         body: "text-blue-900 dark:text-blue-200",
@@ -51,4 +52,4 @@ function AdminOrdersList() {
   );
 }
 
-export default AdminOrdersList;
+export default AdminCompletedOrdersList;

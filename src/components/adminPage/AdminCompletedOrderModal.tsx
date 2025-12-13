@@ -2,12 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Spinner from "../spinner/Spinner";
-import { completeOrder, getOrderById } from "@/lib/api/adminApi";
+import { getOrderById } from "@/lib/api/adminApi";
 import { Order } from "@/types/cart";
 import { toast } from "react-toastify";
-import { ERROR_MESSAGES } from "@/lib/api/constants";
 
-export default function AdminOrderModal({ id }: { id: string }) {
+export default function AdminCompletedOrderModal({ id }: { id: string }) {
   const [order, setOrder] = useState<Order | null>();
 
   useEffect(() => {
@@ -22,20 +21,6 @@ export default function AdminOrderModal({ id }: { id: string }) {
   }, [id]);
 
   if (!order) return <Spinner />;
-
-  const handleSubmit = () => {
-    completeOrder(id)
-      .then(() => toast.success("سفارش با موفقیت کامل شد."))
-      .catch((err) =>
-        toast.error(
-          ERROR_MESSAGES.complete_cart[
-            err.status as keyof typeof ERROR_MESSAGES.complete_cart
-          ] ||
-            err.response.error ||
-            "خطایی رخ داده است."
-        )
-      );
-  };
 
   return (
     <div className="bg-white dark:bg-slate-800 w-full">
@@ -86,7 +71,7 @@ export default function AdminOrderModal({ id }: { id: string }) {
           <p className="text-sm text-gray-500">هیچ آیتمی موجود نیست.</p>
         ) : (
           <ul className="my-3 max-h-48 overflow-y-auto pr-1">
-            {order.items.map((item) => (
+            {order.items?.map((item) => (
               <li
                 key={item.id}
                 className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-gray-50 dark:bg-slate-900/50"
@@ -116,13 +101,6 @@ export default function AdminOrderModal({ id }: { id: string }) {
           </ul>
         )}
       </div>
-
-      <button
-        className="w-full mt-3 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-purple-600 dark:hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors"
-        onClick={handleSubmit}
-      >
-        نهائی کردن سفارش
-      </button>
     </div>
   );
 }
