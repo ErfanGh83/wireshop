@@ -11,8 +11,8 @@ function ProductCommentForm({ id }: { id: string }) {
       toast.error("کامنت نمیتواند خالی باشد");
       return;
     }
-    if (inputRef.current?.value.length < 10) {
-      toast.error("کامنت باید حداقل 10 کارکتر باشد");
+    if (inputRef.current?.value.length < 3) {
+      toast.error("کامنت باید حداقل 3 کارکتر باشد");
       return;
     }
 

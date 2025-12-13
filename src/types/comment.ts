@@ -10,6 +10,11 @@ export interface Comment {
     phone: string;
     role: "admin" | "user" | "support";
   };
+  product: {
+    id: string;
+    name: string;
+    description: string;
+  }
 }
 
 export type CommentResponse = Comment[];

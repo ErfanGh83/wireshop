@@ -1,5 +1,6 @@
 import { addCartItem, removeCartItem } from "@/lib/api/cartApi";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
+import { useRouter } from "next/navigation";
 import { FaChevronUp, FaChevronDown, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -23,6 +24,7 @@ export default function CartItem({
   // unit,
   onChange,
 }: CartItemProps) {
+  const router = useRouter();
   const handleChangeNumber = async (amount: number) => {
     if (amount > 0)
       await addCartItem({ productId: productId, quantity: amount })
@@ -55,7 +57,10 @@ export default function CartItem({
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between p-4 my-2 bg-slate-100 dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-md transition-all w-full gap-y-3 md:gap-y-0">
       <div className="flex flex-col text-right w-full sm:w-auto">
-        <h2 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white truncate">
+        <h2
+          className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white truncate cursor-pointer hover:underline"
+          onClick={() => router.push(`/product?id=${productId}`)}
+        >
           {name}
         </h2>
         {/* <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300">

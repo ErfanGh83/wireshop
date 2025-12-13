@@ -1,6 +1,7 @@
 import { addCartItem, removeCartItem } from "@/lib/api/cartApi";
 import React from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 type Props = {
   title: string;
@@ -23,6 +24,8 @@ const ShoppingCartItem = ({
   productId,
   setIsCartChanged = () => {},
 }: Props) => {
+  const router = useRouter()
+
   const handleChangeNumber = async (amount: number) => {
     if (amount > 0)
       await addCartItem({ productId: productId, quantity: amount })
@@ -42,7 +45,7 @@ const ShoppingCartItem = ({
   return (
     <div className="w-full h-36 py-2 px-2 flex flex-row items-center gap-3 bg-white dark:bg-slate-700 dark:text-white border-[1px] border-gray-300 dark:border-transparent shadow-sm rounded-lg">
       <div className="flex-1 overflow-hidden">
-        <h3 className="text-sm font-medium truncate">{title}</h3>
+        <h3 className="text-sm font-medium truncate hover:underline cursor-pointer" onClick={()=>router.push(`/product?id=${productId}`)}>{title}</h3>
 
         <div className="flex items-center justify-between mt-2">
           <div className="text-sm">{price} ریال</div>

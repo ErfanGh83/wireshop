@@ -84,9 +84,9 @@ export default function ProductPageContainer() {
     <MainLayout>
       <div
         dir="ltr"
-        className="overflow-y-auto size-full bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto"
+        className="overflow-y-auto size-full pb-20 md:pb-6 bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto"
       >
-        <div className="bg-white dark:bg-slate-800 shadow-xl overflow-y-auto md:overflow-y-hidden rounded-2xl md:p-6 p-4 w-full h-full grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-6">
+        <div className="bg-white  md:mb-0 dark:bg-slate-800 shadow-xl overflow-y-auto md:overflow-y-hidden rounded-2xl md:p-6 p-4 w-full h-full grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-6">
           {/* Product Image */}
           <div
             dir="rtl"
@@ -167,6 +167,7 @@ export default function ProductPageContainer() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-3">
                   {product.attributes.map((item) => (
                     <ProductDetailSpec
+                      id={item.id}
                       label={item.name}
                       value={item.value}
                       key={item.id}

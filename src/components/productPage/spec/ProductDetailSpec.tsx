@@ -1,13 +1,15 @@
 "use client";
 
+import { attributeToFa } from "@/lib/productList";
 import { motion } from "framer-motion";
 
 interface Props {
   label: string;
   value: string;
+  id: string;
 }
 
-function ProductDetailSpec({ label, value }: Props) {
+function ProductDetailSpec({ label, value, id }: Props) {
   return (
     <motion.div
       className="flex flex-col bg-blue-50 dark:bg-slate-700 rounded-xl px-4 py-3 shadow-sm cursor-default"
@@ -25,7 +27,7 @@ function ProductDetailSpec({ label, value }: Props) {
       }}
     >
       <span className="text-sm text-gray-600 dark:text-gray-300 opacity-70">
-        {label}
+        {attributeToFa[id] || label}
       </span>
       <span className="font-medium text-gray-800 dark:text-gray-100">
         {value}

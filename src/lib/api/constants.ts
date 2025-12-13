@@ -15,6 +15,7 @@ export const API_ENDPOINTS = {
   ALL_PRODUCT: "/api/product",
   ALL_ORDERS: "/api/order/list",
   ORDERS_HISTORY: "/api/order/history",
+  COMPLETED_ORDERS: "/api/order/completed",
   ORDER_BY_ID: "/api/order",
   ADD_USER_BY_ADMIN: "/api/user/new",
   COMPLETE_ORDER: "/api/order/complete",
@@ -74,12 +75,12 @@ export const ERROR_MESSAGES = {
   my_cart: {
     401: "لطفا وارد شوید",
     404: "سبد خرید فعالی ندارید",
-    500: "بعدا دوباره امتحان کنید"
+    500: "بعدا دوباره امتحان کنید",
   },
   complete_cart: {
     401: "لطفا وارد شوید.",
     403: "با دسترسی ادمین وارد شوید.",
     404: "سبد خرید یافت نشد.",
-    500: "بعدا دوباره امتحان کنید."
-  }
+    500: "بعدا دوباره امتحان کنید.",
+  },
 };
