@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/pagination"; // ✅ import pagination styles
 import MainBanner from "./MainBanner";
+import { useRouter } from "next/navigation";
 
 interface Banner {
   backgroundImageUrl: string;
@@ -26,6 +27,7 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null);
   const isInView = useInView(containerRef, { once: true, margin: "0px 0px -100px 0px" });
+  const router = useRouter()
   const [, setProgress] = useState(0);
   const [isAutoplayRunning, setIsAutoplayRunning] = useState(true);
 
@@ -63,10 +65,13 @@ const BannersContainer: React.FC<BannerListProps> = ({ banners }) => {
     }
   }, []);
 
+
+
   return (
     <div
       className="relative w-full h-[440px] group"
       ref={containerRef}
+      onClick={() => router.push('/products')}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

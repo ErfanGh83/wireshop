@@ -12,7 +12,6 @@ const CircularProductsContainer = () => {
         {circularProducts.slice(0, 12).map((product) => (
           <div key={product.id} className="flex-shrink-0 snap-center">
             <CircularProductContainer
-              id={product.id}
               title={product.title}
               imageUrl={product.imageUrl}
               className="w-28 h-28"

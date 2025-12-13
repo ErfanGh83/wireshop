@@ -3,17 +3,16 @@ import Image from 'next/image'
 import React from 'react'
 
 type Props = {
-    id: string,
     title: string,
     imageUrl: string,
     link?: string,
     className?: string
 }
 
-const CircularProductContainer = ({ id, title, imageUrl, link, className = '' }: Props) => {
+const CircularProductContainer = ({ title, imageUrl, link, className = '' }: Props) => {
   return (
     <Link
-        href={link || `/product/${id}`}
+        href={link || `/products`}
         className={`group w-32 h-32 flex flex-col items-center justify-between gap-2 m-auto ${className}`}
         aria-label={`View ${title}`}
     >

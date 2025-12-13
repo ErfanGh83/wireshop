@@ -7,7 +7,6 @@ import BigProductsContainer from "@/components/products/BigProductsContainer";
 import MainFooter from "@/components/footers/MainFooter";
 
 export default function Home() {
-
   return (
     <MainLayout>
       <div
