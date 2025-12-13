@@ -1,10 +1,14 @@
 import React from 'react'
 import BigProductContainer from './BigProductContainer'
 import { bigProducts } from '../../../public/api/examples'
+import Link from 'next/link'
 
 const BigProductsContainer = () => {
     return (
-        <div className="w-full container mx-auto px-2" dir="rtl">
+        <Link
+            className="w-full container mx-auto px-2" dir="rtl"
+            href={'/products'}
+        >
             <div className="w-full pb-4">
                 {/* Mobile/Tablet: Horizontal scroll */}
                 <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-8 pb-4">
@@ -34,7 +38,7 @@ const BigProductsContainer = () => {
                     ))}
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
