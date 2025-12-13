@@ -2,6 +2,7 @@
 
 import {
   deleteProduct,
+  deleteProductForce,
   getProductById,
   patchProduct,
 } from "@/lib/api/adminApi";
@@ -15,16 +16,19 @@ import { toast } from "react-toastify";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
 import { FiPlus, FiTrash2 } from "react-icons/fi";
 import AdminRemoveImage from "./AdminRemoveImage";
+import { attributeNameToFa } from "@/lib/productList";
+import AdminModal from "./AdminModal";
 
 export default function AdminEditProductModal({ id }: { id: string }) {
   const [defaultValue, setDefaultValue] = useState<Product | null>();
+  const [verifyModelOpen, setVerifyModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     getProductById(id)
       .then(setDefaultValue)
-      .catch((err) =>
-        toast.error(err.response?.message || err.message || "خطایی رخ داد")
-      );
+      .catch((err) => {
+        toast.error(err.response?.message || err.message || "خطایی رخ داد");
+      });
   }, [id]);
 
   const {
@@ -115,8 +119,28 @@ export default function AdminEditProductModal({ id }: { id: string }) {
   const handleDelete = () => {
     deleteProduct(id)
       .then(() => toast.success("محصول یا موفقیت حذف شد."))
+      .catch((err) => {
+        console.log("err", err);
+        console.log("ewfwefwe", err.response)
+        console.log("ewfwefw12312e", err.response?.status);
+        console.log("ewfwefw123112313212e", err.response?.code);
+        console.log("sdvipsdavi", err.status)
+        console.log("sdvipsdavi", err.message);
+        if (err.status == 409) {
+          setVerifyModalOpen(true);
+          return;
+        }
+        toast.error(
+          err.data.message || err.message || "خطایی رخ داد"
+        );
+      });
+  };
+
+  const handleForceRemove = () => {
+    deleteProductForce(id)
+      .then(() => toast.success("محصول یا موفقیت حذف شد."))
       .catch((err) =>
-        toast.error(err.response?.message || err.message || "خطایی رخ داد")
+        toast.error(err.response?.data.message || err.message || "خطایی رخ داد")
       );
   };
 
@@ -218,7 +242,7 @@ export default function AdminEditProductModal({ id }: { id: string }) {
           {defaultValue.attributes.map((attr, index) => (
             <div key={attr.id} className="flex w-full justify-between mb-2">
               <p className="inline text-gray-700 dark:text-gray-200">
-                {attr.name}
+                {attributeNameToFa[attr.name] || attr.name}
               </p>
               <input
                 {...register(`attributes.${index}.value` as const)}
@@ -299,6 +323,30 @@ export default function AdminEditProductModal({ id }: { id: string }) {
       >
         حذف محصول
       </button>
+
+      {verifyModelOpen && (
+        <AdminModal
+          isOpen={verifyModelOpen}
+          onClose={() => setVerifyModalOpen(false)}
+          title="حذف اضطراری محصول"
+        >
+          <h3 className="text-blue-600 dark:text-blue-200">
+            محصول در سبد خرید برخی کاربران قرار دارد
+          </h3>
+          <p className="text-blue-800 dark:text-blue-300">
+            آیا از حذف اضطراری محصول مطمئن هستید؟
+          </p>
+          <button
+            className="text-white px-4 py-2 bg-red-600 hover:bg-red-700"
+            onClick={() => {
+              handleForceRemove();
+              setVerifyModalOpen(false);
+            }}
+          >
+            حذف اضطراری
+          </button>
+        </AdminModal>
+      )}
     </>
   );
 }

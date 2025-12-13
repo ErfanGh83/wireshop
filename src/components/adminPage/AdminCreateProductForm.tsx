@@ -10,6 +10,7 @@ import { ERROR_MESSAGES } from "@/lib/api/constants";
 import { useEffect, useState } from "react";
 import { Cable } from "@/types/categories";
 import Spinner from "../spinner/Spinner";
+import { attributeNameToFa, attributeToFa, productToFa } from "@/lib/productList";
 
 export default function AdminCreateProductForm() {
   const [categories, setCategories] = useState<Cable[] | null>();
@@ -208,11 +209,14 @@ export default function AdminCreateProductForm() {
           {...register("categoryId")}
           className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-700"
         >
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
-            </option>
-          ))}
+          {categories.map((cat) => {
+            // console.log("cat", cat);
+            return (
+              <option key={cat.id} value={cat.id}>
+                {productToFa[cat.id] || cat.name}
+              </option>
+            );
+          })}
         </select>
       </div>
 
@@ -226,6 +230,8 @@ export default function AdminCreateProductForm() {
         )}
 
         {attrFields.map((field, index) => {
+          // console.log("field", field);
+
           // console.log("field", field)
           // const category = categories.find((cat) => cat.id === categoryId);
           // if (!category) return null;
@@ -239,7 +245,7 @@ export default function AdminCreateProductForm() {
             <div className="mb-4" key={field.id}>
               <div className="flex flex-row justify-between items-center">
                 <label className="mb-1 font-semibold text-gray-700 dark:text-gray-300">
-                  {field.name}
+                  {attributeToFa[field.id] || attributeNameToFa[field.name] || field.name}
                 </label>
 
                 <input

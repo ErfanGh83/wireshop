@@ -1,5 +1,5 @@
 import { Order, OrdersResponse } from "@/types/cart";
-import { del, get, patch, patchForm, post, postForm } from "./apiClient";
+import { del, forceDel, get, patch, patchForm, post, postForm } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
 import { Product, ProductListResponse } from "@/types/product";
 import { CommentResponse } from "@/types/comment";
@@ -23,6 +23,10 @@ export async function postProduct(data: FormData) {
 
 export async function getAllOrders() {
   return get<OrdersResponse>(API_ENDPOINTS.ALL_ORDERS);
+}
+
+export async function getAllCompletedOrders() {
+  return get<OrdersResponse>(API_ENDPOINTS.COMPLETED_ORDERS);
 }
 
 export async function getOrderById(id: string) {
@@ -63,7 +67,10 @@ export async function getCategories() {
 }
 
 export async function deleteProduct(id: string) {
-  return del(`${API_ENDPOINTS.ALL_PRODUCT}/${id}`);
+  return forceDel(`${API_ENDPOINTS.ALL_PRODUCT}/${id}`);
+}
+export async function deleteProductForce(id: string) {
+  return del(`${API_ENDPOINTS.ALL_PRODUCT}/${id}/force`);
 }
 
 export async function deleteImage(productId: string, imageId:string) {

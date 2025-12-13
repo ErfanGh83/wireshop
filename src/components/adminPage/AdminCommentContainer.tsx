@@ -6,12 +6,18 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { CommentResponse } from "@/types/comment";
 import AdminCommentModal from "./AdminCommentModal";
+import { useRouter } from "next/navigation";
 
 function AdminCommentContainer() {
   const [rowData, setRowData] = useState<CommentResponse | null>();
+  const router = useRouter();
+
   useEffect(() => {
     getAllComment()
-      .then((res) => setRowData(res))
+      .then((res) => {
+        setRowData(res);
+        console.log(res);
+      })
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد")
       );
@@ -31,7 +37,14 @@ function AdminCommentContainer() {
       : comment.user.phone.slice(9) +
         "****" +
         "0" +
-        comment.user.phone.slice(3, 5) ,
+        comment.user.phone.slice(3, 5),
+    <p
+      onClick={() => router.push(`/product?id=${comment.product.id}`)}
+      key={comment.id}
+      className="cursor-pointer hover:underline"
+    >
+      {comment.product.name}
+    </p>,
     comment.content,
   ]);
 
@@ -51,10 +64,10 @@ function AdminCommentContainer() {
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["کاربر", "پیام", "جزئیات"]}
+      tableHead={["کاربر", "محصول", "پیام", "جزئیات"]}
       tableStyle={{
         head: "text-blue-700 text-right",
-        body: "text-blue-900 truncate",
+        body: "text-blue-900 dark:text-blue-200 truncate",
       }}
     />
   );

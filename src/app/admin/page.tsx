@@ -1,5 +1,6 @@
 import AdminAddUser from "@/components/adminPage/AdminAddUser";
 import AdminCommentContainer from "@/components/adminPage/AdminCommentContainer";
+import AdminCompletedOrdersList from "@/components/adminPage/AdminCompletedOrders";
 import AdminCreateProductForm from "@/components/adminPage/AdminCreateProductForm";
 import AdminEditProduct from "@/components/adminPage/AdminEditProduct";
 import AdminOrdersList from "@/components/adminPage/AdminOrdersList";
@@ -19,6 +20,10 @@ const adminTabs = [
   {
     title: "سفارشات در جریان",
     component: <AdminOrdersList />,
+  },
+  {
+    title: "سفارشات تکمیل شده",
+    component: <AdminCompletedOrdersList />,
   },
   {
     title: "افزودن محصول",

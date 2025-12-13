@@ -187,3 +187,15 @@ export async function del<T>(url: string, config = {}, data?: any): Promise<T> {
     }
   }
 }
+
+export async function forceDel<T>(url: string, config = {}, data?: any): Promise<T> {
+  try {
+    const response = await api.delete<T>(url, {
+      ...config,
+      data,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw error
+  }
+}
