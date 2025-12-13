@@ -6,9 +6,11 @@ import { completeOrder, getOrderById } from "@/lib/api/adminApi";
 import { Order } from "@/types/cart";
 import { toast } from "react-toastify";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
+import { useRouter } from "next/navigation";
 
 export default function AdminOrderModal({ id }: { id: string }) {
   const [order, setOrder] = useState<Order | null>();
+  const router = useRouter()
 
   useEffect(() => {
     getOrderById(id)
@@ -93,7 +95,7 @@ export default function AdminOrderModal({ id }: { id: string }) {
               >
                 <div className="flex justify-between items-center">
                   <div className="text-sm my-1">
-                    <p className="font-semibold text-gray-800 dark:text-gray-100">
+                    <p className="font-semibold text-gray-800 dark:text-gray-100" onClick={()=>router.push(`/product?id=${item.id}`)}>
                       {item.product.name}
                     </p>
                     <p>تعداد: {item.quantity}</p>

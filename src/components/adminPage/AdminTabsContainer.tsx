@@ -17,8 +17,7 @@ export default function Tab({ contains }: { contains: TabProps[] }) {
   const animationId = useId();
 
   useEffect(() => {
-    checkAdmin().then(() => setIsAdmin(true)).catch(() => setIsAdmin(true))
-    // checkAdmin().then(() => setIsAdmin(true)).catch(() => setIsAdmin(false))
+    checkAdmin().then(() => setIsAdmin(true)).catch(() => setIsAdmin(false))
   }, [])
 
   if (isAdmin === false) return (
@@ -33,11 +32,11 @@ export default function Tab({ contains }: { contains: TabProps[] }) {
     <div className="my-5 overflow-x-hidden h-full">
       <div className="space-y-2 overflow-hidden">
         {/* menu items */}
-        <div className="text-md md:text-lg flex w-full items-center justify-center gap-1 md:gap-4 lg:gap-8 space-x-4 overflow-x-auto border-b-2 pb-4 dark:border-purple-500 border-blue-300">
+        <div className="pr-[360px] md:pr-1 text-md md:text-lg flex w-full items-center justify-center gap-1 md:gap-4 lg:gap-8 overflow-x-auto border-b-2 pb-4 dark:border-purple-500 border-blue-300">
           {contains.map((item) => (
             <button
               key={item.title}
-              className="relative"
+              className="relative whitespace-nowrap text-sm"
               onClick={() => setTab(item.title)}
             >
               <AnimatePresence>

@@ -38,7 +38,7 @@ export default function AdminCompletedOrderModal({ id }: { id: string }) {
               order.status !== "paid" ? "bg-green-500" : "bg-yellow-500"
             }`}
           >
-            {order.status === "paid" ? "پرداخت شده" : "در حال ارسال"}
+            کامل شده
           </span>
         </p>
         <p className="m-2">
