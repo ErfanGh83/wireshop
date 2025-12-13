@@ -360,3 +360,108 @@ export const productSpecs: {
         { label: "سطح مقطع", value: "2.5 میلی‌متر مربع" },
         { label: "کلاس انعطاف‌پذیری", value: "کلاس 5" },
     ];
+
+export const mockOrders = [
+    {
+        id: "ORD-1001",
+        userId: "USER-001",
+        status: "sending",
+        cost: 18500000,
+        address: {
+            province: "تهران",
+            city: "تهران",
+            postalCode: "1419987654",
+            description: "خیابان آزادی، بعد از میدان انقلاب، کوچه یاس",
+            plaque: "۱۲"
+        },
+        items: [
+            {
+                id: "ITEM-1",
+                quantity: 2,
+                available: true,
+                price: 3500000,
+                product: {
+                    id: "PR-001",
+                    name: "کابل افشان ۲×۱.۵ خراسان افشارنژاد",
+                    price: 3500000
+                }
+            },
+            {
+                id: "ITEM-2",
+                quantity: 1,
+                available: true,
+                price: 11500000,
+                product: {
+                    id: "PR-002",
+                    name: "سیم ارت ۱۶ میلی‌متر",
+                    price: 11500000
+                }
+            }
+        ]
+    },
+
+    {
+        id: "ORD-1002",
+        userId: "USER-001",
+        status: "completed",
+        cost: 9200000,
+        address: {
+            province: "اصفهان",
+            city: "اصفهان",
+            postalCode: "8174671234",
+            description: "خیابان چهارباغ بالا، مجتمع تجاری سپهر",
+            plaque: "۵۴"
+        },
+        items: [
+            {
+                id: "ITEM-3",
+                quantity: 4,
+                available: true,
+                price: 2300000,
+                product: {
+                    id: "PR-003",
+                    name: "کابل شبکه CAT6 SFTP لگراند (حلقه ۳۰۵ متری)",
+                    price: 2300000
+                }
+            }
+        ]
+    },
+
+    {
+        id: "ORD-1003",
+        userId: "USER-001",
+        status: "sending",
+        cost: 14300000,
+        address: {
+            province: "البرز",
+            city: "کرج",
+            postalCode: "3145678901",
+            description: "بلوار طالقانی، روبروی پاساژ مهستان",
+            plaque: "۸"
+        },
+        items: [
+            {
+                id: "ITEM-4",
+                quantity: 1,
+                available: true,
+                price: 9800000,
+                product: {
+                    id: "PR-004",
+                    name: "کابل قدرت NYY 3×6 زمینی",
+                    price: 9800000
+                }
+            },
+            {
+                id: "ITEM-5",
+                quantity: 2,
+                available: false,
+                price: 2250000,
+                product: {
+                    id: "PR-005",
+                    name: "سیم مفتولی ۱×۴ (نمره ۴)",
+                    price: 2250000
+                }
+            }
+        ]
+    }
+];

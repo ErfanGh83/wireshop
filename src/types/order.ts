@@ -5,17 +5,31 @@ interface OrderItem extends IProduct {
   unitPrice: number
 }
 
+type OrderStatus = "sending" | "completed";
+
 interface Order {
-  id: string
-  status: "completed" | "cancelled" | "in_progress"
-  products: OrderItem[]
-  eta?: Date
-  totalPrice: number
-  createdAt: string
-  updatedAt?: string
-  customerId: string
-  paymentMethod?: "credit_card" | "paypal" | "bank_transfer" | "cash_on_delivery"
-  shippingAddress?: string
+  id: string;
+  userId: string;
+  status: OrderStatus;
+  cost: number;
+  address: {
+    province: string;
+    city: string;
+    postalCode: string;
+    description: string;
+    plaque: string;
+  };
+  items: {
+    id: string;
+    quantity: number;
+    available: boolean;
+    price: number;
+    product: {
+      id: string;
+      name: string;
+      price: number;
+    };
+  }[];
 }
 
-export type { Order, OrderItem }
+export type { Order, OrderItem, OrderStatus }

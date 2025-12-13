@@ -17,15 +17,6 @@ export interface Cart {
   userId: string;
 }
 
-// export interface Cart {
-//   id: string;
-//   userId: string;
-//   status: string;
-//   vehicleType: string;
-//   cost: number;
-//   items: CartItem[];
-// }
-
 export interface Address {
   province: string;
   city: string;
@@ -39,7 +30,6 @@ export interface Product {
   id: string;
   name: string;
   price: number;
-  weightKg: number;
 }
 
 export interface Item {
@@ -47,6 +37,7 @@ export interface Item {
   quantity: number;
   available: boolean;
   product: Product;
+  price: number;
 }
 
 export interface Order {

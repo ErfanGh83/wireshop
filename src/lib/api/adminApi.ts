@@ -29,6 +29,10 @@ export async function getOrderById(id: string) {
   return get<Order>(`${API_ENDPOINTS.ORDER_BY_ID}/${id}`);
 }
 
+export async function getOrdersHistory() {
+  return get<Order[]>(API_ENDPOINTS.ORDERS_HISTORY);
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createNewUser(data: any) {
   return post(API_ENDPOINTS.ADD_USER_BY_ADMIN, data);
