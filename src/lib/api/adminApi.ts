@@ -4,6 +4,7 @@ import { API_ENDPOINTS } from "./constants";
 import { Product, ProductListResponse } from "@/types/product";
 import { CommentResponse } from "@/types/comment";
 import { Cable } from "@/types/categories";
+import { DiscountPost, DiscountResponse } from "@/types/discount";
 
 export async function getAllProduct(pageNum:number = 1) {
   return get<ProductListResponse>(`${API_ENDPOINTS.ALL_PRODUCT}?page=${pageNum}`);
@@ -75,4 +76,24 @@ export async function deleteProductForce(id: string) {
 
 export async function deleteImage(productId: string, imageId:string) {
   return del(`${API_ENDPOINTS.ALL_PRODUCT}/${productId}/image/${imageId}`);
+}
+
+export async function getDiscountByProductId(productId: string) {
+  return get<DiscountResponse>(`${API_ENDPOINTS.DISCOUNT_BY_PRODUCT_ID}/${productId}`);
+}
+
+export async function removeDiscount(productId: string) {
+  return del(`${API_ENDPOINTS.DISCOUNT}/${productId}`);
+}
+
+export async function postDiscount(product: DiscountPost) { 
+  return post(API_ENDPOINTS.DISCOUNT, product);
+}
+
+export async function patchDiscount(productId: string, product: DiscountPost) { 
+  return patch(`${API_ENDPOINTS.DISCOUNT}/${productId}`, product);
+}
+
+export async function getAllFilteredProducts(queryParams:string) {
+  return get<ProductListResponse>(`${API_ENDPOINTS.ALL_PRODUCT}${queryParams ? `?${queryParams}`: ""}`);
 }

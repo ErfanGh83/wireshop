@@ -12,6 +12,10 @@ interface Props {
   tableData: ReactNode[][];
   tableModal: ReactNode[];
   showMoreBtn?: ReactNode;
+  tableDiscountModal?: ReactNode[];
+  filterSection?: ReactNode;
+  // discountModal?: ReactNode;
+  hasDiscount?: boolean;
 }
 
 export default function AdminTable({
@@ -20,15 +24,22 @@ export default function AdminTable({
   tableData,
   tableModal,
   showMoreBtn,
+  tableDiscountModal,
+  filterSection,
+  // discountModal,
+  hasDiscount = false,
 }: Props) {
   // const [currentUrl, setUrl] = useState(url);
   const [modalOpen, setModalOpen] = useState(false);
+  const [discountModalOpen, setDiscountModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<number>(0);
 
   // useEffect(() => console.log(currentUrl), [currentUrl]);
 
   return (
     <>
+      {filterSection}
+
       {tableData.length > 0 ? (
         <div className="overflow-x-auto rounded-xl shadow-md">
           <table className="min-w-full text-sm text-left text-gray-800 dark:text-gray-100 bg-white/50 dark:bg-slate-800/30 backdrop-blur-md">
@@ -37,7 +48,7 @@ export default function AdminTable({
                 {tableHead.map((item, index) => (
                   <th
                     key={index}
-                    className={`px-4 py-3 text-start font-medium dark:text-blue-100 ${
+                    className={`whitespace-nowrap px-4 py-3 text-start font-medium dark:text-blue-100 ${
                       tableStyle?.head || ""
                     }`}
                   >
@@ -62,6 +73,21 @@ export default function AdminTable({
                       {col}
                     </td>
                   ))}
+
+                  {hasDiscount && (
+                    <td className="px-4 py-3 text-start">
+                      <button
+                        onClick={() => {
+                          setSelectedRow(rowIndex);
+                          setDiscountModalOpen(true);
+                        }}
+                        className="whitespace-nowrap bg-blue-400 p-2 rounded cursor-pointer hover:bg-blue-300 active:bg-blue-200 transition-all text-slate-200"
+                      >
+                        اعمال تخفیف
+                      </button>
+                    </td>
+                  )}
+
                   <td className="px-4 py-3 text-start">
                     <button
                       onClick={() => {
@@ -77,8 +103,20 @@ export default function AdminTable({
               ))}
             </tbody>
           </table>
-          
+
           {showMoreBtn}
+
+          {tableDiscountModal && (
+            <AdminModal
+              isOpen={discountModalOpen}
+              onClose={() => setDiscountModalOpen(false)}
+              title="جزئیات تخفیف"
+            >
+              {selectedRow !== null && selectedRow !== undefined && (
+                <>{tableDiscountModal[selectedRow]}</>
+              )}
+            </AdminModal>
+          )}
 
           <AdminModal
             isOpen={modalOpen}

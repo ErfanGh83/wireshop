@@ -37,6 +37,8 @@ export const API_ENDPOINTS = {
   CHECKOUT: "/api/purchase/url",
   SET_ACTIVE_ADDRESS: "/api/cart/address",
   GET_CATEGORIES: "/api/category",
+  DISCOUNT_BY_PRODUCT_ID: "/api/discount/by-product",
+  DISCOUNT: "/api/discount",
 };
 
 export const ERROR_MESSAGES = {
