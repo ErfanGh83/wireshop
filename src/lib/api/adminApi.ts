@@ -5,8 +5,8 @@ import { Product, ProductListResponse } from "@/types/product";
 import { CommentResponse } from "@/types/comment";
 import { Cable } from "@/types/categories";
 
-export async function getAllProduct() {
-  return get<ProductListResponse>(API_ENDPOINTS.ALL_PRODUCT);
+export async function getAllProduct(pageNum:number = 1) {
+  return get<ProductListResponse>(`${API_ENDPOINTS.ALL_PRODUCT}?page=${pageNum}`);
 }
 
 export async function patchProduct(id: string, data: FormData) {

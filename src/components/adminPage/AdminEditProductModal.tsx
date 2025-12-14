@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import { ERROR_MESSAGES } from "@/lib/api/constants";
 import { FiPlus, FiTrash2 } from "react-icons/fi";
 import AdminRemoveImage from "./AdminRemoveImage";
-import { attributeNameToFa } from "@/lib/productList";
+import { attributeNameToFa, productToFa } from "@/lib/productList";
 import AdminModal from "./AdminModal";
 
 export default function AdminEditProductModal({ id }: { id: string }) {
@@ -121,18 +121,16 @@ export default function AdminEditProductModal({ id }: { id: string }) {
       .then(() => toast.success("محصول یا موفقیت حذف شد."))
       .catch((err) => {
         console.log("err", err);
-        console.log("ewfwefwe", err.response)
+        console.log("ewfwefwe", err.response);
         console.log("ewfwefw12312e", err.response?.status);
         console.log("ewfwefw123112313212e", err.response?.code);
-        console.log("sdvipsdavi", err.status)
+        console.log("sdvipsdavi", err.status);
         console.log("sdvipsdavi", err.message);
         if (err.status == 409) {
           setVerifyModalOpen(true);
           return;
         }
-        toast.error(
-          err.data.message || err.message || "خطایی رخ داد"
-        );
+        toast.error(err.data.message || err.message || "خطایی رخ داد");
       });
   };
 
@@ -231,7 +229,8 @@ export default function AdminEditProductModal({ id }: { id: string }) {
             دسته بندی محصول
           </p>
           <p className="text-gray-700 dark:text-gray-200">
-            {defaultValue.category.name}
+            {productToFa[defaultValue.category.name] ||
+              defaultValue.category.name}
           </p>
         </div>
 

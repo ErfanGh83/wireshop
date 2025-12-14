@@ -12,17 +12,26 @@ import { useRouter } from "next/navigation";
 
 function AdminEditProduct() {
   const [rowData, setRowData] = useState<ProductListResponse | null>();
+  const [pageNum, setPageNum] = useState<number>(1);
   const router = useRouter();
+
   useEffect(() => {
-    getAllProduct()
+    getAllProduct(pageNum)
       .then((res) => {
         console.log(res);
-        setRowData(res);
+        setRowData((prev) => {
+          if (!prev) return res;
+
+          return {
+            ...res,
+            data: [...prev.data, ...res.data],
+          };
+        });
       })
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد")
       );
-  }, []);
+  }, [pageNum]);
 
   if (!rowData) {
     return (
@@ -46,7 +55,9 @@ function AdminEditProduct() {
         priority
       />
     ) : null,
-    <p onClick={()=>router.push(`/product?id=${item.id}`)} key={item.id}>{item.name}</p>,
+    <p onClick={() => router.push(`/product?id=${item.id}`)} key={item.id}>
+      {item.name}
+    </p>,
   ]);
 
   const tableModal = rowData.data.map((item) => (
@@ -62,6 +73,14 @@ function AdminEditProduct() {
         head: "text-blue-700 text-right",
         body: "text-blue-900 dark:text-blue-100",
       }}
+      showMoreBtn={
+        <button
+          className="text-white px-4 py-2 my-2 rounded-lg text-center bg-blue-600 dark:bg-blue-400"
+          onClick={() => setPageNum((prev) => prev + 1)}
+        >
+          نمایش بیشتر
+        </button>
+      }
     />
   );
 }

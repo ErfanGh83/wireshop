@@ -11,6 +11,7 @@ interface Props {
   };
   tableData: ReactNode[][];
   tableModal: ReactNode[];
+  showMoreBtn?: ReactNode;
 }
 
 export default function AdminTable({
@@ -18,6 +19,7 @@ export default function AdminTable({
   tableStyle,
   tableData,
   tableModal,
+  showMoreBtn,
 }: Props) {
   // const [currentUrl, setUrl] = useState(url);
   const [modalOpen, setModalOpen] = useState(false);
@@ -75,6 +77,8 @@ export default function AdminTable({
               ))}
             </tbody>
           </table>
+          
+          {showMoreBtn}
 
           <AdminModal
             isOpen={modalOpen}
