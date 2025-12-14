@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllProduct } from "@/lib/api/adminApi";
+import { getAllFilteredProducts } from "@/lib/api/adminApi";
 import AdminTable from "./AdminTable";
 import { ProductListResponse } from "@/types/product";
 import Image from "next/image";
@@ -9,14 +9,35 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { BASE_URL } from "@/lib/api/constants";
 import { useRouter } from "next/navigation";
+import AdminDiscountModal from "./AdminDiscountModal";
+
+interface Filter {
+  query?: string;
+  hasDiscount?: boolean;
+  isActiveDiscount?: boolean;
+  pageNum: number;
+}
 
 function AdminEditProduct() {
   const [rowData, setRowData] = useState<ProductListResponse | null>();
-  const [pageNum, setPageNum] = useState<number>(1);
+  const [filters, setFilters] = useState<Filter>({ pageNum: 1 });
+  const [query, setQuery] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
-    getAllProduct(pageNum)
+    const queryParams = new URLSearchParams();
+
+    // if (filters.query) queryParams.append("query", filters.query);
+    if (filters.hasDiscount !== undefined)
+      queryParams.append("hasDiscount", String(filters.hasDiscount));
+    if (filters.isActiveDiscount !== undefined)
+      queryParams.append("isActiveDiscount", String(filters.isActiveDiscount));
+    queryParams.append("page", String(filters.pageNum));
+
+    console.log("query string:", queryParams.toString());
+    console.log("filters:", filters);
+
+    getAllFilteredProducts(queryParams.toString())
       .then((res) => {
         console.log(res);
         setRowData((prev) => {
@@ -31,7 +52,17 @@ function AdminEditProduct() {
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد")
       );
-  }, [pageNum]);
+  }, [filters]);
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setFilters((prev) => {
+        return { ...prev, query: query };
+      });
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [query]);
 
   if (!rowData) {
     return (
@@ -64,23 +95,153 @@ function AdminEditProduct() {
     <AdminEditProductModal key={item.id} id={item.id} />
   ));
 
+  const tableDiscountModal = rowData.data.map((item) => (
+    <AdminDiscountModal key={item.id} id={item.id} />
+  ));
+
+  const filterSection = (
+    <div className="p-2 md:p-6 w-full gap-4 flex flex-col md:flex-row mb-4 items-center">
+      <input
+        className="w-full dark:bg-slate-800 text-slate-600 dark:text-white
+               py-2 px-6 max-w-96 rounded-full border-2
+               focus:bg-slate-200 focus:dark:bg-slate-700/80
+               transition-all dark:border-slate-700 border-slate-400"
+        type="text"
+        placeholder="جستجوی نام محصول"
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <div className="flex gap-3 flex-wrap">
+        {/* دارای تخفیف */}
+        <div>
+          <input
+            type="radio"
+            id="has-discount"
+            name="discount-filter"
+            className="peer hidden"
+            checked={filters.hasDiscount === true}
+            onChange={() =>
+              setFilters((prev) => ({
+                ...prev,
+                pageNum: 1,
+                hasDiscount: true,
+                isActiveDiscount: undefined,
+              }))
+            }
+          />
+          <label
+            htmlFor="has-discount"
+            className="
+          cursor-pointer px-4 py-2 rounded-full text-sm
+          border border-blue-500
+          text-blue-600 dark:text-blue-400
+          peer-checked:bg-blue-600
+          peer-checked:text-white
+          peer-checked:border-blue-600
+          transition-all
+        "
+          >
+            دارای تخفیف
+          </label>
+        </div>
+
+        {/* تخفیف فعال */}
+        <div>
+          <input
+            type="radio"
+            id="active-discount"
+            name="discount-filter"
+            className="peer hidden"
+            checked={filters.isActiveDiscount === true}
+            onChange={() =>
+              setFilters((prev) => ({
+                ...prev,
+                pageNum: 1,
+                isActiveDiscount: true,
+                hasDiscount: undefined,
+              }))
+            }
+          />
+          <label
+            htmlFor="active-discount"
+            className="
+          cursor-pointer px-4 py-2 rounded-full text-sm
+          border border-blue-500
+          text-blue-600 dark:text-blue-400
+          peer-checked:bg-blue-600
+          peer-checked:text-white
+          peer-checked:border-blue-600
+          transition-all
+        "
+          >
+            تخفیف فعال
+          </label>
+        </div>
+
+        {/* همه */}
+        <div>
+          <input
+            type="radio"
+            id="all-products"
+            name="discount-filter"
+            className="peer hidden"
+            checked={
+              filters.hasDiscount === undefined &&
+              filters.isActiveDiscount === undefined
+            }
+            onChange={() =>
+              setFilters({
+                pageNum: 1,
+              })
+            }
+          />
+          <label
+            htmlFor="all-products"
+            className="
+          cursor-pointer px-4 py-2 rounded-full text-sm
+          border border-gray-400
+          text-gray-600 dark:text-gray-300
+          peer-checked:bg-gray-600
+          peer-checked:text-white
+          peer-checked:border-gray-600
+          transition-all
+        "
+          >
+            همه
+          </label>
+        </div>
+      </div>
+    </div>
+  );
+
+  const showMoreBtn = (
+    <div className="w-full flex">
+      <button
+        className="text-white px-4 mx-auto py-2 my-4 rounded-lg text-center bg-blue-600 dark:bg-blue-400"
+        onClick={() =>
+          setFilters((prev) => {
+            return { ...prev, pageNum: prev.pageNum + 1 };
+          })
+        }
+      >
+        نمایش بیشتر
+      </button>
+    </div>
+  );
+
   return (
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["عکس محصول", "نام محصول", "تغییر"]}
+      tableHead={["عکس محصول", "نام محصول", "تخفیف", "تغییر"]}
       tableStyle={{
         head: "text-blue-700 text-right",
         body: "text-blue-900 dark:text-blue-100",
       }}
-      showMoreBtn={
-        <button
-          className="text-white px-4 py-2 my-2 rounded-lg text-center bg-blue-600 dark:bg-blue-400"
-          onClick={() => setPageNum((prev) => prev + 1)}
-        >
-          نمایش بیشتر
-        </button>
-      }
+      tableDiscountModal={tableDiscountModal}
+      filterSection={filterSection}
+      hasDiscount={true}
+      showMoreBtn={showMoreBtn}
     />
   );
 }
