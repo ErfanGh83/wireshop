@@ -91,64 +91,88 @@ export const banners = [
 export const circularProducts = [
     {
         id: "1",
-        title: "THHN/THWN-2",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg"
+        title: "سیم برق ساختمانی (THHN / THWN)",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "2",
-        title: "SO Cord (SOOW)",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg"
+        title: "کابل صنعتی انعطاف‌پذیر (SO / SOOW)",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "3",
-        title: "Belden Cable",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg"
+        title: "کابل شبکه برند Belden",
+        categoryId: "6bb3991b-d3d9-4137-93af-bd4a1dad8be8",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg",
+        link: "/products?c=6bb3991b-d3d9-4137-93af-bd4a1dad8be8"
     },
     {
         id: "4",
-        title: "Alum URD",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg"
+        title: "کابل آلومینیومی زمینی (URD)",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "5",
-        title: "Tray Cable",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/673_3.jpg"
+        title: "کابل مخصوص سینی کابل (Tray Cable)",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/673_3.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "6",
-        title: "Hook-up Wire",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/HOOK_3.JPG"
+        title: "سیم افشان تابلو برق (Hook-Up Wire)",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/HOOK_3.JPG",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "7",
-        title: "SER Cable",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/SER.jpg"
+        title: "کابل برق ساختمان SER",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/SER.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "8",
-        title: "Welding Cable",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/15591_2.jpg"
+        title: "کابل جوشکاری انعطاف‌پذیر",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/15591_2.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "9",
-        title: "UF-B Cable",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/5629_3.jpg"
+        title: "کابل برق دفنی UF-B",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/5629_3.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "10",
-        title: "Bare Copper",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/14230_1.png"
+        title: "سیم مسی بدون روکش (Bare Copper)",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/14230_1.png",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "11",
-        title: "MTW Wire",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/MTW_-_MASTER.jpg"
+        title: "سیم صنعتی MTW",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/MTW_-_MASTER.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "12",
-        title: "Flexible Conduit",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/2020-06-09_3.png"
-    },
+        title: "لوله فلکسیبل برق",
+        categoryId: "d30d6469-3cb2-400a-a268-a7b4e3975538",
+        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/2020-06-09_3.png",
+        link: "/products?c=d30d6469-3cb2-400a-a268-a7b4e3975538"
+    }
 ]
 
 export const wireAndCableProducts = [
@@ -279,35 +303,43 @@ export const wireAndCableProducts = [
 export const bigProducts = [
     {
         id: "12",
-        title: "کانال انعطاف پذیر Liquidtight",
+        title: "کانال انعطاف‌پذیر Liquidtight",
+        categoryId: "d30d6469-3cb2-400a-a268-a7b4e3975538",
         imageUrl: "/images/thumbnail4.jpg",
         price: 1.25,
         discount: 0,
-        description: 'سایز 3/4 اینچ، پوشش PVC، مناسب فضاهای بیرونی و مرطوب'
+        description: "سایز 3/4 اینچ، پوشش PVC، مناسب فضاهای بیرونی و مرطوب",
+        link: "/products?c=d30d6469-3cb2-400a-a268-a7b4e3975538"
     },
     {
         id: "13",
-        title: "کابل رومکس NM-B",
+        title: "کابل برق ساختمانی NM-B (رومکس)",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
         imageUrl: "/images/thumbnail3.jpg",
         price: 0.75,
         discount: 10,
-        description: "سایز 12/2 AWG با سیم زمین، مناسب مدارهای انشعابی مسکونی"
+        description: "سایز 12/2 AWG با سیم زمین، مناسب مدارهای انشعابی مسکونی",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     },
     {
         id: "14",
         title: "کابل کواکسیال RG6",
+        categoryId: "f7a4a542-de4c-4b60-b4c3-b2012ca34506",
         imageUrl: "/images/thumbnail2.jpg",
         price: 0.45,
         discount: 0,
-        description: "سه لایه شیلد، سایز 18 AWG، مناسب تلویزیون کابلی و ماهواره"
+        description: "سه لایه شیلد، سایز 18 AWG، مناسب تلویزیون کابلی و ماهواره",
+        link: "/products?c=f7a4a542-de4c-4b60-b4c3-b2012ca34506"
     },
     {
         id: "15",
         title: "کابل اعلام حریق",
+        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
         imageUrl: "/images/thumbnail1.jpg",
         price: 1.65,
         discount: 5,
-        description: "FPLR، سایز 18 AWG، مناسب سیستم های اعلام حریق"
+        description: "FPLR، سایز 18 AWG، مناسب سیستم‌های اعلام حریق",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     }
 ]
 

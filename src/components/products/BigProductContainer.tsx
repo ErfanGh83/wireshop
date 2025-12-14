@@ -1,9 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 type Props = {
-    id: string
     title: string
     imageUrl: string
     description?: string
@@ -11,7 +9,6 @@ type Props = {
 }
 
 const BigProductContainer = ({
-    id,
     title,
     imageUrl,
     className = ''
@@ -38,12 +35,11 @@ const BigProductContainer = ({
                     <h3 className="text-lg font-semibold text-white text-shadow-2xs mb-1 line-clamp-2">
                         {title}
                     </h3>
-                    <Link
-                        href={`/products/${id}`}
+                    <div
                         className='size-fit bg-white rounded-md px-2 py-[2px] text-black'
                     >
                         <p>خرید</p>
-                    </Link>
+                    </div>
                 </div>
             </div>
 

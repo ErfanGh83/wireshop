@@ -16,19 +16,19 @@ export default function Home() {
         <BannersContainer banners={banners} />
 
         <section
-          className="w-full h-fit my-16"
+          className="w-full h-fit my-4"
         >
           <CircularProductsContainer />
         </section>
 
         <section
-          className="w-full h-fit my-16"
+          className="w-full h-fit my-4"
         >
           <BigProductsContainer />
         </section>
 
         <section
-          className="w-full h-fit my-16"
+          className="w-full h-fit my-4"
         >
           <NormalProductsContainer />
         </section>

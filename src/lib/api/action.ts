@@ -47,7 +47,7 @@ export const fetchProducts = async ({ page, search, order, filters }: Props) => 
       params.maxPrice = filters.priceRange[1];
     }
 
-    if (filters.onlyInStock) params.inStock = true;
+    if (filters.onlyInStock) params.stockMin = 1;
 
     // Category filter (JSON encoded)
     if (filters.category) {
