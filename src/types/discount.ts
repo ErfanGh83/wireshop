@@ -3,6 +3,17 @@ export interface DiscountResponse {
     id: string;
     name: string;
   };
+  id: string;
+  percentage: number;
+  startsAt: string;
+  endsAt: string;
+  isActive: boolean;
+}
+export interface Discount {
+  product: {
+    id: string;
+    name: string;
+  };
   percentage: number;
   startsAt: string;
   endsAt: string;
@@ -14,5 +25,15 @@ export interface DiscountPost {
   percentage: number;
   startsAt: string;
   endsAt: string;
+  // isActive: boolean;
+}
+export interface DiscountPatch {
+  percentage: number;
+  startsAt: string;
+  endsAt: string;
   isActive: boolean;
+}
+
+export interface DiscountPostRes {
+  id: string;
 }

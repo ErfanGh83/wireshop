@@ -4,7 +4,7 @@ import { API_ENDPOINTS } from "./constants";
 import { Product, ProductListResponse } from "@/types/product";
 import { CommentResponse } from "@/types/comment";
 import { Cable } from "@/types/categories";
-import { DiscountPost, DiscountResponse } from "@/types/discount";
+import { DiscountPatch, DiscountPost, DiscountPostRes, DiscountResponse } from "@/types/discount";
 
 export async function getAllProduct(pageNum:number = 1) {
   return get<ProductListResponse>(`${API_ENDPOINTS.ALL_PRODUCT}?page=${pageNum}`);
@@ -87,13 +87,21 @@ export async function removeDiscount(productId: string) {
 }
 
 export async function postDiscount(product: DiscountPost) { 
-  return post(API_ENDPOINTS.DISCOUNT, product);
+  return post<DiscountPostRes>(API_ENDPOINTS.DISCOUNT, product);
 }
 
-export async function patchDiscount(productId: string, product: DiscountPost) { 
+export async function patchDiscount(productId: string, product: DiscountPatch) { 
   return patch(`${API_ENDPOINTS.DISCOUNT}/${productId}`, product);
 }
 
-export async function getAllFilteredProducts(queryParams:string) {
-  return get<ProductListResponse>(`${API_ENDPOINTS.ALL_PRODUCT}${queryParams ? `?${queryParams}`: ""}`);
+export async function getAllFilteredProducts(queryParams: string) {
+  return get<ProductListResponse>(
+    `${API_ENDPOINTS.ALL_PRODUCT}${queryParams ? `?${queryParams}` : ""}`
+  );
+}
+
+export async function getFilteredProductsByQuery(queryParams: string) {
+  return get<ProductListResponse>(
+    `${API_ENDPOINTS.SEARCH}${queryParams ? `?${queryParams}` : ""}`
+  );
 }

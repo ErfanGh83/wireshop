@@ -1,6 +1,9 @@
 "use client";
 
-import { getAllFilteredProducts } from "@/lib/api/adminApi";
+import {
+  getAllFilteredProducts,
+  getFilteredProductsByQuery,
+} from "@/lib/api/adminApi";
 import AdminTable from "./AdminTable";
 import { ProductListResponse } from "@/types/product";
 import Image from "next/image";
@@ -20,19 +23,38 @@ interface Filter {
 
 function AdminEditProduct() {
   const [rowData, setRowData] = useState<ProductListResponse | null>();
-  const [filters, setFilters] = useState<Filter>({ pageNum: 1 });
+  const [filters, setFilters] = useState<Filter>({
+    pageNum: 1,
+    query: "افشان",
+  });
   const [query, setQuery] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
     const queryParams = new URLSearchParams();
-
-    // if (filters.query) queryParams.append("query", filters.query);
-    if (filters.hasDiscount !== undefined)
-      queryParams.append("hasDiscount", String(filters.hasDiscount));
-    if (filters.isActiveDiscount !== undefined)
-      queryParams.append("isActiveDiscount", String(filters.isActiveDiscount));
     queryParams.append("page", String(filters.pageNum));
+
+    if (filters.query) {
+      console.log("1111111111111");
+
+      queryParams.append("q", filters.query);
+      getFilteredProductsByQuery(queryParams.toString())
+        .then((res) => {
+          console.log("222222222");
+          console.log(res);
+          setRowData(res);
+        })
+        .catch((err) =>
+          toast.error(err.response?.message || err.message || "خطایی رخ داد")
+        );
+        console.log("finisssssssssssshhhhhhhhhhh")
+      return;
+    }
+
+    if (filters.hasDiscount !== undefined)
+      queryParams.append("hasAnyActiveDiscount", String(filters.hasDiscount));
+    if (filters.isActiveDiscount !== undefined)
+      queryParams.append("hasEffectiveDiscount", String(filters.isActiveDiscount));
 
     console.log("query string:", queryParams.toString());
     console.log("filters:", filters);
@@ -41,7 +63,7 @@ function AdminEditProduct() {
       .then((res) => {
         console.log(res);
         setRowData((prev) => {
-          if (!prev) return res;
+          if (!prev || filters.pageNum == 1) return res;
 
           return {
             ...res,
@@ -56,9 +78,7 @@ function AdminEditProduct() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      setFilters((prev) => {
-        return { ...prev, query: query };
-      });
+      setFilters({ query: query, pageNum: 1 });
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
@@ -108,11 +128,11 @@ function AdminEditProduct() {
                transition-all dark:border-slate-700 border-slate-400"
         type="text"
         placeholder="جستجوی نام محصول"
+        defaultValue={filters.query || ""}
         onChange={(e) => setQuery(e.target.value)}
       />
 
       <div className="flex gap-3 flex-wrap">
-        {/* دارای تخفیف */}
         <div>
           <input
             type="radio"
@@ -121,12 +141,11 @@ function AdminEditProduct() {
             className="peer hidden"
             checked={filters.hasDiscount === true}
             onChange={() =>
-              setFilters((prev) => ({
-                ...prev,
+              setFilters({
                 pageNum: 1,
                 hasDiscount: true,
                 isActiveDiscount: undefined,
-              }))
+              })
             }
           />
           <label
@@ -145,7 +164,6 @@ function AdminEditProduct() {
           </label>
         </div>
 
-        {/* تخفیف فعال */}
         <div>
           <input
             type="radio"
@@ -154,12 +172,11 @@ function AdminEditProduct() {
             className="peer hidden"
             checked={filters.isActiveDiscount === true}
             onChange={() =>
-              setFilters((prev) => ({
-                ...prev,
+              setFilters({
                 pageNum: 1,
                 isActiveDiscount: true,
                 hasDiscount: undefined,
-              }))
+              })
             }
           />
           <label
@@ -178,7 +195,6 @@ function AdminEditProduct() {
           </label>
         </div>
 
-        {/* همه */}
         <div>
           <input
             type="radio"

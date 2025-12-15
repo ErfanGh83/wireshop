@@ -4,7 +4,7 @@ import {
   postDiscount,
   removeDiscount,
 } from "@/lib/api/adminApi";
-import { DiscountResponse } from "@/types/discount";
+import { Discount } from "@/types/discount";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Spinner from "../spinner/Spinner";
@@ -14,18 +14,20 @@ interface Props {
 }
 
 export default function AdminDiscountModal({ id }: Props) {
-  const [discountRes, setDiscountRes] = useState<DiscountResponse | null>(null);
-  const [hadDiscount, setHadDiscount] = useState<boolean>(false);
+  const [discountRes, setDiscountRes] = useState<Discount | null>(null);
+  // const [hadDiscount, setHadDiscount] = useState<boolean>(false);
+  const [discountId, setDiscountId] = useState<string>("");
 
   useEffect(() => {
     getDiscountByProductId(id)
       .then((res) => {
         if (res) {
           setDiscountRes(res);
-          setHadDiscount(true);
+          // setHadDiscount(true);
+          setDiscountId(res.id);
           return;
         }
-        setHadDiscount(false);
+        // setHadDiscount(false);
         setDiscountRes({
           product: { id: id, name: "" },
           percentage: 0,
@@ -50,7 +52,7 @@ export default function AdminDiscountModal({ id }: Props) {
       return;
     }
 
-    if (discountRes.percentage === 0 && !hadDiscount) {
+    if (discountRes.percentage === 0 && !discountId) {
       toast.error("درصد تخفیف نباید صفر باشد.");
       return;
     }
@@ -68,8 +70,8 @@ export default function AdminDiscountModal({ id }: Props) {
       return;
     }
 
-    if (discountRes.percentage === 0 && hadDiscount) {
-      removeDiscount(id)
+    if (discountRes.percentage === 0 && discountId) {
+      removeDiscount(discountId)
         .then(() => {
           toast.success("تخفیف با موفقیت حذف شد.");
         })
@@ -80,16 +82,15 @@ export default function AdminDiscountModal({ id }: Props) {
       return;
     }
 
-    if (!hadDiscount) {
+    if (!discountId) {
       postDiscount({
         productId: id,
         percentage: discountRes.percentage,
-
         startsAt: discountRes.startsAt,
         endsAt: discountRes.endsAt,
-        isActive: discountRes.isActive,
       })
-        .then(() => {
+        .then((res) => {
+          setDiscountId(res.id)
           toast.success("تخفیف با موفقیت ایجاد شد.");
         })
         .catch((err) => {
@@ -97,8 +98,7 @@ export default function AdminDiscountModal({ id }: Props) {
           toast.error(err.response?.message || err.message || "خطایی رخ داد");
         });
     } else {
-      patchDiscount(id, {
-        productId: id,
+      patchDiscount(discountId, {
         percentage: discountRes.percentage,
         startsAt: discountRes.startsAt,
         endsAt: discountRes.endsAt,
@@ -172,22 +172,23 @@ export default function AdminDiscountModal({ id }: Props) {
           />
         </div>
 
-        <div className="flex items-center gap-3">
-          <input
-            type="checkbox"
-            id={`active-discount-${id}`}
-            checked={discountRes.isActive}
-            className="peer hidden"
-            onChange={(e) =>
-              setDiscountRes((prev) =>
-                prev ? { ...prev, isActive: e.target.checked } : prev
-              )
-            }
-          />
+        {discountId && (
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id={`active-discount-${id}`}
+              checked={discountRes.isActive}
+              className="peer hidden"
+              onChange={(e) =>
+                setDiscountRes((prev) =>
+                  prev ? { ...prev, isActive: e.target.checked } : prev
+                )
+              }
+            />
 
-          <label
-            htmlFor={`active-discount-${id}`}
-            className="
+            <label
+              htmlFor={`active-discount-${id}`}
+              className="
             flex items-center cursor-pointer gap-2
             px-4 py-2 rounded-lg border
             border-gray-300 dark:border-slate-600
@@ -198,10 +199,11 @@ export default function AdminDiscountModal({ id }: Props) {
             peer-checked:border-blue-600
             transition-all
           "
-          >
-            فعال کردن تخفیف
-          </label>
-        </div>
+            >
+              فعال کردن تخفیف
+            </label>
+          </div>
+        )}
 
         <button
           type="submit"
