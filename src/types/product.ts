@@ -15,6 +15,7 @@ export interface Product {
   images: ImageInterface[];
   category: Category;
   attributes: Attribute[];
+  views: number;
 }
 
 export interface ImageInterface { 

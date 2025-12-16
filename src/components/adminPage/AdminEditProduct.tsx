@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { BASE_URL } from "@/lib/api/constants";
 import { useRouter } from "next/navigation";
 import AdminDiscountModal from "./AdminDiscountModal";
+import { productToFa } from "@/lib/productList";
 
 interface Filter {
   query?: string;
@@ -25,7 +26,7 @@ function AdminEditProduct() {
   const [rowData, setRowData] = useState<ProductListResponse | null>();
   const [filters, setFilters] = useState<Filter>({
     pageNum: 1,
-    query: "افشان",
+    query: "",
   });
   const [query, setQuery] = useState<string>("");
   const router = useRouter();
@@ -35,8 +36,6 @@ function AdminEditProduct() {
     queryParams.append("page", String(filters.pageNum));
 
     if (filters.query && filters.query.length > 2) {
-      console.log("1111111111111");
-
       queryParams.append("q", filters.query);
       getFilteredProductsByQuery(queryParams.toString())
         .then((res) => {
@@ -47,7 +46,6 @@ function AdminEditProduct() {
         .catch((err) =>
           toast.error(err.response?.message || err.message || "خطایی رخ داد")
         );
-      console.log("finisssssssssssshhhhhhhhhhh");
       return;
     }
 
@@ -58,9 +56,6 @@ function AdminEditProduct() {
         "hasEffectiveDiscount",
         String(filters.isActiveDiscount)
       );
-
-    console.log("query string:", queryParams.toString());
-    console.log("filters:", filters);
 
     getAllFilteredProducts(queryParams.toString())
       .then((res) => {
@@ -112,6 +107,8 @@ function AdminEditProduct() {
     <p onClick={() => router.push(`/product?id=${item.id}`)} key={item.id}>
       {item.name}
     </p>,
+    <p key={item.id}>{productToFa[item.category.name]}</p>,
+    <p key={item.id}>{item.views.toLocaleString()}</p>,
   ]);
 
   const tableModal = rowData.data.map((item) => (
@@ -254,7 +251,7 @@ function AdminEditProduct() {
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["عکس محصول", "نام محصول", "تخفیف", "تغییر"]}
+      tableHead={["عکس محصول", "نام محصول", "دسته بندی", "بازدید", "تخفیف", "تغییر"]}
       tableStyle={{
         head: "text-blue-700 text-right",
         body: "text-blue-900 dark:text-blue-100",

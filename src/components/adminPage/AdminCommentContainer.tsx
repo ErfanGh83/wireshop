@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { CommentResponse } from "@/types/comment";
 import AdminCommentModal from "./AdminCommentModal";
 import { useRouter } from "next/navigation";
+import { formatRelativeTime } from "@/lib/date_formatter";
 
 function AdminCommentContainer() {
   const [rowData, setRowData] = useState<CommentResponse | null>();
@@ -45,6 +46,7 @@ function AdminCommentContainer() {
     >
       {comment.product.name}
     </p>,
+    formatRelativeTime(comment.createdAt),
     comment.content,
   ]);
 
@@ -64,7 +66,7 @@ function AdminCommentContainer() {
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["کاربر", "محصول", "پیام", "جزئیات"]}
+      tableHead={["کاربر", "محصول", "تاریخ ایجاد", "پیام", "جزئیات"]}
       tableStyle={{
         head: "text-blue-700 text-right",
         body: "text-blue-900 dark:text-blue-200 truncate",
