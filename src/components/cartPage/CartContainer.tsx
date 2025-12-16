@@ -118,7 +118,7 @@ export default function CartContainer() {
 
           <div className="text-right mt-4">
             <h4 className="font-bold text-xl text-gray-900 dark:text-white">
-              مجموع هزینه: {cart.cost.toFixed(0)} ریال
+              مجموع هزینه با حساب تخفیف: {cart.cost.toLocaleString()} ریال
             </h4>
             {/* <h4 className="font-bold text-xl text-gray-900 dark:text-white">
               مجموع وزن: {cart.weightKg.toFixed(2) || 0} کیلوگرم

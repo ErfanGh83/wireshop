@@ -53,10 +53,16 @@ function SupportMessageContainer() {
           date={item.updatedAt}
           lastMessage={item.lastMessage}
           isNew={item.newMessage}
-          userName={item.userPhone}
+        userName={item.userPhone}
           conversationId={item.id}
         />
       ))}
+
+      {data?.filter((item) => item.lastMessage != undefined).length == 0 && (
+        <h4 className="text-slate-800 dark:text-slate-300 font-semibold">
+          پیامی برای نمایش وجود ندارد.
+        </h4>
+      )}
     </div>
   );
 }

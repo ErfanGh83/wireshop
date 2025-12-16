@@ -1,10 +1,10 @@
-import { ProductDetail } from "@/types/product_detail";
+import { ProductDetailResponse } from "@/types/product_detail";
 import { get, post } from "./apiClient";
 import { API_ENDPOINTS } from "./constants";
 import { CommentResponse } from "@/types/comment";
 
 export async function getProductDetail(id: string) {
-  return get<ProductDetail>(`${API_ENDPOINTS.PRODUCT_DETAIL}/${id}`);
+  return get<ProductDetailResponse>(`${API_ENDPOINTS.PRODUCT_DETAIL}/${id}`);
 }
 
 export async function getProductComment(id: string) {

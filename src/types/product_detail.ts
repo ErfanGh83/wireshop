@@ -23,6 +23,24 @@ export interface ProductDetail {
   attributes: Attribute[];
 }
 
+export interface ProductDetailResponse {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  unit: string;
+  stock: number;
+  images: ImageInterface[];
+  category: Category;
+  discount: Discount | null;
+  attributes: Attribute[];
+}
+
+export interface Discount {
+  endsAt: string;
+  percentage: number;
+}
+
 export interface ProductComment {
   user: string;
   content: string;
