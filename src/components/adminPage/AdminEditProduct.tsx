@@ -34,7 +34,7 @@ function AdminEditProduct() {
     const queryParams = new URLSearchParams();
     queryParams.append("page", String(filters.pageNum));
 
-    if (filters.query) {
+    if (filters.query && filters.query.length > 2) {
       console.log("1111111111111");
 
       queryParams.append("q", filters.query);
@@ -47,14 +47,17 @@ function AdminEditProduct() {
         .catch((err) =>
           toast.error(err.response?.message || err.message || "خطایی رخ داد")
         );
-        console.log("finisssssssssssshhhhhhhhhhh")
+      console.log("finisssssssssssshhhhhhhhhhh");
       return;
     }
 
     if (filters.hasDiscount !== undefined)
       queryParams.append("hasAnyActiveDiscount", String(filters.hasDiscount));
     if (filters.isActiveDiscount !== undefined)
-      queryParams.append("hasEffectiveDiscount", String(filters.isActiveDiscount));
+      queryParams.append(
+        "hasEffectiveDiscount",
+        String(filters.isActiveDiscount)
+      );
 
     console.log("query string:", queryParams.toString());
     console.log("filters:", filters);
@@ -120,7 +123,7 @@ function AdminEditProduct() {
   ));
 
   const filterSection = (
-    <div className="p-2 md:p-6 w-full gap-4 flex flex-col md:flex-row mb-4 items-center">
+    <div className="p-2 w-full gap-4 flex flex-col md:flex-row mb-4 items-center">
       <input
         className="w-full dark:bg-slate-800 text-slate-600 dark:text-white
                py-2 px-6 max-w-96 rounded-full border-2
@@ -232,16 +235,18 @@ function AdminEditProduct() {
 
   const showMoreBtn = (
     <div className="w-full flex">
-      <button
-        className="text-white px-4 mx-auto py-2 my-4 rounded-lg text-center bg-blue-600 dark:bg-blue-400"
-        onClick={() =>
-          setFilters((prev) => {
-            return { ...prev, pageNum: prev.pageNum + 1 };
-          })
-        }
-      >
-        نمایش بیشتر
-      </button>
+      {rowData.data.length % 10 == 0 && (
+        <button
+          className="text-white px-4 mx-auto py-2 my-4 rounded-lg text-center bg-blue-600 dark:bg-blue-400"
+          onClick={() =>
+            setFilters((prev) => {
+              return { ...prev, pageNum: prev.pageNum + 1 };
+            })
+          }
+        >
+          نمایش بیشتر
+        </button>
+      )}
     </div>
   );
 
