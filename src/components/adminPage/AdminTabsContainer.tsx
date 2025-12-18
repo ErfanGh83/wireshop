@@ -33,10 +33,10 @@ export default function Tab({ contains }: { contains: TabProps[] }) {
   if (isAdmin === null) return <Spinner size={48} />;
 
   return (
-    <div className="my-5 overflow-x-hidden h-full">
+    <div className="my-5 overflow-x-hidden h-full md:pt-14 pb-3">
       <div className="space-y-2 overflow-hidden">
         {/* menu items */}
-        <div className="pr-[360px] md:pr-1 text-md md:text-lg flex w-full items-center justify-center gap-1 md:gap-4 lg:gap-8 overflow-x-auto border-b-2 pb-4 dark:border-purple-500 border-blue-300">
+        <div className="pr-[360px] md:pr-1 text-md md:text-lg flex w-full items-center justify-center gap-1 md:gap-4 lg:gap-8 overflow-x-auto border-b-2 pb-4 dark:border-purple-700 border-blue-300">
           {contains.map((item) => (
             <button
               key={item.title}

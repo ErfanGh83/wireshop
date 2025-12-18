@@ -111,7 +111,7 @@ function AdminEditProduct() {
         priority
       />
     ) : null,
-    <p onClick={() => router.push(`/product?id=${item.id}`)} key={item.id}>
+    <p onClick={() => router.push(`/product?id=${item.id}`)} className="cursor-pointer" key={item.id}>
       {item.name}
     </p>,
     <p key={item.id}>{productToFa[item.category.name]}</p>,

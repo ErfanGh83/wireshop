@@ -34,14 +34,14 @@ function SupportMessageContainer() {
 
   if (!data && !err)
     return (
-      <div className="mx-auto mt-10 text-center h-40">
+      <div className="mx-auto mt-10 text-center h-40 md:pt-14">
         <Spinner />
       </div>
     );
 
   if (err) {
     return (
-      <div className="text-2xl text-center mt-10 mx-auto text-red-500">
+      <div className="text-2xl text-center mt-10 mx-auto text-red-500 md:pt-14">
         {err?.status == 401
           ? "لطفا دوباره به عنوان پشتیبان وارد شوید."
           : err?.message || err?.response || "خطای غیر منتظره ای رخ داد."}
@@ -50,7 +50,7 @@ function SupportMessageContainer() {
   }
 
   return (
-    <div className="p-1 md:p-4 lg:p-6 space-y-4 mx-auto max-w-[1200px]">
+    <div className="p-1 md:p-4 lg:p-6 space-y-4 mx-auto max-w-[1200px] md:pt-14">
       <h1 className="text-2xl font-bold mb-4">پیام‌های کاربران</h1>
 
       {data?.map((item) => (
