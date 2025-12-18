@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AllConversation } from "@/types/chat";
 import { Error } from "@/types/error";
 import Spinner from "../spinner/Spinner";
+import { ERROR_MESSAGES } from "@/lib/api/constants";
 
 function SupportMessageContainer() {
   const [data, setData] = useState<AllConversation[] | null>();
@@ -17,13 +18,18 @@ function SupportMessageContainer() {
         setData(result);
         console.log(result);
       })
-      .catch((err) =>
+      .catch((err) => {
         setErr({
           status: err.status,
           response: err.response?.message,
-          message: err.message,
-        })
-      );
+          message:
+            err.status in ERROR_MESSAGES.support
+              ? ERROR_MESSAGES.support[
+                  err.status as keyof typeof ERROR_MESSAGES.support
+                ]
+              : err.message,
+        });
+      });
   }, []);
 
   if (!data && !err)
@@ -53,7 +59,7 @@ function SupportMessageContainer() {
           date={item.updatedAt}
           lastMessage={item.lastMessage}
           isNew={item.newMessage}
-        userName={item.userPhone}
+          userName={item.userPhone}
           conversationId={item.id}
         />
       ))}

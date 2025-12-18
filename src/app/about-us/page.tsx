@@ -1,8 +1,10 @@
 import MainLayout from "@/components/layouts/MainLayout";
 import Image from "next/image";
+import { FaClock } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 
 export default function page() {
-  const phoneMobile = ["۰۹۱۲۶۳۴۶۵۷۵", "۰۹۰۲۱۹۹۱۳۹۵"];
+  const phoneMobile = ["۰۹۱۲۲۸۸۱۹۰۷", "۰۹۱۲۶۳۴۶۵۷۵", "۰۹۰۲۱۹۹۱۳۹۵"];
   const phoneLandline = [
     "۰۲۱۳۶۴۱۹۸۱۶",
     "۰۲۱۳۴۹۱۶۸۳۰",
@@ -14,7 +16,7 @@ export default function page() {
     { icon: "instagram.png", url: "https://www.instagram.com/electro.elka" },
     {
       icon: "whatsapp.jfif",
-      url: "https://api.whatsapp.com/send?phone=989021991395&text=",
+      url: "https://api.whatsapp.com/send?phone=989357114540&text=",
     },
     { icon: "telegram.webp", url: "https://t.me/Electroelka" },
     { icon: "eitaa.png", url: "https://eitaa.com/s/electroelka" },
@@ -115,9 +117,15 @@ export default function page() {
             <aside>
               <div className="my-6 bg-white/70 dark:bg-slate-600 backdrop-blur-sm rounded-2xl shadow-md p-4">
                 <h3 className="text-lg font-medium">آدرس</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 text-justify mt-1">
-                  {addressText}
-                </p>
+                <div className="text-sm text-gray-600 dark:text-gray-300 text-justify mt-4 flex flex-row gap-2 items-center">
+                  <FaLocationDot className="size-5" />
+                  <p>{addressText}</p>
+                </div>
+
+                <div className="text-sm mt-2 text-gray-600 dark:text-gray-300 text-justify flex flex-row gap-2 items-center">
+                  <FaClock className="size-5" />
+                  <p>ساعت کاری: شنبه تا چهارشنبه ساعت 9 الی 19</p>
+                </div>
 
                 <div className="flex flex-row gap-2 my-2">
                   {locations.map((item) => (

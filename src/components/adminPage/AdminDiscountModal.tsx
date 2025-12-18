@@ -200,7 +200,7 @@ export default function AdminDiscountModal({ id }: Props) {
             transition-all
           "
             >
-              فعال کردن تخفیف
+              تخفیف فعال شود
             </label>
           </div>
         )}

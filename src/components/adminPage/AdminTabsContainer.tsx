@@ -10,24 +10,27 @@ interface TabProps {
   component: JSX.Element;
 }
 
-
 export default function Tab({ contains }: { contains: TabProps[] }) {
   const [tab, setTab] = useState(contains[0].title);
-  const [isAdmin, setIsAdmin] = useState<null | boolean>(null)
+  const [isAdmin, setIsAdmin] = useState<null | boolean>(null);
   const animationId = useId();
 
   useEffect(() => {
-    checkAdmin().then(() => setIsAdmin(true)).catch(() => setIsAdmin(true))
-    // checkAdmin().then(() => setIsAdmin(true)).catch(() => setIsAdmin(false))
-  }, [])
+    checkAdmin()
+      .then(() => setIsAdmin(true))
+      .catch(() => setIsAdmin(false));
+  }, []);
 
-  if (isAdmin === false) return (
-    <div className="w-full text-red-500">
-      <h2 className="text-center text-xl">لطفا با دسترسی ادمین دوباره وارد شوید.</h2>
-    </div>
-  );
+  if (isAdmin === false)
+    return (
+      <div className="w-full text-red-500">
+        <h2 className="text-center text-xl">
+          لطفا با دسترسی ادمین دوباره وارد شوید.
+        </h2>
+      </div>
+    );
 
-  if(isAdmin === null) return <Spinner size={48} />
+  if (isAdmin === null) return <Spinner size={48} />;
 
   return (
     <div className="my-5 overflow-x-hidden h-full">

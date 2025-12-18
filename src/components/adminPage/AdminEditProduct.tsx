@@ -10,7 +10,7 @@ import Image from "next/image";
 import AdminEditProductModal from "./AdminEditProductModal";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { BASE_URL } from "@/lib/api/constants";
+import { BASE_URL, ERROR_MESSAGES } from "@/lib/api/constants";
 import { useRouter } from "next/navigation";
 import AdminDiscountModal from "./AdminDiscountModal";
 import { productToFa } from "@/lib/productList";
@@ -44,7 +44,14 @@ function AdminEditProduct() {
           setRowData(res);
         })
         .catch((err) =>
-          toast.error(err.response?.message || err.message || "خطایی رخ داد")
+          toast.error(
+            ERROR_MESSAGES.admin[
+              err.status as keyof typeof ERROR_MESSAGES.admin
+            ] ||
+              err.response?.message ||
+              err.message ||
+              "خطایی رخ داد"
+          )
         );
       return;
     }
@@ -251,7 +258,14 @@ function AdminEditProduct() {
     <AdminTable
       tableModal={tableModal}
       tableData={tableData}
-      tableHead={["عکس محصول", "نام محصول", "دسته بندی", "بازدید", "تخفیف", "تغییر"]}
+      tableHead={[
+        "عکس محصول",
+        "نام محصول",
+        "دسته بندی",
+        "بازدید",
+        "تخفیف",
+        "تغییر",
+      ]}
       tableStyle={{
         head: "text-blue-700 text-right",
         body: "text-blue-900 dark:text-blue-100",
