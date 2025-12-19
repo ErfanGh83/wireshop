@@ -14,6 +14,7 @@ interface BackendProduct {
   price: number;
   weightKg: number;
   stock: number;
+  discount: number | null;
   images: string[];
   unit: string;
   category: { id: string; name: string };
@@ -157,6 +158,7 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 key={product.id + index}
                 id={product.id}
                 title={product.name}
+                discount={product.discount}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 //@ts-ignore
                 imageUrl={product.images.length ? product.images?.[0]?.url || "/placeholder.png" : "/placeholder.png"}
