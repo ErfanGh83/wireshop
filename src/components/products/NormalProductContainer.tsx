@@ -11,7 +11,7 @@ type Props = {
   available: boolean;
   description?: string;
   className?: string;
-  // unit: string;
+  discount: number | null;
   maxDescriptionLength?: number;
 };
 
@@ -19,18 +19,18 @@ const NormalProductContainer = ({
   id,
   title,
   imageUrl,
-  // price,
   available = false,
   description = "",
   className = "",
   maxDescriptionLength = 50,
-}: // unit
-  Props) => {
-  // Function to trim description if it's too long
+  discount,
+}: Props) => {
   const trimDescription = (desc: string) => {
     if (desc.length <= maxDescriptionLength) return desc;
     return desc.substring(0, maxDescriptionLength) + "...";
   };
+
+  const hasDiscount = discount !== null && discount > 0;
 
   return (
     <Link
@@ -40,16 +40,19 @@ const NormalProductContainer = ({
     >
       {/* Availability indicator */}
       {available ? (
-        <div
-          className={`absolute border-[1px] rounded-br-xl bg-white dark:bg-slate-700 border-green-500 text-green-500 text-xs sm:text-sm font-thin px-2 py-1 z-[1] left-0 top-0`}
-        >
+        <div className="absolute border-[1px] rounded-br-xl bg-white dark:bg-slate-700 border-green-500 text-green-500 text-xs sm:text-sm font-thin px-2 py-1 z-[2] left-0 top-0">
           موجود
         </div>
       ) : (
-        <div
-          className={`absolute border-[1px] bg-white border-red-500 text-red-500 text-xs sm:text-sm font-thin px-2 py-1 z-[1] left-0 top-0`}
-        >
+        <div className="absolute border-[1px] bg-white border-red-500 text-red-500 text-xs sm:text-sm font-thin px-2 py-1 z-[2] left-0 top-0">
           ناموجود
+        </div>
+      )}
+
+      {/* Discount badge */}
+      {hasDiscount && (
+        <div className="absolute right-0 top-0 z-[2] bg-red-600 text-white text-xs sm:text-sm font-bold px-2 py-1 rounded-bl-xl">
+          {discount}% تخفیف
         </div>
       )}
 
@@ -66,7 +69,7 @@ const NormalProductContainer = ({
               ? imageUrl.startsWith("/uploads")
                 ? BASE_URL + imageUrl
                 : imageUrl
-              : "/fallback.png" // use a real fallback
+              : "/fallback.png"
           }
           alt={title || "image"}
           fill
@@ -87,14 +90,6 @@ const NormalProductContainer = ({
               {trimDescription(description)}
             </p>
           )}
-        </div>
-
-        <div className="mt-2 sm:mt-4">
-          {/* <div className="flex flex-col-reverse gap-0.5">
-                        <span className="text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white">
-                            {unit}/ {price} 
-                        </span>
-                    </div> */}
         </div>
       </div>
     </Link>

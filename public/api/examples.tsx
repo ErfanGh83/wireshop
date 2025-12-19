@@ -497,3 +497,62 @@ export const mockOrders = [
         ]
     }
 ];
+
+
+export const MOCK_PRODUCTS = [
+  {
+    id: "1",
+    name: "کابل برق افشان 2×1.5",
+    description: "کابل برق افشان مناسب برای مصارف خانگی و صنعتی",
+    price: 125000,
+    weightKg: 1.2,
+    stock: 12,
+    discount: 15,
+    images: [{ url: "/placeholder.png" }],
+    category: { id: "c1", name: "کابل برق" },
+    attributes: [
+      { id: "a1", name: "جنس", value: "مس" },
+      { id: "a2", name: "طول", value: "10 متر" },
+    ],
+  },
+  {
+    id: "2",
+    name: "سیم برق نایلونی 1×1",
+    description: "سیم برق نایلونی مقاوم در برابر حرارت",
+    price: 78000,
+    weightKg: 0.8,
+    stock: 0,
+    discount: null,
+    images: [{ url: "/placeholder.png" }],
+    category: { id: "c2", name: "سیم برق" },
+    attributes: [
+      { id: "a3", name: "جنس", value: "آلومینیوم" },
+    ],
+  },
+  {
+    id: "3",
+    name: "کابل شبکه CAT6",
+    description: "کابل شبکه CAT6 با سرعت بالا مناسب شبکه‌های حرفه‌ای",
+    price: 320000,
+    weightKg: 1.5,
+    stock: 7,
+    discount: 25,
+    images: [{ url: "/placeholder.png" }],
+    category: { id: "c3", name: "کابل شبکه" },
+    attributes: [
+      { id: "a4", name: "نوع", value: "UTP" },
+    ],
+  },
+  {
+    id: "4",
+    name: "کابل تلفن 4 زوج",
+    description: "کابل تلفن چهار زوج مناسب سیستم‌های مخابراتی",
+    price: 95000,
+    weightKg: 1,
+    stock: 20,
+    discount: 0,
+    images: [{ url: "/placeholder.png" }],
+    category: { id: "c4", name: "کابل تلفن" },
+    attributes: [],
+  },
+];

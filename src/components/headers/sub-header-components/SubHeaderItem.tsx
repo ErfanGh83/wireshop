@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
+import CategoriesModal from '@/components/CategoriesModal';
 
 type Props = {
   title: string;
@@ -19,30 +20,54 @@ const SubHeaderItem = ({
 }: Props) => {
   const pathname = usePathname();
   const isActive = pathname === link;
+  const [open, setOpen] = useState(false);
+
+  const isProducts = title === 'محصولات';
 
   const content = (
     <>
-      <span className={`text-md md:text-xl font-medium ${isActive ? 'text-blue-500 dark:text-blue-400' : 'text-black dark:text-gray-200'}`}>
+      <span
+        className={`text-md md:text-xl font-medium ${isActive
+            ? 'text-blue-500 dark:text-blue-400'
+            : 'text-black dark:text-gray-200'
+          }`}
+      >
         {title}
       </span>
-      <span className={`text-lg ml-2 ${isActive ? 'text-blue-500 dark:text-blue-400' : 'text-black dark:text-gray-200'}`}>
+      <span
+        className={`text-lg ml-2 ${isActive
+            ? 'text-blue-500 dark:text-blue-400'
+            : 'text-black dark:text-gray-200'
+          }`}
+      >
         {icon}
       </span>
     </>
   );
 
   return (
-    <button
-      className={`w-fit h-8 rounded-full flex items-center justify-between pl-1 pr-2 py-[1px] md:pl-2 md:pr-4 md:py-1 cursor-pointer hover:scale-105 transition-all ${className}`}
+    <div
+      className="relative"
+      onMouseEnter={() => isProducts && setOpen(true)}
+      onMouseLeave={() => isProducts && setOpen(false)}
     >
-      <Link
-        href={link}
-        className="w-fit p-2 flex flex-col-reverse sm:flex-row items-center gap-2"
-        aria-label={title}
+      <button
+        className={`w-fit h-8 rounded-full flex items-center justify-between
+        pl-1 pr-2 py-[1px] md:pl-2 md:pr-4 md:py-1
+        cursor-pointer hover:scale-105 transition-all ${className}`}
       >
-        {content}
-      </Link>
-    </button>
+        <Link
+          href={link}
+          className="w-fit p-2 flex flex-col-reverse sm:flex-row items-center gap-2"
+          aria-label={title}
+        >
+          {content}
+        </Link>
+      </button>
+
+      {/* Categories Hover Modal */}
+      {isProducts && <CategoriesModal isOpen={open} />}
+    </div>
   );
 };
 

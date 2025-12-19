@@ -15,6 +15,7 @@ interface BackendProduct {
   price: number;
   weightKg: number;
   stock: number;
+  discount: null | number;
   images: string[];
   category: { id: string; name: string };
   attributes: { id: string; name: string; value: string }[];
@@ -125,6 +126,7 @@ const NormalProductsContainer = () => {
                   key={product.id}
                   id={product.id}
                   title={product.name}
+                  discount={product.discount}
                   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   //@ts-ignore
                   imageUrl={product.images.length ? product.images?.[0].url || "/placeholder.png" : "/placeholder.png"}
