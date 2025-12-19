@@ -14,7 +14,7 @@ const CategoriesModal = ({ isOpen }: Props) => {
     return (
         <div
             className="
-        absolute top-full right-0 mt-2
+        absolute top-full right-0 mt-2 text-black dark:text-white 
         w-72 max-h-[420px] overflow-y-auto
         rounded-xl border bg-white dark:bg-gray-900
         shadow-xl z-50

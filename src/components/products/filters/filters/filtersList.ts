@@ -490,7 +490,7 @@ export const brands = [
   { en: "Simpod", fa: "سیمپود" },
   { en: "Kerman Radin", fa: "کرمان رادین" },
   { en: "Linko", fa: "لینکو" },
-  { en: "Ivan A1", fa: "ایوان A1" },
+  { en: "کارا کابل ایوان", fa: "کارا کابل ایوان" },
   { en: "Alborz", fa: "البرز" },
   { en: "Semnan", fa: "سمنان" },
   { en: "Shirkouh", fa: "شیرکوه" },

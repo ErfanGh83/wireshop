@@ -17,8 +17,9 @@ type Props = {
 const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     // Initialize all filter states with defaults or values from props
     const [brand, setBrand] = useState<string | null>(filters?.brand || null)
-    const [priceRange, setPriceRange] = useState<[number, number]>(filters?.priceRange || [0, 1000])
+    const [priceRange, setPriceRange] = useState<[number, number]>(filters?.priceRange || [0, 999999])
     const [onlyInStock, setOnlyInStock] = useState<boolean>(filters?.onlyInStock || false)
+    const [onlyDiscounted, setOnlyDiscounted] = useState<boolean>(filters?.onlyDiscounted || false)
     const [category, setCategory] = useState<string | null>(filters?.category || '')
 
     // Update local states when filters prop changes (e.g., when reset)
@@ -35,6 +36,7 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
             brand,
             priceRange,
             onlyInStock,
+            onlyDiscounted,
             category
         })
     }
@@ -42,8 +44,9 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     // Reset all filters to empty/default values
     const resetFilters = () => {
         setBrand(null)
-        setPriceRange([0, 1000])
+        // setPriceRange([0, 1000])
         setOnlyInStock(false)
+        setOnlyDiscounted(false)
         setCategory('')
         setFilters(null) // Or set to default values if you prefer
     }
@@ -97,6 +100,19 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
                             />
                         </div>
 
+                        <div dir='rtl' className='w-full flex items-center justify-between p-4 bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg'>
+                            <label htmlFor='inStock' className='text-lg cursor-pointer'>
+                                فقط کالاهای تخفیف دار
+                            </label>
+                            <input
+                                id='discounted'
+                                type='checkbox'
+                                checked={onlyDiscounted}
+                                onChange={(e) => setOnlyDiscounted(e.target.checked)}
+                                className='w-5 h-5 cursor-pointer'
+                            />
+                        </div>
+
                         {/* Category Filter */}
                         <Categories
                             category={category}
@@ -109,7 +125,7 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
                 <div className='w-full h-fit flex flex-row gap-4 px-4 sm:pb-2 pt-4'>
                     <button
                         onClick={resetFilters}
-                        className='w-full h-16 text-2xl sm:text-lg px-4 py-2 cursor-pointer bg-gray-200 rounded-lg hover:bg-gray-300'
+                        className='w-full h-16 text-2xl sm:text-lg px-4 py-2 cursor-pointer bg-gray-200 dark:bg-gray-400 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500'
                     >
                         حذف فیلترها
                     </button>

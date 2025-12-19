@@ -55,6 +55,7 @@ interface Filters {
   brand: string | null;
   priceRange?: [number, number];
   onlyInStock?: boolean;
+  onlyDiscounted?: boolean;
   category: string | null;
   attributes?: {
     [attributeId: string]: string[];
