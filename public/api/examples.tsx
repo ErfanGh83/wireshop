@@ -325,13 +325,13 @@ export const bigProducts = [
     },
     {
         id: "15",
-        title: "کابل فرمان (کنترل)",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948", // سیم و کابل برق
+        title: "RG11 (دوربین/آنتن حرفه‌ای)",
+        categoryId: "f7a4a542-de4c-4b60-b4c3-b2012ca34506", // سیم و کابل برق
         imageUrl: "/images/thumbnail1.jpg",
         price: 1.55,
         discount: 5,
-        description: "کابل فرمان چند رشته، مناسب سیستم‌های کنترلی و تابلو برق",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
+        description: "کابل کواکسیال RG11 با هادی ضخیم و افت سیگنال بسیار کم، مناسب سیستم‌های آنتن مرکزی، دوربین‌های مداربسته در متراژ بالا و انتقال سیگنال با کیفیت در فواصل طولانی",
+        link: "/products?c=f7a4a542-de4c-4b60-b4c3-b2012ca34506"
     }
 ]
 
