@@ -11,6 +11,11 @@ interface Props {
   };
   tableData: ReactNode[][];
   tableModal: ReactNode[];
+  showMoreBtn?: ReactNode;
+  tableDiscountModal?: ReactNode[];
+  filterSection?: ReactNode;
+  // discountModal?: ReactNode;
+  hasDiscount?: boolean;
 }
 
 export default function AdminTable({
@@ -18,24 +23,32 @@ export default function AdminTable({
   tableStyle,
   tableData,
   tableModal,
+  showMoreBtn,
+  tableDiscountModal,
+  filterSection,
+  // discountModal,
+  hasDiscount = false,
 }: Props) {
   // const [currentUrl, setUrl] = useState(url);
   const [modalOpen, setModalOpen] = useState(false);
+  const [discountModalOpen, setDiscountModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<number>(0);
 
   // useEffect(() => console.log(currentUrl), [currentUrl]);
 
   return (
     <>
+      {filterSection}
+
       {tableData.length > 0 ? (
         <div className="overflow-x-auto rounded-xl shadow-md">
-          <table className="min-w-full text-sm text-left text-gray-800 dark:text-gray-100 bg-white/50 dark:bg-slate-800/30 backdrop-blur-md">
-            <thead className="border-b border-gray-300/30 dark:border-gray-600/20">
+          <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800">
+            <thead className="bg-gray-100 dark:bg-slate-700 border-b border-gray-300 dark:border-gray-600">
               <tr>
                 {tableHead.map((item, index) => (
                   <th
                     key={index}
-                    className={`px-4 py-3 text-start font-medium dark:text-blue-100 ${
+                    className={`whitespace-nowrap px-4 py-3 text-start font-semibold border-r border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-100 ${
                       tableStyle?.head || ""
                     }`}
                   >
@@ -48,25 +61,48 @@ export default function AdminTable({
               {tableData.map((row, rowIndex) => (
                 <tr
                   key={rowIndex}
-                  className="border-b border-gray-200/20 dark:border-gray-600/10 dark:text-blue-200 hover:bg-gray-100/30 dark:hover:bg-slate-700/30 transition-colors"
+                  className="border-b border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                 >
                   {row.map((col, colIndex) => (
                     <td
                       key={colIndex}
-                      className={`px-4 py-3 text-start ${
+                      className={`px-4 py-3 text-start border-r border-gray-300 dark:border-gray-600${
                         tableStyle?.body || ""
                       }`}
                     >
                       {col}
                     </td>
                   ))}
-                  <td className="px-4 py-3 text-start">
+
+                  {hasDiscount && (
+                    <td
+                      className={`px-4 py-3 text-start border-r border-gray-300 dark:border-gray-600${
+                        tableStyle?.body || ""
+                      }`}
+                    >
+                      <button
+                        onClick={() => {
+                          setSelectedRow(rowIndex);
+                          setDiscountModalOpen(true);
+                        }}
+                        className="whitespace-nowrap bg-blue-500 px-3 py-1.5 rounded hover:bg-blue-400 active:bg-blue-300 transition-all text-white"
+                      >
+                        اعمال تخفیف
+                      </button>
+                    </td>
+                  )}
+
+                  <td
+                    className={`px-4 py-3 text-start border-r border-gray-300 dark:border-gray-600${
+                      tableStyle?.body || ""
+                    }`}
+                  >
                     <button
                       onClick={() => {
                         setSelectedRow(rowIndex);
                         setModalOpen(true);
                       }}
-                      className="bg-blue-400 p-2 rounded cursor-pointer hover:bg-blue-300 active:bg-blue-200 transition-all text-slate-200"
+                      className="whitespace-nowrap bg-blue-500 px-3 py-1.5 rounded hover:bg-blue-400 active:bg-blue-300 transition-all text-white"
                     >
                       مشاهده
                     </button>
@@ -75,6 +111,20 @@ export default function AdminTable({
               ))}
             </tbody>
           </table>
+
+          {showMoreBtn}
+
+          {tableDiscountModal && (
+            <AdminModal
+              isOpen={discountModalOpen}
+              onClose={() => setDiscountModalOpen(false)}
+              title="جزئیات تخفیف"
+            >
+              {selectedRow !== null && selectedRow !== undefined && (
+                <>{tableDiscountModal[selectedRow]}</>
+              )}
+            </AdminModal>
+          )}
 
           <AdminModal
             isOpen={modalOpen}

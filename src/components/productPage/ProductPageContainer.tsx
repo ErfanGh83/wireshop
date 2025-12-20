@@ -4,7 +4,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import ProductDetailSpec from "@/components/productPage/spec/ProductDetailSpec";
 import ProductCommentForm from "@/components/productPage/comment/ProductCommentForm";
 import ProductCommentContainer from "@/components/productPage/comment/ProductCommentContainer";
-import { ProductDetail } from "@/types/product_detail";
+import { ProductDetailResponse } from "@/types/product_detail";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { addCartItem } from "@/lib/api/cartApi";
@@ -22,7 +22,7 @@ export default function ProductPageContainer() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
-  const [product, setProduct] = useState<ProductDetail | null>(null);
+  const [product, setProduct] = useState<ProductDetailResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(0);
 
@@ -30,7 +30,10 @@ export default function ProductPageContainer() {
     if (!id) return;
 
     getProductDetail(id)
-      .then(setProduct)
+      .then((res) => {
+        setProduct(res);
+        console.log(res);
+      })
       .catch((err) => {
         console.error(err);
         setError("خطا در دریافت محصول.");
@@ -56,10 +59,19 @@ export default function ProductPageContainer() {
     }
   };
 
+  const formatPrice = (value: number) => value.toLocaleString("fa-IR");
+
   if (!id) {
     return (
       <MainLayout>
-        <div className="text-center mt-10">شناسه محصول یافت نشد.</div>
+        <div
+          dir="ltr"
+          className="overflow-y-auto size-full pb-20 md:pb-6 bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto"
+        >
+          <div className="bg-white  md:mb-0 dark:bg-slate-800 shadow-xl rounded-2xl md:p-6 p-4 w-full h-full">
+            <div className="text-center mt-10">شناسه محصول یافت نشد.</div>
+          </div>
+        </div>
       </MainLayout>
     );
   }
@@ -67,7 +79,14 @@ export default function ProductPageContainer() {
   if (error) {
     return (
       <MainLayout>
-        <div className="text-center mt-10 text-red-500">{error}</div>
+        <div
+          dir="ltr"
+          className="overflow-y-auto size-full pb-20 md:pb-6 bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto"
+        >
+          <div className="bg-white  md:mb-0 dark:bg-slate-800 shadow-xl rounded-2xl md:p-6 p-4 w-full h-full">
+            <div className="text-center mt-10 text-red-500">{error}</div>
+          </div>
+        </div>
       </MainLayout>
     );
   }
@@ -75,7 +94,16 @@ export default function ProductPageContainer() {
   if (!product) {
     return (
       <MainLayout>
-        <div className="flex justify-center items-center mt-10">loading...</div>
+        <div
+          dir="ltr"
+          className="overflow-y-auto size-full pb-20 md:pb-6 bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto"
+        >
+          <div className="bg-white  md:mb-0 dark:bg-slate-800 shadow-xl rounded-2xl md:p-6 p-4 w-full h-full">
+            <div className="flex justify-center items-center mt-10">
+              loading...
+            </div>
+          </div>
+        </div>
       </MainLayout>
     );
   }
@@ -129,9 +157,34 @@ export default function ProductPageContainer() {
             <div className="border-r-6 rounded-md p-2 flex flex-col justify-start space-y-4 col-span-3 border-blue-100">
               <h1 className="text-3xl font-bold">{product.name}</h1>
               {product.price ? (
-                <p className="text-xl font-semibold">
-                  قیمت: {product.price} ریال به ازای هر واحد
-                </p>
+                <>
+                  <p className="text-xl font-semibold">
+                    قیمت:{" "}
+                    <span className="relative inline-block">
+                      {product.discount && (
+                        <span className="absolute left-0 right-0 top-1/2 h-[1.5px] bg-red-500 -translate-y-1/2"></span>
+                      )}
+                      {formatPrice(product.price)}{" "}
+                    </span>
+                    ریال به ازای هر واحد
+                  </p>
+                  {/* {product.discount && (
+                    <p className="font-semibold">
+                      قیمت با {product.discount.percentage}% تخفیف:{" "}
+                      {(100 - product.discount.percentage) * product.price}
+                    </p>
+                  )} */}
+                  {product.discount?.percentage && (
+                    <p className="font-semibold text-green-600">
+                      قیمت با {product.discount.percentage}% تخفیف:{" "}
+                      {(
+                        ((100 - product.discount.percentage) / 100) *
+                        product.price
+                      ).toLocaleString("fa-IR")}{" "}
+                      ریال
+                    </p>
+                  )}
+                </>
               ) : (
                 <p className="text-lg">
                   به علت نوسانات بازار برای اطلاع از قیمت تماس بگیرید.
