@@ -53,6 +53,7 @@ const ProfileFormWrapper = ({ setModalIsOpen, refetch }: Props) => {
 
         try {
             if (formData.firstname || formData.lastname || formData.password || formData.birthdate) {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const response = await changeUserInfo(
                     formData.firstname || undefined,
                     formData.lastname || undefined,

@@ -111,6 +111,7 @@ const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
 
   const handleFirstStepSubmit = async (data: Record<string, string>) => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await fpRequestOtp(data.phone);
       setStep('enter-code')
 
@@ -132,6 +133,7 @@ const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
 
   const handleSecondStepSubmit = async () => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await fpVerifyOtp(formData.phone, formData.code);
       setStep('enter-password')
 
@@ -153,6 +155,7 @@ const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
 
   const handleThirdStepSubmit = async () => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await changePassword(formData.phone, formData.password);
       localStorage.removeItem(STORAGE_KEY);
       toast.success('رمز عبور با موفقیت تغییر کرد')
