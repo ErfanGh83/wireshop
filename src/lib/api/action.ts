@@ -49,7 +49,7 @@ export const fetchProducts = async ({ page, search, order, filters }: Props) => 
 
     if (filters.onlyInStock) params.stockMin = 1;
 
-    if(filters.onlyDiscounted) params.hasEffectiveDiscount = 1;
+    if(filters.onlyDiscounted) params.hasEffectiveDiscount = true;
 
     // Category filter (JSON encoded)
     if (filters.category) {

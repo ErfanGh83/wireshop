@@ -52,7 +52,11 @@ const NormalProductsContainer = () => {
 
     const res = (await fetchProducts({
       page: 1,
-      filters: null,
+      filters: {
+        brand: null,
+        category: null,
+        onlyDiscounted: true,
+      },
       search: null,
       order: 'most-popular',
     })) as BackendResponse

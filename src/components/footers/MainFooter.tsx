@@ -12,7 +12,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const MainFooter = () => {
-  const phoneMobile = ['۰۹۱۲۶۳۴۶۵۷۵', '۰۹۰۲۱۹۹۱۳۹۵'];
   const phoneLandline = [
     '۰۲۱۳۶۴۱۹۸۱۶',
     '۰۲۱۳۴۹۱۶۸۳۰',
@@ -49,25 +48,54 @@ const MainFooter = () => {
           <h3 className="w-full text-center text-xl font-bold border-b-2 border-white pb-2">
             ارتباط با ما
           </h3>
+
           <div className="space-y-3">
+
+            {/* Address */}
             <div className="flex items-start">
               <FaMapMarkerAlt className="mt-1 mr-2 flex-shrink-0" />
               <span>{address}</span>
             </div>
-            <div className="flex items-center">
-              <FaPhone className="mr-2" />
-              <span>
-                {phoneMobile.join(' / ')} <br /> {phoneLandline.join(' / ')}
-              </span>
+
+            {/* Mobile Phones */}
+            <div className="flex items-start">
+              <FaPhone className="mt-1 mr-2 flex-shrink-0" />
+              <div>
+                <p className="font-semibold">تلفن همراه:</p>
+                <p>۰۹۱۲۶۳۴۶۵۷۵ / ۰۹۱۲۲۸۸۱۹۰۷</p>
+              </div>
             </div>
+
+            {/* Landline Phones */}
+            <div className="flex items-start">
+              <FaPhone className="mt-1 mr-2 flex-shrink-0" />
+              <div>
+                <p className="font-semibold">تلفن ثابت:</p>
+                <p>{phoneLandline.join(' / ')}</p>
+              </div>
+            </div>
+
+            {/* Social / WhatsApp */}
+            <div className="flex items-start">
+              <FaWhatsapp className="mt-1 mr-2 flex-shrink-0 text-green-500" />
+              <div>
+                <p className="font-semibold">واتساپ:</p>
+                <p>۰۹۰۲۱۹۹۱۳۹۵ / ۰۹۳۵۷۱۱۴۵۴۰</p>
+              </div>
+            </div>
+
+            {/* Email */}
             <div className="flex items-center">
               <FaEnvelope className="mr-2" />
               <span>{email}</span>
             </div>
+
+            {/* Working Hours */}
             <div className="flex items-center">
               <FaClock className="mr-2" />
-              <span>شنبه تا پنجشنبه ۸-۱۶</span>
+              <span>ساعت کاری: شنبه تا چهارشنبه ۹ الی ۱۹</span>
             </div>
+
           </div>
         </div>
 
