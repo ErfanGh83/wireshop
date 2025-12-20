@@ -11,7 +11,7 @@ export default function Home() {
     <MainLayout>
       <div
         dir="ltr"
-        className="size-full flex flex-col bg-gradient-to-b from-white bg-gray-50 dark:from-slate-900 dark:to-slate-800 text-black dark:text-white overflow-y-auto pt-16"
+        className="size-full flex flex-col bg-gradient-to-b from-white bg-gray-50 dark:from-slate-900 dark:to-slate-800 text-black dark:text-white overflow-y-auto"
       >
         <BannersContainer banners={banners} />
 

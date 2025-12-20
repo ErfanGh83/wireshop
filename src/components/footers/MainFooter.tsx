@@ -29,13 +29,13 @@ const MainFooter = () => {
         {/* Logo & About */}
         <div className="space-y-4">
           <div className="flex flex-col justify-center items-center">
-            <div className="relative w-full h-fit sm:h-24 sm:flex sm:items-center sm:justify-start">
+            <div className="relative w-fit h-fit sm:h-24 sm:flex sm:items-center sm:justify-start bg-white/20 p-1">
               <Image
                 src="/images/logo.png"
                 alt="logo"
                 width={200}
                 height={200}
-                className="object-contain invert hue-rotate-180"
+                className="object-contain"
               />
             </div>
           </div>
