@@ -1,7 +1,13 @@
-import React from "react";
+"use client"
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BASE_URL } from "@/lib/api/constants";
+import { ImPowerCord } from "react-icons/im";
+import { LuCable } from "react-icons/lu";
+import { MdElectricalServices } from "react-icons/md";
+
 
 type Props = {
   id: string;
@@ -25,12 +31,27 @@ const NormalProductContainer = ({
   maxDescriptionLength = 50,
   discount,
 }: Props) => {
+
+  const placeholderIcons = [
+    ImPowerCord,
+    LuCable,
+    MdElectricalServices,
+  ];
+
+  const [PlaceholderIcon] = useState(() => {
+    const index = Math.floor(Math.random() * placeholderIcons.length);
+    return placeholderIcons[index];
+  });
+
   const trimDescription = (desc: string) => {
     if (desc.length <= maxDescriptionLength) return desc;
     return desc.substring(0, maxDescriptionLength) + "...";
   };
 
   const hasDiscount = discount !== null && discount > 0;
+
+  const hasImage =
+    typeof imageUrl === "string" && imageUrl.trim().length > 0;
 
   return (
     <Link
@@ -57,25 +78,28 @@ const NormalProductContainer = ({
       )}
 
       {/* Image Container */}
-      <div className="relative w-32 h-32 sm:w-full sm:h-48 md:h-56 lg:h-64 bg-gray-100 dark:bg-gray-600 overflow-hidden flex-shrink-0">
-        <Image
-          crossOrigin={
-            typeof imageUrl === "string" && imageUrl.startsWith("/uploads")
-              ? "anonymous"
-              : undefined
-          }
-          src={
-            typeof imageUrl === "string"
-              ? imageUrl.startsWith("/uploads")
+      {/* Image Container */}
+      <div className="relative w-32 h-32 sm:w-full sm:h-48 md:h-56 lg:h-64 bg-gray-100 dark:bg-gray-600 overflow-hidden flex-shrink-0 flex items-center justify-center">
+        {hasImage ? (
+          <Image
+            crossOrigin={
+              imageUrl.startsWith("/uploads") ? "anonymous" : undefined
+            }
+            src={
+              imageUrl.startsWith("/uploads")
                 ? BASE_URL + imageUrl
                 : imageUrl
-              : "/fallback.png"
-          }
-          alt={title || "image"}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 256px"
-        />
+            }
+            alt={title || "image"}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 256px"
+          />
+        ) : (
+          <div className="flex flex-col items-center justify-center text-gray-400 dark:text-gray-300">
+            <PlaceholderIcon size={48} />
+          </div>
+        )}
       </div>
 
       {/* Content Container */}

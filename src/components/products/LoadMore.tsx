@@ -161,7 +161,7 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 discount={product.discount}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 //@ts-ignore
-                imageUrl={product.images.length ? product.images?.[0]?.url || "/placeholder.png" : "/placeholder.png"}
+                imageUrl={product.images.length ? product.images?.[0]?.url || "" : ""}
                 price={product.price}
                 // unit={product.unit}
                 available={product.stock > 0}
