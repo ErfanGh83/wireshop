@@ -30,6 +30,7 @@ export default function DashboardPage() {
 
     const handleLogout = () => {
         logout();
+        localStorage.removeItem('selectedAddress');
         toast.warn("از حساب خارج شدید");
         router.push("/");
     };

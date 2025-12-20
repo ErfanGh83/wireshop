@@ -85,8 +85,6 @@ export const categories = [
         children: [
           { id: 22, fa: 'کابل افشان', en: 'flexible cable' },
           { id: 23, fa: 'کابل مفتول', en: 'solid cable' },
-          { id: 24, fa: 'کابل قدرت', en: 'power cable' },
-          { id: 25, fa: 'کابل اعلام حریق', en: 'fire alarm cable' },
           { id: 26, fa: 'کابل فرمان AWG', en: 'AWG control cable' },
           { id: 27, fa: 'کابل کولری', en: 'AC cable' },
           { id: 28, fa: 'کابل آلومینیوم', en: 'aluminum cable' },
@@ -878,7 +876,6 @@ export const newCategories = [
           "سیم افشان",
           "سیم مفتول",
           "سیم نایلون",
-          "کابل اعلام حریق",
           "کابل افشان",
           "کابل صنعتی فشار قوی",
           "کابل صنعتی فشار متوسط",

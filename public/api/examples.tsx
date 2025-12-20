@@ -289,14 +289,6 @@ export const wireAndCableProducts = [
         price: 0.45,
         discount: 0,
         description: "سه لایه شیلد، سایز 18 AWG، مناسب تلویزیون کابلی و ماهواره"
-    },
-    {
-        id: "15",
-        title: "کابل اعلام حریق",
-        imageUrl: "https://example.com/fire-alarm.jpg",
-        price: 1.65,
-        discount: 5,
-        description: "FPLR، سایز 18 AWG، مناسب سیستم های اعلام حریق"
     }
 ];
 
@@ -330,16 +322,6 @@ export const bigProducts = [
         discount: 0,
         description: "سه لایه شیلد، سایز 18 AWG، مناسب تلویزیون کابلی و ماهواره",
         link: "/products?c=f7a4a542-de4c-4b60-b4c3-b2012ca34506"
-    },
-    {
-        id: "15",
-        title: "کابل اعلام حریق",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "/images/thumbnail1.jpg",
-        price: 1.65,
-        discount: 5,
-        description: "FPLR، سایز 18 AWG، مناسب سیستم‌های اعلام حریق",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
     }
 ]
 
