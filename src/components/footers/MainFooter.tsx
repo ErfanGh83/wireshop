@@ -12,7 +12,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const MainFooter = () => {
-  const phoneMobile = ['۰۹۱۲۶۳۴۶۵۷۵', '۰۹۰۲۱۹۹۱۳۹۵'];
   const phoneLandline = [
     '۰۲۱۳۶۴۱۹۸۱۶',
     '۰۲۱۳۴۹۱۶۸۳۰',
@@ -25,17 +24,17 @@ const MainFooter = () => {
 
   return (
     <footer className="w-full bg-blue-500 dark:bg-slate-700 text-white pt-12 pb-6 px-4">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Logo & About */}
         <div className="space-y-4">
           <div className="flex flex-col justify-center items-center">
-            <div className="relative w-full h-fit sm:h-24 sm:flex sm:items-center sm:justify-start">
+            <div className="relative w-fit h-fit sm:h-24 sm:flex sm:items-center sm:justify-start bg-white/20 p-1">
               <Image
                 src="/images/logo.png"
                 alt="logo"
                 width={200}
                 height={200}
-                className="object-contain invert hue-rotate-180"
+                className="object-contain"
               />
             </div>
           </div>
@@ -45,29 +44,70 @@ const MainFooter = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="space-y-4">
+        <div className="gap-4 flex flex-col items-start w-full">
           <h3 className="w-full text-center text-xl font-bold border-b-2 border-white pb-2">
             ارتباط با ما
           </h3>
-          <div className="space-y-3">
-            <div className="flex items-start">
-              <FaMapMarkerAlt className="mt-1 mr-2 flex-shrink-0" />
-              <span>{address}</span>
+
+          <div className="w-full space-y-3 text-right">
+
+            {/* Address */}
+            <div className="flex items-start gap-2">
+              <FaMapMarkerAlt className="mt-1 flex-shrink-0" />
+              <span className="leading-relaxed">{address}</span>
             </div>
-            <div className="flex items-center">
-              <FaPhone className="mr-2" />
-              <span>
-                {phoneMobile.join(' / ')} <br /> {phoneLandline.join(' / ')}
+
+            {/* Mobile Phones */}
+            <div className="flex flex-col items-end gap-2">
+              <div className='w-full flex flex-row-reverse items-center gap-1'>
+                <FaPhone className="mt-1 flex-shrink-0" />
+                <p className="font-semibold">:تلفن همراه</p>
+              </div>
+              <div>
+                <p className="leading-relaxed">
+                  ۰۹۱۲۶۳۴۶۵۷۵ / ۰۹۱۲۲۸۸۱۹۰۷
+                </p>
+              </div>
+            </div>
+
+            {/* Landline Phones */}
+            <div className="flex flex-col items-end gap-2">
+              <div className='w-full flex flex-row-reverse items-center gap-1'>
+                <FaPhone className="mt-1 flex-shrink-0" />
+                <p className="font-semibold">:تلفن ثابت</p>
+              </div>
+              <div>
+                <p className="leading-relaxed">
+                  {phoneLandline.join(" / ")}
+                </p>
+              </div>
+            </div>
+
+            {/* WhatsApp */}
+            <div className="flex flex-col items-start gap-2">
+              <div className='w-full flex flex-row-reverse items-center gap-1'>
+                <FaWhatsapp className="mt-1 text-xl flex-shrink-0 text-green-500" />
+                <p className="font-semibold">:واتساپ</p>
+                <p className="leading-relaxed">
+                  ۰۹۰۲۱۹۹۱۳۹۵ / ۰۹۳۵۷۱۱۴۵۴۰
+                </p>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex flex-row-reverse items-start gap-2">
+              <FaEnvelope className="mt-1 flex-shrink-0" />
+              <span className="leading-relaxed">{email}</span>
+            </div>
+
+            {/* Working Hours */}
+            <div className="flex flex-row-reverse items-start gap-2">
+              <FaClock className="mt-1 flex-shrink-0" />
+              <span className="leading-relaxed">
+                ساعت کاری: شنبه تا چهارشنبه ۹ الی ۱۹
               </span>
             </div>
-            <div className="flex items-center">
-              <FaEnvelope className="mr-2" />
-              <span>{email}</span>
-            </div>
-            <div className="flex items-center">
-              <FaClock className="mr-2" />
-              <span>شنبه تا پنجشنبه ۸-۱۶</span>
-            </div>
+
           </div>
         </div>
 

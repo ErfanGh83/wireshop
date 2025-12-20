@@ -481,38 +481,48 @@ export const backendCategories = [
 
 
 export const brands = [
-  { en: "Legrand", fa: "لگراند" },
-  { en: "Nexans", fa: "نگزنس" },
-  { en: "Belden", fa: "بلدن" },
-  { en: "Afshar Nezhad Khorasan", fa: "افشار نژاد خراسان" },
-  { en: "Simia", fa: "سیمیا" },
-  { en: "Hamedan", fa: "همدان" },
-  { en: "Simpod", fa: "سیمپود" },
-  { en: "Kerman Radin", fa: "کرمان رادین" },
-  { en: "Linko", fa: "لینکو" },
-  { en: "کارا کابل ایوان", fa: "کارا کابل ایوان" },
-  { en: "Alborz", fa: "البرز" },
-  { en: "Semnan", fa: "سمنان" },
-  { en: "Shirkouh", fa: "شیرکوه" },
-  { en: "Arian Abhar", fa: "آرین ابهر" },
-  { en: "Pezhvak Hamedan", fa: "پژواک همدان" },
-  { en: "Zartaft Kerman", fa: "زرتافت کرمان" },
-  { en: "Masin", fa: "مسین" },
+  { en: "لگراند", fa: "لگراند" },
+  { en: "نگزنس", fa: "نگزنس" },
+  { en: "بلدن", fa: "بلدن" },
+
+  { en: "افشار نژاد خراسان", fa: "افشار نژاد خراسان" },
+  { en: "سیمیا", fa: "سیمیا" },
+  { en: "همدان", fa: "همدان" },
+  { en: "سیمپود", fa: "سیمپود" },
+  { en: "کرمان رادین", fa: "کرمان رادین" },
+  { en: "لینکو", fa: "لینکو" },
+  { en: "ایوان A1", fa: "ایوان A1" },
+  { en: "البرز", fa: "البرز" },
+  { en: "سمنان", fa: "سمنان" },
+  { en: "شیرکوه", fa: "شیرکوه" },
+  { en: "آرین ابهر", fa: "آرین ابهر" },
+  { en: "پژواک همدان", fa: "پژواک همدان" },
+  { en: "زرتافت کرمان", fa: "زرتافت کرمان" },
+  { en: "مسین", fa: "مسین" },
+
   { en: "خاورنو", fa: "خاورنو" },
   { en: "ساوه", fa: "ساوه" },
   { en: "منصوریان", fa: "منصوریان" },
   { en: "آرین", fa: "آرین" },
   { en: "شایان", fa: "شایان" },
-  { en: "amp", fa: "Amp" },
-  { en: "knet", fa: "Knet" },
-  { en: "tp-link", fa: "TP-Link" },
-  { en: "pks", fa: "PKS" },
-  { en: "d-link", fa: "D-Link" },
+
+  { en: "کرمان", fa: "کرمان" },
+  { en: "نگین البرز", fa: "نگین البرز" },
+
+  { en: "Amp", fa: "Amp" },
+  { en: "Knet", fa: "Knet" },
   { en: "تایکونت", fa: "تایکونت" },
   { en: "الگونت", fa: "الگونت" },
+
   { en: "دانوب", fa: "دانوب" },
-  { en: "Siemens", fa: "زیمنس" }
+
+  { en: "tp-link", fa: "TP-Link" },
+  { en: "pks", fa: "PKS" },
+  { en: "D-link", fa: "D-Link" },
+
+  { en: "زیمنس", fa: "زیمنس" }
 ];
+
 
 export const newCategories = [
   {

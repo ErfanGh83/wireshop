@@ -52,7 +52,11 @@ const NormalProductsContainer = () => {
 
     const res = (await fetchProducts({
       page: 1,
-      filters: null,
+      filters: {
+        brand: null,
+        category: null,
+        onlyDiscounted: true,
+      },
       search: null,
       order: 'most-popular',
     })) as BackendResponse
@@ -126,10 +130,15 @@ const NormalProductsContainer = () => {
                   key={product.id}
                   id={product.id}
                   title={product.name}
-                  discount={product.discount}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  //@ts-expect-error
+                  discount={product?.discount?.percentage}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  //@ts-expect-error
+                  discountEndsAt={product?.discount?.endsAt}
                   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   //@ts-ignore
-                  imageUrl={product.images.length ? product.images?.[0].url || "/placeholder.png" : "/placeholder.png"}
+                  imageUrl={product.images.length ? product.images?.[0].url || "" : ""}
                   price={product.price}
                   available={product.stock > 0}
                   // discount={0}

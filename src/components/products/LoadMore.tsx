@@ -158,10 +158,15 @@ const LoadMore = ({ filters, search, order }: LoadMoreProps) => {
                 key={product.id + index}
                 id={product.id}
                 title={product.name}
-                discount={product.discount}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                //@ts-expect-error
+                discount={product?.discount?.percentage}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                //@ts-expect-error
+                discountEndsAt={product?.discount?.endsAt}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 //@ts-ignore
-                imageUrl={product.images.length ? product.images?.[0]?.url || "/placeholder.png" : "/placeholder.png"}
+                imageUrl={product.images.length ? product.images?.[0]?.url || "" : ""}
                 price={product.price}
                 // unit={product.unit}
                 available={product.stock > 0}

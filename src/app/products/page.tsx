@@ -136,7 +136,7 @@ const ProductsPage = () => {
 
           {/* Products */}
           <div dir="rtl" className="p-4 max-w-[2000px] mx-auto">
-            <Suspense fallback={<div>Loading products...</div>}>
+            <Suspense fallback={<div> در حال بارگزاری محصولات...</div>}>
               <ProductsInner
                 filters={filters}
                 setFilters={setFilters}
