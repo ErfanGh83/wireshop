@@ -112,7 +112,6 @@ const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
   const handleFirstStepSubmit = async (data: Record<string, string>) => {
     try {
       const response = await fpRequestOtp(data.phone);
-      console.log(response)
       setStep('enter-code')
 
     } catch (err) {
@@ -134,7 +133,6 @@ const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
   const handleSecondStepSubmit = async () => {
     try {
       const response = await fpVerifyOtp(formData.phone, formData.code);
-      console.log(response)
       setStep('enter-password')
 
     } catch (err) {
@@ -156,7 +154,6 @@ const ForgotPasswordFormWrapper = ({ setMode }: Props) => {
   const handleThirdStepSubmit = async () => {
     try {
       const response = await changePassword(formData.phone, formData.password);
-      console.log(response)
       localStorage.removeItem(STORAGE_KEY);
       toast.success('رمز عبور با موفقیت تغییر کرد')
       setMode('login')

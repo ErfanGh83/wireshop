@@ -12,7 +12,6 @@ export async function requestOtp(phone: string) {
 
 export async function fpRequestOtp(phone: string) {
   const fixedPhone = normalizeIranianPhone(phone)
-  console.log('sending POST request to ' + API_ENDPOINTS.FP_REQUEST_OTP + ' payload: ' + fixedPhone)
   return post(API_ENDPOINTS.FP_REQUEST_OTP, { phone: fixedPhone });
   // Handles 200, 409, 500 errors
 }

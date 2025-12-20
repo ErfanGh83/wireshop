@@ -53,7 +53,7 @@ const AddressModal = ({ setModalIsOpen }: Props) => {
         addSelectedAddress({addressId: selectedAddress.id})
       }
       catch(err){
-        console.log(err)
+        console.error(err)
         toast.error('خطایی در انتخاب آدرس پیش آمد')
       }
     }

@@ -59,7 +59,6 @@ const ProfileFormWrapper = ({ setModalIsOpen, refetch }: Props) => {
                     formData.password || undefined,
                     formData.birthdate || undefined
                 );
-                console.log(response)
                 toast.success("تغییرات مشخصات کاربری با موفقیت انجام شد");
                 refetch()
                 setModalIsOpen(false);

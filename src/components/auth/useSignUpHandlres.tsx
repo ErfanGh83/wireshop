@@ -133,12 +133,11 @@ export const useSignUpHandlers = () => {
         if (!isValid) return;
 
         try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const verificationResult = await verifyOtp(formData.phone, code)
-            console.log(verificationResult)
         }
         catch (err) {
             if (err instanceof ApiError) {
-                console.log(err.status)
                 if (err.status === 400) {
                     setVerificationError('کد وارد شده اشتباه است');
                 } else if (err.status === 404) {

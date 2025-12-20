@@ -6,10 +6,9 @@ export async function isUserLoggedIn(): Promise<boolean> {
       who = await whoAmI()
   }
   catch (err) {
-    console.log(err)
+    console.error(err)
     who = null
   }
-  console.log(who)
 
   return Boolean(who);
 }
