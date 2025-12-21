@@ -28,11 +28,18 @@ export default function DashboardPage() {
     const [profileFormIsOpen, setProfileFormIsOpen] = useState(false);
     const [confirmModalIsOpen, setConfirmModalIsOpen] = useState(false);
 
-    const handleLogout = () => {
-        logout();
-        localStorage.removeItem('selectedAddress');
-        toast.warn("از حساب خارج شدید");
-        router.push("/");
+    const handleLogout = async () => {
+        try {
+            localStorage.removeItem('selectedAddress');
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const res = await logout();
+            toast.success("از حساب خارج شدید");
+            router.push("/");
+        }
+        catch (err) {
+            console.error(err)
+            toast.error("مشکلی در خروج از حساب بوجود آمد")
+        }
     };
 
     if (loading) {
@@ -75,7 +82,7 @@ export default function DashboardPage() {
                     dir="ltr"
                     className="w-full min-h-screen py-6 sm:pt-12 bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 text-black dark:text-white overflow-y-auto"
                 >
-                    {!isLoggedIn? (
+                    {!isLoggedIn ? (
                         <div className="flex justify-center items-center h-full">
                             <Link
                                 href="/auth"
@@ -168,7 +175,7 @@ export default function DashboardPage() {
                                 }
 
                                 {
-                                    (userInfo?.user.role === 'support' || userInfo?.user.role === 'admin')  &&
+                                    (userInfo?.user.role === 'support' || userInfo?.user.role === 'admin') &&
                                     <UserShipmentContainer
                                         title="ورود به داشبورد ساپورت"
                                         icon={<BiSupport />}
