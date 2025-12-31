@@ -1562,8 +1562,36 @@ export const newCategories = [
         ]
       }
     ]
-  }
+  },
+  {
+    "id": "56567a00-f756-47a7-a927-eed0eccad071",
+    "name": "متفرقه",
+    "attributes": []
+  },
 ]
+
+export const modalCategories = [
+  {
+    id: "6bb3991b-d3d9-4137-93af-bd4a1dad8be8",
+    name: "کابل شبکه",
+  },
+  {
+    id: "8bdaac84-41ee-4746-b393-5ac73f949948",
+    name: "سیم و کابل برق",
+  },
+  {
+    id: "f7a4a542-de4c-4b60-b4c3-b2012ca34506",
+    name: "کابل کواکسیال",
+  },
+  {
+    id: "08d6a200-941b-422a-bc8a-61b72fe8f156",
+    name: "کابل مخابراتی",
+  },
+  {
+    id: "56567a00-f756-47a7-a927-eed0eccad071",
+    name: "متفرقه",
+  },
+];
 
 export const equipmentCategories = [
   {

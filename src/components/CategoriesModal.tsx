@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { equipmentCategories, newCategories } from './products/filters/filters/filtersList';
+import { equipmentCategories, modalCategories } from './products/filters/filters/filtersList';
 
 type Props = {
     isOpen: boolean;
@@ -32,7 +32,7 @@ const CategoriesModal = ({ isOpen }: Props) => {
                 "
             >
                 <ul className="p-2 space-y-1">
-                    {newCategories.map((category) => (
+                    {modalCategories.map((category) => (
                         <li key={category.id}>
                             <Link
                                 href={`/products?c=${category.id}`}
