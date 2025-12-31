@@ -1,7 +1,7 @@
 'use client'
 
 import React, { Suspense, useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 
 import MainLayout from '@/components/layouts/MainLayout'
 import FiltersButton from '@/components/buttons/FiltersButton'
@@ -13,7 +13,7 @@ import LoadMore from '@/components/products/LoadMore'
 import { Filters } from '@/types/products'
 
 /* ------------------------------------------------
-   INNER COMPONENT (can use useSearchParams)
+   INNER COMPONENT
 -------------------------------------------------*/
 function ProductsInner({
   filters,
@@ -24,75 +24,55 @@ function ProductsInner({
   setFilters: React.Dispatch<React.SetStateAction<Filters | null>>
   order: string | null
 }) {
-  const router = useRouter()
   const searchParams = useSearchParams()
 
   const q = searchParams.get('q')
   const c = searchParams.get('c')
-  const b = searchParams.get('b') // ✅ BRAND
+  const b = searchParams.get('b')
+
+  const [modeResolved, setModeResolved] = useState(false)
 
   /* ----------------------------------
-     URL → STATE SYNC
+     URL → STATE (SOURCE OF TRUTH)
   -----------------------------------*/
   useEffect(() => {
+    // SEARCH MODE
+    if (q) {
+      setFilters(null)
+      setModeResolved(true)
+      return
+    }
+
     // CATEGORY MODE
     if (c) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-expect-error
-      setFilters(prev => ({
-        ...(prev || {}),
+      setFilters({
         category: c,
-        brand: undefined, // reset brand if category used
-      }))
-
-      if (q || b) {
-        router.replace(`/products?c=${c}`)
-      }
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-expect-error
+        brand: undefined,
+      })
+      setModeResolved(true)
       return
     }
 
     // BRAND MODE
     if (b) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-expect-error
-      setFilters(prev => ({
-        ...(prev || {}),
+      setFilters({
         brand: b,
-        category: undefined, // reset category
-      }))
-
-      if (q) {
-        router.replace(`/products?b=${b}`)
-      }
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-expect-error
+        category: undefined,
+      })
+      setModeResolved(true)
       return
     }
 
-    // SEARCH MODE
-    if (q) {
-      if (filters) setFilters(null)
-      return
-    }
+    // NO PARAMS
+    setFilters(null)
+    setModeResolved(true)
+  }, [q, c, b])
 
-    // NO FILTER / NO SEARCH
-    if (filters) {
-      router.replace('/products')
-    }
-  }, [c, b, q])
-
-  /* ----------------------------------
-     FILTERS → URL
-  -----------------------------------*/
-  useEffect(() => {
-    if (filters?.category) {
-      router.replace(`/products?c=${filters.category}`)
-      return
-    }
-
-    if (filters?.brand) {
-      router.replace(`/products?b=${filters.brand}`)
-      return
-    }
-  }, [filters])
+  if (!modeResolved) return null
 
   return (
     <LoadMore
@@ -104,7 +84,7 @@ function ProductsInner({
 }
 
 /* ------------------------------------------------
-   PAGE COMPONENT (NO useSearchParams here)
+   PAGE COMPONENT
 -------------------------------------------------*/
 const ProductsPage = () => {
   const [filters, setFilters] = useState<Filters | null>(null)
