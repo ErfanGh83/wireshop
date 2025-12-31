@@ -33,7 +33,7 @@ export default function Home() {
         </section>
 
         <section
-          className="w-full h-fit my-4"
+          className="w-full h-fit my-4 mb-8"
         >
           <NormalProductsContainer />
         </section>

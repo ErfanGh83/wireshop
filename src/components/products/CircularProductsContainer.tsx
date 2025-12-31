@@ -10,7 +10,7 @@ import "swiper/css"
 const CircularProductsContainer = () => {
   return (
     <div className="w-full px-4">
-      <div className="text-center mb-12">
+      <div className="text-center mb-4 mt-4">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
           انواع محصولات
         </h2>

@@ -81,87 +81,97 @@ const BigProductsContainer = () => {
     }
 
     return (
-        <div className="w-full px-4 flex justify-center" dir="rtl">
-            <div
-                className="
+        <>
+            <div className="text-center mb-4 mt-8">
+                <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
+                    کالاهای محبوب
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                    پرفروش‌ترین و پرطرفدارترین محصولات انتخاب‌شده توسط مشتریان
+                </p>
+            </div>
+            <div className="w-full px-4 flex justify-center" dir="rtl">
+                <div
+                    className="
                     relative w-full max-w-[600px]
                     rounded-2xl bg-white dark:bg-slate-800
                     border border-gray-200 dark:border-slate-700
                     shadow-sm px-4 py-5
                     overflow-visible
                 "
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
-            >
-                {/* Carousel */}
-                <div className="relative h-[160px] sm:h-[190px] flex items-center justify-center">
-                    {products.map((product, index) => (
-                        <div
-                            key={product.id}
-                            style={getStyle(index)}
-                            className="
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                >
+                    {/* Carousel */}
+                    <div className="relative h-[160px] sm:h-[190px] flex items-center justify-center">
+                        {products.map((product, index) => (
+                            <div
+                                key={product.id}
+                                style={getStyle(index)}
+                                className="
                                 absolute left-1/2
                                 transition-all duration-500 ease-in-out
                             "
-                        >
-                            <Link href={product.link}>
-                                <BigProductContainer
-                                    title={product.title}
-                                    imageUrl={product.imageUrl}
-                                />
-                            </Link>
-                        </div>
-                    ))}
-                </div>
+                            >
+                                <Link href={product.link}>
+                                    <BigProductContainer
+                                        title={product.title}
+                                        imageUrl={product.imageUrl}
+                                    />
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
 
-                {/* Arrows (restored UI) */}
-                {products.length > 1 && (
-                    <>
-                        <button
-                            onClick={() =>
-                                setActive((p) => (p - 1 + products.length) % products.length)
-                            }
-                            className="
+                    {/* Arrows (restored UI) */}
+                    {products.length > 1 && (
+                        <>
+                            <button
+                                onClick={() =>
+                                    setActive((p) => (p - 1 + products.length) % products.length)
+                                }
+                                className="
                                 absolute left-2 top-1/2 -translate-y-1/2
                                 w-9 h-9 rounded-full bg-white/80
                                 flex items-center justify-center
                                 shadow hover:scale-110 transition z-30
                             "
-                        >
-                            <ChevronLeft className="w-4 h-4 text-gray-600" />
-                        </button>
+                            >
+                                <ChevronLeft className="w-4 h-4 text-gray-600" />
+                            </button>
 
-                        <button
-                            onClick={() =>
-                                setActive((p) => (p + 1) % products.length)
-                            }
-                            className="
+                            <button
+                                onClick={() =>
+                                    setActive((p) => (p + 1) % products.length)
+                                }
+                                className="
                                 absolute right-2 top-1/2 -translate-y-1/2
                                 w-9 h-9 rounded-full bg-white/80
                                 flex items-center justify-center
                                 shadow hover:scale-110 transition z-30
                             "
-                        >
-                            <ChevronRight className="w-4 h-4 text-gray-600" />
-                        </button>
-                    </>
-                )}
+                            >
+                                <ChevronRight className="w-4 h-4 text-gray-600" />
+                            </button>
+                        </>
+                    )}
 
-                {/* Dots */}
-                <div className="flex justify-center gap-2 mt-3">
-                    {products.map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setActive(idx)}
-                            className={`h-2 rounded-full transition-all duration-300
+                    {/* Dots */}
+                    <div className="flex justify-center gap-2 mt-3">
+                        {products.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setActive(idx)}
+                                className={`h-2 rounded-full transition-all duration-300
                                 ${active === idx ? "w-5 bg-gray-500" : "w-2 bg-gray-300"}
                             `}
-                        />
-                    ))}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

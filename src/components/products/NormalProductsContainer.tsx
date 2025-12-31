@@ -86,7 +86,7 @@ const NormalProductsContainer = () => {
 
   return (
     <div className="container mx-auto px-4" dir="rtl">
-      <div className="text-center mb-16">
+      <div className="text-center mb-4 mt-8">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white">سیم و کابل با کیفیت</h2>
         <p className="text-gray-600 dark:text-gray-400 mt-2">راهکارهای الکتریکی با کیفیت برای تمام نیازهای شما</p>
       </div>
