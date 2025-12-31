@@ -152,7 +152,7 @@ const BigProductsContainer = () => {
                                 style={getStyle(index)}
                                 className="absolute left-1/2 transition-all duration-500 ease-in-out"
                             >
-                                <Link href={`/products/${product.id}`}>
+                                <Link draggable={false} href={`/product?id=${product.id}`}>
                                     <BigProductContainer
                                         title={product.title}
                                         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
