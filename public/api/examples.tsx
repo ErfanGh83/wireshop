@@ -90,55 +90,48 @@ export const banners = [
 
 export const circularProducts = [
     {
-        id: "1",
-        title: "سیم برق ساختمانی (THHN / THWN)",
+        id: "cat-1",
+        title: "کابل برق",
         categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/1895_3.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
+        imageUrl: "/images/powercable.jpg",
+        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948",
     },
     {
-        id: "2",
-        title: "کابل صنعتی انعطاف‌پذیر (SO / SOOW)",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/392_4.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
-    },
-    {
-        id: "3",
-        title: "کابل شبکه برند Belden",
+        id: "cat-2",
+        title: "کابل شبکه",
         categoryId: "6bb3991b-d3d9-4137-93af-bd4a1dad8be8",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/33012_3.jpg",
-        link: "/products?c=6bb3991b-d3d9-4137-93af-bd4a1dad8be8"
+        imageUrl: "/images/catcable.jpg",
+        link: "/products?c=6bb3991b-d3d9-4137-93af-bd4a1dad8be8",
     },
     {
-        id: "4",
-        title: "کابل آلومینیومی زمینی (URD)",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/3420_2.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
+        id: "cat-3",
+        title: "رک شبکه",
+        categoryId: "d1dc65fd-1183-4b9a-a027-72af0a2e76b8",
+        imageUrl: "/images/rak.webp",
+        link: "/products?c=d1dc65fd-1183-4b9a-a027-72af0a2e76b8",
     },
     {
-        id: "5",
-        title: "کابل مخصوص سینی کابل (Tray Cable)",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/673_3.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
+        id: "cat-4",
+        title: "سینی کابل",
+        categoryId: "d8799351-877d-4374-a9e4-f9ba5bfeb46e",
+        imageUrl: "/images/sinicable.webp",
+        link: "/products?c=d8799351-877d-4374-a9e4-f9ba5bfeb46e",
     },
     {
-        id: "6",
-        title: "سیم افشان تابلو برق (Hook-Up Wire)",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/HOOK_3.JPG",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
+        id: "cat-5",
+        title: "تابلو برق",
+        categoryId: "1635b7ea-5207-4c92-b360-30fff6e9eb65",
+        imageUrl: "/images/tablo.jpg",
+        link: "/products?c=1635b7ea-5207-4c92-b360-30fff6e9eb65",
     },
     {
-        id: "7",
-        title: "کابل برق ساختمان SER",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/SER.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
-    }
-]
+        id: "cat-6",
+        title: "ابزار کابل شبکه",
+        categoryId: "8dfc8f5b-fdfa-4746-9f81-fee77a69d642",
+        imageUrl: "/images/equipmentcat.jpg",
+        link: "/products?c=8dfc8f5b-fdfa-4746-9f81-fee77a69d642",
+    },
+];
 
 export const wireAndCableProducts = [
     {

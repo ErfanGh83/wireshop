@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import { newCategories } from "./filtersList";
 import CategoryItem from "./CategoryItem";
@@ -14,12 +14,16 @@ type Props = {
 const Categories = ({ category, setCategory }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Tooltip hook
-  const {
-    setHoveredText,
-    setTooltipPos,
-    Tooltip,
-  } = useTooltip();
+  const { setHoveredText, setTooltipPos, Tooltip } = useTooltip();
+
+  const orderedCategories = useMemo(() => {
+    if (!category) return newCategories;
+
+    const selected = newCategories.find((c) => c.id === category);
+    const rest = newCategories.filter((c) => c.id !== category);
+
+    return selected ? [selected, ...rest] : newCategories;
+  }, [category]);
 
   return (
     <div
@@ -27,7 +31,6 @@ const Categories = ({ category, setCategory }: Props) => {
       bg-blue-100 dark:bg-slate-600 dark:text-white rounded-lg overflow-hidden
       ${isOpen ? "min-h-16" : "h-16"}`}
     >
-      {/* Tooltip */}
       <Tooltip />
 
       <div
@@ -47,15 +50,14 @@ const Categories = ({ category, setCategory }: Props) => {
         </p>
 
         <MdArrowDropDown
-          className={`transition-transform duration-200 ${
-            isOpen ? "" : "-rotate-90"
-          }`}
+          className={`transition-transform duration-200 ${isOpen ? "" : "-rotate-90"
+            }`}
         />
       </div>
 
       {isOpen && (
         <div className="w-full bg-gray-100 dark:bg-slate-500 p-4 space-y-3 overflow-y-auto max-h-[60vh]">
-          {newCategories.map((cat) => (
+          {orderedCategories.map((cat) => (
             <CategoryItem
               key={cat.id}
               node={cat}

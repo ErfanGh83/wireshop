@@ -29,6 +29,7 @@ function ProductsInner({
 
   const q = searchParams.get('q')
   const c = searchParams.get('c')
+  const b = searchParams.get('b') // ✅ BRAND
 
   /* ----------------------------------
      URL → STATE SYNC
@@ -41,11 +42,27 @@ function ProductsInner({
       setFilters(prev => ({
         ...(prev || {}),
         category: c,
+        brand: undefined, // reset brand if category used
       }))
 
-      // remove search if both exist
-      if (q) {
+      if (q || b) {
         router.replace(`/products?c=${c}`)
+      }
+      return
+    }
+
+    // BRAND MODE
+    if (b) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-expect-error
+      setFilters(prev => ({
+        ...(prev || {}),
+        brand: b,
+        category: undefined, // reset category
+      }))
+
+      if (q) {
+        router.replace(`/products?b=${b}`)
       }
       return
     }
@@ -56,11 +73,11 @@ function ProductsInner({
       return
     }
 
-    // NO SEARCH / NO FILTER
+    // NO FILTER / NO SEARCH
     if (filters) {
       router.replace('/products')
     }
-  }, [c, q])
+  }, [c, b, q])
 
   /* ----------------------------------
      FILTERS → URL
@@ -68,6 +85,12 @@ function ProductsInner({
   useEffect(() => {
     if (filters?.category) {
       router.replace(`/products?c=${filters.category}`)
+      return
+    }
+
+    if (filters?.brand) {
+      router.replace(`/products?b=${filters.brand}`)
+      return
     }
   }, [filters])
 
@@ -136,7 +159,7 @@ const ProductsPage = () => {
 
           {/* Products */}
           <div dir="rtl" className="p-4 max-w-[2000px] mx-auto">
-            <Suspense fallback={<div> در حال بارگزاری محصولات...</div>}>
+            <Suspense fallback={<div>در حال بارگذاری محصولات...</div>}>
               <ProductsInner
                 filters={filters}
                 setFilters={setFilters}
