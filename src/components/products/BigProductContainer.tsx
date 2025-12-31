@@ -16,7 +16,7 @@ const BigProductContainer = ({
 
     return (
         <div
-            className={`relative w-68 h-40 bg-transparent shadow-xl overflow-hidden transition-all duration-300 rounded-xl ${className}`} dir="rtl">
+            className={`relative w-48 h-32 sm:w-68 sm:h-40 bg-transparent shadow-xl overflow-hidden transition-all duration-300 rounded-xl ${className}`} dir="rtl">
 
             <div className="relative aspect-square w-full overflow-hidden bg-blue-500">
                 <Image
@@ -32,7 +32,7 @@ const BigProductContainer = ({
                 className='size-full absolute z-10 top-0 left-0'
             >
                 <div className="size-full p-4 flex flex-col justify-between items-start bg-transparent">
-                    <h3 className="text-lg font-semibold text-white text-shadow-2xs mb-1 line-clamp-2">
+                    <h3 className="text-base sm:text-lg font-semibold text-white text-shadow-2xs mb-1 line-clamp-2">
                         {title}
                     </h3>
                     <div

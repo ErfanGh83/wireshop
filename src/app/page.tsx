@@ -5,6 +5,7 @@ import CircularProductsContainer from "@/components/products/CircularProductsCon
 import NormalProductsContainer from "@/components/products/NormalProductsContainer";
 import BigProductsContainer from "@/components/products/BigProductsContainer";
 import MainFooter from "@/components/footers/MainFooter";
+import BrandSwiper from "@/components/BrandSwiper";
 
 export default function Home() {
   return (
@@ -19,6 +20,10 @@ export default function Home() {
           className="w-full h-fit my-4"
         >
           <CircularProductsContainer />
+        </section>
+
+        <section>
+          <BrandSwiper />
         </section>
 
         <section

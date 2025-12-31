@@ -137,41 +137,6 @@ export const circularProducts = [
         categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
         imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/SER.jpg",
         link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
-    },
-    {
-        id: "8",
-        title: "کابل جوشکاری انعطاف‌پذیر",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/15591_2.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
-    },
-    {
-        id: "9",
-        title: "کابل برق دفنی UF-B",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/5629_3.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
-    },
-    {
-        id: "10",
-        title: "سیم مسی بدون روکش (Bare Copper)",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/14230_1.png",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
-    },
-    {
-        id: "11",
-        title: "سیم صنعتی MTW",
-        categoryId: "8bdaac84-41ee-4746-b393-5ac73f949948",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/MTW_-_MASTER.jpg",
-        link: "/products?c=8bdaac84-41ee-4746-b393-5ac73f949948"
-    },
-    {
-        id: "12",
-        title: "لوله فلکسیبل برق",
-        categoryId: "d30d6469-3cb2-400a-a268-a7b4e3975538",
-        imageUrl: "https://www.wireandcableyourway.com/media/wysiwyg/2020-06-09_3.png",
-        link: "/products?c=d30d6469-3cb2-400a-a268-a7b4e3975538"
     }
 ]
 

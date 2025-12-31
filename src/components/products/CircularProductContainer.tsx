@@ -27,7 +27,7 @@ const CircularProductContainer = ({ title, imageUrl, link, className = '' }: Pro
             />
         </div>
 
-        <div className='text-sm font-medium text-center text-gray-700 dark:text-gray-200 line-clamp-2 px-1'>
+        <div className='text-sm font-medium text-center text-gray-800 dark:text-gray-200 line-clamp-2 px-1'>
             {title}
         </div>
     </Link>
