@@ -62,7 +62,7 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     }
 
     return (
-        <div className='relative h-full flex flex-col pt-12 pb-24 lg:pb-16 sm:h-[92vh] w-full border-l-2 px-1 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-800'>
+        <div dir='ltr' className='relative h-full flex flex-col pt-12 pb-24 lg:pb-16 sm:h-[92vh] w-full border-l-2 px-1 border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-800'>
             <button
                 onClick={handleCloseWithoutApplying}
                 className='absolute top-4 right-4 size-fit hover:cursor-pointer'

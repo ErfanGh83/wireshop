@@ -53,16 +53,15 @@ const CategoriesModal = ({ isOpen }: Props) => {
                         <button
                             type="button"
                             onClick={() => setIsEquipmentOpen((v) => !v)}
-                            className="
+                            className={`
                                 w-full px-4 py-2 rounded-lg
                                 text-sm font-medium
-                                hover:bg-blue-50 dark:hover:bg-gray-800
                                 transition-colors
-                                flex items-center justify-between
-                            "
+                                flex items-center justify-between ${ isEquipmentOpen ? "bg-blue-400 text-white dark:bg-slate-500" : "hover:bg-blue-50 dark:hover:bg-gray-800"}
+                            `}
                         >
                             تجهیزات
-                            <span className="text-xs opacity-60">▶</span>
+                            <span className="text-xs opacity-60 rotate-180">▶</span>
                         </button>
                     </li>
                 </ul>
