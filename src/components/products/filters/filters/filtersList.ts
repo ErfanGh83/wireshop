@@ -481,48 +481,40 @@ export const backendCategories = [
 
 
 export const brands = [
+  { en: "آرین ابهر", fa: "آرین ابهر", logo: null },
+  { en: "افشارنژاد خراسان", fa: "افشارنژاد خراسان", logo: "/images/brands/afshar.png" },
+  { en: "البرز", fa: "البرز", logo: null },
+  { en: "پژواک همدان", fa: "پژواک همدان", logo: null },
+  { en: "زرتافته کرمان", fa: "زرتافته کرمان", logo: null },
+  { en: "سمنان", fa: "سمنان", logo: null },
+  { en: "سیمپود", fa: "سیمپود", logo: "/images/brands/simpod.png" },
+  { en: "شیر کوه", fa: "شیر کوه", logo: null },
+  { en: "کارا کابل ایوان", fa: "کارا کابل ایوان", logo: "/images/brands/ivan.png" },
+  { en: "کرمان", fa: "کرمان", logo: null },
+  { en: "کرمان رادین", fa: "کرمان رادین", logo: null },
+  { en: "لینکو", fa: "لینکو", logo: null },
+  { en: "مسین", fa: "مسین", logo: null },
+  { en: "نگین البرز", fa: "نگین البرز", logo: null },
   { en: "لگراند", fa: "لگراند", logo: "/images/brands/legrand.png" },
   { en: "نگزنس", fa: "نگزنس", logo: "/images/brands/nexans.png" },
   { en: "بلدن", fa: "بلدن", logo: "/images/brands/belden.png" },
-
-  { en: "افشار نژاد خراسان", fa: "افشار نژاد خراسان", logo: "/images/brands/afshar.png" },
   { en: "سیمیا", fa: "سیمیا", logo: null },
   { en: "همدان", fa: "همدان", logo: null },
-  { en: "سیمپود", fa: "سیمپود", logo: "/images/brands/simpod.png" },
-  { en: "کرمان رادین", fa: "کرمان رادین", logo: null },
-  { en: "لینکو", fa: "لینکو", logo: null },
-  { en: "ایوان A1", fa: "ایوان A1", logo: "/images/brands/ivan.png" },
-  { en: "البرز", fa: "البرز", logo: null },
-  { en: "سمنان", fa: "سمنان", logo: null },
-  { en: "شیرکوه", fa: "شیرکوه", logo: null },
-  { en: "آرین ابهر", fa: "آرین ابهر", logo: null },
-  { en: "پژواک همدان", fa: "پژواک همدان", logo: null },
-  { en: "زرتافت کرمان", fa: "زرتافت کرمان", logo: null },
-  { en: "مسین", fa: "مسین", logo: null },
-
   { en: "خاورنو", fa: "خاورنو", logo: null },
   { en: "ساوه", fa: "ساوه", logo: null },
   { en: "منصوریان", fa: "منصوریان", logo: "/images/brands/mansoorian.png" },
   { en: "آرین", fa: "آرین", logo: null },
   { en: "شایان", fa: "شایان", logo: "/images/brands/shayan.png" },
-
-  { en: "کرمان", fa: "کرمان", logo: null },
-  { en: "نگین البرز", fa: "نگین البرز", logo: null },
-
   { en: "Amp", fa: "Amp", logo: "/images/brands/ampnetconnect.png" },
   { en: "Knet", fa: "Knet", logo: "/images/brands/knet.jpg" },
   { en: "تایکونت", fa: "تایکونت", logo: null },
   { en: "الگونت", fa: "الگونت", logo: null },
-
   { en: "دانوب", fa: "دانوب", logo: "/images/brands/daktanob.png" },
-
   { en: "tp-link", fa: "TP-Link", logo: null },
   { en: "pks", fa: "PKS", logo: null },
   { en: "D-link", fa: "D-Link", logo: null },
-
   { en: "زیمنس", fa: "زیمنس", logo: null }
 ];
-
 
 export const newCategories = [
   {
