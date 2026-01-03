@@ -495,9 +495,10 @@ export const brands = [
   { en: "لینکو", fa: "لینکو", logo: null },
   { en: "مسین", fa: "مسین", logo: null },
   { en: "نگین البرز", fa: "نگین البرز", logo: null },
-  { en: "لگراند", fa: "لگراند", logo: "/images/brands/legrand.png" },
-  { en: "نگزنس", fa: "نگزنس", logo: "/images/brands/nexans.png" },
-  { en: "بلدن", fa: "بلدن", logo: "/images/brands/belden.png" },
+  { en: "Legrand", fa: "لگراند", logo: "/images/brands/legrand.png" },
+  { en: "Nexans", fa: "نگزنس", logo: "/images/brands/nexans.png" },
+  { en: "Belden", fa: "بلدن", logo: "/images/brands/belden.png" },
+  { en: "D-Link", fa: "D-Link", logo: null },
   { en: "سیمیا", fa: "سیمیا", logo: null },
   { en: "همدان", fa: "همدان", logo: null },
   { en: "خاورنو", fa: "خاورنو", logo: null },
@@ -512,9 +513,9 @@ export const brands = [
   { en: "دانوب", fa: "دانوب", logo: "/images/brands/daktanob.png" },
   { en: "tp-link", fa: "TP-Link", logo: null },
   { en: "pks", fa: "PKS", logo: null },
-  { en: "D-link", fa: "D-Link", logo: null },
   { en: "زیمنس", fa: "زیمنس", logo: null }
-];
+]
+
 
 export const newCategories = [
   {
