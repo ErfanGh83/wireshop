@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import CategoriesModal from '@/components/CategoriesModal';
 
 type Props = {
@@ -21,8 +21,20 @@ const SubHeaderItem = ({
   const pathname = usePathname();
   const isActive = pathname === link;
   const [open, setOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const isProducts = title === 'محصولات';
+
+  // ✅ Detect screen size
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 640px)');
+
+    const update = () => setIsDesktop(media.matches);
+    update();
+
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
 
   const content = (
     <>
@@ -48,8 +60,8 @@ const SubHeaderItem = ({
   return (
     <div
       className="relative"
-      onMouseEnter={() => isProducts && setOpen(true)}
-      onMouseLeave={() => isProducts && setOpen(false)}
+      onMouseEnter={() => isProducts && isDesktop && setOpen(true)}
+      onMouseLeave={() => isProducts && isDesktop && setOpen(false)}
     >
       <button
         className={`w-fit h-8 rounded-full flex items-center justify-between
@@ -65,8 +77,8 @@ const SubHeaderItem = ({
         </Link>
       </button>
 
-      {/* Categories Hover Modal */}
-      {isProducts && <CategoriesModal isOpen={open} />}
+      {/* ✅ Only render hover modal on desktop */}
+      {isProducts && isDesktop && <CategoriesModal isOpen={open} />}
     </div>
   );
 };
