@@ -6,31 +6,19 @@ const AttributeItem = ({
     attribute,
     categoryId,
     setSelectedCategory,
-    selectedCategory,
+    setSelectedValue,
+    selectedValue,
 }: {
     attribute: any;
     categoryId: string;
     setSelectedCategory: Dispatch<SetStateAction<string | null>>;
     selectedCategory: string | null;
+    setSelectedValue: Dispatch<SetStateAction<string | null>>;
+    selectedValue: string | null;
 }) => {
     const [open, setOpen] = useState(false);
     const [hoveredText, setHoveredText] = useState<string | null>(null);
     const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
-
-
-    // highlight selected value if selectedCategory holds JSON
-    const selectedValue = (() => {
-        try {
-            if (!selectedCategory) return null;
-            const parsed = JSON.parse(selectedCategory);
-            if (parsed?.categoryId === categoryId && parsed?.attribute === attribute.name) {
-                return parsed.value;
-            }
-            return null;
-        } catch {
-            return null;
-        }
-    })();
 
     const onValueClick = (val: string, e: React.MouseEvent) => {
         e.stopPropagation();
@@ -42,6 +30,7 @@ const AttributeItem = ({
             attributeId: attribute.id,
             value: val
         }));
+        setSelectedValue(val);
     };
 
     return (

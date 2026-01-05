@@ -9,12 +9,16 @@ import AttributeItem from "./AttributeItem";
 
 const CategoryItem = ({
   node,
+  selectedValue,
   selectedCategory,
   setSelectedCategory,
+  setSelectedValue
 }: {
   node: any;
   selectedCategory: string | null;
+  selectedValue: string | null;
   setSelectedCategory: Dispatch<SetStateAction<string | null>>;
+  setSelectedValue: Dispatch<SetStateAction<string | null>>;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -85,6 +89,8 @@ const CategoryItem = ({
               key={attr.id}
               attribute={attr}
               categoryId={node.id}
+              selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
               setSelectedCategory={setSelectedCategory}
               selectedCategory={selectedCategory}
             />

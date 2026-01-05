@@ -21,6 +21,7 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
     const [onlyInStock, setOnlyInStock] = useState<boolean>(filters?.onlyInStock || false)
     const [onlyDiscounted, setOnlyDiscounted] = useState<boolean>(filters?.onlyDiscounted || false)
     const [category, setCategory] = useState<string | null>(filters?.category || '')
+    const [selectedValue, setSelectedValue] = useState<string | null>('')
 
     // Update local states when filters prop changes (e.g., when reset)
     useEffect(() => {
@@ -28,6 +29,31 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
         setPriceRange(filters?.priceRange || [0, 1000])
         setOnlyInStock(filters?.onlyInStock || false)
         setCategory(filters?.category || '')
+
+        // 1️⃣ Preferred source: attributes object
+        if (filters?.attributes && Object.keys(filters.attributes).length > 0) {
+            const firstAttrId = Object.keys(filters.attributes)[0]
+            const firstValue = filters.attributes[firstAttrId]?.[0] ?? ''
+            setSelectedValue(firstValue)
+            return
+        }
+
+        // 2️⃣ Fallback: stringified attribute object
+        if (typeof filters?.category === 'string') {
+            try {
+                const parsed = JSON.parse(filters.category)
+
+                if (parsed?.value && typeof parsed.value === 'string') {
+                    setSelectedValue(parsed.value)
+                    return
+                }
+            } catch {
+                // not JSON → ignore
+            }
+        }
+
+        // 3️⃣ Default
+        setSelectedValue('')
     }, [filters])
 
     // Apply all filters
@@ -49,6 +75,7 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
         setOnlyDiscounted(false)
         setCategory('')
         setFilters(null) // Or set to default values if you prefer
+        setSelectedValue('')
     }
 
     // Close modal and apply filters
@@ -115,6 +142,8 @@ const FiltersModal = ({ filters, setFilters, setFiltersModalOpen }: Props) => {
 
                         {/* Category Filter */}
                         <Categories
+                            selectedValue={selectedValue}
+                            setSelectedValue={setSelectedValue}
                             category={category}
                             setCategory={setCategory}
                         />

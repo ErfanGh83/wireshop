@@ -29,6 +29,9 @@ function ProductsInner({
   const q = searchParams.get('q')
   const c = searchParams.get('c')
   const b = searchParams.get('b')
+  const atr = searchParams.get('atr')
+  const v = searchParams.get('v')
+
 
   const [modeResolved, setModeResolved] = useState(false)
 
@@ -45,12 +48,21 @@ function ProductsInner({
 
     // CATEGORY MODE
     if (c) {
-      setFilters({
+      const filtersFromUrl: Filters = {
         category: c,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-expect-error
         brand: undefined,
-      })
+      }
+
+      // ATTRIBUTE FILTER (only if BOTH atr & v exist)
+      if (atr && v) {
+        filtersFromUrl.attributes = {
+          [atr]: [v],
+        }
+      }
+
+      setFilters(filtersFromUrl)
       setModeResolved(true)
       return
     }

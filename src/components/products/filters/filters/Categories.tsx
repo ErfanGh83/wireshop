@@ -8,10 +8,12 @@ import { useTooltip } from "@/hooks/useToolTip";
 
 type Props = {
   category: string | null;
+  selectedValue: string | null;
   setCategory: Dispatch<SetStateAction<string | null>>;
+  setSelectedValue: Dispatch<SetStateAction<string | null>>;
 };
 
-const Categories = ({ category, setCategory }: Props) => {
+const Categories = ({ selectedValue, category, setCategory, setSelectedValue }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { setHoveredText, setTooltipPos, Tooltip } = useTooltip();
@@ -61,7 +63,9 @@ const Categories = ({ category, setCategory }: Props) => {
             <CategoryItem
               key={cat.id}
               node={cat}
+              selectedValue={selectedValue}
               selectedCategory={category}
+              setSelectedValue={setSelectedValue}
               setSelectedCategory={setCategory}
             />
           ))}
