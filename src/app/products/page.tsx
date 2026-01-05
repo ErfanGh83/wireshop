@@ -82,6 +82,7 @@ function ProductsInner({
     // NO PARAMS
     setFilters(null)
     setModeResolved(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, c, b])
 
   if (!modeResolved) return null
