@@ -24,7 +24,7 @@ const ShoppingCartItem = ({
   productId,
   setIsCartChanged = () => {},
 }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleChangeNumber = async (amount: number) => {
     if (amount > 0)
@@ -45,10 +45,19 @@ const ShoppingCartItem = ({
   return (
     <div className="w-full h-36 py-2 px-2 flex flex-row items-center gap-3 bg-white dark:bg-slate-700 dark:text-white border-[1px] border-gray-300 dark:border-transparent shadow-sm rounded-lg">
       <div className="flex-1 overflow-hidden">
-        <h3 className="text-sm font-medium truncate hover:underline cursor-pointer" onClick={()=>router.push(`/product?id=${productId}`)}>{title}</h3>
+        <h3
+          className="text-sm font-medium truncate hover:underline cursor-pointer"
+          onClick={() => router.push(`/product?id=${productId}`)}
+        >
+          {title}
+        </h3>
 
         <div className="flex items-center justify-between mt-2">
-          <div className="text-sm">{price.toLocaleString()} ریال</div>
+          {price ? (
+            <div className="text-sm">{price?.toLocaleString()} ریال</div>
+          ) : (
+            <div className="text-sm">قیمت موجود نیست</div>
+          )}
 
           <div className="flex items-center gap-3">
             <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
@@ -68,14 +77,19 @@ const ShoppingCartItem = ({
                 +
               </button>
             </div>
-
-            <span className="font-bold text-sm min-w-[80px] text-left">
-              {total.toLocaleString()} ریال
-            </span>
+            {total ? (
+              <span className="font-bold text-sm min-w-[80px] text-left">
+                {total?.toLocaleString()} ریال
+              </span>
+            ) : (
+              <span className="text-sm min-w-[80px] text-left">
+                قیمت موجود نیست.
+              </span>
+            )}
           </div>
         </div>
 
-        {discount > 0 && (
+        {discount > 0 && price && (
           <div className="flex items-center gap-2 text-xs mt-2">
             <span className="line-through text-gray-500">
               {price.toLocaleString()} ریال

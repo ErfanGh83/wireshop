@@ -95,7 +95,7 @@ export default function AdminCreateProductForm() {
     data.images
       .filter((file): file is File => file instanceof File)
       .forEach((file) => {
-        console.log("form data file: ", file);
+        // console.log("form data file: ", file);
         formData.append("images", file);
       });
 
@@ -112,7 +112,7 @@ export default function AdminCreateProductForm() {
       );
   };
 
-  console.log("validation error: ", errors);
+  // console.log("validation error: ", errors);
   // console.log("categ: ", categories);
 
   return (

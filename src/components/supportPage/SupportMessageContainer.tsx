@@ -16,7 +16,7 @@ function SupportMessageContainer() {
     getAllConversations()
       .then((result) => {
         setData(result);
-        console.log(result);
+        // console.log(result);
       })
       .catch((err) => {
         setErr({

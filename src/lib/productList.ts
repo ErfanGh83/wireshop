@@ -67,6 +67,7 @@ export const productToFa: Record<string, string> = {
   network: "تجهیزات شبکه",
   telecommunication: "مخابرات",
   "wire & power cable": "سیم و کابل برق",
+  miscellaneous: "متفرقه",
 };
 
 export const attributeNameToFa: Record<string, string> = {

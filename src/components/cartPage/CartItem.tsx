@@ -90,9 +90,13 @@ export default function CartItem({
           </div>
         </div>
 
-        <div className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white whitespace-nowrap">
-          {(price * quantity).toLocaleString()} ریال
-        </div>
+        {price ? (
+          <div className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white whitespace-nowrap">
+            {(price * quantity).toLocaleString()} ریال
+          </div>
+        ) : (
+          <div>قیمت موجود نیست.</div>
+        )}
 
         <FaTrash
           className="text-gray-500 dark:text-gray-300 hover:text-red-500 transition cursor-pointer"

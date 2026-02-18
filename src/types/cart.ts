@@ -38,6 +38,7 @@ export interface Item {
   available: boolean;
   product: Product;
   price: number;
+  finalPrice: number;
 }
 
 export interface Order {

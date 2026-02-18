@@ -37,7 +37,7 @@ export default function AdminDiscountModal({ id }: Props) {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         toast.error(err.response?.message || err.message || "خطایی رخ داد");
       });
   }, [id]);
@@ -65,7 +65,7 @@ export default function AdminDiscountModal({ id }: Props) {
       toast.error("تاریخ پایان نباید در گذشته باشد.");
       return;
     }
-    if (new Date(discountRes.startsAt) < new Date()) {
+    if (new Date(discountRes.startsAt) < new Date() && !discountId) {
       toast.error("تاریخ شروع نباید در گذشته باشد.");
       return;
     }
@@ -76,7 +76,7 @@ export default function AdminDiscountModal({ id }: Props) {
           toast.success("تخفیف با موفقیت حذف شد.");
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           toast.error(err.response?.message || err.message || "خطایی رخ داد");
         });
       return;
@@ -94,7 +94,7 @@ export default function AdminDiscountModal({ id }: Props) {
           toast.success("تخفیف با موفقیت ایجاد شد.");
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           toast.error(err.response?.message || err.message || "خطایی رخ داد");
         });
     } else {
@@ -108,7 +108,7 @@ export default function AdminDiscountModal({ id }: Props) {
           toast.success("تخفیف با موفقیت به‌روزرسانی شد.");
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           toast.error(err.response?.message || err.message || "خطایی رخ داد");
         });
     }

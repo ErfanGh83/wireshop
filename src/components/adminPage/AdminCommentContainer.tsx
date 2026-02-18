@@ -17,7 +17,7 @@ function AdminCommentContainer() {
     getAllComment()
       .then((res) => {
         setRowData(res);
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) =>
         toast.error(err.response?.message || err.message || "خطایی رخ داد")

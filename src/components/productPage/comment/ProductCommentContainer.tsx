@@ -23,7 +23,7 @@ function ProductCommentContainer({ id }: { id: string }) {
 
   if (comments === null) return <Spinner />;
 
-  console.log("comments", comments);
+  // console.log("comments", comments);
 
   return (
     <>

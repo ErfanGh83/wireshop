@@ -39,8 +39,8 @@ function AdminEditProduct() {
       queryParams.append("q", filters.query);
       getFilteredProductsByQuery(queryParams.toString())
         .then((res) => {
-          console.log("222222222");
-          console.log(res);
+          // console.log("222222222");
+          // console.log(res);
           setRowData(res);
         })
         .catch((err) =>
@@ -66,7 +66,7 @@ function AdminEditProduct() {
 
     getAllFilteredProducts(queryParams.toString())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setRowData((prev) => {
           if (!prev || filters.pageNum == 1) return res;
 
@@ -97,14 +97,14 @@ function AdminEditProduct() {
     );
   }
 
-  console.log("rowData", rowData.data);
+  // console.log("rowData", rowData.data);
 
   const tableData = rowData.data.map((item) => [
     item.images[0] ? (
       <Image
         src={BASE_URL + item.images[0].url}
         crossOrigin="anonymous"
-        alt={item.name}
+        alt={item?.name}
         className="rounded"
         width={50}
         height={50}
@@ -112,9 +112,9 @@ function AdminEditProduct() {
       />
     ) : null,
     <p onClick={() => router.push(`/product?id=${item.id}`)} className="cursor-pointer" key={item.id}>
-      {item.name}
+      {item?.name}
     </p>,
-    <p key={item.id}>{productToFa[item.category.name]}</p>,
+    <p key={item.id}>{productToFa[item.category?.name] || "دسته بندی موجود نیست"}</p>,
     <p key={item.id}>{item.views.toLocaleString()}</p>,
   ]);
 

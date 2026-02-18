@@ -82,9 +82,25 @@ export default function AdminCompletedOrderModal({ id }: { id: string }) {
                       {item.product.name}
                     </p>
                     <p>تعداد: {item.quantity}</p>
-                    <p>قیمت واحد: {item.product.price.toLocaleString()} ریال</p>
+                    <p className="text-sm">
+                      {item.finalPrice !== item.price ? (
+                        <div className="flex flex-col">
+                          <span className="text-gray-400 line-through text-xs">
+                            قیمت واحد: {item.price.toLocaleString()} ریال
+                          </span>
+                          <span className="text-green-600 dark:text-green-400 font-semibold">
+                            قیمت با تخفیف: {item.finalPrice.toLocaleString()}{" "}
+                            ریال
+                          </span>
+                        </div>
+                      ) : (
+                        <span>
+                          قیمت واحد: {item.price.toLocaleString()} ریال
+                        </span>
+                      )}
+                    </p>
                     {/* <p>وزن واحد: {item.product.weightKg} کیلوگرم</p> */}
-                    <p>
+                    {/* <p>
                       وضعیت موجودی:{" "}
                       <span
                         className={`px-2 py-0.5 rounded text-white text-xs ${
@@ -93,7 +109,7 @@ export default function AdminCompletedOrderModal({ id }: { id: string }) {
                       >
                         {item.available ? "موجود" : "ناموجود"}
                       </span>
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </li>

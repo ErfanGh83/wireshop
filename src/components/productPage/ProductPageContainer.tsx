@@ -17,6 +17,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { BASE_URL } from "@/lib/api/constants";
 import Image from "next/image";
+import Spinner from "../spinner/Spinner";
 
 export default function ProductPageContainer() {
   const searchParams = useSearchParams();
@@ -32,7 +33,7 @@ export default function ProductPageContainer() {
     getProductDetail(id)
       .then((res) => {
         setProduct(res);
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         console.error(err);
@@ -47,7 +48,7 @@ export default function ProductPageContainer() {
     }
 
     if (product && quantity > 0) {
-      console.log(product);
+      // console.log(product);
       addCartItem({ productId: product.id, quantity })
         .then(() => {
           toast.success("محصول با موفقیت به سبد خرید اضافه شد");
@@ -99,8 +100,8 @@ export default function ProductPageContainer() {
           className="overflow-y-auto size-full pb-20 md:pb-6 bg-white dark:bg-slate-900 dark:text-gray-100 flex justify-center items-center md:p-6 p-2 overflow-auto"
         >
           <div className="bg-white  md:mb-0 dark:bg-slate-800 shadow-xl rounded-2xl md:p-6 p-4 w-full h-full">
-            <div className="flex justify-center items-center mt-10">
-              loading...
+            <div className="flex justify-center items-center mt-20">
+              <Spinner />
             </div>
           </div>
         </div>

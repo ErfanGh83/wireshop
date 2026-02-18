@@ -91,14 +91,14 @@ export default function AdminEditProductModal({ id }: { id: string }) {
     data.attributes.forEach((attr) => {
       attributesList.push({ attributeId: attr.id, value: attr.value });
     });
-    console.log("atttttttttttttt", attributesList);
+    // console.log("atttttttttttttt", attributesList);
     formData.append("attributes", JSON.stringify(attributesList));
 
     if (data.images && data.images.length > 0)
       data.images
         .filter((file): file is File => file instanceof File)
         .forEach((file) => {
-          console.log("form data file: ", file);
+          // console.log("form data file: ", file);
           formData.append("images", file);
         });
 
@@ -120,7 +120,7 @@ export default function AdminEditProductModal({ id }: { id: string }) {
     deleteProduct(id)
       .then(() => toast.success("محصول یا موفقیت حذف شد."))
       .catch((err) => {
-        console.log("err", err);
+        // console.log("err", err);
         if (err.status == 409) {
           setVerifyModalOpen(true);
           return;

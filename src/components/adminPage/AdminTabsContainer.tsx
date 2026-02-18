@@ -17,20 +17,29 @@ export default function Tab({ contains }: { contains: TabProps[] }) {
 
   useEffect(() => {
     checkAdmin()
-      .then(() => setIsAdmin(true))
+      .then((res) => {
+        // console.log(res);
+        if (res) setIsAdmin(true);
+        else setIsAdmin(false);
+      })
       .catch(() => setIsAdmin(false));
   }, []);
 
   if (isAdmin === false)
     return (
-      <div className="w-full text-red-500">
+      <div className="w-full text-red-500 mt-20">
         <h2 className="text-center text-xl">
           لطفا با دسترسی ادمین دوباره وارد شوید.
         </h2>
       </div>
     );
 
-  if (isAdmin === null) return <Spinner size={48} />;
+  if (isAdmin === null)
+    return (
+      <div className="w-full mt-20">
+        <Spinner size={48} />
+      </div>
+    );
 
   return (
     <div className="my-5 overflow-x-hidden h-full md:pt-14 pb-3">

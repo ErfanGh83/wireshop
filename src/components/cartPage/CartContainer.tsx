@@ -26,7 +26,7 @@ export default function CartContainer() {
     getAllCart()
       .then((result) => {
         setCart(result);
-        console.log("res:", result);
+        // console.log("res:", result);
       })
       .catch((err) =>
         toast.error(
@@ -54,7 +54,7 @@ export default function CartContainer() {
 
     postActiveAddress({ addressId: activeAddress.id })
       .catch((err) =>
-        toast.error(err.response?.message || err.message || "خطایی رخ داد")
+        toast.error(err.response?.message || err.message || "خطایی در تایید آدرس رخ داد")
       )
       .then(() => {
         toast.success("آدرس با موفقیت تایید شد.");
@@ -62,8 +62,16 @@ export default function CartContainer() {
           .then((res) => {
             window.location.href = res;
           })
-          .catch((err) =>
-            toast.error(err.response?.message || err.message || "خطایی رخ داد")
+          .catch((err) =>{
+            // console.log(err)
+            toast.error(
+              ERROR_MESSAGES.check_out[
+                err.status as keyof typeof ERROR_MESSAGES.check_out
+              ] ||
+                err.response?.message ||
+                err.message ||
+                "خطایی رخ داد"
+            )}
           );
       })
       .finally(() => {
@@ -117,9 +125,15 @@ export default function CartContainer() {
           </div>
 
           <div className="text-right mt-4">
-            <h4 className="font-bold text-xl text-gray-900 dark:text-white">
-              مجموع هزینه با حساب تخفیف: {cart.cost.toLocaleString()} ریال
-            </h4>
+            {cart.cost ? (
+              <h4 className="font-bold text-xl text-gray-900 dark:text-white">
+                مجموع هزینه با حساب تخفیف: {cart.cost.toLocaleString()} ریال
+              </h4>
+            ) : (
+              <h4 className="font-bold text-xl text-gray-900 dark:text-white">
+                قیمت نهائی موجود نیست. برای اطلاع تماس بگیرید
+              </h4>
+            )}
             {/* <h4 className="font-bold text-xl text-gray-900 dark:text-white">
               مجموع وزن: {cart.weightKg.toFixed(2) || 0} کیلوگرم
             </h4> */}
