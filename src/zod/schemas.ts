@@ -1,0 +1,155 @@
+import { z } from "zod";
+
+// Helper schema for Iranian phone numbers (09xxxxxxxxx)
+const IranianPhoneSchema = z
+  .string()
+  .length(11, "شماره تلفن باید ۱۱ رقم باشد")
+  .regex(/^09\d{9}$/, "شماره تلفن باید با ۰۹ شروع شود و فقط شامل اعداد باشد")
+  .regex(/^[0-9۰-۹]+$/, "شماره تلفن باید فقط شامل اعداد باشد");
+
+// 1. ارسال کد تأیید
+export const SendCodeSchema = z.object({
+  phone: IranianPhoneSchema,
+});
+export type SendCodeInput = z.infer<typeof SendCodeSchema>;
+
+// 2. تأیید کد
+export const VerifyCodeSchema = z.object({
+  phone: IranianPhoneSchema,
+  code: z.string().length(7, "کد تأیید باید 7 رقم باشد"),
+});
+export type VerifyCodeInput = z.infer<typeof VerifyCodeSchema>;
+
+// 3. تکمیل ثبت‌نام
+export const CompleteSignupSchema = z.object({
+  phone: IranianPhoneSchema,
+  password: z.string().min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد"),
+  birthdate: z
+    .string()
+    .regex(
+      /^[۰-۹]{4}-[۰-۹]{2}-[۰-۹]{2}$/,
+      "تاریخ تولد باید به فرمت شمسی و با اعداد فارسی وارد شود"
+    ),
+});
+export type CompleteSignupInput = z.infer<typeof CompleteSignupSchema>;
+
+// 4. ورود
+export const LoginSchema = z.object({
+  phone: IranianPhoneSchema,
+  password: z
+    .string()
+    .min(6, "رمز عبور الزامی است و باید حداقل ۶ کاراکتر باشد"),
+});
+export type LoginInput = z.infer<typeof LoginSchema>;
+
+const persianNameRegex = /^[\u0600-\u06FF\s]{3,}$/;
+
+const persianDateRegex = /^[۰-۹]{4}-[۰-۹]{2}-[۰-۹]{2}$/;
+
+export const changeUserInfoSchema = z.object({
+  firstname: z
+    .string()
+    .regex(persianNameRegex, "نام باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد")
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+
+  lastname: z
+    .string()
+    .regex(
+      persianNameRegex,
+      "نام خانوادگی باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد"
+    )
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+
+  password: z
+    .string()
+    .min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد")
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+
+  birthdate: z
+    .string()
+    .regex(persianDateRegex, "تاریخ تولد باید در فرمت ۱۳۷۰-۰۵-۲۳ باشد")
+    .optional()
+    .or(z.literal("").transform(() => undefined))
+    .nullable(),
+});
+
+export const productSchema = z.object({
+  name: z.string().min(1, "نام الزامی است"),
+  description: z.string().nullable().optional(),
+  price: z.number().min(0, "قیمت نمی‌تواند منفی باشد"),
+  unit: z.string().min(0, "واحد نمیتواند خالی باشد."),
+  stock: z.number().int().min(0, "موجودی نمی‌تواند منفی باشد"),
+  attributes: z
+    .array(
+      z.object({
+        name: z.string().min(1, "نام الزامی است"),
+        id: z.string().min(1, "کلید الزامی است"),
+        value: z.string().min(1, "مقدار الزامی است"),
+      })
+    )
+    .superRefine((attrs, ctx) => {
+      const keys = new Set();
+      attrs.forEach((attr, i) => {
+        if (keys.has(attr.name)) {
+          ctx.addIssue({
+            path: [i, "key"],
+            code: z.ZodIssueCode.custom,
+            message: "این ویژگی قبلاً انتخاب شده است",
+          });
+        }
+        keys.add(attr.name);
+      });
+    }),
+  // images: z.array(z.union([z.instanceof(File), z.null()])) ,
+  images: z.union([
+    z.array(z.union([z.instanceof(File), z.null()])),
+    z.undefined(),
+  ]),
+});
+export type ProductFormValues = z.infer<typeof productSchema>;
+
+export const createProductSchema = z.object({
+  name: z.string().min(1, "نام الزامی است"),
+  description: z.string().optional(),
+  price: z.coerce.number().min(1, "قیمت باید بزرگتر از صفر باشد"),
+  unit: z.coerce.string().min(1, "معیار هر واحد باید انتخاب شود."),
+  stock: z.coerce.number().int().min(0, "موجودی منفی نیست"),
+  categoryId: z.string().min(1, "دسته بندی باید انتخاب شود."),
+  attributes: z
+    .array(
+      z.object({
+        name: z.string().min(1, "نام الزامی است"),
+        id: z.string().min(1, "کلید الزامی است"),
+        value: z.string().min(1, "مقدار الزامی است"),
+      })
+    )
+    .superRefine((attrs, ctx) => {
+      const keys = new Set();
+      attrs.forEach((attr, i) => {
+        if (keys.has(attr.name)) {
+          ctx.addIssue({
+            path: [i, "key"],
+            code: z.ZodIssueCode.custom,
+            message: "این ویژگی قبلاً انتخاب شده است",
+          });
+        }
+        keys.add(attr.name);
+      });
+    }),
+  images: z.array(z.union([z.instanceof(File), z.null()])),
+});
+export type createProductFormValues = z.infer<typeof createProductSchema>;
+
+export const createMemberSchema = z.object({
+  phone: z
+    .string()
+    .regex(/^09\d{9}$/, "شماره تلفن معتبر نیست (مثال: 09123456789)"),
+  password: z.string().min(8, "رمز عبور باید حداقل 8 کاراکتر باشد"),
+  role: z
+    .enum(["user", "admin", "support"])
+    .refine((val) => !!val, { message: "انتخاب نقش الزامی است" }),
+});
+export type CreateMemberFormValues = z.infer<typeof createMemberSchema>;

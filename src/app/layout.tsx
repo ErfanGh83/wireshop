@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 
-const vazir = Vazirmatn({
-  subsets: ["arabic", "latin"],
-  variable: "--font-vazir",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+// const vazir = Vazirmatn({
+//   subsets: ["arabic", "latin"],
+//   variable: "--font-vazir",
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+// });
 
 export const metadata: Metadata = {
   title: "فروشگاه",
@@ -21,9 +23,10 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`${vazir.variable} font-sans antialiased bg-gray-800 text-right`}
+        className={`font-yekan antialiased bg-gray-800 text-right text-black dark:text-white scrollbar-modern overflow-hidden`}
       >
         {children}
+        <ToastContainer position="top-center" autoClose={4000} />
       </body>
     </html>
   );
